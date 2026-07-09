@@ -1,115 +1,36 @@
-# DEP Data Engineering Open Track: A 6-Month Project-Driven Build Journey
+# Philippine Fuel Price Data Pipeline
 
-> A 6-month, self-paced, project-driven learning journey. Participants build a real, deployable data project using free and open-source tools.
+## Problem Statement
+I want to answer: "How have Philippine retail fuel prices (gasoline, diesel, kerosene) changed over time, and how do they vary by region and fuel type?"
 
-**Cohort:** June – November 2026 &nbsp;|&nbsp; **Time:** ~5 hrs/week &nbsp;|&nbsp; **Cost:** Free
+## Audience
+This project is for consumers, journalists and researchers, and technical reviewers (recruiters, hiring managers, data engineers) evaluating real-world Data Engineering skills.
 
----
+## KPI or Key Metric
+The main metric I want to track is average retail price per liter, by fuel type and region, over time, with week-over-week percent change as a secondary derived metric.
 
-## What You'll Build
+## Likely Data Source
+I will explore the DOE Oil Monitor bulletins and GlobalPetrolPrices.com's Philippines gasoline series.
+DOE Oil Monitor: https://doe.gov.ph/articles/group/liquid-fuels?category=Oil+Monitor&display_type=Card
+GlobalPetrolPrices.com: https://www.globalpetrolprices.com/Philippines/gasoline_prices/
 
-By the end of the program, every participant will have:
+## Possible Final Dashboard
+The dashboard should help the audience quickly see current DOE prices, historical trends by fuel type, and regional comparisons, enough to answer "is now a good time to fill up, and how does my region compare?" at a glance.
 
-- A **public GitHub repo** with a clean, documented data project
-- An **end-to-end data pipeline** (ingest → clean → analyze → deploy)
-- An **analysis notebook** with charts, statistics, and written insights
-- A **live deployed dashboard** (GitHub Pages)
+## Data Source Notes
 
----
+### Primary Source
+- Name: DOE Oil Monitor (Department of Energy, Philippines)
+- URL: https://doe.gov.ph/articles/group/liquid-fuels?category=Oil+Monitor&display_type=Card
+- Format: PDF bulletins (published weekly as attachments on the listing page)
+- Coverage: Prevailing pump prices by fuel type (gasoline, diesel, kerosene), by oil company/brand, and by region, historically back several years via pagination
+- Why it fits the problem: This is the authoritative primary source for Philippine fuel prices, with the brand- and region-level granularity needed to answer the problem statement
+- Known limitations: Filenames are inconsistent (varying formats, occasional revision suffixes) and require tolerant date parsing; publish cadence is a voluntary weekly norm, not guaranteed, so ingestion must poll and diff rather than assume one file per week; the site blocks naive automated HTTP fetches (bot detection), so ingestion will need realistic headers, session handling, or headless-browser fallback
 
-## Program Design
-
-| | |
-|-|-|
-| **Duration** | 24 weeks (~5 hours/week, ~120 hours total) |
-| **Weekly Rule** | 1 primary resource + 1 optional max; every week produces a project artifact |
-| **Design Principles** | Project-first · milestone-driven · public accountability · low-overwhelm resource curation |
-| **Resource Rule** | Prefer official docs, interactive tools, or one proven course. Avoid multiple full courses in the same week. |
-| **Tool Stack** | Free tools only: GitHub, Python, SQL, HTML. Optional tools (Tableau, etc.) are learner-driven. |
-
----
-
-## How to Use This Repo
-
-This is the **program hub** — it contains the curriculum, weekly resources, and milestone guides.
-
-**Builders:** Follow the phase folders in order. Each week folder has resources, tasks, and links.
-
-**Volunteers:** See [docs/VOLUNTEER_GUIDE.md](docs/VOLUNTEER_GUIDE.md) for your role and responsibilities.
-
----
-
-## Stuck Protocol
-
-> If you have spent more than **2 hours** on one problem without progress:
->
-> 1. Write down exactly what you tried
-> 2. Post in the DEP community channel with your error message and code snippet
-> 3. Tag your moderator
->
-> **Do NOT skip ahead.** Moderators flag stuck participants for Ops Lead review within 48 hours.
-> You may not advance to the next milestone while a blocker is unresolved.
-
----
-
-## Curriculum
-
-| Phase | Weeks | Focus | Output |
-|-------|-------|-------|--------|
-| [01 — Foundations](01-foundations/) | 1–4 | Problem framing, data source discovery, GitHub + Python basics | Problem statement + first raw data pull |
-| [02 — Data Collection](02-data-collection/) | 5–6 | API fundamentals, alternate ingestion paths (scraping / manual) | Ingestion script + raw data in `/data/raw` |
-| [03 — Data Processing](03-data-processing/) | 7–12 | Storage/data modeling, SQL, Pandas cleaning, data quality, pipeline structuring | Clean, schema-defined dataset + reproducible pipeline |
-| [04 — Analysis & Insights](04-analysis-and-insights/) | 13–16 | Descriptive stats, EDA, visualization, insight writing | Insights notebook with 3–5 charts |
-| [05A — Predictive Layer](05-project-packaging/) *(Path A — conditional)* | 17–20 | Regression, classification, feature engineering, ML pipeline integration | Predictive model + evaluation metrics |
-| [05B — Non-Predictive Alt Track](05-project-packaging/) *(Path B — conditional)* | 17–20 | Advanced segmentation, KPI framework, stakeholder narrative, repo integration | Advanced analysis + stakeholder brief |
-| [06 — Deployment](06-deployment/) | 21–24 | Dashboard design + build, GitHub Pages deploy, documentation polish, presentation | Live project URL + portfolio-ready repo |
-
----
-
-## Milestones
-
-Progress is tracked through 7 milestones (M0–M6). Each one has a clear output and a submission form.
-
-| Milestone | When | Output |
-|-----------|------|--------|
-| M0 — Problem Statement | End of Week 1 | Specific question + audience + possible data source + README in learner's own words |
-| M1 — Data Source Identified / Repo Initialized | By Week 3–4 | Working repo + chosen source + README data section complete |
-| M2 — Data Ingestion Script | By Week 6 | Raw data in `/data/raw` via API, scraping, or manual timestamped save |
-| M3 — Clean Dataset | By Week 12 | Processed dataset + schema plan + cleaning notes + validation checks |
-| M4 — Initial Insights | By Week 16 | 3–5 charts + written interpretations + one cautious inference section |
-| M5 — Public Repo / Predictive Component | By Week 20–23 | Professional repo + predictive layer (Path A) OR advanced EDA + stakeholder brief (Path B) |
-| M6 — Live Deployment | By Week 24 | Live GitHub Pages URL + presentable final project |
-
-> **Gates:** M0 and M1 are hard gates. Learners must not proceed to the next phase without moderator review and approval.
-
-Full checklist: [docs/MILESTONE_CHECKLIST.md](docs/MILESTONE_CHECKLIST.md)
-
----
-
-## Getting Started (Participants)
-
-1. **Join the community** — [Discord link here]
-2. **Set up your project repo** — copy the [DEP Starter Kit](cohorts/starter-kit/) scaffold into your own GitHub repo
-3. **Start Phase 1** — go to [01-foundations/](01-foundations/) and begin Week 1
-
----
-
-## Tech Stack
-
-![DEP Tech Stack](docs/stack-diagram.svg)
-
----
-
-## Cohorts
-
-- [2026 Cohort](cohorts/2026/) — June–November 2026 *(current)*
-
----
-
-## For Volunteers
-
-See [docs/VOLUNTEER_GUIDE.md](docs/VOLUNTEER_GUIDE.md) for role descriptions, responsibilities, and the operating rhythm.
-
----
-
-*Built by Data Engineering Pilipinas. Free and open. Always.*
+### Fallback Source
+- Name: GlobalPetrolPrices.com — Philippines Gasoline Prices
+- URL: https://www.globalpetrolprices.com/Philippines/gasoline_prices/
+- Format: CSV/API (downloadable data, weekly series)
+- Coverage: Weekly Octane-95 gasoline price for the Philippines, national aggregate, from 2015-12-28 to present, sourced from the DOE
+- Why it could still work: If the primary DOE source is temporarily blocked or a bulletin is missing, this provides a continuous, DOE-sourced weekly price series to fill gaps or cross-validate extracted values
+- Known limitations: Single national aggregate value only — no brand or regional breakdown, and no diesel/kerosene series, so it cannot fully substitute for the primary source, only supplement it
