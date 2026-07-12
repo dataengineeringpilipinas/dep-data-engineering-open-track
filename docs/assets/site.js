@@ -16,7 +16,12 @@ if (navToggle && navLinks) {
   setNavOpen(false);
 
   navToggle.addEventListener("click", () => {
-    setNavOpen(!navLinks.classList.contains("is-open"));
+    const willOpen = !navLinks.classList.contains("is-open");
+    setNavOpen(willOpen);
+    if (willOpen && mobileNavQuery.matches) {
+      const firstLink = navLinks.querySelector("a");
+      firstLink?.focus();
+    }
   });
 
   navLinks.addEventListener("click", (event) => {
@@ -136,7 +141,7 @@ if (builderDashboard) {
 
   let builders = [];
   let showAllBuilders = false;
-  let clockFrame = null;
+  let clockInterval = null;
   const builderPreviewLimit = 10;
   const manilaTimeZone = "Asia/Manila";
   const milestoneNames = {
@@ -213,6 +218,7 @@ if (builderDashboard) {
     formatDateTime(date, {
       hour: "2-digit",
       minute: "2-digit",
+      second: "2-digit",
       hour12: true,
     });
 
@@ -229,19 +235,17 @@ if (builderDashboard) {
     }
   };
 
-  const getClockIntervalMs = () => (reducedMotionQuery.matches ? 0 : 60_000);
-
   const startTimelineClock = () => {
     if (!timelineDateEl || !timelineTimeEl) return;
 
-    if (clockFrame) window.clearInterval(clockFrame);
-    clockFrame = null;
+    if (clockInterval) window.clearInterval(clockInterval);
     updateTimelineClock();
 
-    const intervalMs = getClockIntervalMs();
-    if (intervalMs > 0) {
-      clockFrame = window.setInterval(() => updateTimelineClock(), intervalMs);
+    if (reducedMotionQuery.matches) {
+      return;
     }
+
+    clockInterval = window.setInterval(() => updateTimelineClock(), 1000);
   };
 
   reducedMotionQuery.addEventListener("change", startTimelineClock);
@@ -258,6 +262,51 @@ if (builderDashboard) {
     if (days > 0) return `${days}d ${hours}h left`;
     if (hours > 0) return `${hours}h ${minutes}m left`;
     return `${minutes}m left`;
+  };
+
+  const getMilestoneColumnCenter = (index, total) => ((index + 0.5) / total) * 100;
+
+  const getSegmentPadding = (total) => (100 / total) * 0.34;
+
+  const getNowGridPercent = (entries, now) => {
+    const total = entries.length;
+    const padding = getSegmentPadding(total);
+    const currentIndex = entries.findIndex((entry) => now <= entry.deadline);
+
+    if (currentIndex === -1) {
+      const lastCenter = getMilestoneColumnCenter(total - 1, total);
+      return Math.max(lastCenter - padding, 0);
+    }
+
+    if (currentIndex === 0) {
+      const deadline = entries[0].deadline.getTime();
+      const progress = Math.min(Math.max(now.getTime() / deadline, 0), 1);
+      const segmentEnd = getMilestoneColumnCenter(0, total) - padding;
+      return progress * Math.max(segmentEnd, 0);
+    }
+
+    const prevDeadline = entries[currentIndex - 1].deadline.getTime();
+    const nextDeadline = entries[currentIndex].deadline.getTime();
+    const segmentSpan = Math.max(nextDeadline - prevDeadline, 1);
+    const progress = Math.min(
+      Math.max((now.getTime() - prevDeadline) / segmentSpan, 0),
+      1,
+    );
+    const prevCenter = getMilestoneColumnCenter(currentIndex - 1, total);
+    const nextCenter = getMilestoneColumnCenter(currentIndex, total);
+    const segmentStart = prevCenter + padding;
+    const segmentEnd = nextCenter - padding;
+    const usableSpan = Math.max(segmentEnd - segmentStart, 0);
+
+    return segmentStart + progress * usableSpan;
+  };
+
+  const toRailPercent = (gridPercent) => {
+    const railInset = 5;
+    return Math.min(
+      Math.max(((gridPercent - railInset) / (100 - railInset * 2)) * 100, 0),
+      100,
+    );
   };
 
   const renderTimeline = (deadlines) => {
@@ -278,19 +327,17 @@ if (builderDashboard) {
     }
 
     const now = new Date();
-    const firstTime = entries[0].deadline.getTime();
-    const lastTime = entries[entries.length - 1].deadline.getTime();
-    const span = Math.max(lastTime - firstTime, 1);
-    const nowPercent = Math.min(Math.max(((now.getTime() - firstTime) / span) * 100, 0), 100);
     const currentIndex = entries.findIndex((entry) => now <= entry.deadline);
+    const nowGridPercent = getNowGridPercent(entries, now);
+    const nowRailPercent = toRailPercent(nowGridPercent);
 
     timelineEl.innerHTML = `
       <div class="timeline-rail" aria-hidden="true">
-        <span class="timeline-rail-fill" style="width: ${nowPercent}%"></span>
-        <span class="timeline-now-marker" style="left: ${nowPercent}%">
-          <span>Now</span>
-        </span>
+        <span class="timeline-rail-fill" style="width: ${nowRailPercent}%"></span>
       </div>
+      <span class="timeline-now-marker" style="left: ${nowGridPercent}%" aria-hidden="true">
+        <span class="timeline-now-label">Now</span>
+      </span>
       <ol class="timeline-milestones" aria-label="Milestone deadlines">
         ${entries
           .map((entry, index) => {
@@ -299,12 +346,8 @@ if (builderDashboard) {
               : index === currentIndex
                 ? "current"
                 : "future";
-            const position = Math.min(
-              Math.max(((entry.deadline.getTime() - firstTime) / span) * 100, 0),
-              100,
-            );
 
-            return `<li class="timeline-milestone ${state}" style="--timeline-position: ${position}%">
+            return `<li class="timeline-milestone ${state}">
               <span class="timeline-node">${escapeHtml(entry.key)}</span>
               <div class="timeline-card">
                 <span class="timeline-state">${state === "current" ? "Current gate" : state}</span>
@@ -452,6 +495,10 @@ if (builderDashboard) {
     countEl.textContent = showAllBuilders || visible.length <= builderPreviewLimit
       ? `${visible.length} of ${builders.length} builders shown`
       : `Showing ${rendered.length} of ${visible.length} matching builders`;
+    countEl.setAttribute(
+      "aria-live",
+      reducedMotionQuery.matches ? "off" : "polite",
+    );
 
     if (expandEl) {
       const hasOverflow = visible.length > builderPreviewLimit;
