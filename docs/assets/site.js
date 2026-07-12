@@ -1,16 +1,48 @@
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector("#nav-links");
+const mobileNavQuery = window.matchMedia("(max-width: 767px)");
+
+const setNavOpen = (isOpen) => {
+  if (!navToggle || !navLinks) return;
+  navLinks.classList.toggle("is-open", isOpen);
+  navToggle.setAttribute("aria-expanded", String(isOpen));
+  navToggle.querySelector(".sr-only").textContent = isOpen
+    ? "Close navigation"
+    : "Open navigation";
+  navLinks.toggleAttribute("inert", mobileNavQuery.matches && !isOpen);
+};
 
 if (navToggle && navLinks) {
+  setNavOpen(false);
+
   navToggle.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("is-open");
-    navToggle.setAttribute("aria-expanded", String(isOpen));
+    const willOpen = !navLinks.classList.contains("is-open");
+    setNavOpen(willOpen);
+    if (willOpen && mobileNavQuery.matches) {
+      const firstLink = navLinks.querySelector("a");
+      firstLink?.focus();
+    }
   });
 
   navLinks.addEventListener("click", (event) => {
     if (event.target instanceof HTMLAnchorElement) {
-      navLinks.classList.remove("is-open");
-      navToggle.setAttribute("aria-expanded", "false");
+      setNavOpen(false);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && navLinks.classList.contains("is-open")) {
+      setNavOpen(false);
+      navToggle.focus();
+    }
+  });
+
+  mobileNavQuery.addEventListener("change", () => {
+    if (!mobileNavQuery.matches) {
+      setNavOpen(false);
+      navLinks.removeAttribute("inert");
+    } else {
+      navLinks.toggleAttribute("inert", !navLinks.classList.contains("is-open"));
     }
   });
 }
@@ -102,12 +134,14 @@ if (builderDashboard) {
   const phaseFilterEl = builderDashboard.querySelector("[data-builder-phase-filter]");
   const expandEl = builderDashboard.querySelector("[data-builder-expand]");
   const timelineEl = builderDashboard.querySelector("[data-timeline]");
+  const timelineNowEl = builderDashboard.querySelector("#timeline-now");
   const timelineDateEl = builderDashboard.querySelector("[data-timeline-date]");
   const timelineTimeEl = builderDashboard.querySelector("[data-timeline-time]");
+  const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   let builders = [];
   let showAllBuilders = false;
-  let clockFrame = null;
+  let clockInterval = null;
   const builderPreviewLimit = 10;
   const manilaTimeZone = "Asia/Manila";
   const milestoneNames = {
@@ -180,15 +214,41 @@ if (builderDashboard) {
       year: "numeric",
     });
 
-  const formatClockTime = (date) => {
-    const time = formatDateTime(date, {
+  const formatClockTime = (date) =>
+    formatDateTime(date, {
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",
       hour12: true,
     });
-    return `${time}.${String(date.getMilliseconds()).padStart(3, "0")}`;
+
+  const updateTimelineClock = (now = new Date()) => {
+    if (!timelineDateEl || !timelineTimeEl) return;
+    timelineDateEl.textContent = formatClockDate(now);
+    timelineTimeEl.textContent = formatClockTime(now);
+    if (timelineNowEl) {
+      timelineNowEl.setAttribute("datetime", now.toISOString());
+      timelineNowEl.setAttribute(
+        "aria-label",
+        `Current time in Asia/Manila: ${formatClockDate(now)}, ${formatClockTime(now)}`,
+      );
+    }
   };
+
+  const startTimelineClock = () => {
+    if (!timelineDateEl || !timelineTimeEl) return;
+
+    if (clockInterval) window.clearInterval(clockInterval);
+    updateTimelineClock();
+
+    if (reducedMotionQuery.matches) {
+      return;
+    }
+
+    clockInterval = window.setInterval(() => updateTimelineClock(), 1000);
+  };
+
+  reducedMotionQuery.addEventListener("change", startTimelineClock);
 
   const formatCountdown = (deadline, now = new Date()) => {
     const diff = deadline.getTime() - now.getTime();
@@ -204,18 +264,49 @@ if (builderDashboard) {
     return `${minutes}m left`;
   };
 
-  const startTimelineClock = () => {
-    if (!timelineDateEl || !timelineTimeEl) return;
+  const getMilestoneColumnCenter = (index, total) => ((index + 0.5) / total) * 100;
 
-    const tick = () => {
-      const now = new Date();
-      timelineDateEl.textContent = formatClockDate(now);
-      timelineTimeEl.textContent = formatClockTime(now);
-      clockFrame = window.requestAnimationFrame(tick);
-    };
+  const getSegmentPadding = (total) => (100 / total) * 0.34;
 
-    if (clockFrame) window.cancelAnimationFrame(clockFrame);
-    tick();
+  const getNowGridPercent = (entries, now) => {
+    const total = entries.length;
+    const padding = getSegmentPadding(total);
+    const currentIndex = entries.findIndex((entry) => now <= entry.deadline);
+
+    if (currentIndex === -1) {
+      const lastCenter = getMilestoneColumnCenter(total - 1, total);
+      return Math.max(lastCenter - padding, 0);
+    }
+
+    if (currentIndex === 0) {
+      const deadline = entries[0].deadline.getTime();
+      const progress = Math.min(Math.max(now.getTime() / deadline, 0), 1);
+      const segmentEnd = getMilestoneColumnCenter(0, total) - padding;
+      return progress * Math.max(segmentEnd, 0);
+    }
+
+    const prevDeadline = entries[currentIndex - 1].deadline.getTime();
+    const nextDeadline = entries[currentIndex].deadline.getTime();
+    const segmentSpan = Math.max(nextDeadline - prevDeadline, 1);
+    const progress = Math.min(
+      Math.max((now.getTime() - prevDeadline) / segmentSpan, 0),
+      1,
+    );
+    const prevCenter = getMilestoneColumnCenter(currentIndex - 1, total);
+    const nextCenter = getMilestoneColumnCenter(currentIndex, total);
+    const segmentStart = prevCenter + padding;
+    const segmentEnd = nextCenter - padding;
+    const usableSpan = Math.max(segmentEnd - segmentStart, 0);
+
+    return segmentStart + progress * usableSpan;
+  };
+
+  const toRailPercent = (gridPercent) => {
+    const railInset = 5;
+    return Math.min(
+      Math.max(((gridPercent - railInset) / (100 - railInset * 2)) * 100, 0),
+      100,
+    );
   };
 
   const renderTimeline = (deadlines) => {
@@ -236,19 +327,17 @@ if (builderDashboard) {
     }
 
     const now = new Date();
-    const firstTime = entries[0].deadline.getTime();
-    const lastTime = entries[entries.length - 1].deadline.getTime();
-    const span = Math.max(lastTime - firstTime, 1);
-    const nowPercent = Math.min(Math.max(((now.getTime() - firstTime) / span) * 100, 0), 100);
     const currentIndex = entries.findIndex((entry) => now <= entry.deadline);
+    const nowGridPercent = getNowGridPercent(entries, now);
+    const nowRailPercent = toRailPercent(nowGridPercent);
 
     timelineEl.innerHTML = `
       <div class="timeline-rail" aria-hidden="true">
-        <span class="timeline-rail-fill" style="width: ${nowPercent}%"></span>
-        <span class="timeline-now-marker" style="left: ${nowPercent}%">
-          <span>Now</span>
-        </span>
+        <span class="timeline-rail-fill" style="width: ${nowRailPercent}%"></span>
       </div>
+      <span class="timeline-now-marker" style="left: ${nowGridPercent}%" aria-hidden="true">
+        <span class="timeline-now-label">Now</span>
+      </span>
       <ol class="timeline-milestones" aria-label="Milestone deadlines">
         ${entries
           .map((entry, index) => {
@@ -257,12 +346,8 @@ if (builderDashboard) {
               : index === currentIndex
                 ? "current"
                 : "future";
-            const position = Math.min(
-              Math.max(((entry.deadline.getTime() - firstTime) / span) * 100, 0),
-              100,
-            );
 
-            return `<li class="timeline-milestone ${state}" style="--timeline-position: ${position}%">
+            return `<li class="timeline-milestone ${state}">
               <span class="timeline-node">${escapeHtml(entry.key)}</span>
               <div class="timeline-card">
                 <span class="timeline-state">${state === "current" ? "Current gate" : state}</span>
@@ -336,7 +421,17 @@ if (builderDashboard) {
       );
     const max = Math.max(...entries.map((label) => counts[label]), 1);
 
+    if (!entries.length) {
+      target.innerHTML = `<p class="builder-empty">No public data yet.</p>`;
+      return;
+    }
+
+    const srSummary = entries
+      .map((label) => `${statusLabels[label] || label}: ${counts[label]}`)
+      .join(", ");
+
     target.innerHTML =
+      `<p class="builder-chart-sr">${escapeHtml(srSummary)}</p>` +
       entries
         .map((label) => {
           const count = counts[label];
@@ -346,12 +441,12 @@ if (builderDashboard) {
               <span>${escapeHtml(statusLabels[label] || label)}</span>
               <strong>${escapeHtml(count)}</strong>
             </div>
-            <div class="builder-bar-track">
+            <div class="builder-bar-track" aria-hidden="true">
               <span style="width: ${width}%"></span>
             </div>
           </div>`;
         })
-        .join("") || `<p class="builder-empty">No public data yet.</p>`;
+        .join("");
   };
 
   const renderMilestones = () => {
@@ -360,6 +455,7 @@ if (builderDashboard) {
     const passRate = submitted > 0 ? Math.round((passed / submitted) * 100) : 0;
 
     milestoneEl.innerHTML = `
+      <p class="builder-chart-sr">Submitted: ${escapeHtml(submitted)}, Passed: ${escapeHtml(passed)}, Pass rate: ${submitted > 0 ? `${passRate}%` : "not available"}</p>
       <div class="milestone-funnel-step">
         <span>Submitted</span>
         <strong>${metricValue(submitted)}</strong>
@@ -399,6 +495,10 @@ if (builderDashboard) {
     countEl.textContent = showAllBuilders || visible.length <= builderPreviewLimit
       ? `${visible.length} of ${builders.length} builders shown`
       : `Showing ${rendered.length} of ${visible.length} matching builders`;
+    countEl.setAttribute(
+      "aria-live",
+      reducedMotionQuery.matches ? "off" : "polite",
+    );
 
     if (expandEl) {
       const hasOverflow = visible.length > builderPreviewLimit;
@@ -443,7 +543,7 @@ if (builderDashboard) {
             <span>${escapeHtml(builder.milestonesPassed || 0)} passed / ${escapeHtml(builder.milestonesSubmitted || 0)} submitted</span>
             ${
               github
-                ? `<a href="${escapeHtml(github)}" target="_blank" rel="noopener noreferrer">GitHub</a>`
+                ? `<a href="${escapeHtml(github)}" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository for ${name} (opens in new tab)">GitHub</a>`
                 : "<span>GitHub pending</span>"
             }
           </div>

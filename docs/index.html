@@ -8,14 +8,14 @@
             content="Onboarding site for the DEP Engineering Program (Open Track) 2026 Cohort, a community-powered build sprint by Data Engineering Pilipinas."
         />
         <title>DEP Engineering Program</title>
-        <link rel="stylesheet" href="assets/site.css" />
+        <link rel="stylesheet" href="assets/site.css?v=10" />
     </head>
     <body>
         <a class="skip-link" href="#main">Skip to content</a>
 
         <header class="site-header">
             <nav class="nav" aria-label="Primary navigation">
-                <a class="brand" href="#top" aria-label="DEP Program home">
+                <a class="brand" href="#top">
                     <span class="brand-mark" aria-hidden="true">
                         <img src="assets/dep-logo.png" alt="" />
                     </span>
@@ -38,16 +38,13 @@
                     <a href="#about">About</a>
                     <a href="#process">Process</a>
                     <a href="#outputs">Outputs</a>
-                    <a href="#ai">AI</a>
+                    <a href="ai-guide.html">AI Guide</a>
                     <a href="#builders">Builders</a>
+                    <a href="progress.html">Submissions</a>
                     <a href="#team">Team</a>
                     <a href="#faq">FAQ</a>
-                    <a
-                        class="nav-cta nav-cta-closed"
-                        href="#register"
-                        aria-disabled="true"
-                        tabindex="-1"
-                        >Registration closed</a
+                    <span class="nav-cta nav-cta-closed"
+                        >Registration closed</span
                     >
                 </div>
             </nav>
@@ -65,7 +62,9 @@
                         sprint
                     </p>
                     <div class="announcement-links">
-                        <a href="#register">Registration closed</a>
+                        <span class="announcement-closed"
+                            >Registration closed</span
+                        >
                         <a href="#process">See onboarding flow</a>
                     </div>
                 </div>
@@ -87,22 +86,21 @@
                         deployable dashboard.
                     </p>
                     <div class="hero-actions" id="register">
-                        <a
+                        <span
                             class="button button-primary"
-                            href="#"
-                            aria-disabled="true"
-                            tabindex="-1"
+                            role="status"
+                            aria-label="Registration closed"
+                            >Registration closed</span
                         >
-                            Registration closed
-                        </a>
                         <a
                             class="button button-secondary"
                             href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track"
                             target="_blank"
                             rel="noopener noreferrer"
+                            >View curriculum repo<span class="sr-only">
+                                (opens in new tab)</span
+                            ></a
                         >
-                            View curriculum repo
-                        </a>
                     </div>
                     <div class="hero-stats" aria-label="Cohort highlights">
                         <div>
@@ -133,10 +131,10 @@
                 <aside class="hero-panel" aria-label="Cohort notes">
                     <div class="panel-note panel-note-highlight">
                         <span class="panel-kicker">Build like Cohort 1</span>
-                        <h3>
+                        <h2 class="panel-title">
                             Clear milestones, visible support, public proof of
                             work.
-                        </h3>
+                        </h2>
                         <p>
                             The right-hand panel is now a compact reference
                             surface: a reminder that the cohort is about making
@@ -210,8 +208,9 @@
                                 href="https://dataengineering.ph/about.html"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                            >
-                                Data Engineering Pilipinas </a
+                                >Data Engineering Pilipinas<span class="sr-only">
+                                    (opens in new tab)</span
+                                ></a
                             >, a DataCamp Donates Partner.
                         </p>
                     </article>
@@ -237,7 +236,7 @@
 
                 <div class="timeline" aria-label="Cohort onboarding flow">
                     <article class="timeline-item reveal">
-                        <span class="step-number">01</span>
+                        <span class="step-number" aria-hidden="true">01</span>
                         <h3>Selection</h3>
                         <p>
                             Applications are reviewed by the admissions panel
@@ -245,7 +244,7 @@
                         </p>
                     </article>
                     <article class="timeline-item reveal reveal-delay-1">
-                        <span class="step-number">02</span>
+                        <span class="step-number" aria-hidden="true">02</span>
                         <h3>Selection announcement</h3>
                         <p>
                             Selected builders receive cohort instructions, next
@@ -253,7 +252,7 @@
                         </p>
                     </article>
                     <article class="timeline-item reveal reveal-delay-2">
-                        <span class="step-number">03</span>
+                        <span class="step-number" aria-hidden="true">03</span>
                         <h3>Meetup and onboarding</h3>
                         <p>
                             The cohort meets the organizing team, support team,
@@ -261,7 +260,7 @@
                         </p>
                     </article>
                     <article class="timeline-item reveal">
-                        <span class="step-number">04</span>
+                        <span class="step-number" aria-hidden="true">04</span>
                         <h3>GitHub onboarding</h3>
                         <p>
                             Builders set up GitHub, fork or create their project
@@ -269,7 +268,7 @@
                         </p>
                     </article>
                     <article class="timeline-item reveal reveal-delay-1">
-                        <span class="step-number">05</span>
+                        <span class="step-number" aria-hidden="true">05</span>
                         <h3>Cohort channel and check-ins</h3>
                         <p>
                             A dedicated channel anchors questions, updates, and
@@ -277,7 +276,7 @@
                         </p>
                     </article>
                     <article class="timeline-item reveal reveal-delay-2">
-                        <span class="step-number">06</span>
+                        <span class="step-number" aria-hidden="true">06</span>
                         <h3>Program start declaration</h3>
                         <p>
                             The team confirms support coverage, reviews expected
@@ -321,7 +320,7 @@
                             A clean, documented project repository with setup
                             notes, source code, and project context.
                         </p>
-                        <span class="output-number">01</span>
+                        <span class="output-number" aria-hidden="true">01</span>
                     </article>
                     <article class="category-card pink reveal reveal-delay-1">
                         <h3>Data pipeline</h3>
@@ -329,7 +328,7 @@
                             An ingestion, cleaning, analysis, and validation
                             flow using free and open-source tools.
                         </p>
-                        <span class="output-number">02</span>
+                        <span class="output-number" aria-hidden="true">02</span>
                     </article>
                     <article class="category-card blue reveal reveal-delay-2">
                         <h3>Milestone submissions</h3>
@@ -337,7 +336,7 @@
                             Seven milestone outputs from problem framing through
                             final deployment.
                         </p>
-                        <span class="output-number">03</span>
+                        <span class="output-number" aria-hidden="true">03</span>
                     </article>
                     <article class="category-card orange reveal reveal-delay-1">
                         <h3>Launching meet readiness</h3>
@@ -345,7 +344,7 @@
                             Clear expectations for the infrastructure, GitHub
                             workflow, and project tech stack.
                         </p>
-                        <span class="output-number">04</span>
+                        <span class="output-number" aria-hidden="true">04</span>
                     </article>
                     <article class="category-card green reveal reveal-delay-2">
                         <h3>Live dashboard</h3>
@@ -353,7 +352,7 @@
                             A GitHub Pages deployment that turns the final
                             analysis into a shareable project artifact.
                         </p>
-                        <span class="output-number">05</span>
+                        <span class="output-number" aria-hidden="true">05</span>
                     </article>
                 </div>
             </section>
@@ -415,7 +414,7 @@
                     </article>
                 </div>
 
-                <a class="text-link" href="AI_GUIDE.md"
+                <a class="text-link" href="ai-guide.html"
                     >Read the full AI guide</a
                 >
             </section>
@@ -452,14 +451,15 @@
                                     Cohort deadlines and current time
                                 </h3>
                             </div>
-                            <div
+                            <time
                                 class="timeline-clock"
-                                aria-label="Current Philippine time"
+                                id="timeline-now"
+                                datetime=""
                             >
                                 <span data-timeline-date>Loading date...</span>
-                                <strong data-timeline-time>--:--:--.---</strong>
+                                <strong data-timeline-time>--:--:-- --</strong>
                                 <small>Asia/Manila</small>
-                            </div>
+                            </time>
                         </div>
 
                         <div
@@ -551,22 +551,35 @@
                             </p>
                         </div>
 
-                        <div class="builder-filters" aria-label="Builder filters">
+                        <div class="builder-filters">
+                            <label class="builder-filter-label" for="builder-search"
+                                >Search builders</label
+                            >
                             <input
+                                id="builder-search"
                                 type="search"
                                 data-builder-search
                                 placeholder="Search builders, GitHub, squad, or topic"
-                                aria-label="Search builders"
                             />
+                            <label
+                                class="builder-filter-label"
+                                for="builder-status-filter"
+                                >Filter by status</label
+                            >
                             <select
+                                id="builder-status-filter"
                                 data-builder-status-filter
-                                aria-label="Filter builders by status"
                             >
                                 <option value="">All statuses</option>
                             </select>
+                            <label
+                                class="builder-filter-label"
+                                for="builder-phase-filter"
+                                >Filter by phase</label
+                            >
                             <select
+                                id="builder-phase-filter"
                                 data-builder-phase-filter
-                                aria-label="Filter builders by phase"
                             >
                                 <option value="">All phases</option>
                             </select>
@@ -627,30 +640,21 @@
                         <h3>Program</h3>
                         <ul>
                             <li>
-                                <a href="https://www.linkedin.com/in/ogbinar/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/ogbinar/">
-                                <img src="assets/volunteers/myk.png" alt="Myk Ogbinar" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/myk.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/ogbinar/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/ogbinar/"><span>Myk Ogbinar</span><span class="team-tooltip">https://www.linkedin.com/in/ogbinar/</span></a
-                                ><small>Founder, DEP</small>
+                                <a href="https://www.linkedin.com/in/ogbinar/" target="_blank" rel="noopener noreferrer" aria-label="Myk Ogbinar on LinkedIn (opens in new tab)"><span>Myk Ogbinar</span></a><small>Founder, DEP</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/katherinebulac/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/katherinebulac/">
-                                <img src="assets/volunteers/kata.png" alt="Katherine Bulac" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/kata.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/katherinebulac/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/katherinebulac/"><span>Katherine Bulac</span><span class="team-tooltip">https://www.linkedin.com/in/katherinebulac/</span></a
-                                ><small>Program Lead</small>
+                                <a href="https://www.linkedin.com/in/katherinebulac/" target="_blank" rel="noopener noreferrer" aria-label="Katherine Bulac on LinkedIn (opens in new tab)"><span>Katherine Bulac</span></a><small>Program Lead</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/bea-lambitco/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/bea-lambitco/">
-                                <img src="assets/volunteers/bea.png" alt="Bea Lambitco" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/bea.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/bea-lambitco/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/bea-lambitco/"><span>Bea Lambitco</span><span class="team-tooltip">https://www.linkedin.com/in/bea-lambitco/</span></a
-                                ><small>Program Lead Support</small>
+                                <a href="https://www.linkedin.com/in/bea-lambitco/" target="_blank" rel="noopener noreferrer" aria-label="Bea Lambitco on LinkedIn (opens in new tab)"><span>Bea Lambitco</span></a><small>Program Lead Support</small>
                                 </div>
                             </li>
                         </ul>
@@ -659,21 +663,15 @@
                         <h3>Curriculum</h3>
                         <ul>
                             <li>
-                                <a href="https://www.linkedin.com/in/nina-comia/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/nina-comia/">
-                                <img src="assets/volunteers/nina.png" alt="Nina Comia" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/nina.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/nina-comia/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/nina-comia/"><span>Nina Comia</span><span class="team-tooltip">https://www.linkedin.com/in/nina-comia/</span></a
-                                ><small>Curriculum Lead</small>
+                                <a href="https://www.linkedin.com/in/nina-comia/" target="_blank" rel="noopener noreferrer" aria-label="Nina Comia on LinkedIn (opens in new tab)"><span>Nina Comia</span></a><small>Curriculum Lead</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/carlos-jude-maminta/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/carlos-jude-maminta/">
-                                <img src="assets/volunteers/cj.png" alt="CJ Maminta" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/cj.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/carlos-jude-maminta/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/carlos-jude-maminta/"><span>CJ Maminta</span><span class="team-tooltip">https://www.linkedin.com/in/carlos-jude-maminta/</span></a
-                                ><small>Curriculum Lead Support</small>
+                                <a href="https://www.linkedin.com/in/carlos-jude-maminta/" target="_blank" rel="noopener noreferrer" aria-label="CJ Maminta on LinkedIn (opens in new tab)"><span>CJ Maminta</span></a><small>Curriculum Lead Support</small>
                                 </div>
                             </li>
                         </ul>
@@ -682,30 +680,21 @@
                         <h3>Content Curators</h3>
                         <ul>
                             <li>
-                                <a href="https://www.linkedin.com/in/thanreiz/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/thanreiz/">
-                                <img src="assets/volunteers/ethan.png" alt="Zierd Ethan" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/ethan.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/thanreiz/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/thanreiz/"><span>Zierd Ethan</span><span class="team-tooltip">https://www.linkedin.com/in/thanreiz/</span></a
-                                ><small>Content Curator Lead</small>
+                                <a href="https://www.linkedin.com/in/thanreiz/" target="_blank" rel="noopener noreferrer" aria-label="Zierd Ethan on LinkedIn (opens in new tab)"><span>Zierd Ethan</span></a><small>Content Curator Lead</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/guinto123" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/guinto123">
-                                <img src="assets/volunteers/andrei.png" alt="Andrei Marcus" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/andrei.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/guinto123" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/guinto123"><span>Andrei Marcus</span><span class="team-tooltip">https://www.linkedin.com/in/guinto123</span></a
-                                ><small>Content Curator</small>
+                                <a href="https://www.linkedin.com/in/guinto123" target="_blank" rel="noopener noreferrer" aria-label="Andrei Marcus on LinkedIn (opens in new tab)"><span>Andrei Marcus</span></a><small>Content Curator</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/bea-lambitco/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/bea-lambitco/">
-                                <img src="assets/volunteers/bea.png" alt="Bea Lambitco" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/bea.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/bea-lambitco/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/bea-lambitco/"><span>Bea Lambitco</span><span class="team-tooltip">https://www.linkedin.com/in/bea-lambitco/</span></a
-                                ><small>Content Curator</small>
+                                <a href="https://www.linkedin.com/in/bea-lambitco/" target="_blank" rel="noopener noreferrer" aria-label="Bea Lambitco on LinkedIn (opens in new tab)"><span>Bea Lambitco</span></a><small>Content Curator</small>
                                 </div>
                             </li>
                         </ul>
@@ -714,21 +703,15 @@
                         <h3>Systems</h3>
                         <ul>
                             <li>
-                                <a href="https://www.linkedin.com/in/cancinoraymond/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/cancinoraymond/">
-                                <img src="assets/volunteers/raymond.png" alt="Raymond Cancino" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/raymond.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/cancinoraymond/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/cancinoraymond/"><span>Raymond Cancino</span><span class="team-tooltip">https://www.linkedin.com/in/cancinoraymond/</span></a
-                                ><small>Systems Lead</small>
+                                <a href="https://www.linkedin.com/in/cancinoraymond/" target="_blank" rel="noopener noreferrer" aria-label="Raymond Cancino on LinkedIn (opens in new tab)"><span>Raymond Cancino</span></a><small>Systems Lead</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/jcdiamante/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/jcdiamante/">
-                                <img src="assets/volunteers/jc.png" alt="JC Diamante" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/jc.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/jcdiamante/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/jcdiamante/"><span>JC Diamante</span><span class="team-tooltip">https://www.linkedin.com/in/jcdiamante/</span></a
-                                ><small>Systems Lead Support</small>
+                                <a href="https://www.linkedin.com/in/jcdiamante/" target="_blank" rel="noopener noreferrer" aria-label="JC Diamante on LinkedIn (opens in new tab)"><span>JC Diamante</span></a><small>Systems Lead Support</small>
                                 </div>
                             </li>
                         </ul>
@@ -737,30 +720,21 @@
                         <h3>Operations & Milestones</h3>
                         <ul>
                             <li>
-                                <a href="https://www.linkedin.com/in/bradly-carballo/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/bradly-carballo/">
-                                <img src="assets/volunteers/james.png" alt="James David Bradly Carballo" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/james.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/bradly-carballo/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/bradly-carballo/"><span>James David Bradly Carballo</span><span class="team-tooltip">https://www.linkedin.com/in/bradly-carballo/</span></a
-                                ><small>Ops Lead</small>
+                                <a href="https://www.linkedin.com/in/bradly-carballo/" target="_blank" rel="noopener noreferrer" aria-label="James David Bradly Carballo on LinkedIn (opens in new tab)"><span>James David Bradly Carballo</span></a><small>Ops Lead</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/jomai-hizon/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/jomai-hizon/">
-                                <img src="assets/volunteers/jomai.png" alt="Jomai Hizon" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/jomai.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/jomai-hizon/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/jomai-hizon/"><span>Jomai Hizon</span><span class="team-tooltip">https://www.linkedin.com/in/jomai-hizon/</span></a
-                                ><small>Milestone Reviewer Lead</small>
+                                <a href="https://www.linkedin.com/in/jomai-hizon/" target="_blank" rel="noopener noreferrer" aria-label="Jomai Hizon on LinkedIn (opens in new tab)"><span>Jomai Hizon</span></a><small>Milestone Reviewer Lead</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/kim-audrey-magan" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/kim-audrey-magan">
-                                <img src="assets/volunteers/kim.png" alt="Kim Audrey Magan" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/kim.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/kim-audrey-magan" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/kim-audrey-magan"><span>Kim Audrey Magan</span><span class="team-tooltip">https://www.linkedin.com/in/kim-audrey-magan</span></a
-                                ><small>Milestone Reviewer</small>
+                                <a href="https://www.linkedin.com/in/kim-audrey-magan" target="_blank" rel="noopener noreferrer" aria-label="Kim Audrey Magan on LinkedIn (opens in new tab)"><span>Kim Audrey Magan</span></a><small>Milestone Reviewer</small>
                                 </div>
                             </li>
                         </ul>
@@ -769,30 +743,21 @@
                         <h3>Communications</h3>
                         <ul>
                             <li>
-                                <a href="https://www.linkedin.com/in/anam-mazhar-iqbal-8483601ba/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/anam-mazhar-iqbal-8483601ba/">
-                                <img src="assets/volunteers/anam.png" alt="Anam Iqbal" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/anam.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/anam-mazhar-iqbal-8483601ba/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/anam-mazhar-iqbal-8483601ba/"><span>Anam Iqbal</span><span class="team-tooltip">https://www.linkedin.com/in/anam-mazhar-iqbal-8483601ba/</span></a
-                                ><small>Comms Lead</small>
+                                <a href="https://www.linkedin.com/in/anam-mazhar-iqbal-8483601ba/" target="_blank" rel="noopener noreferrer" aria-label="Anam Iqbal on LinkedIn (opens in new tab)"><span>Anam Iqbal</span></a><small>Comms Lead</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/keithtidon/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/keithtidon/">
-                                <img src="assets/volunteers/keith.png" alt="Keith Tidon" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/keith.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/keithtidon/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/keithtidon/"><span>Keith Tidon</span><span class="team-tooltip">https://www.linkedin.com/in/keithtidon/</span></a
-                                ><small>Communications</small>
+                                <a href="https://www.linkedin.com/in/keithtidon/" target="_blank" rel="noopener noreferrer" aria-label="Keith Tidon on LinkedIn (opens in new tab)"><span>Keith Tidon</span></a><small>Communications</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/stimmie/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/stimmie/">
-                                <img src="assets/volunteers/simonee.png" alt="Simonee Ezequiel" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/simonee.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/stimmie/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/stimmie/"><span>Simonee Ezequiel</span><span class="team-tooltip">https://www.linkedin.com/in/stimmie/</span></a
-                                ><small>Communications</small>
+                                <a href="https://www.linkedin.com/in/stimmie/" target="_blank" rel="noopener noreferrer" aria-label="Simonee Ezequiel on LinkedIn (opens in new tab)"><span>Simonee Ezequiel</span></a><small>Communications</small>
                                 </div>
                             </li>
                         </ul>
@@ -801,48 +766,33 @@
                         <h3>Mentors</h3>
                         <ul>
                             <li>
-                                <a href="https://www.linkedin.com/in/bob-mathew-sunga-651a44375/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/bob-mathew-sunga-651a44375/">
-                                <img src="assets/volunteers/macky.png" alt="Macky Sunga" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/macky.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/bob-mathew-sunga-651a44375/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/bob-mathew-sunga-651a44375/"><span>Macky Sunga</span><span class="team-tooltip">https://www.linkedin.com/in/bob-mathew-sunga-651a44375/</span></a
-                                ><small>Mentors Team Lead</small>
+                                <a href="https://www.linkedin.com/in/bob-mathew-sunga-651a44375/" target="_blank" rel="noopener noreferrer" aria-label="Macky Sunga on LinkedIn (opens in new tab)"><span>Macky Sunga</span></a><small>Mentors Team Lead</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/jomaminoza" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/jomaminoza">
-                                <img src="assets/volunteers/joma.png" alt="Joma Miñoza" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/joma.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/jomaminoza" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/jomaminoza"><span>Joma Miñoza</span><span class="team-tooltip">https://www.linkedin.com/in/jomaminoza</span></a
-                                ><small>Mentor</small>
+                                <a href="https://www.linkedin.com/in/jomaminoza" target="_blank" rel="noopener noreferrer" aria-label="Joma Miñoza on LinkedIn (opens in new tab)"><span>Joma Miñoza</span></a><small>Mentor</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/jon-marco-francisco-77592214a/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/jon-marco-francisco-77592214a/">
-                                <img src="assets/volunteers/marco.png" alt="Marco Francisco" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/marco.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/jon-marco-francisco-77592214a/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/jon-marco-francisco-77592214a/"><span>Marco Francisco</span><span class="team-tooltip">https://www.linkedin.com/in/jon-marco-francisco-77592214a/</span></a
-                                ><small>Mentor</small>
+                                <a href="https://www.linkedin.com/in/jon-marco-francisco-77592214a/" target="_blank" rel="noopener noreferrer" aria-label="Marco Francisco on LinkedIn (opens in new tab)"><span>Marco Francisco</span></a><small>Mentor</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/yuichiotsuka" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/yuichiotsuka">
-                                <img src="assets/volunteers/yui.png" alt="Yui Otsuka" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/yui.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/yuichiotsuka" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/yuichiotsuka"><span>Yui Otsuka</span><span class="team-tooltip">https://www.linkedin.com/in/yuichiotsuka</span></a
-                                ><small>Mentor</small>
+                                <a href="https://www.linkedin.com/in/yuichiotsuka" target="_blank" rel="noopener noreferrer" aria-label="Yui Otsuka on LinkedIn (opens in new tab)"><span>Yui Otsuka</span></a><small>Mentor</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/ultrenz-vidal" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/ultrenz-vidal">
-                                <img src="assets/volunteers/renzi.png" alt="Renzi Vidal" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/renzi.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/ultrenz-vidal" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/ultrenz-vidal"><span>Renzi Vidal</span><span class="team-tooltip">https://www.linkedin.com/in/ultrenz-vidal</span></a
-                                ><small>Mentor</small>
+                                <a href="https://www.linkedin.com/in/ultrenz-vidal" target="_blank" rel="noopener noreferrer" aria-label="Renzi Vidal on LinkedIn (opens in new tab)"><span>Renzi Vidal</span></a><small>Mentor</small>
                                 </div>
                             </li>
                         </ul>
@@ -851,39 +801,27 @@
                         <h3>Squad Team</h3>
                         <ul>
                             <li>
-                                <a href="https://www.linkedin.com/in/yuichiotsuka" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/yuichiotsuka">
-                                <img src="assets/volunteers/yui.png" alt="Yui Otsuka" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/yui.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/yuichiotsuka" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/yuichiotsuka"><span>Yui Otsuka</span><span class="team-tooltip">https://www.linkedin.com/in/yuichiotsuka</span></a
-                                ><small>Squad Guide Lead</small>
+                                <a href="https://www.linkedin.com/in/yuichiotsuka" target="_blank" rel="noopener noreferrer" aria-label="Yui Otsuka on LinkedIn (opens in new tab)"><span>Yui Otsuka</span></a><small>Squad Guide Lead</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://linkedin.com/in/vaniebermudez" target="_blank" rel="noopener noreferrer" title="https://linkedin.com/in/vaniebermudez">
-                                <img src="assets/volunteers/vanie.png" alt="Vanie Bermudez" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/vanie.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://linkedin.com/in/vaniebermudez" target="_blank" rel="noopener noreferrer" title="https://linkedin.com/in/vaniebermudez"><span>Vanie Bermudez</span><span class="team-tooltip">https://linkedin.com/in/vaniebermudez</span></a
-                                ><small>Squad Guide</small>
+                                <a href="https://linkedin.com/in/vaniebermudez" target="_blank" rel="noopener noreferrer" aria-label="Vanie Bermudez on LinkedIn (opens in new tab)"><span>Vanie Bermudez</span></a><small>Squad Guide</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/ultrenz-vidal" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/ultrenz-vidal">
-                                <img src="assets/volunteers/renzi.png" alt="Renzi Vidal" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/renzi.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/ultrenz-vidal" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/ultrenz-vidal"><span>Renzi Vidal</span><span class="team-tooltip">https://www.linkedin.com/in/ultrenz-vidal</span></a
-                                ><small>Squad Guide</small>
+                                <a href="https://www.linkedin.com/in/ultrenz-vidal" target="_blank" rel="noopener noreferrer" aria-label="Renzi Vidal on LinkedIn (opens in new tab)"><span>Renzi Vidal</span></a><small>Squad Guide</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/thanreiz/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/thanreiz/">
-                                <img src="assets/volunteers/ethan.png" alt="Zierd Ethan" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/ethan.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/thanreiz/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/thanreiz/"><span>Zierd Ethan</span><span class="team-tooltip">https://www.linkedin.com/in/thanreiz/</span></a
-                                ><small>Squad Guide</small>
+                                <a href="https://www.linkedin.com/in/thanreiz/" target="_blank" rel="noopener noreferrer" aria-label="Zierd Ethan on LinkedIn (opens in new tab)"><span>Zierd Ethan</span></a><small>Squad Guide</small>
                                 </div>
                             </li>
                         </ul>
@@ -892,30 +830,21 @@
                         <h3>Moderators</h3>
                         <ul>
                             <li>
-                                <a href="https://www.linkedin.com/in/marc-sandrino-78927b112/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/marc-sandrino-78927b112/">
-                                <img src="assets/volunteers/marc.png" alt="Marc Sandrino" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/marc.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/marc-sandrino-78927b112/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/marc-sandrino-78927b112/"><span>Marc Sandrino</span><span class="team-tooltip">https://www.linkedin.com/in/marc-sandrino-78927b112/</span></a
-                                ><small>Community Moderator Lead</small>
+                                <a href="https://www.linkedin.com/in/marc-sandrino-78927b112/" target="_blank" rel="noopener noreferrer" aria-label="Marc Sandrino on LinkedIn (opens in new tab)"><span>Marc Sandrino</span></a><small>Community Moderator Lead</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/nicholailim" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/nicholailim">
-                                <img src="assets/volunteers/nick.png" alt="Nick Estole" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/nick.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/nicholailim" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/nicholailim"><span>Nick Estole</span><span class="team-tooltip">https://www.linkedin.com/in/nicholailim</span></a
-                                ><small>Community Moderator</small>
+                                <a href="https://www.linkedin.com/in/nicholailim" target="_blank" rel="noopener noreferrer" aria-label="Nick Estole on LinkedIn (opens in new tab)"><span>Nick Estole</span></a><small>Community Moderator</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/irenanmatthew/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/irenanmatthew/">
-                                <img src="assets/volunteers/renan.png" alt="Renan Matthew Fajardo" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/renan.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/irenanmatthew/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/irenanmatthew/"><span>Renan Matthew Fajardo</span><span class="team-tooltip">https://www.linkedin.com/in/irenanmatthew/</span></a
-                                ><small>Community Moderator</small>
+                                <a href="https://www.linkedin.com/in/irenanmatthew/" target="_blank" rel="noopener noreferrer" aria-label="Renan Matthew Fajardo on LinkedIn (opens in new tab)"><span>Renan Matthew Fajardo</span></a><small>Community Moderator</small>
                                 </div>
                             </li>
                         </ul>
@@ -924,30 +853,21 @@
                         <h3>Admissions</h3>
                         <ul>
                             <li>
-                                <a href="https://www.linkedin.com/in/katherinebulac/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/katherinebulac/">
-                                <img src="assets/volunteers/kata.png" alt="Katherine Bulac" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/kata.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/katherinebulac/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/katherinebulac/"><span>Katherine Bulac</span><span class="team-tooltip">https://www.linkedin.com/in/katherinebulac/</span></a
-                                ><small>Admission Panel</small>
+                                <a href="https://www.linkedin.com/in/katherinebulac/" target="_blank" rel="noopener noreferrer" aria-label="Katherine Bulac on LinkedIn (opens in new tab)"><span>Katherine Bulac</span></a><small>Admission Panel</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/bradly-carballo/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/bradly-carballo/">
-                                <img src="assets/volunteers/james.png" alt="James David Bradly Carballo" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/james.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/bradly-carballo/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/bradly-carballo/"><span>James David Bradly Carballo</span><span class="team-tooltip">https://www.linkedin.com/in/bradly-carballo/</span></a
-                                ><small>Admission Panel</small>
+                                <a href="https://www.linkedin.com/in/bradly-carballo/" target="_blank" rel="noopener noreferrer" aria-label="James David Bradly Carballo on LinkedIn (opens in new tab)"><span>James David Bradly Carballo</span></a><small>Admission Panel</small>
                                 </div>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/in/anam-mazhar-iqbal-8483601ba/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/anam-mazhar-iqbal-8483601ba/">
-                                <img src="assets/volunteers/anam.png" alt="Anam Iqbal" class="volunteer-photo" loading="lazy" />
-                                </a>
+                                <img src="assets/volunteers/anam.png" alt="" class="volunteer-photo" loading="lazy" aria-hidden="true" />
                                 <div class="volunteer-info">
-                                <a href="https://www.linkedin.com/in/anam-mazhar-iqbal-8483601ba/" target="_blank" rel="noopener noreferrer" title="https://www.linkedin.com/in/anam-mazhar-iqbal-8483601ba/"><span>Anam Iqbal</span><span class="team-tooltip">https://www.linkedin.com/in/anam-mazhar-iqbal-8483601ba/</span></a
-                                ><small>Admission Panel</small>
+                                <a href="https://www.linkedin.com/in/anam-mazhar-iqbal-8483601ba/" target="_blank" rel="noopener noreferrer" aria-label="Anam Iqbal on LinkedIn (opens in new tab)"><span>Anam Iqbal</span></a><small>Admission Panel</small>
                                 </div>
                             </li>
                         </ul>
@@ -1217,23 +1137,23 @@
                     Built by Data Engineering Pilipinas. Free and open. Always.
                 </p>
             </div>
-            <div class="footer-links">
+            <nav class="footer-links" aria-label="Footer">
                 <a
                     href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track"
                     target="_blank"
                     rel="noopener noreferrer"
-                    >GitHub</a
+                    >GitHub<span class="sr-only"> (opens in new tab)</span></a
                 >
                 <a
                     href="https://dataengineering.ph/about.html"
                     target="_blank"
                     rel="noopener noreferrer"
-                    >About DEP</a
+                    >About DEP<span class="sr-only"> (opens in new tab)</span></a
                 >
-                <a href="FAQ.md">FAQ.md</a>
-            </div>
+                <a href="#faq">FAQ</a>
+            </nav>
         </footer>
 
-        <script src="assets/site.js"></script>
+        <script src="assets/site.js?v=9"></script>
     </body>
 </html>
