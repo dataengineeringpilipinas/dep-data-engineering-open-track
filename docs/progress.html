@@ -1,626 +1,206 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DEP — Submission Tracker</title>
-  <style>
-    :root {
-      --navy: #0A1628;
-      --gold: #F59E0B;
-      --blue: #0052CC;
-      --green: #16A34A;
-      --amber: #D97706;
-      --gray: #6B7280;
-      --light: #F9FAFB;
-      --border: #E5E7EB;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--light);
-      color: #111;
-      min-height: 100vh;
-    }
-
-    header {
-      background: var(--navy);
-      color: white;
-      padding: 1rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    header h1 { font-size: 1.1rem; font-weight: 600; }
-
-    .header-controls {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1.5rem 1rem;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .stat-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.25rem;
-      text-align: center;
-    }
-
-    .stat-card .number { font-size: 2rem; font-weight: 700; line-height: 1; }
-    .stat-card .label  { font-size: 0.8rem; color: var(--gray); margin-top: 0.25rem; }
-
-    .stat-card.total       .number { color: var(--navy); }
-    .stat-card.pending     .number { color: var(--blue); }
-    .stat-card.improvement .number { color: var(--amber); }
-    .stat-card.passed      .number { color: var(--green); }
-
-    .section {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .section h2 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--navy);
-      margin-bottom: 1rem;
-    }
-
-    .milestone-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 0.75rem;
-    }
-
-    .milestone-col { text-align: center; }
-
-    .milestone-col .m-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 0.5rem;
-    }
-
-    .milestone-col .m-bar {
-      height: 80px;
-      background: var(--light);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2px;
-    }
-
-    .milestone-col .m-passed { font-size: 1.25rem; font-weight: 700; color: var(--green); }
-    .milestone-col .m-total  { font-size: 0.7rem; color: var(--gray); }
-
-    table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
-
-    th {
-      text-align: left;
-      padding: 0.6rem 0.75rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: var(--gray);
-      border-bottom: 1px solid var(--border);
-    }
-
-    td {
-      padding: 0.75rem;
-      border-bottom: 1px solid var(--border);
-      vertical-align: middle;
-    }
-
-    tr:last-child td { border-bottom: none; }
-    tr:hover td { background: #F8FAFC; }
-
-    .badge {
-      display: inline-block;
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-      font-size: 0.7rem;
-      font-weight: 600;
-    }
-
-    .badge.passed           { background: #DCFCE7; color: #16A34A; }
-    .badge.needs-improvement { background: #FEF3C7; color: #D97706; }
-    .badge.pending-review   { background: #DBEAFE; color: #2563EB; }
-    .badge.checking         { background: #F3F4F6; color: #6B7280; }
-
-    .m-badge {
-      display: inline-block;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      background: #EFF6FF;
-      color: #1D4ED8;
-    }
-
-    .days        { font-size: 0.8rem; font-weight: 600; white-space: nowrap; }
-    .days.ok     { color: var(--gray); }
-    .days.warn   { color: var(--amber); }
-    .days.breach { color: #DC2626; }
-
-    .filter-bar {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .filter-bar input, .filter-bar select {
-      padding: 0.6rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 0.875rem;
-      outline: none;
-      background: white;
-    }
-
-    .filter-bar input { flex: 1; min-width: 180px; }
-    .filter-bar input:focus, .filter-bar select:focus { border-color: var(--blue); }
-    .filter-bar select { cursor: pointer; }
-
-    .skip-link {
-      background: var(--gold);
-      color: var(--navy);
-      left: 16px;
-      padding: 10px 14px;
-      position: fixed;
-      top: -80px;
-      z-index: 1100;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .skip-link:focus {
-      top: 16px;
-    }
-
-    .sr-only {
-      border: 0;
-      clip-path: inset(50%);
-      height: 1px;
-      margin: -1px;
-      overflow: hidden;
-      padding: 0;
-      position: absolute;
-      white-space: nowrap;
-      width: 1px;
-    }
-
-    button:focus-visible,
-    input:focus-visible,
-    select:focus-visible,
-    th.sortable:focus-visible {
-      outline: 2px solid var(--blue);
-      outline-offset: 2px;
-    }
-
-    th.sortable {
-      cursor: pointer;
-      user-select: none;
-    }
-
-    th.sortable button {
-      all: unset;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      width: 100%;
-      text-align: left;
-      font: inherit;
-      color: inherit;
-      text-transform: inherit;
-      letter-spacing: inherit;
-    }
-
-    th.sortable:hover { color: var(--navy); }
-
-    th .sort-icon { margin-left: 4px; opacity: 0.4; font-size: 0.7rem; }
-    th.asc  .sort-icon { opacity: 1; }
-    th.desc .sort-icon { opacity: 1; }
-
-    a { color: var(--blue); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    .empty {
-      text-align: center;
-      padding: 2rem;
-      color: var(--gray);
-      font-size: 0.875rem;
-    }
-
-    .refresh-btn {
-      background: var(--gold);
-      color: var(--navy);
-      border: none;
-      padding: 0.5rem 1.25rem;
-      border-radius: 6px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .refresh-btn:hover { opacity: 0.9; }
-
-    .toggle-wrap {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #F1F5F9;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.25rem;
-    }
-
-    .toggle-btn {
-      border: none;
-      border-radius: 4px;
-      padding: 0.35rem 0.9rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      background: transparent;
-      color: var(--gray);
-      transition: all 0.15s;
-    }
-
-    .toggle-btn.active {
-      background: white;
-      color: var(--navy);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-
-    #last-updated { font-size: 0.8rem; color: #94A3B8; }
-
-    .loading { text-align: center; padding: 3rem; color: var(--gray); font-size: 0.875rem; }
-
-    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-
-    @media (max-width: 700px) {
-      .stats          { grid-template-columns: repeat(2, 1fr); }
-      .milestone-grid { grid-template-columns: repeat(4, 1fr); }
-      .stat-card .number { font-size: 1.5rem; }
-      .filter-bar input, .filter-bar select { width: 100%; }
-    }
-
-    @media (max-width: 480px) {
-      .milestone-grid { grid-template-columns: repeat(4, 1fr); }
-      .hide-mobile    { display: none; }
-    }
-  </style>
-</head>
-<body>
-
-<a class="skip-link" href="#main">Skip to content</a>
-
-<header>
-  <h1>DEP — Submission Tracker</h1>
-  <div class="header-controls">
-    <div class="toggle-wrap" role="group" aria-label="Cohort view">
-      <button class="toggle-btn active" id="btn-enrolled" type="button" aria-pressed="true" onclick="setView('enrolled')">Cohort: 2026-A</button>
-      <button class="toggle-btn" id="btn-non-enrolled" type="button" aria-pressed="false" onclick="setView('non-enrolled')">Non-Enrolled</button>
-      <button class="toggle-btn" id="btn-all" type="button" aria-pressed="false" onclick="setView('all')">All</button>
-    </div>
-    <span id="last-updated" aria-live="polite"></span>
-    <button class="refresh-btn" type="button" onclick="load()">Refresh</button>
-  </div>
-</header>
-
-<div class="container" id="main">
-
-  <div class="stats" aria-label="Submission summary">
-    <div class="stat-card total">      <div class="number" id="s-total">—</div>      <div class="label">Total Submissions</div></div>
-    <div class="stat-card pending">    <div class="number" id="s-pending">—</div>    <div class="label">Pending Review</div></div>
-    <div class="stat-card improvement"><div class="number" id="s-improvement">—</div><div class="label">Needs Improvement</div></div>
-    <div class="stat-card passed">     <div class="number" id="s-passed">—</div>     <div class="label">Passed</div></div>
-  </div>
-
-  <div class="section">
-    <h2>Milestone Progress — Passed Submissions</h2>
-    <div class="milestone-grid" id="milestone-grid"></div>
-  </div>
-
-  <div class="filter-bar">
-    <label class="sr-only" for="search">Search submissions</label>
-    <input id="search" type="search" placeholder="Search by builder, cohort, or milestone…" oninput="renderAll()">
-    <label class="sr-only" for="filter-milestone">Filter by milestone</label>
-    <select id="filter-milestone" onchange="renderAll()">
-      <option value="">All Milestones</option>
-      <option>M0</option><option>M1</option><option>M2</option>
-      <option>M3</option><option>M4</option><option>M5</option><option>M6</option>
-    </select>
-    <label class="sr-only" for="filter-status">Filter by status</label>
-    <select id="filter-status" onchange="renderAll()">
-      <option value="">All Statuses</option>
-      <option value="pending-review">Pending Review</option>
-      <option value="needs-improvement">Needs Improvement</option>
-      <option value="passed">Passed</option>
-      <option value="checking">Checking</option>
-    </select>
-  </div>
-
-  <div class="section">
-    <h2>Pending Reviewer Action</h2>
-    <div id="queue-pending"><div class="loading">Loading…</div></div>
-  </div>
-
-  <div class="section">
-    <h2>Needs Improvement — Waiting for Builder</h2>
-    <div id="queue-improvement"><div class="loading">Loading…</div></div>
-  </div>
-
-  <div class="section">
-    <h2>All Submissions</h2>
-    <div id="queue-all"><div class="loading">Loading…</div></div>
-  </div>
-
-</div>
-
-<script>
-const OWNER      = 'dataengineeringpilipinas';
-const REPO       = 'dep-data-engineering-open-track';
-const MILESTONES = ['M0','M1','M2','M3','M4','M5','M6'];
-
-let allIssues    = [];
-let enrolledSet  = null;
-let viewMode     = 'enrolled';
-
-const sortState = {
-  pending:     { col: 'days', dir: 'desc' },
-  improvement: { col: 'days', dir: 'desc' },
-  all:         { col: 'days', dir: 'desc' },
-};
-
-function extract(body, heading) {
-  const m = (body || '').match(new RegExp(`###\\s+${heading}\\s*\\n+([^\\n#]+)`, 'i'));
-  return m ? m[1].trim() : '—';
-}
-
-function getStatus(labels) {
-  const names = labels.map(l => l.name);
-  if (names.includes('passed'))             return 'passed';
-  if (names.includes('needs-improvement'))  return 'needs-improvement';
-  if (names.includes('auto-check-pending')) return 'checking';
-  return 'pending-review';
-}
-
-function getMilestone(labels) {
-  const names = labels.map(l => l.name);
-  return names.find(n => /^M\d$/.test(n)) || '?';
-}
-
-function enrich(issue) {
-  return {
-    ...issue,
-    _builder:   extract(issue.body, 'Builder Name'),
-    _cohort:    extract(issue.body, 'Cohort'),
-    _repoUrl:   extract(issue.body, 'GitHub Repo URL'),
-    _milestone: getMilestone(issue.labels),
-    _status:    getStatus(issue.labels),
-    _days:      Math.floor((Date.now() - new Date(issue.created_at).getTime()) / 86400000),
-  };
-}
-
-function statusBadge(s) {
-  const map = {
-    'passed':            ['passed',            'Passed'],
-    'needs-improvement': ['needs-improvement', 'Needs Improvement'],
-    'pending-review':    ['pending-review',    'Pending Review'],
-    'checking':          ['checking',          'Checking'],
-  };
-  const [cls, label] = map[s] || ['checking', s];
-  return `<span class="badge ${cls}">${label}</span>`;
-}
-
-function daysBadge(days, status) {
-  if (status === 'passed') return `<span class="days ok">${days}d</span>`;
-  if (days >= 5) return `<span class="days breach">${days}d overdue</span>`;
-  if (days >= 3) return `<span class="days warn">${days}d waiting</span>`;
-  return `<span class="days ok">${days}d</span>`;
-}
-
-function formatDate(iso) {
-  return new Date(iso).toLocaleDateString('en-PH', { month: 'short', day: 'numeric', year: 'numeric' });
-}
-
-function setView(mode) {
-  viewMode = mode;
-  document.getElementById('btn-enrolled').classList.toggle('active', mode === 'enrolled');
-  document.getElementById('btn-non-enrolled').classList.toggle('active', mode === 'non-enrolled');
-  document.getElementById('btn-all').classList.toggle('active', mode === 'all');
-  document.getElementById('btn-enrolled').setAttribute('aria-pressed', String(mode === 'enrolled'));
-  document.getElementById('btn-non-enrolled').setAttribute('aria-pressed', String(mode === 'non-enrolled'));
-  document.getElementById('btn-all').setAttribute('aria-pressed', String(mode === 'all'));
-  renderAll();
-}
-
-function applyFilters(issues) {
-  let filtered = issues;
-
-  if (viewMode === 'enrolled' && enrolledSet) {
-    filtered = filtered.filter(i => enrolledSet.has(i.user.login.toLowerCase()));
-  } else if (viewMode === 'non-enrolled' && enrolledSet) {
-    filtered = filtered.filter(i => !enrolledSet.has(i.user.login.toLowerCase()));
-  }
-
-  const q  = (document.getElementById('search')?.value || '').toLowerCase().trim();
-  const fm = document.getElementById('filter-milestone')?.value || '';
-  const fs = document.getElementById('filter-status')?.value || '';
-
-  return filtered.filter(i => {
-    if (q  && !`${i._builder} ${i._cohort} ${i._milestone}`.toLowerCase().includes(q)) return false;
-    if (fm && i._milestone !== fm) return false;
-    if (fs && i._status    !== fs) return false;
-    return true;
-  });
-}
-
-function applySort(issues, tableKey) {
-  const { col, dir } = sortState[tableKey];
-  return [...issues].sort((a, b) => {
-    let av, bv;
-    if      (col === 'builder')   { av = a._builder;   bv = b._builder; }
-    else if (col === 'cohort')    { av = a._cohort;     bv = b._cohort; }
-    else if (col === 'milestone') { av = MILESTONES.indexOf(a._milestone); bv = MILESTONES.indexOf(b._milestone); }
-    else if (col === 'days')      { av = a._days;       bv = b._days; }
-    else if (col === 'status')    { av = a._status;     bv = b._status; }
-    else                          { av = a.created_at;  bv = b.created_at; }
-    if (av < bv) return dir === 'asc' ? -1 : 1;
-    if (av > bv) return dir === 'asc' ?  1 : -1;
-    return 0;
-  });
-}
-
-function thSort(tableKey, col, label) {
-  const s = sortState[tableKey];
-  const active = s.col === col;
-  const cls    = active ? s.dir : '';
-  const icon   = active ? (s.dir === 'asc' ? '↑' : '↓') : '↕';
-  const pressed = active ? 'true' : 'false';
-  return `<th class="sortable ${cls}" scope="col"><button type="button" aria-pressed="${pressed}" onclick="handleSort('${tableKey}','${col}')">${label} <span class="sort-icon" aria-hidden="true">${icon}</span></button></th>`;
-}
-
-function handleSort(tableKey, col) {
-  const s = sortState[tableKey];
-  if (s.col === col) { s.dir = s.dir === 'asc' ? 'desc' : 'asc'; }
-  else               { s.col = col; s.dir = 'asc'; }
-  renderAll();
-  document.querySelectorAll(`#queue-${tableKey === 'all' ? 'all' : tableKey} th.sortable button`).forEach((button) => {
-    const isActive = button.textContent.trim().startsWith(
-      col === 'builder' ? 'Builder' :
-      col === 'milestone' ? 'Milestone' :
-      col === 'days' ? 'Days' :
-      col === 'status' ? 'Status' : ''
-    );
-    button.setAttribute('aria-pressed', String(isActive));
-  });
-}
-
-function buildTable(issues, tableKey) {
-  if (!issues.length) return `<div class="empty">No submissions here.</div>`;
-  const rows = applySort(applyFilters(issues), tableKey);
-  if (!rows.length) return `<div class="empty">No results match your filters.</div>`;
-  return `<div class="table-wrap"><table>
-    <thead><tr>
-      ${thSort(tableKey,'builder','Builder')}
-      <th class="hide-mobile" scope="col">Cohort</th>
-      ${thSort(tableKey,'milestone','Milestone')}
-      <th class="hide-mobile" scope="col">Submitted</th>
-      ${thSort(tableKey,'days','Days')}
-      ${thSort(tableKey,'status','Status')}
-      <th scope="col">Repo</th><th scope="col">Issue</th>
-    </tr></thead>
-    <tbody>${rows.map(i => `<tr>
-      <td>${i._builder}</td>
-      <td class="hide-mobile">${i._cohort}</td>
-      <td><span class="m-badge">${i._milestone}</span></td>
-      <td class="hide-mobile">${formatDate(i.created_at)}</td>
-      <td>${daysBadge(i._days, i._status)}</td>
-      <td>${statusBadge(i._status)}</td>
-      <td>${i._repoUrl !== '—' ? `<a href="${i._repoUrl}" target="_blank" rel="noopener noreferrer">repo<span class="sr-only"> (opens in new tab)</span></a>` : '—'}</td>
-      <td><a href="${i.html_url}" target="_blank" rel="noopener noreferrer">#${i.number}<span class="sr-only"> (opens in new tab)</span></a></td>
-    </tr>`).join('')}</tbody>
-  </table></div>`;
-}
-
-function renderAll() {
-  const pending     = allIssues.filter(i => i._status === 'pending-review');
-  const improvement = allIssues.filter(i => i._status === 'needs-improvement');
-
-  document.getElementById('queue-pending').innerHTML     = buildTable(pending,     'pending');
-  document.getElementById('queue-improvement').innerHTML = buildTable(improvement, 'improvement');
-  document.getElementById('queue-all').innerHTML         = buildTable(allIssues,   'all');
-
-  const visible = applyFilters(allIssues);
-  document.getElementById('s-total').textContent       = visible.length;
-  document.getElementById('s-pending').textContent     = visible.filter(i => i._status === 'pending-review').length;
-  document.getElementById('s-improvement').textContent = visible.filter(i => i._status === 'needs-improvement').length;
-  document.getElementById('s-passed').textContent      = visible.filter(i => i._status === 'passed').length;
-
-  document.getElementById('milestone-grid').innerHTML = MILESTONES.map(m => {
-    const mAll    = visible.filter(i => i._milestone === m);
-    const mPassed = mAll.filter(i => i._status === 'passed').length;
-    return `<div class="milestone-col">
-      <div class="m-label">${m}</div>
-      <div class="m-bar">
-        <div class="m-passed">${mPassed}</div>
-        <div class="m-total">${mAll.length} submitted</div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-async function fetchEnrolled() {
-  try {
-    const res  = await fetch(`https://raw.githubusercontent.com/${OWNER}/${REPO}/main/.github/enrolled-participants.json`);
-    const data = await res.json();
-    const cohort = data.cohort || 'Cohort';
-    document.getElementById('btn-enrolled').textContent = `Cohort: ${cohort}`;
-    return new Set((data.participants || []).map(u => u.toLowerCase()));
-  } catch (_) {
-    return null;
-  }
-}
-
-async function fetchAll() {
-  let issues = [], page = 1;
-  while (true) {
-    const res   = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/issues?labels=milestone-submission&state=open&per_page=100&page=${page}`);
-    const batch = await res.json();
-    if (!Array.isArray(batch) || !batch.length) break;
-    issues = issues.concat(batch.filter(i => !i.pull_request));
-    if (batch.length < 100) break;
-    page++;
-  }
-  return issues;
-}
-
-async function load() {
-  document.getElementById('last-updated').textContent = 'Loading…';
-
-  [enrolledSet, allIssues] = await Promise.all([
-    fetchEnrolled(),
-    fetchAll().then(raw => raw.map(enrich)),
-  ]);
-
-  renderAll();
-
-  document.getElementById('last-updated').textContent =
-    'Updated ' + new Date().toLocaleTimeString('en-PH', { hour: '2-digit', minute: '2-digit' });
-}
-
-load();
-</script>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+            name="description"
+            content="DEP milestone submission tracker for reviewers and organizers."
+        />
+        <title>Submission Tracker — DEP Engineering Program</title>
+        <link rel="stylesheet" href="assets/site.css?v=10" />
+        <link rel="stylesheet" href="assets/progress.css?v=1" />
+    </head>
+    <body>
+        <a class="skip-link" href="#main">Skip to content</a>
+
+        <header class="site-header">
+            <nav class="nav" aria-label="Primary navigation">
+                <a class="brand" href="index.html">
+                    <span class="brand-mark" aria-hidden="true">
+                        <img src="assets/dep-logo.png" alt="" />
+                    </span>
+                    <span class="brand-text">Data Engineering Pilipinas</span>
+                </a>
+
+                <button
+                    class="nav-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="nav-links"
+                >
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                    <span class="sr-only">Open navigation</span>
+                </button>
+
+                <div class="nav-links" id="nav-links">
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#process">Process</a>
+                    <a href="index.html#outputs">Outputs</a>
+                    <a href="ai-guide.html">AI Guide</a>
+                    <a href="index.html#builders">Builders</a>
+                    <a href="progress.html" aria-current="page">Submissions</a>
+                    <a href="index.html#team">Team</a>
+                    <a href="index.html#faq">FAQ</a>
+                    <span class="nav-cta nav-cta-closed"
+                        >Registration closed</span
+                    >
+                </div>
+            </nav>
+        </header>
+
+        <main id="main" class="progress-page">
+            <div class="progress-toolbar">
+                <h1>Submission tracker</h1>
+                <div class="progress-toolbar-actions">
+                    <div class="progress-toggle-wrap" role="group" aria-label="Cohort view">
+                        <button
+                            class="progress-toggle-btn active"
+                            id="btn-enrolled"
+                            type="button"
+                            aria-pressed="true"
+                            onclick="setView('enrolled')"
+                        >
+                            Cohort: 2026-A
+                        </button>
+                        <button
+                            class="progress-toggle-btn"
+                            id="btn-non-enrolled"
+                            type="button"
+                            aria-pressed="false"
+                            onclick="setView('non-enrolled')"
+                        >
+                            Non-enrolled
+                        </button>
+                        <button
+                            class="progress-toggle-btn"
+                            id="btn-all"
+                            type="button"
+                            aria-pressed="false"
+                            onclick="setView('all')"
+                        >
+                            All
+                        </button>
+                    </div>
+                    <span
+                        class="progress-last-updated"
+                        id="last-updated"
+                        aria-live="polite"
+                    ></span>
+                    <button
+                        class="progress-refresh-btn"
+                        type="button"
+                        onclick="load()"
+                    >
+                        Refresh
+                    </button>
+                </div>
+            </div>
+
+            <div class="progress-stats" aria-label="Submission summary">
+                <article class="progress-stat-card total">
+                    <span class="number" id="s-total">—</span>
+                    <span class="label">Total submissions</span>
+                </article>
+                <article class="progress-stat-card pending">
+                    <span class="number" id="s-pending">—</span>
+                    <span class="label">Pending review</span>
+                </article>
+                <article class="progress-stat-card improvement">
+                    <span class="number" id="s-improvement">—</span>
+                    <span class="label">Needs improvement</span>
+                </article>
+                <article class="progress-stat-card passed">
+                    <span class="number" id="s-passed">—</span>
+                    <span class="label">Passed</span>
+                </article>
+            </div>
+
+            <section class="progress-section" aria-labelledby="milestone-progress-title">
+                <h2 id="milestone-progress-title">Milestone progress — passed submissions</h2>
+                <div class="progress-milestone-grid" id="milestone-grid"></div>
+            </section>
+
+            <div class="progress-filters">
+                <label for="search">Search submissions</label>
+                <input
+                    id="search"
+                    type="search"
+                    placeholder="Search by builder, cohort, or milestone…"
+                    oninput="renderAll()"
+                />
+                <label for="filter-milestone">Filter by milestone</label>
+                <select id="filter-milestone" onchange="renderAll()">
+                    <option value="">All milestones</option>
+                    <option>M0</option>
+                    <option>M1</option>
+                    <option>M2</option>
+                    <option>M3</option>
+                    <option>M4</option>
+                    <option>M5</option>
+                    <option>M6</option>
+                </select>
+                <label for="filter-status">Filter by status</label>
+                <select id="filter-status" onchange="renderAll()">
+                    <option value="">All statuses</option>
+                    <option value="pending-review">Pending review</option>
+                    <option value="needs-improvement">Needs improvement</option>
+                    <option value="passed">Passed</option>
+                    <option value="checking">Checking</option>
+                </select>
+            </div>
+
+            <section class="progress-section" aria-labelledby="pending-queue-title">
+                <h2 id="pending-queue-title">Pending reviewer action</h2>
+                <div id="queue-pending">
+                    <div class="progress-loading">Loading…</div>
+                </div>
+            </section>
+
+            <section class="progress-section" aria-labelledby="improvement-queue-title">
+                <h2 id="improvement-queue-title">Needs improvement — waiting for builder</h2>
+                <div id="queue-improvement">
+                    <div class="progress-loading">Loading…</div>
+                </div>
+            </section>
+
+            <section class="progress-section" aria-labelledby="all-queue-title">
+                <h2 id="all-queue-title">All submissions</h2>
+                <div id="queue-all">
+                    <div class="progress-loading">Loading…</div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div>
+                <p class="footer-title">
+                    DEP Engineering Foundations (Open Track)
+                </p>
+                <p>
+                    Built by Data Engineering Pilipinas. Free and open. Always.
+                </p>
+            </div>
+            <nav class="footer-links" aria-label="Footer">
+                <a
+                    href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >GitHub<span class="sr-only"> (opens in new tab)</span></a
+                >
+                <a
+                    href="https://dataengineering.ph/about.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >About DEP<span class="sr-only"> (opens in new tab)</span></a
+                >
+                <a href="index.html#faq">FAQ</a>
+            </nav>
+        </footer>
+
+        <script src="assets/site.js?v=9"></script>
+        <script src="assets/progress.js?v=1"></script>
+    </body>
 </html>
