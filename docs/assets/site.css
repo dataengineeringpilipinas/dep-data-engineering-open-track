@@ -74,7 +74,9 @@ a:hover {
 
 a:focus-visible,
 button:focus-visible,
-summary:focus-visible {
+summary:focus-visible,
+input:focus-visible,
+select:focus-visible {
   outline: 2px solid var(--gold-l);
   outline-offset: 3px;
 }
@@ -191,6 +193,7 @@ summary:focus-visible {
   transform: translateY(-1px);
 }
 
+.button-primary[role="status"],
 .nav-links .nav-cta-closed,
 .nav-links .nav-cta-closed:hover,
 .button-primary[aria-disabled="true"] {
@@ -214,7 +217,16 @@ summary:focus-visible {
   pointer-events: none;
 }
 
-.button-primary[aria-disabled="true"]:hover {
+.button-primary[role="status"],
+.button-primary[role="status"]:hover {
+  background: linear-gradient(180deg, rgba(148, 163, 184, 0.18) 0%, rgba(148, 163, 184, 0.08) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: rgba(232, 228, 220, 0.78);
+  box-shadow: none;
+  cursor: not-allowed;
+  pointer-events: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   transform: none;
 }
 
@@ -237,8 +249,8 @@ summary:focus-visible {
 }
 
 .sr-only {
-  clip: rect(0, 0, 0, 0);
   border: 0;
+  clip-path: inset(50%);
   height: 1px;
   margin: -1px;
   overflow: hidden;
@@ -963,9 +975,12 @@ h3 {
   background: rgba(13, 17, 23, 0.72);
   border: 1px solid rgba(232, 228, 220, 0.1);
   border-radius: var(--radius-md);
+  color: inherit;
+  display: block;
   min-width: 250px;
   padding: 16px;
   text-align: right;
+  text-decoration: none;
 }
 
 .timeline-clock span,
@@ -1263,6 +1278,18 @@ h3 {
   height: 100%;
 }
 
+.builder-chart-sr {
+  border: 0;
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 .milestone-funnel {
   display: grid;
   gap: 12px;
@@ -1342,7 +1369,6 @@ h3 {
 .builder-filters input:focus,
 .builder-filters select:focus {
   border-color: var(--gold);
-  outline: none;
 }
 
 .builder-list {
@@ -1719,6 +1745,25 @@ h3 {
 
   to {
     transform: translate3d(18px, -12px, 0) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }
 

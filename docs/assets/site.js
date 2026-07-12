@@ -1,16 +1,43 @@
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector("#nav-links");
+const mobileNavQuery = window.matchMedia("(max-width: 767px)");
+
+const setNavOpen = (isOpen) => {
+  if (!navToggle || !navLinks) return;
+  navLinks.classList.toggle("is-open", isOpen);
+  navToggle.setAttribute("aria-expanded", String(isOpen));
+  navToggle.querySelector(".sr-only").textContent = isOpen
+    ? "Close navigation"
+    : "Open navigation";
+  navLinks.toggleAttribute("inert", mobileNavQuery.matches && !isOpen);
+};
 
 if (navToggle && navLinks) {
+  setNavOpen(false);
+
   navToggle.addEventListener("click", () => {
-    const isOpen = navLinks.classList.toggle("is-open");
-    navToggle.setAttribute("aria-expanded", String(isOpen));
+    setNavOpen(!navLinks.classList.contains("is-open"));
   });
 
   navLinks.addEventListener("click", (event) => {
     if (event.target instanceof HTMLAnchorElement) {
-      navLinks.classList.remove("is-open");
-      navToggle.setAttribute("aria-expanded", "false");
+      setNavOpen(false);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && navLinks.classList.contains("is-open")) {
+      setNavOpen(false);
+      navToggle.focus();
+    }
+  });
+
+  mobileNavQuery.addEventListener("change", () => {
+    if (!mobileNavQuery.matches) {
+      setNavOpen(false);
+      navLinks.removeAttribute("inert");
+    } else {
+      navLinks.toggleAttribute("inert", !navLinks.classList.contains("is-open"));
     }
   });
 }
@@ -102,8 +129,10 @@ if (builderDashboard) {
   const phaseFilterEl = builderDashboard.querySelector("[data-builder-phase-filter]");
   const expandEl = builderDashboard.querySelector("[data-builder-expand]");
   const timelineEl = builderDashboard.querySelector("[data-timeline]");
+  const timelineNowEl = builderDashboard.querySelector("#timeline-now");
   const timelineDateEl = builderDashboard.querySelector("[data-timeline-date]");
   const timelineTimeEl = builderDashboard.querySelector("[data-timeline-time]");
+  const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   let builders = [];
   let showAllBuilders = false;
@@ -180,15 +209,42 @@ if (builderDashboard) {
       year: "numeric",
     });
 
-  const formatClockTime = (date) => {
-    const time = formatDateTime(date, {
+  const formatClockTime = (date) =>
+    formatDateTime(date, {
       hour: "2-digit",
       minute: "2-digit",
-      second: "2-digit",
       hour12: true,
     });
-    return `${time}.${String(date.getMilliseconds()).padStart(3, "0")}`;
+
+  const updateTimelineClock = (now = new Date()) => {
+    if (!timelineDateEl || !timelineTimeEl) return;
+    timelineDateEl.textContent = formatClockDate(now);
+    timelineTimeEl.textContent = formatClockTime(now);
+    if (timelineNowEl) {
+      timelineNowEl.setAttribute("datetime", now.toISOString());
+      timelineNowEl.setAttribute(
+        "aria-label",
+        `Current time in Asia/Manila: ${formatClockDate(now)}, ${formatClockTime(now)}`,
+      );
+    }
   };
+
+  const getClockIntervalMs = () => (reducedMotionQuery.matches ? 0 : 60_000);
+
+  const startTimelineClock = () => {
+    if (!timelineDateEl || !timelineTimeEl) return;
+
+    if (clockFrame) window.clearInterval(clockFrame);
+    clockFrame = null;
+    updateTimelineClock();
+
+    const intervalMs = getClockIntervalMs();
+    if (intervalMs > 0) {
+      clockFrame = window.setInterval(() => updateTimelineClock(), intervalMs);
+    }
+  };
+
+  reducedMotionQuery.addEventListener("change", startTimelineClock);
 
   const formatCountdown = (deadline, now = new Date()) => {
     const diff = deadline.getTime() - now.getTime();
@@ -202,20 +258,6 @@ if (builderDashboard) {
     if (days > 0) return `${days}d ${hours}h left`;
     if (hours > 0) return `${hours}h ${minutes}m left`;
     return `${minutes}m left`;
-  };
-
-  const startTimelineClock = () => {
-    if (!timelineDateEl || !timelineTimeEl) return;
-
-    const tick = () => {
-      const now = new Date();
-      timelineDateEl.textContent = formatClockDate(now);
-      timelineTimeEl.textContent = formatClockTime(now);
-      clockFrame = window.requestAnimationFrame(tick);
-    };
-
-    if (clockFrame) window.cancelAnimationFrame(clockFrame);
-    tick();
   };
 
   const renderTimeline = (deadlines) => {
@@ -336,7 +378,17 @@ if (builderDashboard) {
       );
     const max = Math.max(...entries.map((label) => counts[label]), 1);
 
+    if (!entries.length) {
+      target.innerHTML = `<p class="builder-empty">No public data yet.</p>`;
+      return;
+    }
+
+    const srSummary = entries
+      .map((label) => `${statusLabels[label] || label}: ${counts[label]}`)
+      .join(", ");
+
     target.innerHTML =
+      `<p class="builder-chart-sr">${escapeHtml(srSummary)}</p>` +
       entries
         .map((label) => {
           const count = counts[label];
@@ -346,12 +398,12 @@ if (builderDashboard) {
               <span>${escapeHtml(statusLabels[label] || label)}</span>
               <strong>${escapeHtml(count)}</strong>
             </div>
-            <div class="builder-bar-track">
+            <div class="builder-bar-track" aria-hidden="true">
               <span style="width: ${width}%"></span>
             </div>
           </div>`;
         })
-        .join("") || `<p class="builder-empty">No public data yet.</p>`;
+        .join("");
   };
 
   const renderMilestones = () => {
@@ -360,6 +412,7 @@ if (builderDashboard) {
     const passRate = submitted > 0 ? Math.round((passed / submitted) * 100) : 0;
 
     milestoneEl.innerHTML = `
+      <p class="builder-chart-sr">Submitted: ${escapeHtml(submitted)}, Passed: ${escapeHtml(passed)}, Pass rate: ${submitted > 0 ? `${passRate}%` : "not available"}</p>
       <div class="milestone-funnel-step">
         <span>Submitted</span>
         <strong>${metricValue(submitted)}</strong>
@@ -443,7 +496,7 @@ if (builderDashboard) {
             <span>${escapeHtml(builder.milestonesPassed || 0)} passed / ${escapeHtml(builder.milestonesSubmitted || 0)} submitted</span>
             ${
               github
-                ? `<a href="${escapeHtml(github)}" target="_blank" rel="noopener noreferrer">GitHub</a>`
+                ? `<a href="${escapeHtml(github)}" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository for ${name} (opens in new tab)">GitHub</a>`
                 : "<span>GitHub pending</span>"
             }
           </div>
