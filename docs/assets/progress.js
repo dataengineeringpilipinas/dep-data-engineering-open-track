@@ -7,6 +7,7 @@ let enrolledSet = null;
 let viewMode = "enrolled";
 
 const sortState = {
+  waiting: { col: "days", dir: "desc" },
   pending: { col: "days", dir: "desc" },
   improvement: { col: "days", dir: "desc" },
   all: { col: "days", dir: "desc" },
@@ -21,6 +22,8 @@ function getStatus(labels) {
   const names = labels.map((label) => label.name);
   if (names.includes("passed")) return "passed";
   if (names.includes("needs-improvement")) return "needs-improvement";
+  if (names.includes("waiting-on-prerequisite")) return "waiting-on-prerequisite";
+  if (names.includes("ready-for-review")) return "ready-for-review";
   if (names.includes("auto-check-pending")) return "checking";
   return "pending-review";
 }
@@ -46,6 +49,8 @@ function statusBadge(status) {
   const map = {
     passed: ["passed", "Passed"],
     "needs-improvement": ["needs-improvement", "Needs Improvement"],
+    "waiting-on-prerequisite": ["waiting-on-prerequisite", "Waiting on prerequisite"],
+    "ready-for-review": ["ready-for-review", "Ready for review"],
     "pending-review": ["pending-review", "Pending Review"],
     checking: ["checking", "Checking"],
   };
@@ -55,6 +60,9 @@ function statusBadge(status) {
 
 function daysBadge(days, status) {
   if (status === "passed") return `<span class="progress-days ok">${days}d</span>`;
+  if (status === "waiting-on-prerequisite") {
+    return `<span class="progress-days warn">${days}d queued</span>`;
+  }
   if (days >= 5) return `<span class="progress-days breach">${days}d overdue</span>`;
   if (days >= 3) return `<span class="progress-days warn">${days}d waiting</span>`;
   return `<span class="progress-days ok">${days}d</span>`;
@@ -190,17 +198,24 @@ function buildTable(issues, tableKey) {
 }
 
 function renderAll() {
-  const pending = allIssues.filter((issue) => issue._status === "pending-review");
+  const waiting = allIssues.filter((issue) => issue._status === "waiting-on-prerequisite");
+  const pending = allIssues.filter(
+    (issue) => issue._status === "ready-for-review" || issue._status === "pending-review",
+  );
   const improvement = allIssues.filter((issue) => issue._status === "needs-improvement");
 
+  document.getElementById("queue-waiting").innerHTML = buildTable(waiting, "waiting");
   document.getElementById("queue-pending").innerHTML = buildTable(pending, "pending");
   document.getElementById("queue-improvement").innerHTML = buildTable(improvement, "improvement");
   document.getElementById("queue-all").innerHTML = buildTable(allIssues, "all");
 
   const visible = applyFilters(allIssues);
   document.getElementById("s-total").textContent = visible.length;
+  document.getElementById("s-waiting").textContent = visible.filter(
+    (issue) => issue._status === "waiting-on-prerequisite",
+  ).length;
   document.getElementById("s-pending").textContent = visible.filter(
-    (issue) => issue._status === "pending-review",
+    (issue) => issue._status === "ready-for-review" || issue._status === "pending-review",
   ).length;
   document.getElementById("s-improvement").textContent = visible.filter(
     (issue) => issue._status === "needs-improvement",
@@ -241,11 +256,17 @@ async function fetchAll() {
   let page = 1;
   while (true) {
     const response = await fetch(
-      `https://api.github.com/repos/${OWNER}/${REPO}/issues?labels=milestone-submission&state=open&per_page=100&page=${page}`,
+      `https://api.github.com/repos/${OWNER}/${REPO}/issues?labels=milestone-submission&state=all&per_page=100&page=${page}`,
     );
     const batch = await response.json();
     if (!Array.isArray(batch) || !batch.length) break;
-    issues = issues.concat(batch.filter((issue) => !issue.pull_request));
+    issues = issues.concat(
+      batch.filter(
+        (issue) =>
+          !issue.pull_request &&
+          !issue.labels.some((label) => label.name === "duplicate" || label.name === "late-submission"),
+      ),
+    );
     if (batch.length < 100) break;
     page += 1;
   }

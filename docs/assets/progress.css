@@ -29,7 +29,7 @@
 .progress-stats {
   display: grid;
   gap: 12px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   margin-bottom: 24px;
 }
 
@@ -52,6 +52,10 @@
 
 .progress-stat-card.pending .number {
   color: #93c5fd;
+}
+
+.progress-stat-card.waiting .number {
+  color: #fde68a;
 }
 
 .progress-stat-card.improvement .number {
@@ -227,6 +231,18 @@
   background: #3d2f1a;
   border: 1px solid #92400e;
   color: #fcd34d;
+}
+
+.progress-badge.waiting-on-prerequisite {
+  background: #3b3218;
+  border: 1px solid #a16207;
+  color: #fde68a;
+}
+
+.progress-badge.ready-for-review {
+  background: #142f4f;
+  border: 1px solid #1d4ed8;
+  color: #bfdbfe;
 }
 
 .progress-badge.pending-review {
