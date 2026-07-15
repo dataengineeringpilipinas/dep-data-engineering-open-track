@@ -9,7 +9,7 @@
         />
         <title>Submission Tracker — DEP Engineering Program</title>
         <link rel="stylesheet" href="assets/site.css?v=10" />
-        <link rel="stylesheet" href="assets/progress.css?v=1" />
+        <link rel="stylesheet" href="assets/progress.css?v=2" />
     </head>
     <body>
         <a class="skip-link" href="#main">Skip to content</a>
@@ -108,6 +108,10 @@
                     <span class="number" id="s-pending">—</span>
                     <span class="label">Pending review</span>
                 </article>
+                <article class="progress-stat-card waiting">
+                    <span class="number" id="s-waiting">—</span>
+                    <span class="label">Waiting on gate</span>
+                </article>
                 <article class="progress-stat-card improvement">
                     <span class="number" id="s-improvement">—</span>
                     <span class="label">Needs improvement</span>
@@ -146,11 +150,20 @@
                 <select id="filter-status" onchange="renderAll()">
                     <option value="">All statuses</option>
                     <option value="pending-review">Pending review</option>
+                    <option value="ready-for-review">Ready for review</option>
+                    <option value="waiting-on-prerequisite">Waiting on prerequisite</option>
                     <option value="needs-improvement">Needs improvement</option>
                     <option value="passed">Passed</option>
                     <option value="checking">Checking</option>
                 </select>
             </div>
+
+            <section class="progress-section" aria-labelledby="waiting-queue-title">
+                <h2 id="waiting-queue-title">On-time submissions waiting on a prerequisite</h2>
+                <div id="queue-waiting">
+                    <div class="progress-loading">Loading…</div>
+                </div>
+            </section>
 
             <section class="progress-section" aria-labelledby="pending-queue-title">
                 <h2 id="pending-queue-title">Pending reviewer action</h2>
@@ -201,6 +214,6 @@
         </footer>
 
         <script src="assets/site.js?v=9"></script>
-        <script src="assets/progress.js?v=1"></script>
+        <script src="assets/progress.js?v=2"></script>
     </body>
 </html>

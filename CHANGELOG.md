@@ -6,7 +6,24 @@ All notable curriculum-documentation changes in this repo should be recorded her
 
 ### Added
 
-No unreleased changes.
+- Added explicit milestone workflow states for submissions waiting on prerequisites, ready for review, and rejected as late.
+- Added automatic release of an on-time M1–M6 submission when the same builder's previous milestone receives a human `passed` verdict.
+- Added maintainer dry-run/apply workflows for audited deadline overrides and repair of historical gate-blocked submissions.
+- Added policy tests for deadline boundaries, repository normalization, milestone sequencing, recheck commands, and state decisions.
+- Added a default pull request template covering context, issue linkage, testing, rollout, screenshots, documentation, and privacy checks.
+
+### Changed
+
+- Changed prerequisite gates to preserve and validate on-time submissions instead of closing them; revisions now stay on the canonical issue through `/recheck <commit-hash>`.
+- Changed milestone identity matching from repository URL text to the submitting GitHub account so repository renames do not break progression.
+- Changed M0 to require a human verdict after structural checks instead of automatically applying `passed`.
+- Updated the public submission tracker to show closed passed issues plus waiting and ready-for-review queues while excluding duplicate and late attempts from canonical totals.
+
+### Fixed
+
+- Fixed the deadline conflict that rejected replacement issues after an on-time submission was auto-closed for a pending prerequisite.
+- Fixed structural-check failures that instructed builders to recheck without adding the `needs-improvement` state required to trigger the recheck workflow.
+- Fixed duplicate milestone attempts by directing builders back to one canonical issue per milestone.
 
 ## [0.3.0] - 2026-07-08 - Builder Cohort Dashboard and Timeline
 

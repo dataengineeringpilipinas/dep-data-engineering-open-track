@@ -1,0 +1,183 @@
+name: Milestone Reviewer Verdict
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  apply-needs-improvement:
+    if: >-
+      github.event.label.name == 'needs-improvement' &&
+      contains(github.event.issue.labels.*.name, 'milestone-submission')
+    runs-on: ubuntu-latest
+    concurrency:
+      group: milestone-${{ github.event.issue.number }}
+      cancel-in-progress: false
+    steps:
+      - name: Normalize needs-improvement state
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const removable = ['auto-check-pending', 'waiting-on-prerequisite', 'ready-for-review', 'passed', 'late-submission'];
+            const labels = context.payload.issue.labels.map(label => label.name);
+            if (labels.includes('passed')) {
+              try {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  name: 'needs-improvement'
+                });
+              } catch (_) {}
+              const marker = '<!-- dep-verdict:terminal-pass -->';
+              const comments = await github.paginate(github.rest.issues.listComments, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                per_page: 100
+              });
+              if (!comments.some(comment => (comment.body || '').includes(marker))) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  body: `${marker}\nThe \`passed\` verdict is terminal because it may already have released the next milestone. Ask the Systems Lead to use the audited manual workflow if this verdict was applied by mistake.`
+                });
+              }
+              return;
+            }
+            for (const label of removable) {
+              if (!labels.includes(label)) continue;
+              try {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  name: label
+                });
+              } catch (_) {}
+            }
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              state: 'open'
+            });
+
+  finalize-pass:
+    if: >-
+      github.event.label.name == 'passed' &&
+      contains(github.event.issue.labels.*.name, 'milestone-submission')
+    runs-on: ubuntu-latest
+    concurrency:
+      group: milestone-${{ github.event.issue.number }}
+      cancel-in-progress: false
+    outputs:
+      waiting_issue_number: ${{ steps.finalize.outputs.waiting_issue_number }}
+    steps:
+      - name: Close completed issue and find next waiting milestone
+        id: finalize
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const milestones = ['M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6'];
+            const issue = context.payload.issue;
+            const labels = issue.labels.map(label => label.name);
+            const milestone = labels.find(label => /^M[0-6]$/.test(label));
+            if (!labels.includes('ready-for-review')) {
+              try {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  name: 'passed'
+                });
+              } catch (_) {}
+              const blockedMarker = '<!-- dep-verdict:pass-rejected -->';
+              const existingComments = await github.paginate(github.rest.issues.listComments, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                per_page: 100
+              });
+              if (!existingComments.some(comment => (comment.body || '').includes(blockedMarker))) {
+                const reason = labels.includes('late-submission')
+                  ? 'This issue is late. Run the manual milestone evaluation with `override_deadline` and an audit reason before applying a verdict.'
+                  : 'This issue has not reached `ready-for-review`. Complete its automated checks and prerequisite gate before applying a verdict.';
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  body: `${blockedMarker}\nThe \`passed\` label was removed. ${reason}`
+                });
+              }
+              core.setOutput('waiting_issue_number', '');
+              return;
+            }
+            const removable = ['auto-check-pending', 'waiting-on-prerequisite', 'ready-for-review', 'needs-improvement', 'late-submission'];
+            for (const label of removable) {
+              if (!labels.includes(label)) continue;
+              try {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  name: label
+                });
+              } catch (_) {}
+            }
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              state: 'closed',
+              state_reason: 'completed'
+            });
+
+            const marker = `<!-- dep-verdict:${milestone}:passed -->`;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              per_page: 100
+            });
+            if (!comments.some(comment => (comment.body || '').includes(marker))) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `${marker}\n## Reviewer verdict — passed\n\nThis milestone is complete. If the next milestone was submitted on time while waiting, it will now be released automatically.\n\n---\n_DEP submission bot_`
+              });
+            }
+
+            const index = milestones.indexOf(milestone);
+            if (index < 0 || index === milestones.length - 1) {
+              core.setOutput('waiting_issue_number', '');
+              return;
+            }
+            const next = milestones[index + 1];
+            const candidates = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: `milestone-submission,${next},waiting-on-prerequisite`,
+              state: 'open',
+              per_page: 100
+            });
+            const waiting = candidates
+              .filter(candidate => candidate.user.login.toLowerCase() === issue.user.login.toLowerCase())
+              .filter(candidate => !candidate.labels.some(label => label.name === 'duplicate'))
+              .sort((a, b) => new Date(a.created_at) - new Date(b.created_at))[0];
+            core.setOutput('waiting_issue_number', waiting ? String(waiting.number) : '');
+
+  evaluate-released-submission:
+    needs: finalize-pass
+    if: needs.finalize-pass.outputs.waiting_issue_number != ''
+    uses: ./.github/workflows/_milestone-evaluate.yml
+    with:
+      issue_number: ${{ fromJSON(needs.finalize-pass.outputs.waiting_issue_number) }}
+      check_duplicate: false
+    secrets: inherit

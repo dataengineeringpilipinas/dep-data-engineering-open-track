@@ -9,6 +9,8 @@ body:
         **Milestone 5 — Predictive / Alt Track**
         Fill in all fields. The auto-checker runs as soon as you submit this issue.
         Indicate which path you took (Path A or Path B) in the notes field.
+        If M4 is still awaiting review, an on-time M5 issue stays open in the prerequisite queue and releases automatically after M4 passes.
+        Submit once. For revisions, comment `/recheck <40-character-hash>` on this same issue.
 
   - type: input
     id: builder_name

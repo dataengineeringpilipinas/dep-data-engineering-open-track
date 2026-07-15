@@ -1,0 +1,213 @@
+name: Repair Gate-Blocked Milestone Submissions
+
+on:
+  workflow_dispatch:
+    inputs:
+      milestone:
+        description: Milestone whose historical gate closures should be consolidated
+        required: true
+        type: choice
+        default: M1
+        options: [M1, M2, M3, M4, M5, M6]
+      dry_run:
+        description: Report proposed changes without mutating issues
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  discover-and-consolidate:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.repair.outputs.matrix }}
+      has_repairs: ${{ steps.repair.outputs.has_repairs }}
+    steps:
+      - name: Check out curriculum repo
+        uses: actions/checkout@v4
+
+      - name: Discover canonical on-time issues
+        id: repair
+        uses: actions/github-script@v7
+        env:
+          TARGET_MILESTONE: ${{ inputs.milestone }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        with:
+          script: |
+            const fs = require('fs');
+            const milestone = process.env.TARGET_MILESTONE;
+            const dryRun = process.env.DRY_RUN === 'true';
+            const deadlines = JSON.parse(fs.readFileSync('.github/milestone-deadlines.json', 'utf8'));
+            const deadline = new Date(deadlines[milestone]);
+            const excludedIssues = new Set([60]);
+            const issues = (await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: `milestone-submission,${milestone}`,
+              state: 'all',
+              per_page: 100
+            })).filter(issue => !excludedIssues.has(issue.number));
+
+            const classifications = new Map();
+            for (const issue of issues) {
+              const comments = await github.paginate(github.rest.issues.listComments, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                per_page: 100
+              });
+              const text = comments.map(comment => comment.body || '').join('\n');
+              classifications.set(issue.number, {
+                gateBlocked: text.includes('Gate blocked'),
+                deadlineRejected: text.includes('Deadline passed')
+              });
+            }
+
+            const groups = new Map();
+            for (const issue of issues) {
+              const classification = classifications.get(issue.number);
+              if (!classification.gateBlocked) continue;
+              if (new Date(issue.created_at) > deadline) continue;
+              const login = issue.user.login.toLowerCase();
+              if (!groups.has(login)) groups.set(login, []);
+              groups.get(login).push(issue);
+            }
+
+            const canonicalIssues = [];
+            const report = [];
+            for (const [login, candidates] of groups.entries()) {
+              const completed = issues
+                .filter(issue => issue.user.login.toLowerCase() === login)
+                .filter(issue => issue.labels.some(label => label.name === 'passed'))
+                .filter(issue => !issue.labels.some(label => label.name === 'duplicate'))
+                .sort((a, b) => {
+                  const byDate = new Date(a.created_at) - new Date(b.created_at);
+                  return byDate || a.number - b.number;
+                });
+              const alreadyPassed = completed.length > 0;
+              const canonical = alreadyPassed ? completed[0] : candidates.sort((a, b) => {
+                const byDate = new Date(b.created_at) - new Date(a.created_at);
+                return byDate || b.number - a.number;
+              })[0];
+              const related = issues.filter(issue => {
+                if (issue.number === canonical.number) return false;
+                if (issue.user.login.toLowerCase() !== login) return false;
+                if (issue.labels.some(label => label.name === 'passed')) return false;
+                const classification = classifications.get(issue.number);
+                return classification.gateBlocked || classification.deadlineRejected;
+              });
+              report.push(`@${canonical.user.login}: canonical #${canonical.number}${alreadyPassed ? ' (already passed; preserved)' : ''}; duplicates ${related.map(issue => `#${issue.number}`).join(', ') || 'none'}`);
+              if (dryRun) continue;
+
+              if (!alreadyPassed) {
+                canonicalIssues.push({ issue_number: canonical.number });
+                const canonicalLabels = canonical.labels.map(label => label.name);
+                for (const label of ['duplicate', 'late-submission', 'waiting-on-prerequisite', 'ready-for-review', 'needs-improvement']) {
+                  if (!canonicalLabels.includes(label)) continue;
+                  try {
+                    await github.rest.issues.removeLabel({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      issue_number: canonical.number,
+                      name: label
+                    });
+                  } catch (_) {}
+                }
+                if (!canonicalLabels.includes('auto-check-pending')) {
+                  await github.rest.issues.addLabels({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: canonical.number,
+                    labels: ['auto-check-pending']
+                  });
+                }
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: canonical.number,
+                  state: 'open'
+                });
+                const canonicalMarker = `<!-- dep-repair-canonical:${canonical.number} -->`;
+                const canonicalComments = await github.paginate(github.rest.issues.listComments, {
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: canonical.number,
+                  per_page: 100
+                });
+                if (!canonicalComments.some(comment => (comment.body || '').includes(canonicalMarker))) {
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: canonical.number,
+                    body: `${canonicalMarker}\n## Submission eligibility restored\n\nThis is now the canonical on-time ${milestone} issue. It will be reevaluated without losing its original submission timestamp.\n\n---\n_DEP submission repair_`
+                  });
+                }
+              }
+
+              for (const duplicate of related) {
+                const duplicateLabels = duplicate.labels.map(label => label.name);
+                for (const label of ['auto-check-pending', 'waiting-on-prerequisite', 'ready-for-review', 'needs-improvement', 'passed', 'late-submission']) {
+                  if (!duplicateLabels.includes(label)) continue;
+                  try {
+                    await github.rest.issues.removeLabel({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      issue_number: duplicate.number,
+                      name: label
+                    });
+                  } catch (_) {}
+                }
+                if (!duplicateLabels.includes('duplicate')) {
+                  await github.rest.issues.addLabels({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: duplicate.number,
+                    labels: ['duplicate']
+                  });
+                }
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: duplicate.number,
+                  state: 'closed',
+                  state_reason: 'not_planned'
+                });
+                const marker = `<!-- dep-repair-duplicate:${canonical.number} -->`;
+                const duplicateComments = await github.paginate(github.rest.issues.listComments, {
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: duplicate.number,
+                  per_page: 100
+                });
+                if (!duplicateComments.some(comment => (comment.body || '').includes(marker))) {
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: duplicate.number,
+                    body: `${marker}\nThis issue has been consolidated into canonical on-time submission #${canonical.number}. Continue there; its original deadline eligibility is preserved.`
+                  });
+                }
+              }
+            }
+
+            core.summary.addHeading(`${milestone} gate-closure repair ${dryRun ? 'dry run' : 'apply'}`);
+            if (report.length) core.summary.addList(report);
+            else core.summary.addRaw('No eligible gate-blocked submissions were found.');
+            await core.summary.write();
+            core.setOutput('matrix', dryRun ? JSON.stringify({ include: [] }) : JSON.stringify({ include: canonicalIssues }));
+            core.setOutput('has_repairs', !dryRun && canonicalIssues.length > 0 ? 'true' : 'false');
+
+  reevaluate-canonical-issues:
+    needs: discover-and-consolidate
+    if: inputs.dry_run == false && needs.discover-and-consolidate.outputs.has_repairs == 'true'
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.discover-and-consolidate.outputs.matrix) }}
+    uses: ./.github/workflows/_milestone-evaluate.yml
+    with:
+      issue_number: ${{ matrix.issue_number }}
+      check_duplicate: false
+    secrets: inherit

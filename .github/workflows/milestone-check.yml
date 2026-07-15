@@ -1,385 +1,51 @@
-name: Milestone Auto-Check
+name: Milestone Submission Evaluation
 
 on:
   issues:
     types: [opened]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: Milestone issue number to evaluate
+        required: true
+        type: number
+      commit_hash:
+        description: Optional 40-character commit hash override
+        required: false
+        type: string
+      override_deadline:
+        description: Allow a late issue through the deadline gate
+        required: true
+        type: boolean
+        default: false
+      audit_reason:
+        description: Required explanation when overriding the deadline
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  issues: write
 
 jobs:
-  auto-check:
-    if: contains(github.event.issue.labels.*.name, 'auto-check-pending')
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
+  evaluate-opened-issue:
+    if: >-
+      github.event_name == 'issues' &&
+      contains(github.event.issue.labels.*.name, 'milestone-submission') &&
+      contains(github.event.issue.labels.*.name, 'auto-check-pending')
+    uses: ./.github/workflows/_milestone-evaluate.yml
+    with:
+      issue_number: ${{ github.event.issue.number }}
+      check_duplicate: true
+    secrets: inherit
 
-    steps:
-      - name: Check out curriculum repo
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Parse issue body
-        id: parse
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const body = context.payload.issue.body || '';
-            const labels = context.payload.issue.labels.map(l => l.name);
-
-            const milestone = labels.find(l => /^M\d$/.test(l)) || 'unknown';
-
-            // Extract fields from GitHub issue form body (### Heading\n\nValue format)
-            const extract = (heading) => {
-              const re = new RegExp(`###\\s+${heading}\\s*\\n+([^\\n#]+)`, 'i');
-              const m = body.match(re);
-              return m ? m[1].trim() : '';
-            };
-
-            const repoUrl   = extract('GitHub Repo URL');
-            const commitHash = extract('Commit Hash');
-
-            core.setOutput('milestone', milestone);
-            core.setOutput('repo_url', repoUrl);
-            core.setOutput('commit_hash', commitHash);
-
-      - name: Check milestone deadline
-        id: deadline
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            const milestone  = '${{ steps.parse.outputs.milestone }}';
-            const createdStr = context.payload.issue.created_at;
-
-            let deadlines;
-            try {
-              deadlines = JSON.parse(fs.readFileSync('.github/milestone-deadlines.json', 'utf8'));
-            } catch (_) {
-              core.setOutput('deadline_ok', 'true');
-              return;
-            }
-
-            const deadlineStr = deadlines[milestone];
-            if (!deadlineStr) {
-              core.setOutput('deadline_ok', 'true');
-              return;
-            }
-
-            const created  = new Date(createdStr);
-            const deadline = new Date(deadlineStr);
-
-            if (created <= deadline) {
-              core.setOutput('deadline_ok', 'true');
-              return;
-            }
-
-            core.setOutput('deadline_ok', 'false');
-
-            const fmt = (d) => d.toISOString().replace('T', ' ').replace(/\.\d+Z$/, ' UTC');
-            const deadlineFmt = (d) => {
-              const s = d.toISOString().replace('T', ' ').replace(/\.\d+Z$/, ' UTC');
-              return s.replace(' 23:59:59 UTC', ' 23:59:59 UTC (end of day)');
-            };
-
-            const body = [
-              `## Auto-Check Results — ${milestone}`,
-              '',
-              `> ⛔ **Deadline passed.** Submissions for ${milestone} closed on **${deadlineFmt(deadline)}**.`,
-              '',
-              `This issue was created on **${fmt(created)}**, which is past the deadline.`,
-              '',
-              `**What to do:**`,
-              `If you have a legitimate reason for the late submission, reach out to the organizing team.`,
-              ``,
-              `---`,
-              `_Auto-Check by DEP submission bot_`
-            ].join('\n');
-
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.issue.number,
-              body
-            });
-
-            try {
-              await github.rest.issues.removeLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.issue.number,
-                name: 'auto-check-pending'
-              });
-            } catch (_) {}
-
-            await github.rest.issues.update({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.issue.number,
-              state: 'closed',
-              state_reason: 'not_planned'
-            });
-
-      - name: Check prerequisite milestone
-        id: gate
-        if: steps.deadline.outputs.deadline_ok == 'true'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const MILESTONES = ['M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6'];
-            const milestone = '${{ steps.parse.outputs.milestone }}';
-            const repoUrl   = '${{ steps.parse.outputs.repo_url }}';
-            const idx = MILESTONES.indexOf(milestone);
-
-            // M0 has no prerequisite
-            if (idx <= 0) {
-              core.setOutput('gate_ok', 'true');
-              return;
-            }
-
-            const prevMilestone = MILESTONES[idx - 1];
-            core.setOutput('prev_milestone', prevMilestone);
-
-            // Normalise repo URL to base owner/repo (handles blob/tree/file URLs)
-            const urlMatch = repoUrl.match(/(https?:\/\/github\.com\/[\w.-]+\/[\w.-]+?)(?:\.git)?(?:\/|$)/);
-            const baseUrl = urlMatch ? urlMatch[1] : null;
-
-            if (!baseUrl) {
-              core.setOutput('gate_ok', 'false');
-              return;
-            }
-
-            // Find all passed issues for the previous milestone
-            const issues = await github.paginate(github.rest.issues.listForRepo, {
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              labels: `milestone-submission,${prevMilestone},passed`,
-              state: 'all'
-            });
-
-            const found = issues.some(issue => issue.body && issue.body.includes(baseUrl));
-            core.setOutput('gate_ok', found ? 'true' : 'false');
-
-      - name: Block if prerequisite not met
-        if: steps.gate.outputs.gate_ok == 'false'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const milestone     = '${{ steps.parse.outputs.milestone }}';
-            const prevMilestone = '${{ steps.gate.outputs.prev_milestone }}';
-
-            const body = [
-              `## Auto-Check Results — ${milestone}`,
-              '',
-              `> ⛔ **Gate blocked.** Your ${prevMilestone} submission has not been marked \`passed\` yet.`,
-              '',
-              `You must complete and pass **${prevMilestone}** before submitting **${milestone}**. This is a program requirement — milestones must be completed in order.`,
-              '',
-              `**What to do:**`,
-              `1. Check your ${prevMilestone} submission issue to see if it has a \`passed\` label`,
-              `2. If it shows \`needs-improvement\`, address the reviewer's comment and resubmit`,
-              `3. If you haven't submitted ${prevMilestone} yet, do that first`,
-              `4. Once ${prevMilestone} is marked \`passed\`, close this issue and open a new ${milestone} submission`,
-              '',
-              `---`,
-              `_Auto-Check by DEP submission bot_`
-            ].join('\n');
-
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.issue.number,
-              body
-            });
-
-            // Remove auto-check-pending and close the issue
-            try {
-              await github.rest.issues.removeLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.issue.number,
-                name: 'auto-check-pending'
-              });
-            } catch (_) {}
-
-            await github.rest.issues.update({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.issue.number,
-              state: 'closed',
-              state_reason: 'not_planned'
-            });
-
-      - name: Clone builder repo at commit
-        id: clone
-        if: steps.deadline.outputs.deadline_ok == 'true' && steps.gate.outputs.gate_ok == 'true'
-        run: |
-          REPO="${{ steps.parse.outputs.repo_url }}"
-          HASH="${{ steps.parse.outputs.commit_hash }}"
-
-          if [ -z "$REPO" ] || [ -z "$HASH" ]; then
-            echo "clone_ok=false" >> $GITHUB_OUTPUT
-            echo "clone_error=Could not parse repo URL or commit hash from issue body." >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          git clone --depth 1 "$REPO" builder-repo 2>&1 || {
-            echo "clone_ok=false" >> $GITHUB_OUTPUT
-            echo "clone_error=Failed to clone $REPO. Is the repo public?" >> $GITHUB_OUTPUT
-            exit 0
-          }
-
-          cd builder-repo
-          git fetch --depth 1 origin "$HASH" 2>&1 || true
-          git checkout "$HASH" 2>&1 || {
-            echo "clone_ok=false" >> $GITHUB_OUTPUT
-            echo "clone_error=Commit $HASH not found in $REPO." >> $GITHUB_OUTPUT
-            exit 0
-          }
-
-          echo "clone_ok=true" >> $GITHUB_OUTPUT
-
-      - name: Run milestone checks
-        id: checks
-        if: steps.deadline.outputs.deadline_ok == 'true' && steps.gate.outputs.gate_ok == 'true' && steps.clone.outputs.clone_ok == 'true'
-        run: |
-          python .github/scripts/milestone_check.py \
-            --milestone "${{ steps.parse.outputs.milestone }}" \
-            --repo-path builder-repo \
-            --output-file check_result.json
-
-      - name: Post auto-check comment
-        if: steps.deadline.outputs.deadline_ok == 'true' && steps.gate.outputs.gate_ok == 'true'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            const milestone = '${{ steps.parse.outputs.milestone }}';
-            const cloneOk   = '${{ steps.clone.outputs.clone_ok }}';
-            const cloneErr  = '${{ steps.clone.outputs.clone_error }}';
-
-            let body = `## Auto-Check Results — ${milestone}\n\n`;
-
-            if (cloneOk !== 'true') {
-              body += `> **Error:** ${cloneErr || 'Unknown clone failure.'}\n\n`;
-              body += `Please verify your repo URL and commit hash, then open a new ${milestone} submission with the correct details. This issue will now be closed automatically.\n`;
-            } else {
-              let results;
-              try {
-                results = JSON.parse(fs.readFileSync('check_result.json', 'utf8'));
-              } catch (e) {
-                body += `> **Error:** Could not parse check results. Please contact a moderator.\n`;
-                await github.rest.issues.createComment({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: context.payload.issue.number,
-                  body
-                });
-                return;
-              }
-
-              const pass = results.checks.filter(c => c.passed);
-              const fail = results.checks.filter(c => !c.passed);
-
-              for (const c of results.checks) {
-                body += `${c.passed ? '✅' : '❌'} ${c.name}\n`;
-                if (!c.passed && c.hint) body += `   _${c.hint}_\n`;
-              }
-
-              body += `\n`;
-
-              if (fail.length === 0) {
-                body += `**All structural checks passed.** A Milestone Reviewer will evaluate your submission shortly.\n`;
-              } else {
-                body += `**${fail.length} check(s) failed.** Fix the issues above, push a new commit, then post the new commit hash as a comment on this issue to resubmit.\n`;
-              }
-            }
-
-            body += `\n---\n_Auto-Check by DEP submission bot_`;
-
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.issue.number,
-              body
-            });
-
-            // Remove auto-check-pending label
-            try {
-              await github.rest.issues.removeLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.issue.number,
-                name: 'auto-check-pending'
-              });
-            } catch (_) {}
-
-            // Auto-close on clone failure — data is bad, fix and resubmit fresh
-            if (cloneOk !== 'true') {
-              await github.rest.issues.update({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.issue.number,
-                state: 'closed',
-                state_reason: 'not_planned'
-              });
-              return;
-            }
-
-            // Notify Discord if all checks passed
-            const allPassed = cloneOk === 'true' && (() => {
-              try {
-                const r = JSON.parse(fs.readFileSync('check_result.json', 'utf8'));
-                return r.all_passed;
-              } catch (_) { return false; }
-            })();
-
-            if (allPassed) {
-              const issueUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/issues/${context.payload.issue.number}`;
-              const milestone  = '${{ steps.parse.outputs.milestone }}';
-              const builderName = (context.payload.issue.body || '').match(/###\s+Builder Name\s*\n+([^\n#]+)/i)?.[1]?.trim() || context.payload.issue.user.login;
-              const cohort      = (context.payload.issue.body || '').match(/###\s+Cohort\s*\n+([^\n#]+)/i)?.[1]?.trim() || '—';
-              const repoUrl     = '${{ steps.parse.outputs.repo_url }}';
-
-              // Auto-apply passed label for M0 (purely structural checks — no subjective review needed)
-              if (milestone === 'M0') {
-                try {
-                  await github.rest.issues.addLabels({
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    issue_number: context.payload.issue.number,
-                    labels: ['passed']
-                  });
-                } catch (_) {}
-              }
-
-              // Only notify Discord for enrolled participants
-              const enrolledRes = await fetch(`https://raw.githubusercontent.com/${context.repo.owner}/${context.repo.repo}/main/.github/enrolled-participants.json`);
-              const enrolledData = await enrolledRes.json();
-              const enrolledSet = new Set((enrolledData.participants || []).map(u => u.toLowerCase()));
-              const isEnrolled = enrolledSet.has(context.payload.issue.user.login.toLowerCase());
-              if (!isEnrolled) return;
-
-              const discordBody = {
-                embeds: [{
-                  title: `📬 New Submission Ready for Review — ${milestone}`,
-                  color: 0x0052CC,
-                  fields: [
-                    { name: 'Builder', value: builderName, inline: true },
-                    { name: 'Cohort',  value: cohort,       inline: true },
-                    { name: 'Milestone', value: milestone,  inline: true },
-                    { name: 'Repo',    value: repoUrl,      inline: false },
-                    { name: 'Issue',   value: issueUrl,     inline: false },
-                  ],
-                  footer: { text: 'All structural checks passed ✅ — reviewer action needed within 5 days' },
-                  timestamp: new Date().toISOString()
-                }]
-              };
-
-              await fetch('${{ secrets.DISCORD_WEBHOOK_URL }}', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(discordBody)
-              });
-            }
+  evaluate-manual-request:
+    if: github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/_milestone-evaluate.yml
+    with:
+      issue_number: ${{ inputs.issue_number }}
+      commit_hash: ${{ inputs.commit_hash }}
+      check_duplicate: false
+      override_deadline: ${{ inputs.override_deadline }}
+      audit_reason: ${{ inputs.audit_reason }}
+    secrets: inherit

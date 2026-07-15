@@ -8,6 +8,8 @@ body:
       value: |
         **Milestone 0 — Project Proposal**
         Fill in all fields. The auto-checker runs as soon as you submit this issue.
+        Submit once before the deadline. If changes are requested, comment `/recheck <40-character-hash>` on this same issue instead of opening another one.
+        Automated checks verify the repository snapshot; a human reviewer makes the final M0 verdict.
 
   - type: input
     id: builder_name
