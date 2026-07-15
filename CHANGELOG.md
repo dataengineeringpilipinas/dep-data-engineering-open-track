@@ -10,6 +10,7 @@ All notable curriculum-documentation changes in this repo should be recorded her
 - Added automatic release of an on-time M1–M6 submission when the same builder's previous milestone receives a human `passed` verdict.
 - Added maintainer dry-run/apply workflows for audited deadline overrides and repair of historical gate-blocked submissions.
 - Added policy tests for deadline boundaries, repository normalization, milestone sequencing, recheck commands, and state decisions.
+- Added a default pull request template covering context, issue linkage, testing, rollout, screenshots, documentation, and privacy checks.
 
 ### Changed
 
