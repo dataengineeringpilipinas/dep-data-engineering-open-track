@@ -9,6 +9,8 @@ body:
         **Milestone 1 — Foundations Complete**
         Fill in all fields. The auto-checker runs as soon as you submit this issue.
         M1 is a **hard gate** — moderator review required before you proceed to Phase 2.
+        If M0 is still awaiting review, an on-time M1 issue stays open in the prerequisite queue and releases automatically after M0 passes.
+        Submit once. For revisions, comment `/recheck <40-character-hash>` on this same issue.
 
   - type: input
     id: builder_name

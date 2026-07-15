@@ -44,7 +44,7 @@ Yes. The pacing is meant to work for students and working professionals, but you
 
 **Q: What happens if I miss a milestone deadline?**
 
-Milestones are non-negotiable. Missing deadlines without prior alignment with the organizing team can result in being off-boarded from the official code-review track.
+Milestones are non-negotiable. Missing a first-submission deadline without prior alignment with the organizing team can result in being off-boarded from the official code-review track. If you submitted on time while the previous milestone was still awaiting review, your issue remains eligible in the prerequisite queue. Do not open a replacement issue; post `/recheck <40-character-hash>` on the original issue if revisions are requested.
 
 **Q: I don't know what project to build. What do I do?**
 

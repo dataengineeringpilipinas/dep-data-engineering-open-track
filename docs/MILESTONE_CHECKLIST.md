@@ -2,11 +2,13 @@
 
 Use this to track your progress. Milestone reviewers also use this when evaluating submissions.
 
+Submit one issue per milestone before its deadline. If the previous milestone is still awaiting review, the new issue remains open as `waiting-on-prerequisite`; its submission time is preserved and it releases automatically after the prerequisite passes. If revisions are requested, push a new commit and comment `/recheck <40-character-hash>` on the same issue. Do not open a replacement issue.
+
 ---
 
 ## M0 — Problem Statement *(End of Week 1)*
 
-> ⚡ **Hard gate.** If you cannot pass M0, you must not proceed. Moderator review required.
+> ⚡ **Hard gate.** If you cannot pass M0, you must not proceed. Automated checks only validate the repository snapshot; a human moderator makes the final M0 verdict.
 
 - [ ] Problem is framed as a **specific, answerable question** (not just a topic)
 - [ ] Intended audience is clearly identified
@@ -20,7 +22,7 @@ Use this to track your progress. Milestone reviewers also use this when evaluati
 
 ## M1 — Data Source Identified / Repo Initialized *(By Week 3–4)*
 
-> ⚡ **Gate.** Week 2 deliverable (data source) must be reviewed and marked complete before Week 3 repo setup begins. Vague sources do not pass. Moderator must confirm the source is specific and usable.
+> ⚡ **Gate.** Week 2 deliverable (data source) must be reviewed and marked complete before Week 3 repo setup begins. Vague sources do not pass. An on-time M1 issue may wait in the prerequisite queue, but work must not advance until M0 passes.
 
 - [ ] Working public repo with starter folder structure + first commit
 - [ ] Chosen data source is specific and usable — not vague
