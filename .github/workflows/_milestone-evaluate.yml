@@ -1,0 +1,481 @@
+name: Reusable Milestone Evaluation
+
+on:
+  workflow_call:
+    inputs:
+      issue_number:
+        required: true
+        type: number
+      commit_hash:
+        required: false
+        type: string
+        default: ""
+      check_duplicate:
+        required: false
+        type: boolean
+        default: false
+      override_deadline:
+        required: false
+        type: boolean
+        default: false
+      audit_reason:
+        required: false
+        type: string
+        default: ""
+    secrets:
+      DISCORD_WEBHOOK_URL:
+        required: false
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    concurrency:
+      group: milestone-${{ inputs.issue_number }}
+      cancel-in-progress: false
+
+    steps:
+      - name: Check out curriculum repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Load issue and enforce submission eligibility
+        id: submission
+        uses: actions/github-script@v7
+        env:
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
+          INPUT_COMMIT_HASH: ${{ inputs.commit_hash }}
+          CHECK_DUPLICATE: ${{ inputs.check_duplicate }}
+          OVERRIDE_DEADLINE: ${{ inputs.override_deadline }}
+          AUDIT_REASON: ${{ inputs.audit_reason }}
+        with:
+          script: |
+            const fs = require('fs');
+            const issueNumber = Number(process.env.ISSUE_NUMBER);
+            const overrideDeadline = process.env.OVERRIDE_DEADLINE === 'true';
+            const auditReason = (process.env.AUDIT_REASON || '').trim();
+            const stateLabels = [
+              'auto-check-pending',
+              'waiting-on-prerequisite',
+              'ready-for-review',
+              'needs-improvement',
+              'passed',
+              'late-submission'
+            ];
+            const labelDefinitions = {
+              'waiting-on-prerequisite': {
+                color: 'FBCA04',
+                description: 'On-time submission waiting for the previous milestone to pass'
+              },
+              'ready-for-review': {
+                color: '1D76DB',
+                description: 'Automated checks and prerequisite gate passed; reviewer action needed'
+              },
+              'late-submission': {
+                color: 'B60205',
+                description: 'First submission was created after the milestone deadline'
+              }
+            };
+
+            for (const [name, definition] of Object.entries(labelDefinitions)) {
+              try {
+                await github.rest.issues.getLabel({ owner: context.repo.owner, repo: context.repo.repo, name });
+              } catch (error) {
+                if (error.status !== 404) throw error;
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name,
+                  ...definition
+                });
+              }
+            }
+
+            const issue = (await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber
+            })).data;
+            const labelNames = issue.labels.map(label => typeof label === 'string' ? label : label.name);
+            const milestone = labelNames.find(label => /^M[0-6]$/.test(label));
+            if (!labelNames.includes('milestone-submission') || !milestone) {
+              core.setFailed(`Issue #${issueNumber} is not a valid milestone submission.`);
+              return;
+            }
+            if (labelNames.includes('passed')) {
+              core.setOutput('stop', 'true');
+              core.notice(`Issue #${issueNumber} is already passed; evaluation skipped.`);
+              return;
+            }
+            if (overrideDeadline && !auditReason) {
+              core.setFailed('An audit reason is required when overriding a deadline.');
+              return;
+            }
+
+            const body = issue.body || '';
+            const extract = heading => {
+              const match = body.match(new RegExp(`###\\s+${heading}\\s*\\n+([^\\n#]+)`, 'i'));
+              return match ? match[1].trim() : '';
+            };
+            const rawRepoUrl = extract('GitHub Repo URL');
+            const repoMatch = rawRepoUrl.match(/^https?:\/\/github\.com\/([\w.-]+)\/([\w.-]+?)(?:\.git)?(?:\/|$)/i);
+            const repoUrl = repoMatch ? `https://github.com/${repoMatch[1]}/${repoMatch[2]}` : '';
+
+            let commitHash = (process.env.INPUT_COMMIT_HASH || '').trim().toLowerCase();
+            if (!commitHash) {
+              const comments = await github.paginate(github.rest.issues.listComments, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                per_page: 100
+              });
+              for (const comment of comments) {
+                const authorized = comment.user.login.toLowerCase() === issue.user.login.toLowerCase() ||
+                  ['OWNER', 'MEMBER', 'COLLABORATOR'].includes(comment.author_association);
+                if (!authorized) continue;
+                const text = (comment.body || '').trim();
+                const command = text.match(/(?:^|\s)\/recheck\s+([0-9a-f]{40})(?:\s|$)/i);
+                const legacy = text.match(/^[0-9a-f]{40}$/i);
+                const match = command || legacy;
+                if (match) commitHash = (command ? command[1] : legacy[0]).toLowerCase();
+              }
+            }
+            if (!commitHash) commitHash = extract('Commit Hash').toLowerCase();
+
+            const transition = async (target, close = false) => {
+              for (const label of stateLabels) {
+                if (label === target || !labelNames.includes(label)) continue;
+                try {
+                  await github.rest.issues.removeLabel({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issueNumber,
+                    name: label
+                  });
+                } catch (_) {}
+              }
+              if (target && !labelNames.includes(target)) {
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  labels: [target]
+                });
+              }
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                state: close ? 'closed' : 'open',
+                ...(close ? { state_reason: 'not_planned' } : {})
+              });
+            };
+
+            if (process.env.CHECK_DUPLICATE === 'true') {
+              const candidates = await github.paginate(github.rest.issues.listForRepo, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: `milestone-submission,${milestone}`,
+                state: 'all',
+                per_page: 100
+              });
+              const earlier = candidates
+                .filter(candidate => candidate.number !== issueNumber)
+                .filter(candidate => candidate.user.login.toLowerCase() === issue.user.login.toLowerCase())
+                .filter(candidate => new Date(candidate.created_at) <= new Date(issue.created_at))
+                .filter(candidate => !candidate.labels.some(label => label.name === 'duplicate'))
+                .sort((a, b) => new Date(a.created_at) - new Date(b.created_at))[0];
+              if (earlier) {
+                const marker = `<!-- dep-duplicate:${earlier.number} -->`;
+                const comments = await github.paginate(github.rest.issues.listComments, {
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  per_page: 100
+                });
+                if (!comments.some(comment => (comment.body || '').includes(marker))) {
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issueNumber,
+                    body: `${marker}\n## Duplicate milestone submission\n\nContinue on #${earlier.number}. Post \`/recheck <40-character-hash>\` there if you need to submit a revised snapshot. Do not open another issue.\n\n---\n_DEP submission bot_`
+                  });
+                }
+                await transition(null, true);
+                if (!labelNames.includes('duplicate')) {
+                  await github.rest.issues.addLabels({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issueNumber,
+                    labels: ['duplicate']
+                  });
+                }
+                core.setOutput('stop', 'true');
+                return;
+              }
+            }
+
+            const deadlines = JSON.parse(fs.readFileSync('.github/milestone-deadlines.json', 'utf8'));
+            const deadline = deadlines[milestone];
+            const deadlineOk = !deadline || new Date(issue.created_at) <= new Date(deadline) || overrideDeadline;
+            if (!deadlineOk) {
+              const marker = `<!-- dep-eval:${milestone}:late-submission -->`;
+              const comments = await github.paginate(github.rest.issues.listComments, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                per_page: 100
+              });
+              if (!comments.some(comment => (comment.body || '').includes(marker))) {
+                const deadlinePht = new Date(deadline).toLocaleString('en-PH', {
+                  timeZone: 'Asia/Manila', dateStyle: 'medium', timeStyle: 'medium'
+                });
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  body: `${marker}\n## Auto-Check Results — ${milestone}\n\n> ⛔ **Deadline passed.** The ${milestone} deadline was **${deadlinePht} PHT**.\n\nThis is a new issue created after the cutoff. If you had an earlier on-time issue, continue on that issue instead.\n\n---\n_DEP submission bot_`
+                });
+              }
+              await transition('late-submission', true);
+              core.setOutput('stop', 'true');
+              return;
+            }
+
+            core.setOutput('stop', 'false');
+            core.setOutput('milestone', milestone);
+            core.setOutput('repo_url', repoUrl);
+            core.setOutput('commit_hash', commitHash);
+            core.setOutput('issue_author', issue.user.login);
+            core.setOutput('was_ready', labelNames.includes('ready-for-review') ? 'true' : 'false');
+            core.setOutput('deadline_overridden', overrideDeadline ? 'true' : 'false');
+            core.setOutput('audit_reason', auditReason);
+
+      - name: Clone submitted snapshot
+        id: clone
+        if: steps.submission.outputs.stop == 'false'
+        env:
+          REPO_URL: ${{ steps.submission.outputs.repo_url }}
+          COMMIT_HASH: ${{ steps.submission.outputs.commit_hash }}
+        run: |
+          if [[ ! "$COMMIT_HASH" =~ ^[0-9a-fA-F]{40}$ ]] || [ -z "$REPO_URL" ]; then
+            echo "clone_ok=false" >> "$GITHUB_OUTPUT"
+            echo "clone_error=The repository URL or 40-character commit hash is invalid." >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if ! git clone --filter=blob:none --no-checkout "$REPO_URL" builder-repo; then
+            echo "clone_ok=false" >> "$GITHUB_OUTPUT"
+            echo "clone_error=The repository could not be cloned. Confirm it is public." >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          cd builder-repo
+          git fetch --depth 1 origin "$COMMIT_HASH" || true
+          if ! git checkout --detach "$COMMIT_HASH"; then
+            echo "clone_ok=false" >> "$GITHUB_OUTPUT"
+            echo "clone_error=The submitted commit was not found in the repository." >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "clone_ok=true" >> "$GITHUB_OUTPUT"
+
+      - name: Run milestone structural checks
+        id: checks
+        if: steps.submission.outputs.stop == 'false' && steps.clone.outputs.clone_ok == 'true'
+        continue-on-error: true
+        run: |
+          python .github/scripts/milestone_check.py \
+            --milestone "${{ steps.submission.outputs.milestone }}" \
+            --repo-path builder-repo \
+            --output-file check_result.json
+
+      - name: Check prerequisite by builder identity
+        id: gate
+        if: steps.submission.outputs.stop == 'false'
+        uses: actions/github-script@v7
+        env:
+          MILESTONE: ${{ steps.submission.outputs.milestone }}
+          ISSUE_AUTHOR: ${{ steps.submission.outputs.issue_author }}
+        with:
+          script: |
+            const milestones = ['M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6'];
+            const milestone = process.env.MILESTONE;
+            const index = milestones.indexOf(milestone);
+            if (index <= 0) {
+              core.setOutput('gate_ok', 'true');
+              core.setOutput('previous', 'none');
+              return;
+            }
+            const previous = milestones[index - 1];
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: `milestone-submission,${previous},passed`,
+              state: 'all',
+              per_page: 100
+            });
+            const found = issues.some(issue =>
+              issue.user.login.toLowerCase() === process.env.ISSUE_AUTHOR.toLowerCase()
+            );
+            core.setOutput('gate_ok', found ? 'true' : 'false');
+            core.setOutput('previous', previous);
+
+      - name: Apply workflow state and publish result
+        if: always() && steps.submission.outputs.stop == 'false'
+        uses: actions/github-script@v7
+        env:
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
+          MILESTONE: ${{ steps.submission.outputs.milestone }}
+          COMMIT_HASH: ${{ steps.submission.outputs.commit_hash }}
+          CLONE_OK: ${{ steps.clone.outputs.clone_ok }}
+          CLONE_ERROR: ${{ steps.clone.outputs.clone_error }}
+          GATE_OK: ${{ steps.gate.outputs.gate_ok }}
+          PREVIOUS_MILESTONE: ${{ steps.gate.outputs.previous }}
+          WAS_READY: ${{ steps.submission.outputs.was_ready }}
+          DEADLINE_OVERRIDDEN: ${{ steps.submission.outputs.deadline_overridden }}
+          AUDIT_REASON: ${{ steps.submission.outputs.audit_reason }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        with:
+          script: |
+            const fs = require('fs');
+            const issueNumber = Number(process.env.ISSUE_NUMBER);
+            const issue = (await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber
+            })).data;
+            const currentLabels = issue.labels.map(label => typeof label === 'string' ? label : label.name);
+            if (currentLabels.includes('passed')) {
+              core.notice('A reviewer passed this issue while evaluation was running; preserving the verdict.');
+              return;
+            }
+
+            let results = null;
+            if (process.env.CLONE_OK === 'true' && fs.existsSync('check_result.json')) {
+              results = JSON.parse(fs.readFileSync('check_result.json', 'utf8'));
+            }
+            const snapshotOk = process.env.CLONE_OK === 'true' && results?.all_passed === true;
+            const prerequisiteOk = process.env.GATE_OK === 'true';
+            const target = !snapshotOk
+              ? 'needs-improvement'
+              : prerequisiteOk
+                ? 'ready-for-review'
+                : 'waiting-on-prerequisite';
+            const stateLabels = [
+              'auto-check-pending',
+              'waiting-on-prerequisite',
+              'ready-for-review',
+              'needs-improvement',
+              'late-submission'
+            ];
+            for (const label of stateLabels) {
+              if (label === target || !currentLabels.includes(label)) continue;
+              try {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  name: label
+                });
+              } catch (_) {}
+            }
+            if (!currentLabels.includes(target)) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                labels: [target]
+              });
+            }
+            if (currentLabels.includes('duplicate')) {
+              try {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  name: 'duplicate'
+                });
+              } catch (_) {}
+            }
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              state: 'open'
+            });
+
+            let details = '';
+            if (results) {
+              details = results.checks.map(check =>
+                `${check.passed ? '✅' : '❌'} ${check.name}${!check.passed && check.hint ? `\n   _${check.hint}_` : ''}`
+              ).join('\n');
+            } else {
+              details = `❌ ${process.env.CLONE_ERROR || 'The submitted snapshot could not be checked.'}`;
+            }
+            let guidance;
+            if (target === 'needs-improvement') {
+              guidance = '**Action required:** Fix the problems above, push a commit, then comment `/recheck <40-character-hash>` on this issue. Your original on-time submission date remains preserved.';
+            } else if (target === 'waiting-on-prerequisite') {
+              guidance = `**Submission recorded on time.** This issue will remain open until ${process.env.PREVIOUS_MILESTONE} is marked \`passed\`. It will then be checked again and released automatically. Do not open another issue.`;
+            } else {
+              guidance = process.env.MILESTONE === 'M0'
+                ? '**Ready for human review.** The automated structural checks passed; a reviewer must assess the problem statement, audience, and data source before applying `passed`.'
+                : '**Ready for human review.** The automated checks and prerequisite gate passed.';
+            }
+            const marker = `<!-- dep-eval:${process.env.MILESTONE}:${process.env.COMMIT_HASH}:${target} -->`;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              per_page: 100
+            });
+            if (!comments.some(comment => (comment.body || '').includes(marker))) {
+              const overrideNote = process.env.DEADLINE_OVERRIDDEN === 'true'
+                ? `\n\n> Deadline override recorded: ${process.env.AUDIT_REASON}`
+                : '';
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `${marker}\n## Evaluation Results — ${process.env.MILESTONE}\n\n${details}\n\n${guidance}${overrideNote}\n\n---\n_DEP submission bot_`
+              });
+            }
+
+            const becameReady = target === 'ready-for-review' && process.env.WAS_READY !== 'true';
+            if (becameReady && process.env.DISCORD_WEBHOOK_URL) {
+              try {
+                const enrolledResponse = await fetch(`https://raw.githubusercontent.com/${context.repo.owner}/${context.repo.repo}/main/.github/enrolled-participants.json`);
+                const enrolledData = await enrolledResponse.json();
+                const enrolled = new Set((enrolledData.participants || []).map(login => login.toLowerCase()));
+                if (enrolled.has(issue.user.login.toLowerCase())) {
+                  const body = issue.body || '';
+                  const extract = heading => body.match(new RegExp(`###\\s+${heading}\\s*\\n+([^\\n#]+)`, 'i'))?.[1]?.trim() || '—';
+                  await fetch(process.env.DISCORD_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ embeds: [{
+                      title: `📬 Submission Ready for Review — ${process.env.MILESTONE}`,
+                      color: 0x1D76DB,
+                      fields: [
+                        { name: 'Builder', value: extract('Builder Name'), inline: true },
+                        { name: 'Cohort', value: extract('Cohort'), inline: true },
+                        { name: 'Milestone', value: process.env.MILESTONE, inline: true },
+                        { name: 'Commit', value: `\`${process.env.COMMIT_HASH.slice(0, 7)}\``, inline: true },
+                        { name: 'Issue', value: issue.html_url, inline: false }
+                      ],
+                      footer: { text: 'Automated checks and prerequisite gate passed' },
+                      timestamp: new Date().toISOString()
+                    }] })
+                  });
+                }
+              } catch (error) {
+                core.warning(`Discord notification failed: ${error.message}`);
+              }
+            }
+            core.summary.addHeading(`Milestone ${process.env.MILESTONE} evaluation`)
+              .addRaw(`Issue #${issueNumber} → ${target}`)
+              .write();
