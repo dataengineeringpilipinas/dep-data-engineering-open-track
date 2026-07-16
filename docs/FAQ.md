@@ -36,7 +36,7 @@ The curriculum uses a lean open-source stack: Python, SQL, Git/GitHub, and APIs 
 
 **Q: What is the time commitment required for the cohort?**
 
-You should commit at least 5 hours per week for 6 months, or roughly 120 hours total. The rhythm is self-paced through the week, but milestone deadlines are strictly enforced.
+You should commit at least 5 hours per week for 6 months, or roughly 120 hours total. The rhythm is self-paced through the week, with milestone target deadlines to help you stay on pace.
 
 **Q: I have a full-time job or a heavy school load. Can I still join?**
 
@@ -44,7 +44,7 @@ Yes. The pacing is meant to work for students and working professionals, but you
 
 **Q: What happens if I miss a milestone deadline?**
 
-Milestones are non-negotiable. Missing a first-submission deadline without prior alignment with the organizing team can result in being off-boarded from the official code-review track. If you submitted on time while the previous milestone was still awaiting review, your issue remains eligible in the prerequisite queue. Do not open a replacement issue; post `/recheck <40-character-hash>` on the original issue if revisions are requested.
+Your issue remains open and continues through the normal automated checks, prerequisite queue, and human review. The system adds a `late-submission` indicator so the timing stays visible, but it does not reject or close the issue. Do not open a replacement issue; post `/recheck <40-character-hash>` on the original issue if revisions are requested.
 
 **Q: I don't know what project to build. What do I do?**
 
