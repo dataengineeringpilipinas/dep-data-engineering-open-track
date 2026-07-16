@@ -221,6 +221,13 @@
   padding: 4px 10px;
 }
 
+.progress-badge-group {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
 .progress-badge.passed {
   background: #1a3d2a;
   border: 1px solid #166534;
@@ -255,6 +262,12 @@
   background: #2a3340;
   border: 1px solid #4b5563;
   color: var(--sub);
+}
+
+.progress-badge.late-submission {
+  background: #421f24;
+  border: 1px solid #b91c1c;
+  color: #fecaca;
 }
 
 .progress-m-badge {
