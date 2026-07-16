@@ -66,7 +66,7 @@ A builder should never be blocked on a milestone for more than 7 days due to rev
 | Day 5 | Community Moderator | Ping the assigned reviewer in the volunteer channel if no verdict yet |
 | Day 7 | System Lead | Step in directly — either review it or reassign to another available reviewer |
 
-The prerequisite queue protects builders from reviewer timing. An on-time next-milestone issue must stay open while the previous review is pending and must not be treated as a late submission when it is released.
+The prerequisite queue protects builders from reviewer timing. A next-milestone issue must stay open while the previous review is pending. Deadline classification uses the issue's original creation time, remains informational, and does not block its release.
 
 **If you cannot review a submission you've been assigned:**
 
@@ -81,7 +81,7 @@ The prerequisite queue protects builders from reviewer timing. An on-time next-m
 
 - Run live lectures or synchronous sessions
 - Write code for Builders
-- Approve late submissions outside the policy
+- Remove a valid `late-submission` indicator or bypass the normal review checklist
 - Ask builders to open replacement milestone issues; revisions belong on the canonical issue as `/recheck <40-character-hash>`
 - Make unilateral changes to the curriculum repo
 

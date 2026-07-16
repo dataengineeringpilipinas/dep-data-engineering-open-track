@@ -2,11 +2,11 @@
 
 Use this guide when a Builder asks what happened to their milestone submission or what they should do next.
 
-> **Rollout note:** This guide describes the pipeline introduced by [PR #137](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/pull/137). Until that PR is merged and the repair steps are run, older issues may still show the previous behavior.
+> **Historical note:** Older late submissions may still be closed under the previous hard-deadline behavior. The current pipeline does not reopen those issues automatically; send one to a maintainer if it needs reevaluation.
 
 ## The One-Minute Explanation
 
-1. The Builder opens **one milestone issue** before the deadline.
+1. The Builder opens **one milestone issue**, ideally by the target deadline.
 2. The system checks the exact repository commit written in the issue.
 3. The issue receives a status explaining what happens next.
 4. If changes are needed, the Builder fixes the project and comments `/recheck <full-commit-hash>` on the same issue.
@@ -25,7 +25,7 @@ Automated checks
 /recheck <commit-hash>   Releases automatically       passed or improve
 ```
 
-## What Each Status Means
+## What Each Label Means
 
 | Status | Simple meaning | Who acts next? |
 |---|---|---|
@@ -34,7 +34,7 @@ Automated checks
 | `waiting-on-prerequisite` | The submission is recorded, but the previous milestone has not passed. | Nobody needs to resubmit; the system waits. |
 | `ready-for-review` | Automated checks passed. | A human reviewer reviews it. |
 | `passed` | The milestone is complete. | The system releases the next waiting milestone, if one exists. |
-| `late-submission` | The first issue was created after the deadline. | A maintainer reviews only an approved exception. |
+| `late-submission` | The issue was created after the target deadline. This indicator can coexist with the normal workflow status. | Follow the issue's `needs-improvement`, `waiting-on-prerequisite`, `ready-for-review`, or `passed` status. |
 | `duplicate` | Another issue is the official submission. | Continue only on the canonical issue named by the bot. |
 
 ## Common Questions and Answers
@@ -57,7 +57,7 @@ Look for the replacement status: `needs-improvement`, `waiting-on-prerequisite`,
 
 ### “Do I need to open another issue after failing?”
 
-No. The Builder should always continue on the same issue so the original deadline and review history are preserved.
+No. The Builder should always continue on the same issue so the original submission time and review history are preserved.
 
 ### “I pushed a new commit. Why did nothing happen?”
 
@@ -65,7 +65,7 @@ The milestone repository cannot automatically see pushes in every Builder reposi
 
 ### “My previous milestone passed later. Do I need to trigger the next submission?”
 
-No. An on-time issue marked `waiting-on-prerequisite` is checked again automatically after the previous milestone passes.
+No. An issue marked `waiting-on-prerequisite` is checked again automatically after the previous milestone passes.
 
 ### “Automated checks passed. Am I done?”
 
@@ -77,11 +77,11 @@ The automated system only checks basic repository structure. A human must confir
 
 ### “Will a recheck be rejected after the deadline?”
 
-An on-time original issue keeps its deadline eligibility. The Builder may post a corrected commit on that same issue after the deadline.
+No. The deadline only determines whether the issue has a `late-submission` indicator. The Builder may post a corrected commit on the same issue, and the recheck follows the normal evaluation path.
 
-### “The bot closed my old on-time issue. Should I open a new one?”
+### “The bot closed my old issue under the previous pipeline. Should I open a new one?”
 
-No. This may be an issue created under the old pipeline, so a maintainer should restore and reevaluate the original on-time submission.
+No. A maintainer should inspect and, when appropriate, manually reevaluate the original issue. The current pipeline does not automatically reopen historical closures.
 
 ### “The issue has no clear status or bot response.”
 
@@ -103,7 +103,7 @@ Do not ask the Builder to open another issue. Send the issue to a maintainer for
 
 ### When an old issue was closed by the previous pipeline
 
-> Please do not open another issue. We will ask a maintainer to restore and reevaluate your original on-time submission.
+> Please do not open another issue. We will ask a maintainer to inspect and, when appropriate, reevaluate your original submission.
 
 ## What Mentors Should and Should Not Do
 
@@ -112,23 +112,23 @@ Do not ask the Builder to open another issue. Send the issue to a maintainer for
 - Point the Builder to the bot's latest comment and current status label.
 - Remind the Builder to use the same issue and a full 40-character commit hash.
 - Tell the Builder when no action is required and the reviewer or maintainer must act.
-- Escalate old closed issues, missing statuses, or approved deadline exceptions to a maintainer.
+- Escalate old closed issues, missing statuses, or an incorrect late indicator to a maintainer.
 
 ### Do not
 
 - Tell the Builder to create a replacement issue.
 - Tell the Builder that pushing a commit automatically triggers a recheck.
 - Apply `passed` before the issue reaches `ready-for-review`.
-- Promise a deadline exception or manually change a terminal verdict.
+- Remove a valid late indicator or manually change a terminal verdict.
 
 ## When to Escalate
 
 Ask a maintainer to inspect the issue when:
 
-- An old on-time submission was closed by the previous pipeline.
+- An old submission was closed by the previous pipeline.
 - The issue has no clear status after the automated run finishes.
 - `/recheck <hash>` was posted correctly but no workflow started.
-- A duplicate or late-submission decision appears incorrect.
+- A duplicate decision or `late-submission` indicator appears incorrect.
 - A `passed` label was applied or removed by mistake.
 
 For milestone requirements and reviewer criteria, use the [Milestone Checklist](MILESTONE_CHECKLIST.md). For volunteer responsibilities and review timing, use the [Volunteer Guide](VOLUNTEER_GUIDE.md).
