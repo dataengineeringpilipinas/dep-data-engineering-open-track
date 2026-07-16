@@ -3,11 +3,14 @@ from datetime import timezone
 import pytest
 
 from milestone_policy import (
+    METADATA_LABELS,
     MILESTONES,
+    STATE_LABELS,
     choose_latest_on_time,
     decide_state,
     extract_field,
     extract_recheck_hash,
+    is_late,
     is_on_time,
     next_milestone,
     normalize_repo_url,
@@ -41,7 +44,14 @@ def test_deadline_boundary_uses_timezone_offset():
     deadline = "2026-07-12T23:59:59+08:00"
     assert is_on_time("2026-07-12T15:59:59Z", deadline)
     assert not is_on_time("2026-07-12T16:00:00Z", deadline)
+    assert not is_late("2026-07-12T15:59:59Z", deadline)
+    assert is_late("2026-07-12T16:00:00Z", deadline)
     assert parse_timestamp(deadline).astimezone(timezone.utc).isoformat() == "2026-07-12T15:59:59+00:00"
+
+
+def test_late_submission_is_metadata_not_a_terminal_state():
+    assert "late-submission" in METADATA_LABELS
+    assert "late-submission" not in STATE_LABELS
 
 
 def test_all_milestone_neighbors_are_sequential():
@@ -67,17 +77,15 @@ def test_extract_recheck_hash(comment, expected):
 
 
 @pytest.mark.parametrize(
-    ("deadline_ok", "snapshot_ok", "prerequisite_ok", "expected"),
+    ("snapshot_ok", "prerequisite_ok", "expected"),
     [
-        (False, True, True, "late-submission"),
-        (True, False, True, "needs-improvement"),
-        (True, True, False, "waiting-on-prerequisite"),
-        (True, True, True, "ready-for-review"),
+        (False, True, "needs-improvement"),
+        (True, False, "waiting-on-prerequisite"),
+        (True, True, "ready-for-review"),
     ],
 )
-def test_decide_state(deadline_ok, snapshot_ok, prerequisite_ok, expected):
+def test_decide_state(snapshot_ok, prerequisite_ok, expected):
     assert decide_state(
-        deadline_ok=deadline_ok,
         snapshot_ok=snapshot_ok,
         prerequisite_ok=prerequisite_ok,
     ) == expected
