@@ -2,7 +2,7 @@
 
 Use this to track your progress. Milestone reviewers also use this when evaluating submissions.
 
-Submit one issue per milestone before its deadline. If the previous milestone is still awaiting review, the new issue remains open as `waiting-on-prerequisite`; its submission time is preserved and it releases automatically after the prerequisite passes. If revisions are requested, push a new commit and comment `/recheck <40-character-hash>` on the same issue. Do not open a replacement issue.
+Aim to submit one issue per milestone by its target deadline. A late issue remains open, receives a `late-submission` indicator, and continues through normal evaluation. If the previous milestone is still awaiting review, the new issue remains open as `waiting-on-prerequisite`; its submission time is preserved and it releases automatically after the prerequisite passes. If revisions are requested, push a new commit and comment `/recheck <40-character-hash>` on the same issue. Do not open a replacement issue.
 
 ---
 
@@ -22,7 +22,7 @@ Submit one issue per milestone before its deadline. If the previous milestone is
 
 ## M1 — Data Source Identified / Repo Initialized *(By Week 3–4)*
 
-> ⚡ **Gate.** Week 2 deliverable (data source) must be reviewed and marked complete before Week 3 repo setup begins. Vague sources do not pass. An on-time M1 issue may wait in the prerequisite queue, but work must not advance until M0 passes.
+> ⚡ **Gate.** Week 2 deliverable (data source) must be reviewed and marked complete before Week 3 repo setup begins. Vague sources do not pass. An M1 issue may wait in the prerequisite queue, but work must not advance until M0 passes.
 
 - [ ] Working public repo with starter folder structure + first commit
 - [ ] Chosen data source is specific and usable — not vague

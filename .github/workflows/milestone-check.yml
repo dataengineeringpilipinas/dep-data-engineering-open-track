@@ -13,15 +13,6 @@ on:
         description: Optional 40-character commit hash override
         required: false
         type: string
-      override_deadline:
-        description: Allow a late issue through the deadline gate
-        required: true
-        type: boolean
-        default: false
-      audit_reason:
-        description: Required explanation when overriding the deadline
-        required: false
-        type: string
 
 permissions:
   contents: read
@@ -46,6 +37,4 @@ jobs:
       issue_number: ${{ inputs.issue_number }}
       commit_hash: ${{ inputs.commit_hash }}
       check_duplicate: false
-      override_deadline: ${{ inputs.override_deadline }}
-      audit_reason: ${{ inputs.audit_reason }}
     secrets: inherit

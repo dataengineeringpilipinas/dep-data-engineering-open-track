@@ -9,7 +9,8 @@ body:
         **Milestone 6 — Live Deployment**
         Fill in all fields. The auto-checker runs as soon as you submit this issue.
         Congratulations on reaching the final milestone!
-        If M5 is still awaiting review, an on-time M6 issue stays open in the prerequisite queue and releases automatically after M5 passes.
+        If M5 is still awaiting review, the M6 issue stays open in the prerequisite queue and releases automatically after M5 passes.
+        Submissions after the target deadline are flagged late but follow the same evaluation path.
         Submit once. For revisions, comment `/recheck <40-character-hash>` on this same issue.
 
   - type: input

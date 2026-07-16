@@ -1,6 +1,13 @@
 const OWNER = "dataengineeringpilipinas";
 const REPO = "dep-data-engineering-open-track";
 const MILESTONES = ["M0", "M1", "M2", "M3", "M4", "M5", "M6"];
+const PROCESS_LABELS = [
+  "auto-check-pending",
+  "waiting-on-prerequisite",
+  "ready-for-review",
+  "needs-improvement",
+  "passed",
+];
 
 let allIssues = [];
 let enrolledSet = null;
@@ -41,6 +48,7 @@ function enrich(issue) {
     _repoUrl: extract(issue.body, "GitHub Repo URL"),
     _milestone: getMilestone(issue.labels),
     _status: getStatus(issue.labels),
+    _isLate: issue.labels.some((label) => label.name === "late-submission"),
     _days: Math.floor((Date.now() - new Date(issue.created_at).getTime()) / 86400000),
   };
 }
@@ -56,6 +64,13 @@ function statusBadge(status) {
   };
   const [className, label] = map[status] || ["checking", status];
   return `<span class="progress-badge ${className}">${label}</span>`;
+}
+
+function statusBadges(issue) {
+  const lateBadge = issue._isLate
+    ? '<span class="progress-badge late-submission">Late</span>'
+    : "";
+  return `<span class="progress-badge-group">${statusBadge(issue._status)}${lateBadge}</span>`;
 }
 
 function daysBadge(days, status) {
@@ -184,7 +199,7 @@ function buildTable(issues, tableKey) {
       <td><span class="progress-m-badge">${issue._milestone}</span></td>
       <td class="progress-hide-mobile">${formatDate(issue.created_at)}</td>
       <td>${daysBadge(issue._days, issue._status)}</td>
-      <td>${statusBadge(issue._status)}</td>
+      <td>${statusBadges(issue)}</td>
       <td>${
         issue._repoUrl !== "—"
           ? `<a href="${issue._repoUrl}" target="_blank" rel="noopener noreferrer">repo<span class="sr-only"> (opens in new tab)</span></a>`
@@ -262,9 +277,14 @@ async function fetchAll() {
     if (!Array.isArray(batch) || !batch.length) break;
     issues = issues.concat(
       batch.filter(
-        (issue) =>
-          !issue.pull_request &&
-          !issue.labels.some((label) => label.name === "duplicate" || label.name === "late-submission"),
+        (issue) => {
+          const labelNames = issue.labels.map((label) => label.name);
+          const isDuplicate = labelNames.includes("duplicate");
+          const isLegacyLateOnly =
+            labelNames.includes("late-submission") &&
+            !PROCESS_LABELS.some((label) => labelNames.includes(label));
+          return !issue.pull_request && !isDuplicate && !isLegacyLateOnly;
+        },
       ),
     );
     if (batch.length < 100) break;

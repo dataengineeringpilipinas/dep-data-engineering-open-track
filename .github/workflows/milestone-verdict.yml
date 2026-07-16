@@ -22,7 +22,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const removable = ['auto-check-pending', 'waiting-on-prerequisite', 'ready-for-review', 'passed', 'late-submission'];
+            const removable = ['auto-check-pending', 'waiting-on-prerequisite', 'ready-for-review', 'passed'];
             const labels = context.payload.issue.labels.map(label => label.name);
             if (labels.includes('passed')) {
               try {
@@ -105,20 +105,17 @@ jobs:
                 per_page: 100
               });
               if (!existingComments.some(comment => (comment.body || '').includes(blockedMarker))) {
-                const reason = labels.includes('late-submission')
-                  ? 'This issue is late. Run the manual milestone evaluation with `override_deadline` and an audit reason before applying a verdict.'
-                  : 'This issue has not reached `ready-for-review`. Complete its automated checks and prerequisite gate before applying a verdict.';
                 await github.rest.issues.createComment({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   issue_number: issue.number,
-                  body: `${blockedMarker}\nThe \`passed\` label was removed. ${reason}`
+                  body: `${blockedMarker}\nThe \`passed\` label was removed. This issue has not reached \`ready-for-review\`. Complete its automated checks and prerequisite gate before applying a verdict.`
                 });
               }
               core.setOutput('waiting_issue_number', '');
               return;
             }
-            const removable = ['auto-check-pending', 'waiting-on-prerequisite', 'ready-for-review', 'needs-improvement', 'late-submission'];
+            const removable = ['auto-check-pending', 'waiting-on-prerequisite', 'ready-for-review', 'needs-improvement'];
             for (const label of removable) {
               if (!labels.includes(label)) continue;
               try {
@@ -150,7 +147,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: issue.number,
-                body: `${marker}\n## Reviewer verdict — passed\n\nThis milestone is complete. If the next milestone was submitted on time while waiting, it will now be released automatically.\n\n---\n_DEP submission bot_`
+                body: `${marker}\n## Reviewer verdict — passed\n\nThis milestone is complete. If the next milestone was submitted while waiting, it will now be released automatically.\n\n---\n_DEP submission bot_`
               });
             }
 

@@ -98,7 +98,7 @@ Progress is tracked through 7 milestones (M0–M6). Each one has a clear output 
 | M5 — Public Repo / Predictive Component | By Week 20–23 | Professional repo + predictive layer (Path A) OR advanced EDA + stakeholder brief (Path B) |
 | M6 — Live Deployment | By Week 24 | Live GitHub Pages URL + presentable final project |
 
-> **Gates:** Milestones are sequential, and M0/M1 are hard progression gates. Learners may record the next submission before its deadline while a prerequisite review is pending, but they must not proceed until the prerequisite is marked `passed`. The on-time issue stays queued and releases automatically after approval.
+> **Gates:** Milestones are sequential, and M0/M1 are hard progression gates. Learners may record the next submission while a prerequisite review is pending, but they must not proceed until the prerequisite is marked `passed`. The issue stays queued and releases automatically after approval. Target deadlines remain visible; a late submission is flagged but continues through normal evaluation.
 
 Full checklist: [docs/MILESTONE_CHECKLIST.md](docs/MILESTONE_CHECKLIST.md)
 

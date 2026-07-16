@@ -1,7 +1,7 @@
 """Pure policy helpers for milestone tooling and regression tests.
 
 GitHub API mutations stay in the workflows. Keeping parsing and state decisions
-here makes the deadline, identity, and milestone rules independently testable.
+here makes deadline classification, identity, and milestone rules independently testable.
 """
 
 from __future__ import annotations
@@ -18,8 +18,8 @@ STATE_LABELS = (
     "ready-for-review",
     "needs-improvement",
     "passed",
-    "late-submission",
 )
+METADATA_LABELS = ("late-submission",)
 
 
 def extract_field(body: str, heading: str) -> str:
@@ -66,6 +66,11 @@ def is_on_time(created_at: str, deadline: str) -> bool:
     return parse_timestamp(created_at) <= parse_timestamp(deadline)
 
 
+def is_late(created_at: str, deadline: str) -> bool:
+    """Return whether a submission should receive informational late metadata."""
+    return parse_timestamp(created_at) > parse_timestamp(deadline)
+
+
 def previous_milestone(milestone: str) -> str | None:
     try:
         index = MILESTONES.index(milestone.upper())
@@ -93,10 +98,8 @@ def extract_recheck_hash(comment: str) -> str:
     return ""
 
 
-def decide_state(*, deadline_ok: bool, snapshot_ok: bool, prerequisite_ok: bool) -> str:
+def decide_state(*, snapshot_ok: bool, prerequisite_ok: bool) -> str:
     """Return the single workflow state that should follow evaluation."""
-    if not deadline_ok:
-        return "late-submission"
     if not snapshot_ok:
         return "needs-improvement"
     if not prerequisite_ok:

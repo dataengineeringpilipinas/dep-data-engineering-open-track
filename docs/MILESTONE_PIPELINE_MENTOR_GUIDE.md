@@ -1,19 +1,26 @@
+# DEP Cohort 1 - CI Playbook
+
+by: `JC Diamante`
+
 # Milestone Pipeline — Plain-Language Mentor Guide
 
 Use this guide when a Builder asks what happened to their milestone submission or what they should do next.
 
-> **Rollout note:** This guide describes the pipeline introduced by [PR #137](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/pull/137). Until that PR is merged and the repair steps are run, older issues may still show the previous behavior.
+> **Historical note:** Older late submissions may still be closed under the previous hard-deadline behavior. The current pipeline does not reopen those issues automatically; send one to a maintainer if it needs reevaluation.
 
 ## The One-Minute Explanation
 
-1. The Builder opens **one milestone issue** before the deadline.
-2. The system checks the exact repository commit written in the issue.
-3. The issue receives a status explaining what happens next.
-4. If changes are needed, the Builder fixes the project and comments `/recheck <full-commit-hash>` on the same issue.
-5. When the automated checks pass, a human reviewer makes the final decision.
+1. The Builder opens **one milestone issue**, ideally by the target deadline.
+2. If it was created after the target deadline, the system adds `late-submission` and a deadline notice, but keeps the issue open.
+3. The system checks the exact repository commit written in the issue.
+4. The issue receives a workflow status explaining what happens next.
+5. If changes are needed, the Builder fixes the project and comments `/recheck <full-commit-hash>` on the same issue.
+6. When the automated checks pass, a human reviewer makes the final decision.
 
 ```text
 Submit one issue
+      ↓
+Optional timing indicator: late-submission
       ↓
 Automated checks
       ↓
@@ -25,7 +32,9 @@ Automated checks
 /recheck <commit-hash>   Releases automatically       passed or improve
 ```
 
-## What Each Status Means
+The `late-submission` indicator may appear beside any workflow status below. It records timing only; it does not decide what happens next.
+
+## Workflow Statuses
 
 | Status | Simple meaning | Who acts next? |
 |---|---|---|
@@ -34,7 +43,12 @@ Automated checks
 | `waiting-on-prerequisite` | The submission is recorded, but the previous milestone has not passed. | Nobody needs to resubmit; the system waits. |
 | `ready-for-review` | Automated checks passed. | A human reviewer reviews it. |
 | `passed` | The milestone is complete. | The system releases the next waiting milestone, if one exists. |
-| `late-submission` | The first issue was created after the deadline. | A maintainer reviews only an approved exception. |
+
+## Additional Indicators
+
+| Indicator | Simple meaning | Effect on the issue |
+|---|---|---|
+| `late-submission` | The issue was created after the target deadline. | None. The issue stays open and follows its normal workflow status. The indicator remains visible even after `passed`. |
 | `duplicate` | Another issue is the official submission. | Continue only on the canonical issue named by the bot. |
 
 ## Common Questions and Answers
@@ -55,9 +69,20 @@ No. That label only means the first check is still running, so it is normally re
 
 Look for the replacement status: `needs-improvement`, `waiting-on-prerequisite`, or `ready-for-review`.
 
+### “My issue has `late-submission`. Was it rejected?”
+
+No. The label records that the issue was created after the target deadline. The bot still checks the submitted commit, applies the normal workflow status, keeps the issue open, and allows the usual reviewer verdict flow.
+
+Read the other status on the issue to determine the next action:
+
+- `needs-improvement`: fix the work and use `/recheck <full-commit-hash>` on the same issue.
+- `waiting-on-prerequisite`: wait for the previous milestone to pass.
+- `ready-for-review`: wait for a human reviewer.
+- `passed`: the milestone is complete; the issue closes as completed, not because it was late.
+
 ### “Do I need to open another issue after failing?”
 
-No. The Builder should always continue on the same issue so the original deadline and review history are preserved.
+No. The Builder should always continue on the same issue so the original submission time and review history are preserved.
 
 ### “I pushed a new commit. Why did nothing happen?”
 
@@ -65,7 +90,7 @@ The milestone repository cannot automatically see pushes in every Builder reposi
 
 ### “My previous milestone passed later. Do I need to trigger the next submission?”
 
-No. An on-time issue marked `waiting-on-prerequisite` is checked again automatically after the previous milestone passes.
+No. An issue marked `waiting-on-prerequisite` is checked again automatically after the previous milestone passes.
 
 ### “Automated checks passed. Am I done?”
 
@@ -77,11 +102,15 @@ The automated system only checks basic repository structure. A human must confir
 
 ### “Will a recheck be rejected after the deadline?”
 
-An on-time original issue keeps its deadline eligibility. The Builder may post a corrected commit on that same issue after the deadline.
+No. The deadline only determines whether the issue has a `late-submission` indicator. The Builder may post a corrected commit on the same issue, and the recheck follows the normal evaluation path.
 
-### “The bot closed my old on-time issue. Should I open a new one?”
+### “Why is a late submission visible in the public tracker?”
 
-No. This may be an issue created under the old pipeline, so a maintainer should restore and reevaluate the original on-time submission.
+Evaluated late submissions count in the same queues, milestone totals, and aggregate totals as other submissions. The tracker displays a separate **Late** badge beside the current workflow status. Historical issues that were closed by the old deadline-only rejection path remain excluded unless a maintainer reevaluates them.
+
+### “The bot closed my old issue under the previous pipeline. Should I open a new one?”
+
+No. A maintainer should inspect and, when appropriate, manually reevaluate the original issue. The current pipeline does not automatically reopen historical closures.
 
 ### “The issue has no clear status or bot response.”
 
@@ -101,34 +130,40 @@ Do not ask the Builder to open another issue. Send the issue to a maintainer for
 
 > Your automated checks passed, and the issue is now waiting for human review. No Builder action is needed unless the reviewer requests changes.
 
+### When the issue was submitted late
+
+> The `late-submission` label records timing only. Your issue remains open and will continue through the normal checks and review process. Follow the other workflow status on the issue for your next action, and keep all revisions on this same issue.
+
 ### When an old issue was closed by the previous pipeline
 
-> Please do not open another issue. We will ask a maintainer to restore and reevaluate your original on-time submission.
+> Please do not open another issue. We will ask a maintainer to inspect and, when appropriate, reevaluate your original submission.
 
 ## What Mentors Should and Should Not Do
 
 ### Do
 
 - Point the Builder to the bot's latest comment and current status label.
+- Read `late-submission` separately from the workflow status that determines the next action.
 - Remind the Builder to use the same issue and a full 40-character commit hash.
 - Tell the Builder when no action is required and the reviewer or maintainer must act.
-- Escalate old closed issues, missing statuses, or approved deadline exceptions to a maintainer.
+- Escalate old closed issues, missing statuses, or an incorrect late indicator to a maintainer.
 
 ### Do not
 
 - Tell the Builder to create a replacement issue.
 - Tell the Builder that pushing a commit automatically triggers a recheck.
+- Tell the Builder that `late-submission` requires an exception or blocks review.
 - Apply `passed` before the issue reaches `ready-for-review`.
-- Promise a deadline exception or manually change a terminal verdict.
+- Remove a valid late indicator or manually change a terminal verdict.
 
 ## When to Escalate
 
 Ask a maintainer to inspect the issue when:
 
-- An old on-time submission was closed by the previous pipeline.
+- An old submission was closed by the previous pipeline.
 - The issue has no clear status after the automated run finishes.
 - `/recheck <hash>` was posted correctly but no workflow started.
-- A duplicate or late-submission decision appears incorrect.
+- A duplicate decision or `late-submission` indicator appears incorrect.
 - A `passed` label was applied or removed by mistake.
 
 For milestone requirements and reviewer criteria, use the [Milestone Checklist](MILESTONE_CHECKLIST.md). For volunteer responsibilities and review timing, use the [Volunteer Guide](VOLUNTEER_GUIDE.md).
