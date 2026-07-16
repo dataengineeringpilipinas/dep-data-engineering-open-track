@@ -14,14 +14,6 @@ on:
         required: false
         type: boolean
         default: false
-      override_deadline:
-        required: false
-        type: boolean
-        default: false
-      audit_reason:
-        required: false
-        type: string
-        default: ""
     secrets:
       DISCORD_WEBHOOK_URL:
         required: false
@@ -45,33 +37,28 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Load issue and enforce submission eligibility
+      - name: Load issue and classify submission
         id: submission
         uses: actions/github-script@v7
         env:
           ISSUE_NUMBER: ${{ inputs.issue_number }}
           INPUT_COMMIT_HASH: ${{ inputs.commit_hash }}
           CHECK_DUPLICATE: ${{ inputs.check_duplicate }}
-          OVERRIDE_DEADLINE: ${{ inputs.override_deadline }}
-          AUDIT_REASON: ${{ inputs.audit_reason }}
         with:
           script: |
             const fs = require('fs');
             const issueNumber = Number(process.env.ISSUE_NUMBER);
-            const overrideDeadline = process.env.OVERRIDE_DEADLINE === 'true';
-            const auditReason = (process.env.AUDIT_REASON || '').trim();
             const stateLabels = [
               'auto-check-pending',
               'waiting-on-prerequisite',
               'ready-for-review',
               'needs-improvement',
-              'passed',
-              'late-submission'
+              'passed'
             ];
             const labelDefinitions = {
               'waiting-on-prerequisite': {
                 color: 'FBCA04',
-                description: 'On-time submission waiting for the previous milestone to pass'
+                description: 'Submission waiting for the previous milestone to pass'
               },
               'ready-for-review': {
                 color: '1D76DB',
@@ -79,7 +66,7 @@ jobs:
               },
               'late-submission': {
                 color: 'B60205',
-                description: 'First submission was created after the milestone deadline'
+                description: 'Submission was created after the milestone target deadline'
               }
             };
 
@@ -113,11 +100,6 @@ jobs:
               core.notice(`Issue #${issueNumber} is already passed; evaluation skipped.`);
               return;
             }
-            if (overrideDeadline && !auditReason) {
-              core.setFailed('An audit reason is required when overriding a deadline.');
-              return;
-            }
-
             const body = issue.body || '';
             const extract = heading => {
               const match = body.match(new RegExp(`###\\s+${heading}\\s*\\n+([^\\n#]+)`, 'i'));
@@ -223,9 +205,17 @@ jobs:
 
             const deadlines = JSON.parse(fs.readFileSync('.github/milestone-deadlines.json', 'utf8'));
             const deadline = deadlines[milestone];
-            const deadlineOk = !deadline || new Date(issue.created_at) <= new Date(deadline) || overrideDeadline;
-            if (!deadlineOk) {
+            const isLate = Boolean(deadline) && new Date(issue.created_at) > new Date(deadline);
+            if (isLate) {
               const marker = `<!-- dep-eval:${milestone}:late-submission -->`;
+              if (!labelNames.includes('late-submission')) {
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  labels: ['late-submission']
+                });
+              }
               const comments = await github.paginate(github.rest.issues.listComments, {
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -240,12 +230,9 @@ jobs:
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   issue_number: issueNumber,
-                  body: `${marker}\n## Auto-Check Results — ${milestone}\n\n> ⛔ **Deadline passed.** The ${milestone} deadline was **${deadlinePht} PHT**.\n\nThis is a new issue created after the cutoff. If you had an earlier on-time issue, continue on that issue instead.\n\n---\n_DEP submission bot_`
+                  body: `${marker}\n## Deadline notice — ${milestone}\n\n> ⚠️ **Submitted after the target deadline.** The ${milestone} target deadline was **${deadlinePht} PHT**.\n\nThis issue will remain open and continue through the normal automated checks, prerequisite queue, and reviewer process. Continue using this issue for any revisions.\n\n---\n_DEP submission bot_`
                 });
               }
-              await transition('late-submission', true);
-              core.setOutput('stop', 'true');
-              return;
             }
 
             core.setOutput('stop', 'false');
@@ -254,8 +241,6 @@ jobs:
             core.setOutput('commit_hash', commitHash);
             core.setOutput('issue_author', issue.user.login);
             core.setOutput('was_ready', labelNames.includes('ready-for-review') ? 'true' : 'false');
-            core.setOutput('deadline_overridden', overrideDeadline ? 'true' : 'false');
-            core.setOutput('audit_reason', auditReason);
 
       - name: Clone submitted snapshot
         id: clone
@@ -336,8 +321,6 @@ jobs:
           GATE_OK: ${{ steps.gate.outputs.gate_ok }}
           PREVIOUS_MILESTONE: ${{ steps.gate.outputs.previous }}
           WAS_READY: ${{ steps.submission.outputs.was_ready }}
-          DEADLINE_OVERRIDDEN: ${{ steps.submission.outputs.deadline_overridden }}
-          AUDIT_REASON: ${{ steps.submission.outputs.audit_reason }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         with:
           script: |
@@ -369,8 +352,7 @@ jobs:
               'auto-check-pending',
               'waiting-on-prerequisite',
               'ready-for-review',
-              'needs-improvement',
-              'late-submission'
+              'needs-improvement'
             ];
             for (const label of stateLabels) {
               if (label === target || !currentLabels.includes(label)) continue;
@@ -418,9 +400,9 @@ jobs:
             }
             let guidance;
             if (target === 'needs-improvement') {
-              guidance = '**Action required:** Fix the problems above, push a commit, then comment `/recheck <40-character-hash>` on this issue. Your original on-time submission date remains preserved.';
+              guidance = '**Action required:** Fix the problems above, push a commit, then comment `/recheck <40-character-hash>` on this issue. Your original submission date remains preserved.';
             } else if (target === 'waiting-on-prerequisite') {
-              guidance = `**Submission recorded on time.** This issue will remain open until ${process.env.PREVIOUS_MILESTONE} is marked \`passed\`. It will then be checked again and released automatically. Do not open another issue.`;
+              guidance = `**Submission recorded.** This issue will remain open until ${process.env.PREVIOUS_MILESTONE} is marked \`passed\`. It will then be checked again and released automatically. Do not open another issue.`;
             } else {
               guidance = process.env.MILESTONE === 'M0'
                 ? '**Ready for human review.** The automated structural checks passed; a reviewer must assess the problem statement, audience, and data source before applying `passed`.'
@@ -434,14 +416,11 @@ jobs:
               per_page: 100
             });
             if (!comments.some(comment => (comment.body || '').includes(marker))) {
-              const overrideNote = process.env.DEADLINE_OVERRIDDEN === 'true'
-                ? `\n\n> Deadline override recorded: ${process.env.AUDIT_REASON}`
-                : '';
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: issueNumber,
-                body: `${marker}\n## Evaluation Results — ${process.env.MILESTONE}\n\n${details}\n\n${guidance}${overrideNote}\n\n---\n_DEP submission bot_`
+                body: `${marker}\n## Evaluation Results — ${process.env.MILESTONE}\n\n${details}\n\n${guidance}\n\n---\n_DEP submission bot_`
               });
             }
 
