@@ -20,6 +20,7 @@ All notable curriculum-documentation changes in this repo should be recorded her
 - Changed milestone identity matching from repository URL text to the submitting GitHub account so repository renames do not break progression.
 - Changed M0 to require a human verdict after structural checks instead of automatically applying `passed`.
 - Updated the public submission tracker to include evaluated late submissions in queues and totals with a separate Late badge, while continuing to exclude duplicates and legacy late-only closures.
+- Expanded the mentor pipeline guide with separate workflow-status and timing-indicator guidance, late-submission reply templates, and public tracker behavior.
 
 ### Fixed
 
