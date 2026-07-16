@@ -6,19 +6,20 @@ All notable curriculum-documentation changes in this repo should be recorded her
 
 ### Added
 
-- Added explicit milestone workflow states for submissions waiting on prerequisites, ready for review, and rejected as late.
-- Added automatic release of an on-time M1–M6 submission when the same builder's previous milestone receives a human `passed` verdict.
-- Added maintainer dry-run/apply workflows for audited deadline overrides and repair of historical gate-blocked submissions.
+- Added explicit milestone workflow states for submissions waiting on prerequisites or ready for review, plus non-blocking late-submission metadata.
+- Added automatic release of an M1–M6 submission when the same builder's previous milestone receives a human `passed` verdict.
+- Added a maintainer dry-run/apply workflow for repair of historical gate-blocked submissions.
 - Added policy tests for deadline boundaries, repository normalization, milestone sequencing, recheck commands, and state decisions.
 - Added a default pull request template covering context, issue linkage, testing, rollout, screenshots, documentation, and privacy checks.
 - Added a plain-language milestone pipeline guide so cohort mentors can answer common submission, recheck, prerequisite, and review-status questions consistently.
 
 ### Changed
 
-- Changed prerequisite gates to preserve and validate on-time submissions instead of closing them; revisions now stay on the canonical issue through `/recheck <commit-hash>`.
+- Changed milestone deadlines from a hard rejection gate to a visible `late-submission` indicator; late issues remain open and follow the normal evaluation and review path.
+- Changed prerequisite gates to preserve and validate submissions instead of closing them; revisions now stay on the canonical issue through `/recheck <commit-hash>`.
 - Changed milestone identity matching from repository URL text to the submitting GitHub account so repository renames do not break progression.
 - Changed M0 to require a human verdict after structural checks instead of automatically applying `passed`.
-- Updated the public submission tracker to show closed passed issues plus waiting and ready-for-review queues while excluding duplicate and late attempts from canonical totals.
+- Updated the public submission tracker to include evaluated late submissions in queues and totals with a separate Late badge, while continuing to exclude duplicates and legacy late-only closures.
 
 ### Fixed
 
