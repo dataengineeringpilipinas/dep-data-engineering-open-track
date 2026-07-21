@@ -43,6 +43,7 @@
                     <a href="progress.html">Submissions</a>
                     <a href="#team">Team</a>
                     <a href="#faq">FAQ</a>
+                    <a href="#changelog">Changelog</a>
                     <span class="nav-cta nav-cta-closed"
                         >Registration closed</span
                     >
@@ -1129,6 +1130,87 @@
                     </article>
                 </div>
             </section>
+
+            <section class="content-band" id="changelog" aria-labelledby="changelog-title">
+                <div class="section-heading">
+                    <p class="section-label">What's new</p>
+                    <h2 class="section-h2" id="changelog-title">Changelog</h2>
+                    <p class="section-sub">Notable updates to the curriculum, submission system, and program infrastructure.</p>
+                </div>
+                <div class="changelog-list">
+
+                    <article class="changelog-entry reveal">
+                        <header class="changelog-entry-header">
+                            <span class="changelog-version">Unreleased</span>
+                        </header>
+                        <ul class="changelog-items">
+                            <li><strong>Added</strong> explicit milestone workflow states: <code>waiting-on-prerequisite</code>, <code>ready-for-review</code>, and non-blocking <code>late-submission</code> metadata.</li>
+                            <li><strong>Added</strong> automatic release of a waiting M1–M6 submission when the same builder's previous milestone is passed.</li>
+                            <li><strong>Added</strong> maintainer dry-run/apply repair workflow for historical gate-blocked submissions.</li>
+                            <li><strong>Changed</strong> milestone deadlines from hard rejection to a visible late-submission indicator — late issues remain open and follow the normal review path.</li>
+                            <li><strong>Changed</strong> prerequisite gates to preserve submissions instead of closing them; revisions stay on the canonical issue via <code>/recheck &lt;hash&gt;</code>.</li>
+                            <li><strong>Fixed</strong> the deadline conflict that rejected replacement issues after an on-time submission was auto-closed for a pending prerequisite.</li>
+                            <li><strong>Fixed</strong> reviewer <code>passed</code> verdict being overridden by the bot — reviewer verdict is now always final.</li>
+                        </ul>
+                    </article>
+
+                    <article class="changelog-entry reveal">
+                        <header class="changelog-entry-header">
+                            <span class="changelog-version">0.3.0</span>
+                            <span class="changelog-date">2026-07-08</span>
+                            <span class="changelog-tag">Builder Cohort Dashboard</span>
+                        </header>
+                        <ul class="changelog-items">
+                            <li><strong>Added</strong> public builder cohort section with aggregate stats, milestone summary, and searchable builder directory.</li>
+                            <li><strong>Added</strong> milestone deadline timeline with current-date marker and Philippine-time labels.</li>
+                        </ul>
+                    </article>
+
+                    <article class="changelog-entry reveal">
+                        <header class="changelog-entry-header">
+                            <span class="changelog-version">0.2.0</span>
+                            <span class="changelog-tag">CI Milestone Deadlines</span>
+                        </header>
+                        <ul class="changelog-items">
+                            <li><strong>Added</strong> hard deadline enforcement via <code>.github/milestone-deadlines.json</code> with automatic late-submission detection.</li>
+                        </ul>
+                    </article>
+
+                    <article class="changelog-entry reveal">
+                        <header class="changelog-entry-header">
+                            <span class="changelog-version">0.1.0</span>
+                            <span class="changelog-tag">CI Milestone Check Fixes</span>
+                        </header>
+                        <ul class="changelog-items">
+                            <li><strong>Fixed</strong> gate URL matching — normalizes repo URLs so blob/tree URLs no longer break prerequisite checks.</li>
+                            <li><strong>Added</strong> URL pattern validation on all M0–M6 issue templates to guide builders toward correct repo root URLs.</li>
+                        </ul>
+                    </article>
+
+                    <article class="changelog-entry reveal">
+                        <header class="changelog-entry-header">
+                            <span class="changelog-version">0.0.4</span>
+                            <span class="changelog-tag">Submission System Design</span>
+                        </header>
+                        <ul class="changelog-items">
+                            <li><strong>Added</strong> domain model (<code>CONTEXT.md</code>) defining the full participant submission flow.</li>
+                            <li><strong>Changed</strong> curriculum structure: Phase 3 expanded to weeks 7–12, Phase 5 split into Path A (predictive) and Path B (advanced EDA).</li>
+                            <li><strong>Added</strong> learner support blocks across all 24 weekly curriculum files.</li>
+                        </ul>
+                    </article>
+
+                    <article class="changelog-entry reveal">
+                        <header class="changelog-entry-header">
+                            <span class="changelog-version">0.0.3</span>
+                            <span class="changelog-tag">Static Site</span>
+                        </header>
+                        <ul class="changelog-items">
+                            <li><strong>Added</strong> dependency-free GitHub Pages onboarding site with sections for registration, program overview, outputs, responsible AI, team, and FAQ.</li>
+                        </ul>
+                    </article>
+
+                </div>
+            </section>
         </main>
 
         <footer class="footer">
@@ -1154,6 +1236,7 @@
                     >About DEP<span class="sr-only"> (opens in new tab)</span></a
                 >
                 <a href="#faq">FAQ</a>
+                <a href="#changelog">Changelog</a>
             </nav>
         </footer>
 
