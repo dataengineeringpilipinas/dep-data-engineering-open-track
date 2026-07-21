@@ -14,10 +14,6 @@ on:
         required: false
         type: boolean
         default: false
-    secrets:
-      DISCORD_WEBHOOK_URL:
-        required: false
-
 jobs:
   evaluate:
     runs-on: ubuntu-latest
@@ -101,6 +97,7 @@ jobs:
               return;
             }
             const body = issue.body || '';
+            // Regex mirrors extract_field() in .github/scripts/milestone_policy.py — keep in sync.
             const extract = heading => {
               const match = body.match(new RegExp(`###\\s+${heading}\\s*\\n+([^\\n#]+)`, 'i'));
               return match ? match[1].trim() : '';
@@ -240,7 +237,6 @@ jobs:
             core.setOutput('repo_url', repoUrl);
             core.setOutput('commit_hash', commitHash);
             core.setOutput('issue_author', issue.user.login);
-            core.setOutput('was_ready', labelNames.includes('ready-for-review') ? 'true' : 'false');
 
       - name: Clone submitted snapshot
         id: clone
@@ -320,8 +316,6 @@ jobs:
           CLONE_ERROR: ${{ steps.clone.outputs.clone_error }}
           GATE_OK: ${{ steps.gate.outputs.gate_ok }}
           PREVIOUS_MILESTONE: ${{ steps.gate.outputs.previous }}
-          WAS_READY: ${{ steps.submission.outputs.was_ready }}
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         with:
           script: |
             const fs = require('fs');
@@ -424,37 +418,6 @@ jobs:
               });
             }
 
-            const becameReady = target === 'ready-for-review' && process.env.WAS_READY !== 'true';
-            if (becameReady && process.env.DISCORD_WEBHOOK_URL) {
-              try {
-                const enrolledResponse = await fetch(`https://raw.githubusercontent.com/${context.repo.owner}/${context.repo.repo}/main/.github/enrolled-participants.json`);
-                const enrolledData = await enrolledResponse.json();
-                const enrolled = new Set((enrolledData.participants || []).map(login => login.toLowerCase()));
-                if (enrolled.has(issue.user.login.toLowerCase())) {
-                  const body = issue.body || '';
-                  const extract = heading => body.match(new RegExp(`###\\s+${heading}\\s*\\n+([^\\n#]+)`, 'i'))?.[1]?.trim() || '—';
-                  await fetch(process.env.DISCORD_WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ embeds: [{
-                      title: `📬 Submission Ready for Review — ${process.env.MILESTONE}`,
-                      color: 0x1D76DB,
-                      fields: [
-                        { name: 'Builder', value: extract('Builder Name'), inline: true },
-                        { name: 'Cohort', value: extract('Cohort'), inline: true },
-                        { name: 'Milestone', value: process.env.MILESTONE, inline: true },
-                        { name: 'Commit', value: `\`${process.env.COMMIT_HASH.slice(0, 7)}\``, inline: true },
-                        { name: 'Issue', value: issue.html_url, inline: false }
-                      ],
-                      footer: { text: 'Automated checks and prerequisite gate passed' },
-                      timestamp: new Date().toISOString()
-                    }] })
-                  });
-                }
-              } catch (error) {
-                core.warning(`Discord notification failed: ${error.message}`);
-              }
-            }
             core.summary.addHeading(`Milestone ${process.env.MILESTONE} evaluation`)
               .addRaw(`Issue #${issueNumber} → ${target}`)
               .write();

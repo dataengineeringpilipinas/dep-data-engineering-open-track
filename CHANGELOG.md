@@ -4,6 +4,25 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.5.0] - 2026-07-21 — Workflow Architecture Improvements
+
+### Added
+
+- Added `notify-reviewer.yml` — dedicated workflow that fires the Discord reviewer alert on the `ready-for-review` label event, replacing the inline Discord call in the evaluation pipeline.
+
+### Changed
+
+- Changed Discord notification to trigger from a label event rather than from inside the evaluation step — a Discord API failure can no longer affect evaluation state.
+- Changed `milestone-repair.yml` excluded-issue list from a hardcoded `Set([60])` to an auditable `exclude_issues` workflow dispatch input (default `"60"`).
+- Refactored `milestone-verdict.yml` — both verdict jobs now use a local `removeLabels` helper instead of repeating the try/catch removal loop inline.
+- Documented `_milestone-evaluate.yml` monolith as an intentional architectural decision in `CONTEXT.md` (splitting deferred until submission volume justifies the job-overhead cost).
+
+### Fixed
+
+- Added cross-reference comments between `_milestone-evaluate.yml` and `milestone_policy.py` so the shared field-extraction regex cannot drift silently between the workflow JS and the Python test suite.
+
+---
+
 ## [0.4.1] - 2026-07-21 — Reviewer Verdict & Site Updates
 
 ### Fixed

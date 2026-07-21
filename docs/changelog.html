@@ -78,6 +78,38 @@
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
 
+                <!-- 0.5.0 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.5.0</span>
+                        <span class="cl-version-date">2026-07-21</span>
+                        <span class="cl-version-tag">Workflow Architecture Improvements</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>New <code>notify-reviewer.yml</code> workflow — Discord reviewer alert now fires on the <code>ready-for-review</code> label event, decoupled from the evaluation pipeline.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Discord API failure can no longer affect evaluation state — notification is isolated in its own workflow.</li>
+                            <li><code>milestone-repair.yml</code> excluded-issue list moved from hardcoded <code>Set([60])</code> to an auditable <code>exclude_issues</code> dispatch input.</li>
+                            <li><code>milestone-verdict.yml</code> both verdict jobs now use a local <code>removeLabels</code> helper instead of repeating the try/catch loop.</li>
+                            <li>Documented <code>_milestone-evaluate.yml</code> monolith as intentional in <code>CONTEXT.md</code> — splitting deferred until volume justifies the overhead.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Added cross-reference comments between <code>_milestone-evaluate.yml</code> and <code>milestone_policy.py</code> so the field-extraction regex cannot drift silently between the workflow JS and the Python test suite.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
                 <!-- 0.4.1 -->
                 <div class="cl-version">
                     <div class="cl-version-header">

@@ -14,6 +14,11 @@ on:
         required: true
         type: boolean
         default: true
+      exclude_issues:
+        description: 'Comma-separated issue numbers to skip (e.g. "60,99")'
+        required: false
+        type: string
+        default: "60"
 
 permissions:
   contents: read
@@ -35,6 +40,7 @@ jobs:
         env:
           TARGET_MILESTONE: ${{ inputs.milestone }}
           DRY_RUN: ${{ inputs.dry_run }}
+          EXCLUDE_ISSUES: ${{ inputs.exclude_issues }}
         with:
           script: |
             const fs = require('fs');
@@ -42,7 +48,9 @@ jobs:
             const dryRun = process.env.DRY_RUN === 'true';
             const deadlines = JSON.parse(fs.readFileSync('.github/milestone-deadlines.json', 'utf8'));
             const deadline = new Date(deadlines[milestone]);
-            const excludedIssues = new Set([60]);
+            const excludedIssues = new Set(
+              (process.env.EXCLUDE_ISSUES || '').split(',').map(n => Number(n.trim())).filter(Boolean)
+            );
             const issues = (await github.paginate(github.rest.issues.listForRepo, {
               owner: context.repo.owner,
               repo: context.repo.repo,

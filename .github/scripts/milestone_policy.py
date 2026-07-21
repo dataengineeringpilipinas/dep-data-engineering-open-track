@@ -23,7 +23,11 @@ METADATA_LABELS = ("late-submission",)
 
 
 def extract_field(body: str, heading: str) -> str:
-    """Extract a value from GitHub issue-form ``### Heading`` output."""
+    """Extract a value from GitHub issue-form ``### Heading`` output.
+
+    Regex pattern must stay in sync with the JS ``extract`` helper in
+    .github/workflows/_milestone-evaluate.yml and notify-reviewer.yml.
+    """
     match = re.search(
         rf"###\s+{re.escape(heading)}\s*\n+([^\n#]+)",
         body or "",
