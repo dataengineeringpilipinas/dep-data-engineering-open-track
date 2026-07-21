@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Changelog for the DEP Engineering Program — notable updates to the curriculum, submission system, and program infrastructure." />
+        <title>Changelog — DEP Engineering Program</title>
+        <link rel="stylesheet" href="assets/site.css?v=10" />
+        <style>
+            .changelog-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+            .changelog-page h1 { font-size: 2rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+            .changelog-page .subtitle { color: var(--gray); margin-bottom: 2.5rem; font-size: 0.95rem; }
+            .changelog-page .subtitle a { color: var(--blue); }
+
+            .cl-version { margin-bottom: 2.5rem; border-left: 4px solid var(--gold); padding-left: 1.5rem; }
+            .cl-version-header { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem; }
+            .cl-version-number { font-size: 1.1rem; font-weight: 700; color: var(--navy); font-family: monospace; }
+            .cl-version-date { font-size: 0.85rem; color: var(--gray); }
+            .cl-version-tag { font-size: 0.75rem; font-weight: 600; background: #EFF6FF; color: #1D4ED8; padding: 0.2rem 0.65rem; border-radius: 999px; }
+            .cl-version-tag.unreleased { background: #FEF3C7; color: #92400E; }
+
+            .cl-group { margin-bottom: 1.25rem; }
+            .cl-group-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray); margin-bottom: 0.5rem; }
+            .cl-group-label.added   { color: #16A34A; }
+            .cl-group-label.changed { color: #2563EB; }
+            .cl-group-label.fixed   { color: #DC2626; }
+
+            .cl-items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.45rem; }
+            .cl-items li { font-size: 0.9rem; color: #374151; padding-left: 1.25rem; position: relative; line-height: 1.6; }
+            .cl-items li::before { content: '–'; position: absolute; left: 0; color: #D1D5DB; }
+            .cl-items code { font-size: 0.8rem; background: #F3F4F6; padding: 0.1rem 0.35rem; border-radius: 4px; color: #111; }
+
+            .cl-divider { border: none; border-top: 1px solid var(--border, #E5E7EB); margin: 2.5rem 0; }
+        </style>
+    </head>
+    <body>
+        <a class="skip-link" href="#main">Skip to content</a>
+
+        <header class="site-header">
+            <nav class="nav" aria-label="Primary navigation">
+                <a class="brand" href="index.html">
+                    <span class="brand-mark" aria-hidden="true">
+                        <img src="assets/dep-logo.png" alt="" />
+                    </span>
+                    <span class="brand-text">Data Engineering Pilipinas</span>
+                </a>
+
+                <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                    <span class="sr-only">Open navigation</span>
+                </button>
+
+                <div class="nav-links" id="nav-links">
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#process">Process</a>
+                    <a href="index.html#outputs">Outputs</a>
+                    <a href="ai-guide.html">AI Guide</a>
+                    <a href="index.html#builders">Builders</a>
+                    <a href="progress.html">Submissions</a>
+                    <a href="index.html#team">Team</a>
+                    <a href="index.html#faq">FAQ</a>
+                    <a href="changelog.html" aria-current="page">Changelog</a>
+                    <span class="nav-cta nav-cta-closed">Registration closed</span>
+                </div>
+            </nav>
+        </header>
+
+        <main id="main">
+            <div class="changelog-page">
+                <h1>Changelog</h1>
+                <p class="subtitle">
+                    Notable updates to the curriculum, submission system, and program infrastructure.
+                    <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
+                </p>
+
+                <!-- Unreleased -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">Unreleased</span>
+                        <span class="cl-version-tag unreleased">In progress</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Reviewer <code>passed</code> verdict no longer stripped by the bot — reviewer verdict is always final and overrides all automation guards.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Standalone changelog page at <code>docs/changelog.html</code> linked from the site nav.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.4.0 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.4.0</span>
+                        <span class="cl-version-date">2026-07-16</span>
+                        <span class="cl-version-tag">Submission System Hardening</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Reusable <code>_milestone-evaluate.yml</code> shared workflow — all evaluation logic delegates to a single callable workflow.</li>
+                            <li><code>milestone-verdict.yml</code> — triggers on label events; handles <code>passed</code> (closes issue, unblocks waiting next-milestone submission) and <code>needs-improvement</code> (normalizes state labels).</li>
+                            <li><code>milestone-repair.yml</code> — maintainer-only dry-run/apply workflow for consolidating historical gate-blocked submissions in bulk.</li>
+                            <li><code>milestone_policy.py</code> — pure Python policy helpers; independently testable with no GitHub API calls.</li>
+                            <li><code>waiting-on-prerequisite</code> label — submissions waiting on a prerequisite stay open and are re-evaluated automatically when the gate clears.</li>
+                            <li><code>ready-for-review</code> label — replaces <code>auto-check-pending</code> as the post-check signal for reviewers.</li>
+                            <li><code>late-submission</code> label — informational metadata for submissions after the target deadline; does not block evaluation.</li>
+                            <li>Automatic duplicate detection — second issues for the same milestone are closed and the builder is directed to the canonical issue.</li>
+                            <li><code>/recheck &lt;hash&gt;</code> command format alongside legacy bare-hash comments.</li>
+                            <li>Concurrency groups per issue to prevent race conditions.</li>
+                            <li>Pull request template and plain-language mentor pipeline guide.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Milestone deadlines changed from hard rejection to visible <code>late-submission</code> indicator — late issues follow the normal review path.</li>
+                            <li>Prerequisite gates preserve submissions instead of closing them; revisions stay on the canonical issue via <code>/recheck</code>.</li>
+                            <li>Milestone identity now matched by GitHub login instead of repo URL — renames no longer break progression.</li>
+                            <li><code>passed</code> verdict auto-closes the issue as completed and triggers re-evaluation of any waiting next-milestone submission.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Deadline conflict that rejected replacement issues opened after an on-time submission was auto-closed.</li>
+                            <li>Structural-check failures that prompted recheck without adding the <code>needs-improvement</code> label.</li>
+                            <li>Duplicate milestone attempts now directed to one canonical issue.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.3.1 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.3.1</span>
+                        <span class="cl-version-date">2026-07-13</span>
+                        <span class="cl-version-tag">Accessibility & Site Shell</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li><code>docs/ai-guide.html</code> — styled standalone page for responsible AI guidance.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Rebuilt <code>docs/progress.html</code> on the shared site shell (shared nav, CSS, JS assets).</li>
+                            <li>Improved accessibility: contrast ratios, keyboard navigation, ARIA labels, and form semantics across all pages.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.3.0 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.3.0</span>
+                        <span class="cl-version-date">2026-07-08</span>
+                        <span class="cl-version-tag">Builder Cohort Dashboard</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Public builder cohort section with aggregate stats, milestone summary, and searchable builder directory powered by <code>docs/data/builders.json</code>.</li>
+                            <li>Milestone deadline timeline with current-date marker and Philippine-time labels.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.2.0 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.2.0</span>
+                        <span class="cl-version-date">2026-07-06</span>
+                        <span class="cl-version-tag">CI Milestone Deadlines</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Hard deadline enforcement via <code>.github/milestone-deadlines.json</code> with automatic rejection and Philippine-time deadline display.</li>
+                            <li>Deadline validation on the recheck workflow — resubmissions also check the original issue's creation date.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.1.0 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.1.0</span>
+                        <span class="cl-version-date">2026-07-06</span>
+                        <span class="cl-version-tag">CI Milestone Check Fixes</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Gate URL matching — normalizes repo URLs to <code>owner/repo</code> so blob/tree/file URLs no longer break prerequisite checks.</li>
+                            <li>Clone URL normalization on resubmission so <code>git clone</code> succeeds even when the original issue body has a non-root GitHub URL.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>URL pattern validation on all M0–M6 issue templates — the repo URL field rejects blob/tree/file URLs with a clear message.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.0.8 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.0.8</span>
+                        <span class="cl-version-date">2026-07-05</span>
+                        <span class="cl-version-tag">Submission System Improvements</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li><code>enrolled-participants.json</code> allowlist with 33 confirmed GitHub usernames for cohort 2026-A.</li>
+                            <li>Enrollment filter on Discord webhook — only enrolled participants trigger reviewer alerts in <code>#open-builders</code>.</li>
+                            <li>Non-Enrolled toggle on submission tracker dashboard.</li>
+                            <li>Behavioral test suite for <code>milestone_check.py</code> covering M0–M6 pass and fail cases.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Cohort field on all M0–M6 issue templates changed from free-text to a dropdown with <code>2026-A</code> and <code>Open Track</code> options.</li>
+                            <li>Rewrote starter kit <code>README.md</code> Step 1 with beginner-friendly GUI (Option A) and Git CLI (Option B) paths.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Auto-close issue on clone failure instead of prompting the builder to reopen.</li>
+                            <li>Misleading clone-error message that suggested a resubmit path that does not exist.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.0.7 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.0.7</span>
+                        <span class="cl-version-date">2026-06-23</span>
+                        <span class="cl-version-tag">Submission Tracker Dashboard</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li><code>docs/progress.html</code> — internal submission tracker with pending, needs-improvement, and all-submissions tables, stats cards, and milestone progress grid.</li>
+                            <li>Search, milestone filter, status filter, and sortable column headers on the tracker.</li>
+                            <li>Days-waiting column with SLA breach indicators (⚠️ 3d, 🔴 5d).</li>
+                            <li>Enrolled/All/Non-Enrolled toggle with dynamic cohort label from <code>enrolled-participants.json</code>.</li>
+                            <li>Mobile responsive layout for the tracker.</li>
+                            <li>Discord webhook alerts to <code>#open-builders</code> when all auto-checks pass on a new enrolled submission.</li>
+                            <li>Sequential milestone gate enforcement — M(n-1) must have <code>passed</code> before M(n) is reviewed.</li>
+                            <li>Recheck workflow (<code>milestone-recheck.yml</code>) triggered by builder comment.</li>
+                            <li>Volunteer profile photos (24 avatars) in the Organizing Team section.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.0.6 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.0.6</span>
+                        <span class="cl-version-date">2026-06-19</span>
+                        <span class="cl-version-tag">Registration Closed</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Updated site registration CTAs to reflect that registration is closed.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.0.5 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.0.5</span>
+                        <span class="cl-version-date">2026-06-14</span>
+                        <span class="cl-version-tag">Site General Improvements</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Refreshed site styling: editorial hierarchy, canvas texture, layered card shadows, branded hero panel, and DEP logo usage.</li>
+                            <li>Replaced redundant hero fact panel with cohort-focused notes; improved output-card contrast; widened FAQ layout.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.0.4 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.0.4</span>
+                        <span class="cl-version-date">2026-06-04</span>
+                        <span class="cl-version-tag">Submission System Design</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>M0–M6 GitHub issue templates with <code>auto-check-pending</code> label on open.</li>
+                            <li><code>milestone-check.yml</code> GitHub Actions workflow for automated structural checks.</li>
+                            <li><code>milestone_check.py</code> with per-milestone check definitions.</li>
+                            <li>Starter kit scaffold (<code>cohorts/starter-kit/</code>) with README, scripts, dashboard template, and GitHub Pages workflow.</li>
+                            <li><code>CONTEXT.md</code> defining domain terms and the full participant submission flow.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Phase 3 expanded to weeks 7–12; SQL and data modeling moved from Phase 2.</li>
+                            <li>Phase 5 split into Path A (predictive/ML) and Path B (advanced EDA and stakeholder track).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.0.3 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.0.3</span>
+                        <span class="cl-version-date">2026-05-29</span>
+                        <span class="cl-version-tag">Static Site</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Dependency-free GitHub Pages onboarding site with registration, program overview, outputs, responsible AI, organizing team, and FAQ sections.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.0.2 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.0.2</span>
+                        <span class="cl-version-date">2026-05-29</span>
+                        <span class="cl-version-tag">AI Guide</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li><code>docs/AI_GUIDE.md</code> — cohort-facing reference for responsible AI use, example prompts, and assessment support.</li>
+                            <li>Week-specific sample AI prompts to Foundations week READMEs (weeks 1–4).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.0.1 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.0.1</span>
+                        <span class="cl-version-date">2026-05-26</span>
+                        <span class="cl-version-tag">Learner Support Templates</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Learner support blocks across all 24 weekly curriculum files: Starter Script, How To Adapt, Definition of Done, Common Mistakes, and If You're Stuck.</li>
+                            <li>Restructured curriculum phases; populated all week READMEs with revised content, tech stack diagram, and DEP branding.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div>
+                <p class="footer-title">DEP Engineering Foundations (Open Track)</p>
+                <p>Built by Data Engineering Pilipinas. Free and open. Always.</p>
+            </div>
+            <nav class="footer-links" aria-label="Footer">
+                <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in new tab)</span></a>
+                <a href="https://dataengineering.ph/about.html" target="_blank" rel="noopener noreferrer">About DEP<span class="sr-only"> (opens in new tab)</span></a>
+                <a href="index.html#faq">FAQ</a>
+                <a href="changelog.html">Changelog</a>
+            </nav>
+        </footer>
+
+        <script src="assets/site.js?v=9"></script>
+    </body>
+</html>

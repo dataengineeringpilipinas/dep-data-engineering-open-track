@@ -1,141 +1,199 @@
 # Changelog
 
-All notable curriculum-documentation changes in this repo should be recorded here.
+All notable changes to this repository are recorded here.
 
-## Unreleased
+---
 
-### Added
-
-- Added explicit milestone workflow states for submissions waiting on prerequisites or ready for review, plus non-blocking late-submission metadata.
-- Added automatic release of an M1–M6 submission when the same builder's previous milestone receives a human `passed` verdict.
-- Added a maintainer dry-run/apply workflow for repair of historical gate-blocked submissions.
-- Added policy tests for deadline boundaries, repository normalization, milestone sequencing, recheck commands, and state decisions.
-- Added a default pull request template covering context, issue linkage, testing, rollout, screenshots, documentation, and privacy checks.
-- Added a plain-language milestone pipeline guide so cohort mentors can answer common submission, recheck, prerequisite, and review-status questions consistently.
-
-### Changed
-
-- Changed milestone deadlines from a hard rejection gate to a visible `late-submission` indicator; late issues remain open and follow the normal evaluation and review path.
-- Changed prerequisite gates to preserve and validate submissions instead of closing them; revisions now stay on the canonical issue through `/recheck <commit-hash>`.
-- Changed milestone identity matching from repository URL text to the submitting GitHub account so repository renames do not break progression.
-- Changed M0 to require a human verdict after structural checks instead of automatically applying `passed`.
-- Updated the public submission tracker to include evaluated late submissions in queues and totals with a separate Late badge, while continuing to exclude duplicates and legacy late-only closures.
-- Expanded the mentor pipeline guide with separate workflow-status and timing-indicator guidance, late-submission reply templates, and public tracker behavior.
+## [Unreleased]
 
 ### Fixed
 
-- Fixed the deadline conflict that rejected replacement issues after an on-time submission was auto-closed for a pending prerequisite.
-- Fixed structural-check failures that instructed builders to recheck without adding the `needs-improvement` state required to trigger the recheck workflow.
-- Fixed duplicate milestone attempts by directing builders back to one canonical issue per milestone.
-
-## [0.3.0] - 2026-07-08 - Builder Cohort Dashboard and Timeline
+- Fixed reviewer `passed` verdict being stripped by the bot — reviewer verdict is now always final and overrides all automation guards.
 
 ### Added
 
-- Added a public, sanitized builder cohort section to the GitHub Pages onboarding site with aggregate stats, status and phase distributions, milestone summary, and a searchable builder directory powered by `docs/data/builders.json`.
-- Limited the builder directory preview to 10 cards by default, added an expand/collapse control, and changed empty aggregate progress metrics to subtle dash placeholders.
-- Documented the Python local static-server command for previewing the GitHub Pages onboarding site without `file://` fetch issues.
-- Added a milestone deadline timeline to the builder cohort dashboard with a current-date marker, Philippine-time deadline labels, and a live millisecond clock.
+- Added standalone changelog page at `docs/changelog.html` linked from the site nav.
 
-## [0.2.0] - CI Milestone Check Deadlines
+---
+
+## [0.4.0] - 2026-07-16 — Submission System Hardening
 
 ### Added
 
-- **Hard deadline enforcement**: All milestones now have hard deadlines configured in `.github/milestone-deadlines.json`. Submissions created past the deadline are auto-rejected with a clear message. Resubmissions (rechecks) also check the original issue's creation date against the deadline. Deadlines are enforced at the workflow level — no date-based logic exists in the milestone check scripts.
+- Added reusable `_milestone-evaluate.yml` shared workflow — all evaluation logic (initial check and recheck) now delegates to a single callable workflow, eliminating duplicated code.
+- Added `milestone-verdict.yml` — triggers on label events; handles `passed` (closes issue, unblocks waiting next-milestone submission) and `needs-improvement` (normalizes state labels).
+- Added `milestone-repair.yml` — maintainer-only dry-run/apply workflow for consolidating and re-evaluating historical gate-blocked submissions in bulk.
+- Added `milestone_policy.py` — pure Python helpers for deadline classification, milestone sequencing, recheck command parsing, and state decisions; independently testable with no GitHub API calls.
+- Added `test_milestone_policy.py` — regression tests for all policy helpers.
+- Added `waiting-on-prerequisite` label and state — submissions waiting for a previous milestone to pass now stay open and are re-evaluated automatically when the prerequisite is marked `passed`.
+- Added `ready-for-review` label — replaces `auto-check-pending` as the post-check signal for reviewers; Discord notification fires only on transition to this state.
+- Added `late-submission` label — informational metadata applied when a submission is created after the milestone target deadline; does not block evaluation or review.
+- Added automatic duplicate detection — if a builder opens a second issue for the same milestone, the duplicate is closed and the builder is directed back to the canonical issue.
+- Added `/recheck <hash>` command format — builders can now comment `/recheck <40-char-hash>` in addition to the legacy bare-hash format.
+- Added concurrency groups per issue number to prevent race conditions between simultaneous workflow runs.
+- Added pull request template covering context, issue linkage, testing, rollout, screenshots, documentation, and privacy checks.
+- Added plain-language milestone pipeline guide (`docs/MILESTONE_PIPELINE_MENTOR_GUIDE.md`) for cohort mentors.
 
-## [0.1.0] - CI Milestone Check fixes
+### Changed
+
+- Changed milestone deadlines from hard rejection to a visible `late-submission` informational indicator — late issues remain open and follow the normal evaluation and review path.
+- Changed prerequisite gates to preserve and validate submissions instead of closing them; revisions stay on the canonical issue via `/recheck`.
+- Changed milestone identity matching from repository URL substring to the submitting GitHub account login — repository renames no longer break progression.
+- Changed `passed` verdict to auto-close the issue as `completed` and automatically trigger re-evaluation of any waiting next-milestone submission from the same builder.
 
 ### Fixed
 
-- **Gate URL matching in milestone-check.yml**: Normalizes repo URLs to base `owner/repo` before comparing. Previously, if a builder pasted a blob/tree URL (e.g. `.../blob/main/file`) in the "GitHub Repo URL" field, the gate check would fail to find their passed M0 submission because the substring match used the raw (wrong) URL.
-- **Clone URL normalization in milestone-recheck.yml**: Same normalization applied to repo URLs on resubmission so `git clone` works even when the original issue body has a blob/file URL.
+- Fixed the deadline conflict that rejected replacement issues opened after an on-time submission was auto-closed for a pending prerequisite.
+- Fixed structural-check failures that instructed builders to recheck without adding the `needs-improvement` label required to trigger the recheck workflow.
+- Fixed duplicate milestone attempts by directing builders back to one canonical issue per milestone instead of silently closing new ones.
+
+---
+
+## [0.3.1] - 2026-07-13 — Accessibility & Site Shell
 
 ### Added
 
-- **URL pattern validation on all milestone issue templates (M0-M6)**: The "GitHub Repo URL" field now rejects blob/tree/file URLs with a clear mismatch message, guiding builders to enter the repo root URL.
-- **Auto-apply `passed` label for M0**: When all M0 structural checks pass, the `passed` label is applied automatically. M0 checks are purely structural (README existence and content length), so no subjective review is needed — this removes the manual bottleneck before builders can proceed to M1.
+- Added `docs/ai-guide.html` — styled standalone page for responsible AI guidance, linked from site nav.
 
-## [0.0.7] - Organizing Team Pictures
+### Changed
+
+- Rebuilt `docs/progress.html` submission tracker on the shared site shell (shared nav, CSS, and JS assets) to match the main site design.
+- Improved accessibility across the site: contrast ratios, keyboard navigation, ARIA labels, milestone clock behavior, and form semantics.
+- Improved timeline marker and shared navigation across pages.
+
+---
+
+## [0.3.0] - 2026-07-08 — Builder Cohort Dashboard and Timeline
 
 ### Added
 
-- Added volunteer profile photos to the Organizing Team section in [docs/index.html](docs/index.html): 23 circular avatars (56 px) for 23 team members, sourced from `/Users/zeraphim/Desktop/Volunteer Pics` and served from `docs/assets/volunteers/`. Photos appear next to each name in their respective team-group cards with a hover accent effect matching the gold design tokens.
+- Added public builder cohort section to the GitHub Pages site with aggregate stats, status and phase distributions, milestone summary, and a searchable builder directory powered by `docs/data/builders.json`.
+- Added milestone deadline timeline with a current-date marker, Philippine-time deadline labels, and a live millisecond clock.
+- Added `docs/data/milestone-deadlines.json` for deadline data shared between the site and CI.
+- Limited the builder directory preview to 10 cards by default with an expand/collapse control.
 
-## [0.0.6] - Organizing Team update 
+---
 
-### Changed
-
-- Updated the onboarding site registration CTAs to reflect that registration is closed, including the navbar button and hero button, plus a disabled/closed visual treatment in [docs/index.html](docs/index.html) and [docs/assets/site.css](docs/assets/site.css).
-- Aligned the team section in [docs/index.html](docs/index.html) added Myk Ogbinar (Founder, DEP), Simonee Ezequiel (Communications), and Bea Lambitco (Content Curator). Renamed groups to Content Curators, Squad Team, and Mentors Team. Corrected role titles across Ops, Communications, Squad, and Mentors. Rebuilt the Admissions panel to match the documented crossover (Katherine Bulac, James David Bradly Carballo, Anam Iqbal). Removed Vanie Bermudez and Renan Matthew Fajardo.
-- Further team adjustments: added Jomai Hizon and Kim Audrey Magan to Ops; removed Yui Otsuka and Renzi Vidal from Mentors Team; swapped Zierd Ethan for Vanie Bermudez in Squad Team; renamed Community to Moderators and added Renan Matthew Fajardo.
-- Added Zierd Ethan and Andrei Marcus to Curriculum; removed Simonee Ezequiel from Communications.
-
-## [0.0.5] - Site General Improvements
-
-### Changed
-
-- Refreshed the GitHub Pages onboarding site styling in [docs/](docs/): stronger editorial hierarchy, subtler canvas texture, layered card shadows, branded hero panel treatment, and DEP logo usage in the header.
-- Expanded the visual language further with a dark hero, gold/navy accents, animated glow layers, and scroll-reveal cards across the onboarding page.
-- Replaced the redundant hero fact panel with cohort-focused notes, improved output-card contrast, and widened the FAQ so questions no longer feel clipped.
-
-## [0.0.4] - Submission System Design & Curriculum Restructure
+## [0.2.0] - 2026-07-06 — CI Milestone Deadlines
 
 ### Added
 
-- Added [CONTEXT.md](CONTEXT.md) defining domain terms and the full participant submission flow: Starter Kit, Milestone Submission (GitHub Issue), Auto-Check (GitHub Action), Milestone Reviewer verdict (`passed` / `needs-improvement`), and Resubmission model.
+- Added hard deadline enforcement via `.github/milestone-deadlines.json`; submissions created after the deadline are auto-rejected with a clear message referencing the deadline in Philippine time.
+- Added deadline validation to the recheck workflow — resubmissions also check the original issue's creation date against the deadline.
+
+---
+
+## [0.1.0] - 2026-07-06 — CI Milestone Check Fixes
+
+### Fixed
+
+- Fixed gate URL matching in `milestone-check.yml` — normalizes repo URLs to `owner/repo` before comparing so blob/tree/file URLs no longer break prerequisite checks.
+- Fixed clone URL normalization in `milestone-recheck.yml` — same normalization applied on resubmission so `git clone` succeeds even when the original issue body contains a non-root GitHub URL.
+
+### Added
+
+- Added URL pattern validation on all M0–M6 issue templates — the "GitHub Repo URL" field rejects blob/tree/file URLs with a clear mismatch message.
+
+---
+
+## [0.0.8] - 2026-07-05 — Submission System Improvements
+
+### Added
+
+- Added `enrolled-participants.json` allowlist with 33 confirmed GitHub usernames for cohort 2026-A.
+- Added enrollment filter to Discord webhook notifications in both `milestone-check.yml` and `milestone-recheck.yml` — only enrolled participants trigger reviewer alerts.
+- Added Non-Enrolled toggle to `docs/progress.html` dashboard so operators can view submissions from outside the enrolled cohort.
+- Added behavioral test suite for `milestone_check.py` covering M0–M6 pass and fail cases.
 
 ### Changed
 
-- Restructured phase layout: Phase 2 trimmed to weeks 5–6; Phase 3 expanded to weeks 7–12 (SQL and data modeling moved from Phase 2).
-- Moved `week-07` and `week-08` from `02-data-collection/` into `03-data-processing/`.
-- Populated all 24 week READMEs with topics, primary and optional resources, build tasks, and deliverables.
+- Changed cohort field on all M0–M6 issue templates from free-text to a dropdown with `2026-A` and `Open Track` options to prevent freeform inconsistencies.
+- Rewrote starter kit `README.md` Step 1 with beginner-friendly options: GUI upload (Option A) and Git command line (Option B).
+
+### Fixed
+
+- Fixed `milestone-check.yml` to auto-close the issue when the builder's repo cannot be cloned instead of prompting the builder to reopen.
+- Fixed misleading clone-error message that suggested a resubmit path that does not exist for clone failures.
+
+---
+
+## [0.0.7] - 2026-06-23 — Submission Tracker Dashboard
+
+### Added
+
+- Added `docs/progress.html` — internal submission tracker dashboard reading the GitHub Issues API; shows pending, needs-improvement, and all-submissions tables with stats cards and milestone progress grid.
+- Added search, milestone filter, status filter, and sortable column headers to the dashboard.
+- Added days-waiting column with SLA breach indicators (⚠️ 3d, 🔴 5d).
+- Added enrolled/all toggle button with dynamic cohort label sourced from `enrolled-participants.json`.
+- Added mobile responsive layout for the dashboard.
+- Added Discord webhook alerts to `#open-builders` when all auto-checks pass on a new submission.
+- Added sequential milestone gate enforcement — M(n-1) must have `passed` label before M(n) is reviewed.
+- Added recheck workflow (`milestone-recheck.yml`) for builder resubmissions via comment.
+- Added volunteer profile photos (24 avatars) to the Organizing Team section.
+
+---
+
+## [0.0.6] - 2026-06-19 — Registration Closed
+
+### Changed
+
+- Updated site registration CTAs to reflect that registration is closed — navbar button and hero button show a disabled/closed visual treatment.
+
+---
+
+## [0.0.5] - 2026-06-14 — Site General Improvements
+
+### Changed
+
+- Refreshed GitHub Pages site styling: stronger editorial hierarchy, subtler canvas texture, layered card shadows, branded hero panel, and DEP logo usage.
+- Replaced the redundant hero fact panel with cohort-focused notes; improved output-card contrast; widened the FAQ layout.
+- Updated FAQ to align with the full question list.
+
+---
+
+## [0.0.4] - 2026-06-04 — Submission System Design
+
+### Added
+
+- Added `CONTEXT.md` defining domain terms and the full participant submission flow.
+- Added M0–M6 GitHub issue templates with `auto-check-pending` label applied on open.
+- Added `milestone-check.yml` GitHub Actions workflow for automated structural checks on submission.
+- Added `milestone_check.py` with per-milestone check definitions (M0–M6).
+- Added starter kit scaffold (`cohorts/starter-kit/`) with README, scripts, dashboard template, and GitHub Pages deployment workflow.
+
+### Changed
+
+- Restructured phase layout: Phase 3 expanded to weeks 7–12; SQL and data modeling moved from Phase 2.
+- Updated phase READMEs with revised milestone timing, pass criteria, and gate enforcement.
 - Rewrote Phase 5 as a conditional dual-path: Path A (predictive/ML) and Path B (advanced EDA and stakeholder track).
-- Updated all phase READMEs with revised milestone timing, pass criteria, and gate enforcement.
-- Updated `docs/MILESTONE_CHECKLIST.md` with hard gate notes on M0 and M1, revised milestone timing, and separate Path A / Path B criteria for M5.
-- Updated tech stack diagram (SVG) with corrected week ranges, SQL added to Phase 3, scikit-learn added to Phase 5.
-- Updated [README.md](README.md) to reflect Program Overview: added Program Design section (duration, weekly rule, design principles, resource rule, tool stack), split Phase 5 into separate Path A and Path B rows in the curriculum table, added analysis notebook to primary outputs, and fixed Starter Kit link to point to [cohorts/starter-kit/](cohorts/starter-kit/).
-- Fixed [06-deployment/week-23/README.md](06-deployment/week-23/README.md) milestone label from `Milestone 5 / 6` to `Milestone 5` — week 24 is the sole M6 deliverable.
+- Updated `docs/MILESTONE_CHECKLIST.md` with hard gate notes and separate Path A/B criteria for M5.
 
-## [0.0.3] - Static Site Preliminary
+---
+
+## [0.0.3] - 2026-05-29 — Static Site
 
 ### Added
 
-- Added a dependency-free GitHub Pages onboarding site under [docs/index.html](docs/index.html), with static CSS and JavaScript assets in [docs/assets/](docs/assets/).
-- Added cohort-facing sections for registration, program positioning, selection and onboarding flow, expected outputs, responsible AI use, organizing team, and FAQs.
+- Added dependency-free GitHub Pages onboarding site at `docs/index.html` with sections for registration, program positioning, selection and onboarding flow, expected outputs, responsible AI, organizing team, and FAQs.
 
-## [0.0.2] - Leveraging AI Guide
+---
 
-### Added
-
-- Added [docs/AI_GUIDE.md](docs/AI_GUIDE.md) as a cohort-facing reference for responsible AI use, example prompts, and assessment support.
-
-### Changed
-
-- Added AI support notes to [01-foundations/README.md](01-foundations/README.md) and [docs/FAQ.md](docs/FAQ.md).
-- Added week-specific sample AI prompts to [01-foundations/week-01/README.md](01-foundations/week-01/README.md) through [01-foundations/week-04/README.md](01-foundations/week-04/README.md).
-
-## [0.0.1] - Learner Support / Reference templates
+## [0.0.2] - 2026-05-29 — AI Guide
 
 ### Added
 
-- Added learner-facing guidance blocks to all weekly curriculum files from Week 1 through Week 24.
-- Added a consistent `Learner Support` section structure to each weekly README:
-  - `Starter Script / Template`
-  - `How To Adapt This To Your Project`
-  - `Definition of Done`
-  - `Common Mistakes`
-  - `If You're Stuck After 2 Hours`
+- Added `docs/AI_GUIDE.md` as a cohort-facing reference for responsible AI use, example prompts, and assessment support.
+- Added AI support notes to `01-foundations/README.md` and `docs/FAQ.md`.
+- Added week-specific sample AI prompts to Foundations week READMEs (weeks 1–4).
 
-### Changed
+---
 
-- Expanded [01-foundations/week-01/README.md](01-foundations/week-01/README.md) and [01-foundations/week-02/README.md](01-foundations/week-02/README.md) with problem-framing and data-source documentation templates.
-- Expanded [01-foundations/week-03/README.md](01-foundations/week-03/README.md) with repo setup, folder structure, and first-commit guidance.
-- Expanded [01-foundations/week-04/README.md](01-foundations/week-04/README.md), [02-data-collection/week-05/README.md](02-data-collection/week-05/README.md), and [02-data-collection/week-06/README.md](02-data-collection/week-06/README.md) with ingestion scaffolds for API, scraping, and manual-download paths.
-- Expanded [03-data-processing/week-07/README.md](03-data-processing/week-07/README.md) through [03-data-processing/week-12/README.md](03-data-processing/week-12/README.md) with schema, SQL, transform, validation, and pipeline-run-order guidance.
-- Expanded [04-analysis-and-insights/week-13/README.md](04-analysis-and-insights/week-13/README.md) through [04-analysis-and-insights/week-16/README.md](04-analysis-and-insights/week-16/README.md) with notebook outlines for summary statistics, charting, inference, and insight writing.
-- Expanded [05-project-packaging/week-17/README.md](05-project-packaging/week-17/README.md) through [05-project-packaging/week-20/README.md](05-project-packaging/week-20/README.md) with learner scaffolds for both Path A (predictive) and Path B (non-predictive).
-- Expanded [06-deployment/week-21/README.md](06-deployment/week-21/README.md) through [06-deployment/week-24/README.md](06-deployment/week-24/README.md) with dashboard planning, deployment, documentation-polish, QA, and demo-script support.
+## [0.0.1] - 2026-05-26 — Learner Support Templates
 
-### Notes
+### Added
 
-- The added examples are scaffold-level only and use placeholders such as `<your_source_url>` and `<your_kpi_name>` so learners are guided without being handed finished project answers.
+- Added learner support blocks to all 24 weekly curriculum files (weeks 1–24) with Starter Script, How To Adapt, Definition of Done, Common Mistakes, and If You're Stuck sections.
+- Added ingestion scaffolds for API, scraping, and manual-download paths.
+- Added notebook outlines for summary statistics, charting, inference, and insight writing.
+- Added dashboard planning, deployment, documentation-polish, QA, and demo-script support for Phase 6.
+- Restructured curriculum phases and populated all week READMEs with revised content, tech stack diagram, and DEP branding.
