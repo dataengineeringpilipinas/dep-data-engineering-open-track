@@ -2235,3 +2235,13 @@ h3 {
   border-radius: 4px;
   color: #111;
 }
+
+a.changelog-version {
+  text-decoration: none;
+  color: var(--navy, #0A1628);
+}
+
+a.changelog-version:hover {
+  text-decoration: underline;
+  color: var(--blue, #0052CC);
+}
