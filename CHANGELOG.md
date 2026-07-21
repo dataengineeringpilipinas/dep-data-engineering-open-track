@@ -4,7 +4,7 @@ All notable changes to this repository are recorded here.
 
 ---
 
-## [Unreleased]
+## [0.4.1] - 2026-07-21 — Reviewer Verdict & Site Updates
 
 ### Fixed
 

@@ -7,30 +7,33 @@
         <title>Changelog — DEP Engineering Program</title>
         <link rel="stylesheet" href="assets/site.css?v=10" />
         <style>
-            .changelog-page { max-width: 800px; margin: 0 auto; padding: 2rem 1rem 4rem; }
-            .changelog-page h1 { font-size: 2rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
-            .changelog-page .subtitle { color: var(--gray); margin-bottom: 2.5rem; font-size: 0.95rem; }
-            .changelog-page .subtitle a { color: var(--blue); }
+            #main { background: #F9FAFB; }
 
-            .cl-version { margin-bottom: 2.5rem; border-left: 4px solid var(--gold); padding-left: 1.5rem; }
+            .changelog-page { max-width: 800px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+            .changelog-page h1 { font-size: 2rem; font-weight: 700; color: #0A1628; margin-bottom: 0.5rem; }
+            .changelog-page .subtitle { color: #6B7280; margin-bottom: 2.5rem; font-size: 0.95rem; }
+            .changelog-page .subtitle a { color: #0052CC; }
+
+            .cl-version { margin-bottom: 2.5rem; border-left: 4px solid #F59E0B; padding-left: 1.5rem; }
             .cl-version-header { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem; }
-            .cl-version-number { font-size: 1.1rem; font-weight: 700; color: var(--navy); font-family: monospace; }
-            .cl-version-date { font-size: 0.85rem; color: var(--gray); }
+            .cl-version-number { font-size: 1.1rem; font-weight: 700; color: #0A1628; font-family: monospace; text-decoration: none; }
+            .cl-version-number:hover { color: #0052CC; text-decoration: underline; }
+            .cl-version-date { font-size: 0.85rem; color: #6B7280; }
             .cl-version-tag { font-size: 0.75rem; font-weight: 600; background: #EFF6FF; color: #1D4ED8; padding: 0.2rem 0.65rem; border-radius: 999px; }
             .cl-version-tag.unreleased { background: #FEF3C7; color: #92400E; }
 
             .cl-group { margin-bottom: 1.25rem; }
-            .cl-group-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray); margin-bottom: 0.5rem; }
-            .cl-group-label.added   { color: #16A34A; }
-            .cl-group-label.changed { color: #2563EB; }
-            .cl-group-label.fixed   { color: #DC2626; }
+            .cl-group-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+            .cl-group-label.added   { color: #15803D; }
+            .cl-group-label.changed { color: #1D4ED8; }
+            .cl-group-label.fixed   { color: #B91C1C; }
 
             .cl-items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.45rem; }
-            .cl-items li { font-size: 0.9rem; color: #374151; padding-left: 1.25rem; position: relative; line-height: 1.6; }
-            .cl-items li::before { content: '–'; position: absolute; left: 0; color: #D1D5DB; }
-            .cl-items code { font-size: 0.8rem; background: #F3F4F6; padding: 0.1rem 0.35rem; border-radius: 4px; color: #111; }
+            .cl-items li { font-size: 0.9rem; color: #1F2937; padding-left: 1.25rem; position: relative; line-height: 1.65; }
+            .cl-items li::before { content: '–'; position: absolute; left: 0; color: #9CA3AF; }
+            .cl-items code { font-size: 0.8rem; background: #E5E7EB; padding: 0.15rem 0.4rem; border-radius: 4px; color: #111827; font-family: monospace; }
 
-            .cl-divider { border: none; border-top: 1px solid var(--border, #E5E7EB); margin: 2.5rem 0; }
+            .cl-divider { border: none; border-top: 1px solid #E5E7EB; margin: 2.5rem 0; }
         </style>
     </head>
     <body>
@@ -75,11 +78,12 @@
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
 
-                <!-- Unreleased -->
+                <!-- 0.4.1 -->
                 <div class="cl-version">
                     <div class="cl-version-header">
-                        <span class="cl-version-number">Unreleased</span>
-                        <span class="cl-version-tag unreleased">In progress</span>
+                        <span class="cl-version-number">0.4.1</span>
+                        <span class="cl-version-date">2026-07-21</span>
+                        <span class="cl-version-tag">Reviewer Verdict &amp; Site Updates</span>
                     </div>
                     <div class="cl-group">
                         <p class="cl-group-label fixed">Fixed</p>
