@@ -4,6 +4,14 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.5.1] - 2026-07-21 — Navbar Consistency
+
+### Fixed
+
+- Added missing Changelog nav link to `progress.html` and `ai-guide.html` so all four pages share an identical navigation bar.
+
+---
+
 ## [0.5.0] - 2026-07-21 — Workflow Architecture Improvements
 
 ### Added
