@@ -88,33 +88,7 @@ jobs:
             const issue = context.payload.issue;
             const labels = issue.labels.map(label => label.name);
             const milestone = labels.find(label => /^M[0-6]$/.test(label));
-            if (!labels.includes('ready-for-review')) {
-              try {
-                await github.rest.issues.removeLabel({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: issue.number,
-                  name: 'passed'
-                });
-              } catch (_) {}
-              const blockedMarker = '<!-- dep-verdict:pass-rejected -->';
-              const existingComments = await github.paginate(github.rest.issues.listComments, {
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
-                per_page: 100
-              });
-              if (!existingComments.some(comment => (comment.body || '').includes(blockedMarker))) {
-                await github.rest.issues.createComment({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: issue.number,
-                  body: `${blockedMarker}\nThe \`passed\` label was removed. This issue has not reached \`ready-for-review\`. Complete its automated checks and prerequisite gate before applying a verdict.`
-                });
-              }
-              core.setOutput('waiting_issue_number', '');
-              return;
-            }
+            // Reviewer verdict is final — always honour `passed` regardless of pipeline state.
             const removable = ['auto-check-pending', 'waiting-on-prerequisite', 'ready-for-review', 'needs-improvement'];
             for (const label of removable) {
               if (!labels.includes(label)) continue;
