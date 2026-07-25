@@ -664,6 +664,85 @@ if (builderDashboard) {
     }
   };
 
+  const renderMainCard = (post) => {
+    const title = escapeHtml(post.title || "Update");
+    const date = formatDate(post.date);
+    const teaser = escapeHtml(post.summaryShort || post.summary || "");
+    const body = post.content ? `<div class="update-body">${renderParagraphs(post.content)}</div>` : "";
+    const callout = post.callout ? `<p class="update-callout">${escapeHtml(post.callout)}</p>` : "";
+    const social = escapeHtml(post.socialBlurb || "");
+    const badge = post.featured ? `<span class="update-badge">Featured story</span>` : "";
+    const onboardingId = "2026-06-22-launch";
+    const scheduleId = "2026-07-10-schedule";
+    const linkHref = post.id === onboardingId ? "index.html#builder-directory" : post.id === scheduleId ? "index.html#milestone-timeline-title" : post.link;
+    const linkHtml = linkHref
+      ? `<p class="update-link"><a href="${escapeHtml(linkHref)}" ${[onboardingId, scheduleId].includes(post.id) ? 'data-scroll="true"' : 'target="_blank" rel="noopener"'}>Read full update</a></p>`
+      : "";
+
+    return `
+      <article class="update-card update-card-featured">
+        <div>
+          ${badge}
+          <strong class="update-title">${title}</strong>
+          <time class="update-date">${escapeHtml(date)}</time>
+          <p class="update-summary">${teaser}</p>
+          ${callout}
+          ${body}
+          ${social ? `<p class="update-social">${social}</p>` : ""}
+          ${linkHtml}
+        </div>
+      </article>
+    `;
+  };
+
+  const renderSnippetItem = (post, active = false) => {
+    const teaser = escapeHtml(post.summaryShort || post.summary || "");
+    return `
+      <div class="update-snippet-item${active ? " active" : ""}" data-update-id="${escapeHtml(post.id)}">
+        <strong class="update-title">${escapeHtml(post.title || "Update")}</strong>
+        <time class="update-date">${escapeHtml(formatDate(post.date))}</time>
+        <p class="update-summary">${teaser}</p>
+        <button class="update-snippet-action" type="button">Read more</button>
+      </div>
+    `;
+  };
+
+  const updateMainPanel = (panel, post) => {
+    panel.innerHTML = renderMainCard(post);
+    const snippetItems = container.querySelectorAll('.update-snippet-item');
+    snippetItems.forEach((item) => {
+      item.classList.toggle('active', item.dataset.updateId === post.id);
+    });
+    // Reattach scroll handlers for any update links rendered inside the main panel
+    attachUpdateLinkHandlers();
+  };
+
+  // Attach click handlers that intercept onboarding links and scroll without reloading
+  function attachUpdateLinkHandlers() {
+    const links = container.querySelectorAll('.update-link a[data-scroll="true"]');
+    links.forEach((a) => {
+      // remove any previous handler to avoid duplicates
+      a.removeEventListener('click', a._updateScrollHandler || (() => {}));
+      const handler = function (e) {
+        const href = a.getAttribute('href') || '';
+        const hashIndex = href.indexOf('#');
+        if (hashIndex === -1) return;
+        const targetId = href.slice(hashIndex + 1);
+        const path = window.location.pathname;
+        const onIndex = path.endsWith('index.html') || path === '/' || path === '';
+        if (onIndex) {
+          const target = document.getElementById(targetId);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      };
+      a.addEventListener('click', handler);
+      a._updateScrollHandler = handler;
+    });
+  }
+
   fetch("data/updates.json")
     .then((r) => {
       if (!r.ok) throw new Error("Updates unavailable");
@@ -676,39 +755,37 @@ if (builderDashboard) {
       }
 
       posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+      const featuredPost = posts.find((post) => post.featured) || posts[0];
+      const postsToShow = posts.slice(0, 5);
+      if (!postsToShow.some((post) => post.id === featuredPost.id)) {
+        postsToShow[postsToShow.length - 1] = featuredPost;
+      }
+      const snippets = postsToShow;
 
-      container.innerHTML = posts
-        .slice(0, 5)
-        .map((post) => {
-          const title = escapeHtml(post.title || "Update");
-          const date = formatDate(post.date);
-          const teaser = escapeHtml(post.summaryShort || post.summary || "");
-          const body = post.content ? `<div class="update-body">${renderParagraphs(post.content)}</div>` : "";
-          const callout = post.callout ? `<p class="update-callout">${escapeHtml(post.callout)}</p>` : "";
-          const social = escapeHtml(post.socialBlurb || "");
-          const link = String(post.link || "").trim();
-          const linkHtml = link ? `<a href="${escapeHtml(link)}">Read more</a>` : "";
-          const featuredClass = post.featured ? " update-card-featured" : "";
-          const badge = post.featured
-            ? `<span class="update-badge">Featured story</span>`
-            : "";
+      container.innerHTML = `
+        <div class="updates-panel">
+          <div class="update-main-panel">${renderMainCard(featuredPost)}</div>
+          <div class="update-snippet-list">
+            ${snippets.map((post) => renderSnippetItem(post, post.id === featuredPost.id)).join("")}
+          </div>
+        </div>
+      `;
 
-          return `
-            <article class="update-card${featuredClass}">
-              <div>
-                ${badge}
-                <strong class="update-title">${title}</strong>
-                <time class="update-date">${escapeHtml(date)}</time>
-                <p class="update-summary">${teaser}</p>
-                ${callout}
-                ${body}
-                ${social ? `<p class="update-social">${social}</p>` : ""}
-                <p class="update-link">${linkHtml}</p>
-              </div>
-            </article>
-          `;
-        })
-        .join("");
+      const mainPanel = container.querySelector('.update-main-panel');
+      const snippetActions = container.querySelectorAll('.update-snippet-action');
+      snippetActions.forEach((button) => {
+        button.addEventListener('click', (event) => {
+          const snippet = event.currentTarget.closest('.update-snippet-item');
+          if (!snippet) return;
+          const selectedId = snippet.dataset.updateId;
+          const selectedPost = posts.find((post) => post.id === selectedId);
+          if (selectedPost) {
+            updateMainPanel(mainPanel, selectedPost);
+          }
+        });
+      });
+      // attach scroll handlers for any links in the initially rendered main panel
+      attachUpdateLinkHandlers();
     })
     .catch(() => {
       container.innerHTML = `<p class="builder-empty">Updates unavailable.</p>`;
