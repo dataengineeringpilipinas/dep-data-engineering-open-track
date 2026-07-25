@@ -24,6 +24,8 @@
     0 13px 13px rgba(0, 0, 0, 0.08),
     0 3px 7px rgba(0, 0, 0, 0.09);
   --container: 1240px;
+  --ai-card-width: 1213.5px;
+  --ai-card-height: 218.375px;
   --gutter: clamp(20px, 5vw, 84px);
   --section-y: clamp(60px, 8vw, 112px);
   --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
@@ -664,6 +666,16 @@ h3 {
   position: relative;
 }
 
+.updates-band {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.content-band.updates-band,
+.updates-band.content-band {
+  max-width: calc(var(--container) + var(--gutter) * 2);
+}
+
 .content-band:nth-of-type(even) {
   background: linear-gradient(180deg, rgba(17, 24, 39, 0.95) 0%, rgba(13, 17, 23, 0.95) 100%);
   border-top: 1px solid rgba(232, 228, 220, 0.04);
@@ -673,6 +685,15 @@ h3 {
 .section-heading {
   margin-bottom: 34px;
   max-width: 780px;
+}
+
+/* Align updates section heading to the updates card width */
+.updates-band .section-heading {
+  max-width: var(--ai-card-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .section-label {
@@ -948,6 +969,13 @@ h3 {
   text-decoration: underline;
   text-underline-offset: 5px;
   color: var(--gold-l);
+}
+
+/* Ensure changelog link for updates sits under the centered heading/cards */
+.updates-band .text-link {
+  display: block;
+  max-width: var(--ai-card-width);
+  margin: 18px auto 0;
 }
 
 .builders-band {
@@ -2160,20 +2188,26 @@ h3 {
 /* ── Updates / News cards ───────────────────────────────────────────────── */
 .updates-band .updates-list {
   display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  max-width: 1100px;
+  gap: 24px;
+  /* center the updates panel and constrain to the AI card width */
+  width: 100%;
+  max-width: var(--ai-card-width);
+  margin: 0 auto;
+  align-items: start;
+  grid-template-columns: 1fr;
 }
 
-.update-card {
-  background: linear-gradient(180deg, rgba(21, 34, 55, 0.96) 0%, rgba(12, 18, 30, 0.98) 100%);
-  border: 1px solid rgba(242, 237, 228, 0.18);
-  border-radius: 12px;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+.update-card,
+.update-snippet-card,
+.update-snippet-list {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.14);
   color: var(--cream);
   overflow: hidden;
-  padding: 20px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  padding: 28px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .updates-band .update-card.reveal {
@@ -2182,19 +2216,21 @@ h3 {
   transition: none !important;
 }
 
-.update-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(240, 185, 85, 0.42);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.24);
+.update-card:hover,
+.update-snippet-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--border);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
 }
 
 .update-title {
   color: var(--white);
   display: block;
-  font-size: 17px;
+  font-family: var(--font-display);
+  font-size: 20px;
   font-weight: 700;
-  line-height: 1.4;
-  margin-bottom: 8px;
+  line-height: 1.2;
+  margin: 0 0 10px 0;
 }
 
 .update-date {
@@ -2203,15 +2239,15 @@ h3 {
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  margin-bottom: 12px;
+  margin: 0 0 12px 0;
 }
 
 .update-summary {
   color: var(--cream);
   font-size: 15px;
   font-weight: 500;
-  line-height: 1.7;
-  margin-bottom: 14px;
+  line-height: 1.6;
+  margin: 0 0 14px 0;
 }
 
 .update-body {
@@ -2243,9 +2279,13 @@ h3 {
 }
 
 .update-card-featured {
-  border: 1px solid rgba(240, 185, 85, 0.38);
-  background: linear-gradient(180deg, rgba(31, 49, 77, 0.98), rgba(11, 18, 30, 1));
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+  border-color: rgba(240, 185, 85, 0.35);
+  background: var(--bg3);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.16);
+  min-height: var(--ai-card-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .update-card-featured .update-title {
@@ -2280,6 +2320,79 @@ h3 {
   .updates-band .updates-list {
     grid-template-columns: 1fr;
   }
+  .updates-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+.update-snippet-item {
+  cursor: pointer;
+  padding: 18px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  background: var(--bg3);
+}
+
+.updates-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.update-main-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.update-snippet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: 18px;
+  padding: 22px;
+  min-width: 0;
+  min-height: var(--ai-card-height);
+  justify-content: center;
+}
+
+.update-snippet-item.active {
+  border-color: rgba(240, 185, 85, 0.6);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
+}
+
+.update-snippet-item .update-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.update-snippet-item .update-date {
+  margin-bottom: 8px;
+}
+
+.update-snippet-item .update-summary {
+  margin-bottom: 14px;
+}
+
+.update-snippet-action {
+  background: rgba(240, 185, 85, 0.16);
+  border: 1px solid rgba(240, 185, 85, 0.36);
+  border-radius: 999px;
+  color: var(--cream);
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px 16px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.update-snippet-action:hover,
+.update-snippet-action:focus-visible {
+  background: rgba(240, 185, 85, 0.28);
+  color: var(--white);
 }
 
 .update-social {
