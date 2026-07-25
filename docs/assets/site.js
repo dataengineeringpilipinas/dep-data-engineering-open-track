@@ -78,9 +78,20 @@ if ("IntersectionObserver" in window && observedSections.length > 0) {
 }
 
 const revealItems = document.querySelectorAll(".reveal");
+let revealObserver = null;
+
+const observeRevealItems = (items) => {
+  items.forEach((item) => {
+    if (revealObserver) {
+      revealObserver.observe(item);
+    } else {
+      item.classList.add("visible");
+    }
+  });
+};
 
 if ("IntersectionObserver" in window && revealItems.length > 0) {
-  const revealObserver = new IntersectionObserver(
+  revealObserver = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) {
@@ -619,3 +630,87 @@ if (builderDashboard) {
       }
     });
 }
+
+// Render a simple updates/news list from data/updates.json
+(function renderUpdates() {
+  const container = document.querySelector('[data-updates]');
+  if (!container) return;
+
+  const escapeHtml = (value) =>
+    String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  const renderParagraphs = (content) =>
+    String(content || "")
+      .split(/\n\s*\n/)
+      .map((paragraph) => `<p>${escapeHtml(paragraph.trim())}</p>`)
+      .join("");
+
+  const formatDate = (iso) => {
+    try {
+      const d = new Date(iso);
+      return new Intl.DateTimeFormat("en-PH", {
+        timeZone: "Asia/Manila",
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      }).format(d);
+    } catch (_) {
+      return "date pending";
+    }
+  };
+
+  fetch("data/updates.json")
+    .then((r) => {
+      if (!r.ok) throw new Error("Updates unavailable");
+      return r.json();
+    })
+    .then((posts) => {
+      if (!Array.isArray(posts) || posts.length === 0) {
+        container.innerHTML = `<p class="builder-empty">No updates yet.</p>`;
+        return;
+      }
+
+      posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      container.innerHTML = posts
+        .slice(0, 5)
+        .map((post) => {
+          const title = escapeHtml(post.title || "Update");
+          const date = formatDate(post.date);
+          const teaser = escapeHtml(post.summaryShort || post.summary || "");
+          const body = post.content ? `<div class="update-body">${renderParagraphs(post.content)}</div>` : "";
+          const callout = post.callout ? `<p class="update-callout">${escapeHtml(post.callout)}</p>` : "";
+          const social = escapeHtml(post.socialBlurb || "");
+          const link = String(post.link || "").trim();
+          const linkHtml = link ? `<a href="${escapeHtml(link)}">Read more</a>` : "";
+          const featuredClass = post.featured ? " update-card-featured" : "";
+          const badge = post.featured
+            ? `<span class="update-badge">Featured story</span>`
+            : "";
+
+          return `
+            <article class="update-card${featuredClass}">
+              <div>
+                ${badge}
+                <strong class="update-title">${title}</strong>
+                <time class="update-date">${escapeHtml(date)}</time>
+                <p class="update-summary">${teaser}</p>
+                ${callout}
+                ${body}
+                ${social ? `<p class="update-social">${social}</p>` : ""}
+                <p class="update-link">${linkHtml}</p>
+              </div>
+            </article>
+          `;
+        })
+        .join("");
+    })
+    .catch(() => {
+      container.innerHTML = `<p class="builder-empty">Updates unavailable.</p>`;
+    });
+})();
