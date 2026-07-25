@@ -1,0 +1,31 @@
+[
+  {
+    "id": "2026-07-23-week-2-checkin",
+    "title": "Week 2 Check‑in: Strong momentum — Keep building, share your wins!",
+    "date": "2026-07-23T14:00:00+08:00",
+    "summary": "Week 2 is underway and the 2026 Open Track cohort is building real momentum. Most builders appear Active, early squads are forming, and GitHub onboarding is progressing well.",
+    "summaryShort": "Week 2 momentum: join office hours, share small wins, and keep shipping.",
+    "content": "The first live week of DEP Open Track has become a momentum moment. Builders are turning ideas into public repos, refining their data questions, and leaning on volunteers to clear GitHub and milestone blockers. This program is about progress, not perfection — a strong Week 2 is about shipping a tiny proof of work, documenting it clearly, and asking for feedback early.\n\nIf you’re still setting up, drop into office hours, share a short update in the cohort channel, and use the week to build a visible project habit that will pay off for the full 24-week journey.",
+    "callout": "Need inspiration? Post your problem statement draft today and get feedback before the end of Week 2.",
+    "featured": true,
+    "socialBlurb": "Week 2 ✅ The 2026 Open Track cohort is settling in. Join our drop‑in office hours for Git help, share a small win on GitHub, and build something you can show off by Week 4! #DataEngineering #DEP2026",
+    "link": "changelog.html#2026-07-23-week-2-checkin"
+  },
+  {
+    "id": "2026-06-22-launch",
+    "title": "2026 Cohort Onboarding Live",
+    "date": "2026-06-22T10:00:00+08:00",
+    "summary": "The 2026 cohort officially begins today. The onboarding site, cohort dashboard, and support channels are live so builders can get started with confidence.",
+    "summaryShort": "The DEP 2026 cohort begins today: site, dashboard, and support are live.",
+    "content": "The 2026 DEP Open Track cohort is now officially launched. Builders can begin onboarding, join the cohort dashboard, set up GitHub repos, and access mentors and volunteers across the cohort channels. This launch marks the start of the 24-week journey from problem statement through dataset work to live deployment.",
+    "callout": "Start strong: complete your repo setup and post your first project outline in the cohort channel today.",
+    "link": "changelog.html#2026-06-22-launch"
+  },
+  {
+    "id": "2026-07-10-schedule",
+    "title": "Cohort Schedule Published",
+    "date": "2026-07-10T09:00:00+08:00",
+    "summary": "Milestone dates and the expected weekly rhythm have been posted to the program checklist.",
+    "link": "MILESTONE_CHECKLIST.md"
+  }
+]
