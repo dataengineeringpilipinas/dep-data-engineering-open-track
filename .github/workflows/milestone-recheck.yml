@@ -25,8 +25,8 @@ jobs:
         with:
           script: |
             const comment = (context.payload.comment.body || '').trim();
-            const command = comment.match(/(?:^|\s)\/recheck\s+([0-9a-f]{40})(?:\s|$)/i);
-            const legacy = comment.match(/^[0-9a-f]{40}$/i);
+            const command = comment.match(/(?:^|\s)\/recheck\s+([0-9a-f]{7,40})(?:\s|$)/i);
+            const legacy = comment.match(/^[0-9a-f]{7,40}$/i);
             const hash = command ? command[1] : legacy ? legacy[0] : '';
             const issueAuthor = context.payload.issue.user.login.toLowerCase();
             const commentAuthor = context.payload.comment.user.login.toLowerCase();

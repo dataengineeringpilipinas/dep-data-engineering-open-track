@@ -4,6 +4,15 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.5.2] - 2026-07-29 — Short Commit Hash Support
+
+### Fixed
+
+- Fixed `/recheck` command ignoring comments that use a short (7-character) commit hash — GitHub's default link format. Both 7- and 40-character hashes are now accepted in `milestone-recheck.yml` and `_milestone-evaluate.yml`.
+- Updated user-facing bot messages to remove the "40-character hash" instruction so builders are not asked to manually expand GitHub's default short hash.
+
+---
+
 ## [0.5.1] - 2026-07-21 — Navbar Consistency
 
 ### Fixed
