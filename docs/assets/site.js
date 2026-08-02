@@ -78,9 +78,20 @@ if ("IntersectionObserver" in window && observedSections.length > 0) {
 }
 
 const revealItems = document.querySelectorAll(".reveal");
+let revealObserver = null;
+
+const observeRevealItems = (items) => {
+  items.forEach((item) => {
+    if (revealObserver) {
+      revealObserver.observe(item);
+    } else {
+      item.classList.add("visible");
+    }
+  });
+};
 
 if ("IntersectionObserver" in window && revealItems.length > 0) {
-  const revealObserver = new IntersectionObserver(
+  revealObserver = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) {
@@ -619,3 +630,164 @@ if (builderDashboard) {
       }
     });
 }
+
+// Render a simple updates/news list from data/updates.json
+(function renderUpdates() {
+  const container = document.querySelector('[data-updates]');
+  if (!container) return;
+
+  const escapeHtml = (value) =>
+    String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  const renderParagraphs = (content) =>
+    String(content || "")
+      .split(/\n\s*\n/)
+      .map((paragraph) => `<p>${escapeHtml(paragraph.trim())}</p>`)
+      .join("");
+
+  const formatDate = (iso) => {
+    try {
+      const d = new Date(iso);
+      return new Intl.DateTimeFormat("en-PH", {
+        timeZone: "Asia/Manila",
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      }).format(d);
+    } catch (_) {
+      return "date pending";
+    }
+  };
+
+  const renderMainCard = (post) => {
+    const title = escapeHtml(post.title || "Update");
+    const date = formatDate(post.date);
+    const teaser = escapeHtml(post.summaryShort || post.summary || "");
+    const body = post.content ? `<div class="update-body">${renderParagraphs(post.content)}</div>` : "";
+    const callout = post.callout ? `<p class="update-callout">${escapeHtml(post.callout)}</p>` : "";
+    const social = escapeHtml(post.socialBlurb || "");
+    const badge = post.featured ? `<span class="update-badge">Featured story</span>` : "";
+    const scrollTarget = post.scrollTarget ? `index.html#${post.scrollTarget}` : null;
+    const linkHref = scrollTarget || post.link;
+    const isScrollLink = Boolean(post.scrollTarget);
+    const linkHtml = linkHref
+      ? `<p class="update-link"><a href="${escapeHtml(linkHref)}" ${isScrollLink ? 'data-scroll="true"' : 'target="_blank" rel="noopener"'}>Read full update</a></p>`
+      : "";
+
+    return `
+      <article class="update-card update-card-featured">
+        <div>
+          ${badge}
+          <strong class="update-title">${title}</strong>
+          <time class="update-date">${escapeHtml(date)}</time>
+          <p class="update-summary">${teaser}</p>
+          ${callout}
+          ${body}
+          ${social ? `<p class="update-social">${social}</p>` : ""}
+          ${linkHtml}
+        </div>
+      </article>
+    `;
+  };
+
+  const renderSnippetItem = (post, active = false) => {
+    const teaser = escapeHtml(post.summaryShort || post.summary || "");
+    return `
+      <div class="update-snippet-item${active ? " active" : ""}" data-update-id="${escapeHtml(post.id)}">
+        <strong class="update-title">${escapeHtml(post.title || "Update")}</strong>
+        <time class="update-date">${escapeHtml(formatDate(post.date))}</time>
+        <p class="update-summary">${teaser}</p>
+        <button class="update-snippet-action" type="button">Read more</button>
+      </div>
+    `;
+  };
+
+  const updateMainPanel = (panel, post) => {
+    panel.innerHTML = renderMainCard(post);
+    const snippetItems = container.querySelectorAll('.update-snippet-item');
+    snippetItems.forEach((item) => {
+      item.classList.toggle('active', item.dataset.updateId === post.id);
+    });
+    // Reattach scroll handlers for any update links rendered inside the main panel
+    attachUpdateLinkHandlers();
+  };
+
+  // Attach click handlers that intercept onboarding links and scroll without reloading
+  function attachUpdateLinkHandlers() {
+    const links = container.querySelectorAll('.update-link a[data-scroll="true"]');
+    links.forEach((a) => {
+      // remove any previous handler to avoid duplicates
+      a.removeEventListener('click', a._updateScrollHandler || (() => {}));
+      const handler = function (e) {
+        const href = a.getAttribute('href') || '';
+        const hashIndex = href.indexOf('#');
+        if (hashIndex === -1) return;
+        const targetId = href.slice(hashIndex + 1);
+        const path = window.location.pathname;
+        const onIndex = path.endsWith('index.html') || path === '/' || path === '';
+        if (onIndex) {
+          const target = document.getElementById(targetId);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      };
+      a.addEventListener('click', handler);
+      a._updateScrollHandler = handler;
+    });
+  }
+
+  fetch("data/updates.json")
+    .then((r) => {
+      if (!r.ok) throw new Error("Updates unavailable");
+      return r.json();
+    })
+    .then((posts) => {
+      if (!Array.isArray(posts) || posts.length === 0) {
+        container.innerHTML = `<p class="builder-empty">No updates yet.</p>`;
+        return;
+      }
+
+      posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+      const featuredPost = posts.find((post) => post.featured) || posts[0];
+      const postsToShow = posts.slice(0, 5);
+      if (!postsToShow.some((post) => post.id === featuredPost.id)) {
+        postsToShow[postsToShow.length - 1] = featuredPost;
+      }
+      const snippets = postsToShow;
+
+      container.innerHTML = `
+        <div class="updates-panel">
+          <div class="update-main-panel">${renderMainCard(featuredPost)}</div>
+          <div class="update-snippet-list">
+            ${snippets.map((post) => renderSnippetItem(post, post.id === featuredPost.id)).join("")}
+          </div>
+        </div>
+      `;
+
+      const mainPanel = container.querySelector('.update-main-panel');
+      const snippetActions = container.querySelectorAll('.update-snippet-action');
+      snippetActions.forEach((button) => {
+        button.addEventListener('click', (event) => {
+          const snippet = event.currentTarget.closest('.update-snippet-item');
+          if (!snippet) return;
+          const selectedId = snippet.dataset.updateId;
+          const selectedPost = posts.find((post) => post.id === selectedId);
+          if (selectedPost) {
+            updateMainPanel(mainPanel, selectedPost);
+          }
+        });
+      });
+      // attach scroll handlers for any links in the initially rendered main panel
+      attachUpdateLinkHandlers();
+    })
+    .catch(() => {
+      container.innerHTML = `<p class="builder-empty">Updates unavailable.</p>`;
+    });
+})();

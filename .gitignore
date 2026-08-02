@@ -11,3 +11,4 @@ CONTEXT.md
 
 # Local Google Sheets exports may contain private cohort tracking fields.
 docs/data/*.csv
+PR_SUMMARY.md
