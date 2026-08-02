@@ -19,6 +19,7 @@
     "summaryShort": "The DEP 2026 cohort begins today: site, dashboard, and support are live.",
     "content": "The 2026 DEP Open Track cohort is now officially launched. Builders can begin onboarding, join the cohort dashboard, set up GitHub repos, and access mentors and volunteers across the cohort channels. This launch marks the start of the 24-week journey from problem statement through dataset work to live deployment.",
     "callout": "Start strong: complete your repo setup and post your first project outline in the cohort channel today.",
+    "scrollTarget": "builder-directory",
     "link": "changelog.html#2026-06-22-launch"
   },
   {
@@ -26,6 +27,7 @@
     "title": "Cohort Schedule Published",
     "date": "2026-07-10T09:00:00+08:00",
     "summary": "Milestone dates and the expected weekly rhythm have been posted to the program checklist.",
+    "scrollTarget": "milestone-timeline-title",
     "link": "MILESTONE_CHECKLIST.md"
   }
 ]

@@ -672,11 +672,11 @@ if (builderDashboard) {
     const callout = post.callout ? `<p class="update-callout">${escapeHtml(post.callout)}</p>` : "";
     const social = escapeHtml(post.socialBlurb || "");
     const badge = post.featured ? `<span class="update-badge">Featured story</span>` : "";
-    const onboardingId = "2026-06-22-launch";
-    const scheduleId = "2026-07-10-schedule";
-    const linkHref = post.id === onboardingId ? "index.html#builder-directory" : post.id === scheduleId ? "index.html#milestone-timeline-title" : post.link;
+    const scrollTarget = post.scrollTarget ? `index.html#${post.scrollTarget}` : null;
+    const linkHref = scrollTarget || post.link;
+    const isScrollLink = Boolean(post.scrollTarget);
     const linkHtml = linkHref
-      ? `<p class="update-link"><a href="${escapeHtml(linkHref)}" ${[onboardingId, scheduleId].includes(post.id) ? 'data-scroll="true"' : 'target="_blank" rel="noopener"'}>Read full update</a></p>`
+      ? `<p class="update-link"><a href="${escapeHtml(linkHref)}" ${isScrollLink ? 'data-scroll="true"' : 'target="_blank" rel="noopener"'}>Read full update</a></p>`
       : "";
 
     return `
