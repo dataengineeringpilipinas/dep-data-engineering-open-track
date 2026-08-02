@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and help (DEP Discord)
+    url: https://discord.com/invite/buDgydz7J9
+    about: Ask questions in the community channels. Most answers arrive faster there than in an issue.
+  - name: Program FAQ and docs
+    url: https://dataengineeringpilipinas.github.io/dep-data-engineering-open-track/
+    about: Deadlines, recheck instructions, milestone checklists, and common answers.
