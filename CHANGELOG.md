@@ -4,6 +4,18 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.5.3] - 2026-08-03 — Nested Data Directory Support
+
+### Fixed
+
+- Fixed the M2, M3, and M5 data directory checks ignoring files inside subdirectories of `data/raw/` and `data/processed/`. Builders who group raw files by source or year no longer fail the auto-check with real data committed. (#170)
+
+### Added
+
+- Added a CI workflow that runs the milestone script tests on pull requests touching `.github/scripts/`.
+
+---
+
 ## [0.5.2] - 2026-07-29 — Short Commit Hash Support
 
 ### Fixed
