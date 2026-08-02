@@ -4,6 +4,18 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- Added `progress-snapshot.yml` — hourly workflow that commits a trimmed issue snapshot to `docs/data/progress-snapshot.json`, so the progress dashboard no longer depends on the visitor's unauthenticated GitHub API quota (60 requests/hour/IP). Commits are skipped when the data has not changed.
+
+### Changed
+
+- Changed the progress dashboard to render from the committed snapshot first, falling back to the live GitHub API when the snapshot is unavailable.
+
+---
+
 ## [0.5.2] - 2026-07-29 — Short Commit Hash Support
 
 ### Fixed
