@@ -1,0 +1,162 @@
+name: Review SLA Check
+
+# Automates the escalation policy documented in docs/VOLUNTEER_GUIDE.md:
+# day 5 a moderator pings the reviewer, day 7 the System Lead steps in,
+# and a builder is never blocked more than 7 days. Days are counted from
+# when the issue entered its current state, not from creation, so a
+# resubmission gets a fresh clock.
+
+on:
+  schedule:
+    - cron: "0 2 * * *" # 10:00 Asia/Manila, daily
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Log actions without posting comments or Discord messages
+        type: boolean
+        default: false
+
+permissions:
+  issues: write
+
+jobs:
+  sla-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check review SLA on open submissions
+        uses: actions/github-script@v7
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DRY_RUN: ${{ inputs.dry_run || 'false' }}
+        with:
+          script: |
+            const DRY = process.env.DRY_RUN === 'true';
+            const DAY = 86400000;
+
+            const STAGES = [
+              {
+                label: 'ready-for-review',
+                minDays: 7,
+                key: 'ready-for-review:7d',
+                discord: true,
+                message: (issue, days) =>
+                  `This submission has been \`ready-for-review\` for ${days} days, past the 7-day ` +
+                  `limit in the volunteer guide ("a builder should never be blocked on a milestone ` +
+                  `for more than 7 days"). System Lead: please review it directly or reassign.`,
+              },
+              {
+                label: 'ready-for-review',
+                minDays: 5,
+                key: 'ready-for-review:5d',
+                discord: true,
+                message: (issue, days) =>
+                  `This submission has been \`ready-for-review\` for ${days} days. Per the ` +
+                  `escalation policy, moderators: please ping the assigned reviewer in the ` +
+                  `volunteer channel.` +
+                  (issue.assignees.length
+                    ? ` (${issue.assignees.map(a => '@' + a.login).join(', ')})`
+                    : ''),
+              },
+              {
+                label: 'needs-improvement',
+                minDays: 7,
+                key: 'needs-improvement:7d',
+                discord: false,
+                message: (issue, days) =>
+                  `Friendly nudge: this submission has been \`needs-improvement\` for ${days} days. ` +
+                  `When you have pushed a fix, comment \`/recheck <commit-hash>\` here to re-run ` +
+                  `the checks. Stuck? Ask in the Discord community channel.`,
+              },
+            ];
+
+            // When the issue entered its current state: the most recent
+            // "labeled" event for that label.
+            async function labeledDate(issue, label) {
+              const events = await github.paginate(github.rest.issues.listEvents, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                per_page: 100,
+              });
+              const labeled = events
+                .filter(e => e.event === 'labeled' && e.label?.name === label)
+                .map(e => e.created_at)
+                .sort();
+              return labeled.length ? labeled[labeled.length - 1] : issue.created_at;
+            }
+
+            async function alreadyNagged(issue, marker) {
+              const comments = await github.paginate(github.rest.issues.listComments, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                per_page: 100,
+              });
+              return comments.some(c => c.body?.includes(marker));
+            }
+
+            let enrolled = new Set();
+            try {
+              const res = await fetch(
+                `https://raw.githubusercontent.com/${context.repo.owner}/${context.repo.repo}/main/.github/enrolled-participants.json`
+              );
+              const data = await res.json();
+              enrolled = new Set((data.participants || []).map(l => l.toLowerCase()));
+            } catch (e) {
+              core.warning(`Could not load enrolled participants: ${e.message}`);
+            }
+
+            async function sendDiscord(issue, stage, days) {
+              if (!process.env.DISCORD_WEBHOOK_URL) return;
+              if (!enrolled.has(issue.user.login.toLowerCase())) return;
+              const milestone = issue.labels.map(l => l.name).find(n => /^M[0-6]$/.test(n)) || '—';
+              await fetch(process.env.DISCORD_WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ embeds: [{
+                  title: `⏰ Review SLA — ${milestone} waiting ${days} days`,
+                  color: stage.minDays >= 7 ? 0xB60205 : 0xFBCA04,
+                  fields: [
+                    { name: 'Stage', value: stage.key, inline: true },
+                    { name: 'Issue', value: issue.html_url, inline: false },
+                  ],
+                  timestamp: new Date().toISOString(),
+                }] })
+              });
+            }
+
+            const seen = new Set(); // issue -> highest stage only
+            for (const stage of STAGES) {
+              const issues = await github.paginate(github.rest.issues.listForRepo, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: `milestone-submission,${stage.label}`,
+                state: 'open',
+                per_page: 100,
+              });
+              for (const issue of issues.filter(i => !i.pull_request)) {
+                if (seen.has(`${issue.number}:${stage.label}`)) continue;
+                const since = await labeledDate(issue, stage.label);
+                const days = Math.floor((Date.now() - new Date(since).getTime()) / DAY);
+                if (days < stage.minDays) continue;
+                seen.add(`${issue.number}:${stage.label}`);
+
+                const marker = `<!-- dep-sla:${stage.key}:${since} -->`;
+                if (await alreadyNagged(issue, marker)) {
+                  core.info(`#${issue.number} already nagged for ${stage.key}`);
+                  continue;
+                }
+                if (DRY) {
+                  core.notice(`DRY RUN: would post ${stage.key} on #${issue.number} (${days}d)`);
+                  continue;
+                }
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  body: `${marker}\n${stage.message(issue, days)}`,
+                });
+                if (stage.discord) await sendDiscord(issue, stage, days);
+                core.info(`Posted ${stage.key} on #${issue.number} (${days}d)`);
+              }
+            }
