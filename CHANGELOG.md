@@ -4,6 +4,14 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- Added `docs/RESOURCES.md` — Philippine open data sources, general dataset catalogs, and DEP community links, linked from the root README, the six phase READMEs, and the week 2 data-discovery resources. (#3)
+
+---
+
 ## [0.5.2] - 2026-07-29 — Short Commit Hash Support
 
 ### Fixed
