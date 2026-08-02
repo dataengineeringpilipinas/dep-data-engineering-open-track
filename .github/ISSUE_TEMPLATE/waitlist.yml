@@ -1,0 +1,61 @@
+name: "Waitlist Application"
+description: The cohort is full but you are building along anyway? Apply for the next open slot.
+title: "[Waitlist] <Your Name>"
+labels: ["waitlist"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Waitlist Application**
+        Slots open when enrolled builders become inactive. When one opens, moderators go through waitlist applications oldest first and enroll the first applicant whose repo shows real progress. You can keep building in the meantime: the milestone checks run against your repo, not your enrollment date, so nothing you do now is wasted.
+
+  - type: input
+    id: builder_name
+    attributes:
+      label: Builder Name
+      placeholder: "e.g. Maria Santos"
+    validations:
+      required: true
+
+  - type: input
+    id: repo_url
+    attributes:
+      label: GitHub Repo URL
+      description: Public URL of your project repo built from the Starter Kit.
+      placeholder: "https://github.com/<your-username>/dep-starter-kit"
+    validations:
+      required: true
+      pattern: ^https?:\/\/github\.com\/[\w.-]+\/[\w.-]+
+      pattern_mismatch_message: "Enter the repository URL (e.g. https://github.com/your-username/dep-starter-kit), not a file or blob URL."
+
+  - type: dropdown
+    id: cohort
+    attributes:
+      label: Cohort
+      options:
+        - "2026-A"
+        - "Open Track"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: milestones_done
+    attributes:
+      label: Milestones you have completed on your own
+      description: Self-assessed. Moderators verify against your repo before enrolling you.
+      options:
+        - label: "M0 — Problem Statement"
+        - label: "M1 — Foundations"
+        - label: "M2 — Data Ingestion"
+        - label: "M3 — Data Processing"
+        - label: "M4 — Analysis & Insights"
+        - label: "M5 — Predictive / Alt Track"
+        - label: "M6 — Live Deployment"
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else
+      description: Optional. Context you want moderators to know.
+    validations:
+      required: false
