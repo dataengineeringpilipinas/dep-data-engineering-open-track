@@ -4,6 +4,18 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- Added `sla-nag.yml` — daily workflow automating the volunteer guide's Review Escalation Policy: day-5 moderator ping and day-7 System Lead escalation on `ready-for-review` issues (with Discord mirror), plus a day-7 builder nudge on idle `needs-improvement` issues. One comment per stage per review cycle; `dry_run` dispatch input for safe testing.
+
+### Changed
+
+- Changed the progress dashboard staleness badges from 3/5 days to 5/7 days to match the documented escalation policy.
+
+---
+
 ## [0.5.2] - 2026-07-29 — Short Commit Hash Support
 
 ### Fixed
