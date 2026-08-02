@@ -76,6 +76,21 @@ def test_dir_has_real_files_returns_false_when_dir_missing(tmp_path):
     assert not dir_has_real_files(tmp_path, "data", "raw")
 
 
+def test_dir_has_real_files_finds_nested_file(tmp_path):
+    # Regression test for #170: builders group raw files into subdirectories.
+    d = tmp_path / "data" / "raw" / "psa" / "2026"
+    d.mkdir(parents=True)
+    (d / "data.csv").write_text("col1,col2\n1,2")
+    assert dir_has_real_files(tmp_path, "data", "raw")
+
+
+def test_dir_has_real_files_ignores_nested_gitkeep(tmp_path):
+    d = tmp_path / "data" / "raw" / "source_a"
+    d.mkdir(parents=True)
+    (d / ".gitkeep").write_text("")
+    assert not dir_has_real_files(tmp_path, "data", "raw")
+
+
 # ---------------------------------------------------------------------------
 # M1
 # ---------------------------------------------------------------------------
