@@ -66,6 +66,8 @@ A builder should never be blocked on a milestone for more than 7 days due to rev
 | Day 5 | Community Moderator | Ping the assigned reviewer in the volunteer channel if no verdict yet |
 | Day 7 | System Lead | Step in directly — either review it or reassign to another available reviewer |
 
+The day-5 and day-7 reminders are automated: `sla-nag.yml` runs daily, comments on overdue `ready-for-review` issues, and mirrors the ping to Discord. It also nudges builders whose `needs-improvement` issues have been idle for 7 days. The clock starts when the issue enters its current state, so a resubmission is never counted against the previous review round.
+
 The prerequisite queue protects builders from reviewer timing. A next-milestone issue must stay open while the previous review is pending. Deadline classification uses the issue's original creation time, remains informational, and does not block its release.
 
 **If you cannot review a submission you've been assigned:**
