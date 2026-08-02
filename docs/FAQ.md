@@ -60,6 +60,10 @@ We limit the inaugural cohort to 50 builders so the team can provide meaningful 
 
 Applications are reviewed for foundations, resources, intent, and grit: Python and SQL familiarity, the hardware and internet needed to participate, clear motivation to learn and execute, and visible commitment to finishing the six-month journey.
 
+**Q: The cohort is full. How do I get in?**
+
+Open a [Waitlist Application](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose) issue with a link to your repo. Slots open when enrolled builders become inactive; moderators enroll from the waitlist oldest first, checking claimed progress against the linked repo. Keep building while you wait. Milestone checks run against your repo, not your enrollment date, so work done before enrollment counts the moment you are in.
+
 **Q: If I don't get selected, what are my options?**
 
 Not being selected does not end your journey. You can continue building your skills through free resources from our official partners, DataCamp and WorldQuant University. You can also explore [learning materials](https://dataengineering.ph/resources.html), [past sessions](https://www.youtube.com/@DataEngineeringPilipinas), and [community activities](https://www.meetup.com/data-engineering-pilipinas/) available through the [Data Engineering Pilipinas](https://dataengineering.ph) website. Stay engaged, keep learning, and feel free to apply again in the next cohort cycle.

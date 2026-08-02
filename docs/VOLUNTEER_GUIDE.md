@@ -35,6 +35,11 @@ Keep the Discord healthy. Answer questions async. Encourage progress.
 - Redirect to resources before giving direct answers
 - Surface common questions to the program lead
 
+**Slot backfill (when a builder is removed from `enrolled-participants.json`):**
+- Sort open `waitlist` issues oldest first
+- Check the applicant's claimed milestones against their linked repo (the self-check summary in their Actions tab makes this a glance)
+- Add the GitHub login to `.github/enrolled-participants.json`, comment on the waitlist issue, close it
+
 ### Squad Guides *(Optional)*
 Paired with stuck Builders. Limited slots. Only for Builders who are blocked, not those who are slow.
 

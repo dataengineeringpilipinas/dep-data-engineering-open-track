@@ -4,6 +4,15 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- Added issue intake templates: bug reports (labeled `bug`, kept out of the milestone pipeline) and waitlist applications (labeled `waitlist`) for people building along without a slot. Blank issues are disabled; questions route to Discord and the FAQ via contact links.
+- Documented the slot backfill process for moderators in `VOLUNTEER_GUIDE.md` and added a waitlist FAQ entry.
+
+---
+
 ## [0.5.2] - 2026-07-29 — Short Commit Hash Support
 
 ### Fixed
