@@ -4,6 +4,14 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [Unreleased]
+
+### Changed
+
+- Removed 18 builders still at milestone 0 from the public builder directory; the snapshot now shows the 32 builders who have progressed beyond onboarding.
+
+---
+
 ## [0.5.3] - 2026-08-03 — Nested Data Directory Support
 
 ### Fixed
