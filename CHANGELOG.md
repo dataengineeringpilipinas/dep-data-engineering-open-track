@@ -10,6 +10,22 @@ All notable changes to this repository are recorded here.
 
 - Added a Milestone Self-Check workflow to the starter kit — builders see the official structural checks on every push and can run a targeted pass/fail check for one milestone before submitting. The checker script is fetched from this repo at run time, so builder copies never drift from the central validator. Ships the "builder-side prechecks" part of #2.
 
+### Changed
+
+- Removed 18 builders still at milestone 0 from the public builder directory; the snapshot now shows the 32 builders who have progressed beyond onboarding.
+
+---
+
+## [0.5.3] - 2026-08-03 — Nested Data Directory Support
+
+### Fixed
+
+- Fixed the M2, M3, and M5 data directory checks ignoring files inside subdirectories of `data/raw/` and `data/processed/`. Builders who group raw files by source or year no longer fail the auto-check with real data committed. (#170)
+
+### Added
+
+- Added a CI workflow that runs the milestone script tests on pull requests touching `.github/scripts/`.
+
 ---
 
 ## [0.5.2] - 2026-07-29 — Short Commit Hash Support
