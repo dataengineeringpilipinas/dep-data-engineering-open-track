@@ -13,6 +13,19 @@ All notable changes to this repository are recorded here.
 ### Changed
 
 - Changed the progress dashboard to render from the committed snapshot first, falling back to the live GitHub API when the snapshot is unavailable.
+- Removed 18 builders still at milestone 0 from the public builder directory; the snapshot now shows the 32 builders who have progressed beyond onboarding.
+
+---
+
+## [0.5.3] - 2026-08-03 — Nested Data Directory Support
+
+### Fixed
+
+- Fixed the M2, M3, and M5 data directory checks ignoring files inside subdirectories of `data/raw/` and `data/processed/`. Builders who group raw files by source or year no longer fail the auto-check with real data committed. (#170)
+
+### Added
+
+- Added a CI workflow that runs the milestone script tests on pull requests touching `.github/scripts/`.
 
 ---
 
