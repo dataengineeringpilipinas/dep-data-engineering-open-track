@@ -266,7 +266,28 @@ async function fetchEnrolled() {
   }
 }
 
-async function fetchAll() {
+function filterIssues(batch) {
+  return batch.filter((issue) => {
+    const labelNames = issue.labels.map((label) => label.name);
+    const isDuplicate = labelNames.includes("duplicate");
+    const isLegacyLateOnly =
+      labelNames.includes("late-submission") &&
+      !PROCESS_LABELS.some((label) => labelNames.includes(label));
+    return !issue.pull_request && !isDuplicate && !isLegacyLateOnly;
+  });
+}
+
+// Hourly server-side snapshot committed by progress-snapshot.yml. Same origin
+// as the Pages site, so no api.github.com rate limit applies.
+async function fetchSnapshot() {
+  const response = await fetch("data/progress-snapshot.json");
+  if (!response.ok) throw new Error(`snapshot fetch: ${response.status}`);
+  const payload = await response.json();
+  if (!Array.isArray(payload.issues)) throw new Error("snapshot has no issues array");
+  return filterIssues(payload.issues);
+}
+
+async function fetchLive() {
   let issues = [];
   let page = 1;
   while (true) {
@@ -275,22 +296,20 @@ async function fetchAll() {
     );
     const batch = await response.json();
     if (!Array.isArray(batch) || !batch.length) break;
-    issues = issues.concat(
-      batch.filter(
-        (issue) => {
-          const labelNames = issue.labels.map((label) => label.name);
-          const isDuplicate = labelNames.includes("duplicate");
-          const isLegacyLateOnly =
-            labelNames.includes("late-submission") &&
-            !PROCESS_LABELS.some((label) => labelNames.includes(label));
-          return !issue.pull_request && !isDuplicate && !isLegacyLateOnly;
-        },
-      ),
-    );
+    issues = issues.concat(filterIssues(batch));
     if (batch.length < 100) break;
     page += 1;
   }
   return issues;
+}
+
+async function fetchAll() {
+  try {
+    return await fetchSnapshot();
+  } catch (err) {
+    console.warn("Falling back to live GitHub API:", err.message);
+    return fetchLive();
+  }
 }
 
 async function load() {
