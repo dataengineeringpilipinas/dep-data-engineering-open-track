@@ -9,6 +9,8 @@ All notable changes to this repository are recorded here.
 ### Added
 
 - Added `progress-snapshot.yml` — hourly workflow that commits a trimmed issue snapshot to `docs/data/progress-snapshot.json`, so the progress dashboard no longer depends on the visitor's unauthenticated GitHub API quota (60 requests/hour/IP). Commits are skipped when the data has not changed.
+- Added a Milestone Self-Check workflow to the starter kit — builders see the official structural checks on every push and can run a targeted pass/fail check for one milestone before submitting. The checker script is fetched from this repo at run time, so builder copies never drift from the central validator. Ships the "builder-side prechecks" part of #2.
+- Added `docs/RESOURCES.md` — Philippine open data sources, general dataset catalogs, and DEP community links, linked from the root README, the six phase READMEs, and the week 2 data-discovery resources. (#3)
 
 ### Changed
 

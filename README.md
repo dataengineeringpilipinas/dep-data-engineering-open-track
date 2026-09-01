@@ -101,6 +101,7 @@ Progress is tracked through 7 milestones (M0–M6). Each one has a clear output 
 > **Gates:** Milestones are sequential, and M0/M1 are hard progression gates. Learners may record the next submission while a prerequisite review is pending, but they must not proceed until the prerequisite is marked `passed`. The issue stays queued and releases automatically after approval. Target deadlines remain visible; a late submission is flagged but continues through normal evaluation.
 
 Full checklist: [docs/MILESTONE_CHECKLIST.md](docs/MILESTONE_CHECKLIST.md)
+Dataset sources and community links: [docs/RESOURCES.md](docs/RESOURCES.md)
 
 ---
 
