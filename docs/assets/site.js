@@ -664,6 +664,12 @@ if (builderDashboard) {
     }
   };
 
+  const isLinkedInPost = (post) =>
+    post.source === "linkedin" || /linkedin\.com/i.test(String(post.link || ""));
+
+  const linkedInBadge = () =>
+    `<span class="update-badge update-badge-linkedin"><svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>LinkedIn</span>`;
+
   const renderMainCard = (post) => {
     const title = escapeHtml(post.title || "Update");
     const date = formatDate(post.date);
@@ -671,18 +677,23 @@ if (builderDashboard) {
     const body = post.content ? `<div class="update-body">${renderParagraphs(post.content)}</div>` : "";
     const callout = post.callout ? `<p class="update-callout">${escapeHtml(post.callout)}</p>` : "";
     const social = escapeHtml(post.socialBlurb || "");
-    const badge = post.featured ? `<span class="update-badge">Featured story</span>` : "";
+    const onLinkedIn = isLinkedInPost(post);
+    const badges = [
+      post.featured ? `<span class="update-badge">Featured story</span>` : "",
+      onLinkedIn ? linkedInBadge() : "",
+    ].join("");
     const scrollTarget = post.scrollTarget ? `index.html#${post.scrollTarget}` : null;
     const linkHref = scrollTarget || post.link;
     const isScrollLink = Boolean(post.scrollTarget);
+    const linkLabel = onLinkedIn ? "View post on LinkedIn ↗" : "Read full update";
     const linkHtml = linkHref
-      ? `<p class="update-link"><a href="${escapeHtml(linkHref)}" ${isScrollLink ? 'data-scroll="true"' : 'target="_blank" rel="noopener"'}>Read full update</a></p>`
+      ? `<p class="update-link"><a href="${escapeHtml(linkHref)}" ${isScrollLink ? 'data-scroll="true"' : 'target="_blank" rel="noopener"'}>${linkLabel}</a></p>`
       : "";
 
     return `
-      <article class="update-card update-card-featured">
+      <article class="update-card update-card-featured${onLinkedIn ? " update-card-linkedin" : ""}">
         <div>
-          ${badge}
+          ${badges}
           <strong class="update-title">${title}</strong>
           <time class="update-date">${escapeHtml(date)}</time>
           <p class="update-summary">${teaser}</p>
@@ -697,8 +708,10 @@ if (builderDashboard) {
 
   const renderSnippetItem = (post, active = false) => {
     const teaser = escapeHtml(post.summaryShort || post.summary || "");
+    const onLinkedIn = isLinkedInPost(post);
     return `
       <div class="update-snippet-item${active ? " active" : ""}" data-update-id="${escapeHtml(post.id)}">
+        ${onLinkedIn ? linkedInBadge() : ""}
         <strong class="update-title">${escapeHtml(post.title || "Update")}</strong>
         <time class="update-date">${escapeHtml(formatDate(post.date))}</time>
         <p class="update-summary">${teaser}</p>
