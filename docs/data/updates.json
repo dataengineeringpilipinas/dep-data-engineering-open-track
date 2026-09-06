@@ -1,5 +1,26 @@
 [
   {
+    "id": "2026-09-06-community-update-1",
+    "title": "DEP 2026 Cohort Spotlight: Celebrating Our Consistent Builders!",
+    "date": "2026-09-06T10:00:00+08:00",
+    "summary": "Congratulations, DEP Builders! 🎉 Your hard work, dedication, and progress are seen and valued. Keep going, keep building, and keep believing in what you can achieve. You’re doing great!",
+    "summaryShort": "A new DEP builders update is available on LinkedIn.",
+    "content": "Congratulations, DEP Builders! 🎉 Your hard work, dedication, and progress are seen and valued. Keep going, keep building, and keep believing in what you can achieve. You’re doing great! Read the original post for the complete update and join the conversation on LinkedIn.",
+    "featured": true,
+    "source": "linkedin",
+    "link": "https://www.linkedin.com/posts/dataengineeringpilipinas_buildinpublic-dataengineeringpilipinas-depdatabuilder-activity-7501444109916835840-3yjQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAADu1SY4BgNvWjtXRWs6DZ3iZG-c7L7GubTA"
+  },
+  {
+    "id": "2026-09-06-community-update-2",
+    "title": "DEP Builder Spotlight: Jeanne Marie \"Shiva\" Quiñanola | Learning & Building in Public",
+    "date": "2026-09-06T09:00:00+08:00",
+    "summary": "As part of her journey in the DEP 2026 Program Cohort, Jeanne Marie is taking on the challenge of translating her math foundation into practical data engineering workflows.",
+    "summaryShort": "Another DEP builder update is available on LinkedIn.",
+    "content": "As part of her journey in the DEP 2026 Program Cohort, Jeanne Marie is taking on the challenge of translating her math foundation into practical data engineering workflows. Builders and volunteers can follow the discussion on LinkedIn for the full context.",
+    "source": "linkedin",
+    "link": "https://www.linkedin.com/posts/dataengineeringpilipinas_dataengineeringpilipinas-depdatabuilder-buildinpublic-activity-7500356799250780160-MX4H?utm_source=share&utm_medium=member_desktop&rcm=ACoAADu1SY4BgNvWjtXRWs6DZ3iZG-c7L7GubTA"
+  },
+  {
     "id": "2026-07-23-week-2-checkin",
     "title": "Week 2 Check‑in: Strong momentum — Keep building, share your wins!",
     "date": "2026-07-23T14:00:00+08:00",
@@ -7,7 +28,6 @@
     "summaryShort": "Week 2 momentum: join office hours, share small wins, and keep shipping.",
     "content": "The first live week of DEP Open Track has become a momentum moment. Builders are turning ideas into public repos, refining their data questions, and leaning on volunteers to clear GitHub and milestone blockers. This program is about progress, not perfection — a strong Week 2 is about shipping a tiny proof of work, documenting it clearly, and asking for feedback early.\n\nIf you’re still setting up, drop into office hours, share a short update in the cohort channel, and use the week to build a visible project habit that will pay off for the full 24-week journey.",
     "callout": "Need inspiration? Post your problem statement draft today and get feedback before the end of Week 2.",
-    "featured": true,
     "socialBlurb": "Week 2 ✅ The 2026 Open Track cohort is settling in. Join our drop‑in office hours for Git help, share a small win on GitHub, and build something you can show off by Week 4! #DataEngineering #DEP2026",
     "link": "progress.html"
   },
