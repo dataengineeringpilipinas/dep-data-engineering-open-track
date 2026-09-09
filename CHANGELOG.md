@@ -4,6 +4,18 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- Added a LinkedIn badge/CTA to the homepage Updates section so LinkedIn-sourced posts are visually distinguished from other updates, and featured the latest DEP builder cohort spotlight from LinkedIn as the top update.
+
+### Changed
+
+- Unfeatured the Week 2 check-in update in `docs/data/updates.json` now that a newer post is featured.
+
+---
+
 ## [0.5.2] - 2026-07-29 — Short Commit Hash Support
 
 ### Fixed
