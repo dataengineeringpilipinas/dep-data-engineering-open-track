@@ -2278,6 +2278,27 @@ h3 {
   text-transform: uppercase;
 }
 
+.update-badge-linkedin {
+  background: rgba(10, 102, 194, 0.16);
+  border-color: rgba(10, 102, 194, 0.4);
+  color: #6cb2f4;
+  gap: 6px;
+  margin-left: 8px;
+}
+
+.update-badge-linkedin svg {
+  flex-shrink: 0;
+}
+
+.update-card-linkedin {
+  border-color: rgba(10, 102, 194, 0.35);
+}
+
+.update-snippet-item .update-badge-linkedin {
+  margin-left: 0;
+  margin-bottom: 8px;
+}
+
 .update-card-featured {
   border-color: rgba(240, 185, 85, 0.35);
   background: var(--bg3);
