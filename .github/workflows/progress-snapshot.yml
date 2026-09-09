@@ -1,0 +1,52 @@
+name: Progress Snapshot
+
+# Writes docs/data/progress-snapshot.json so the Pages dashboard can render
+# without hitting api.github.com from the visitor's browser (60 req/hr/IP
+# unauthenticated). The dashboard falls back to the live API when the
+# snapshot is missing.
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: progress-snapshot
+  cancel-in-progress: true
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch milestone submission issues
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --paginate \
+            "repos/${GITHUB_REPOSITORY}/issues?labels=milestone-submission&state=all&per_page=100" \
+            --jq '[.[] | {number, title, html_url, created_at, updated_at, closed_at, body,
+                          user: {login: .user.login},
+                          labels: [.labels[] | {name}],
+                          pull_request: (has("pull_request"))}]' \
+            | jq -s 'add // []' > new-issues.json
+
+      - name: Write snapshot only when the data changed
+        run: |
+          existing="docs/data/progress-snapshot.json"
+          if [ -f "$existing" ] && \
+             diff -q <(jq -S .issues "$existing") <(jq -S . new-issues.json) >/dev/null; then
+            echo "No change; skipping commit."
+            exit 0
+          fi
+          jq -n --slurpfile issues new-issues.json \
+            '{generated_at: (now | todate), issues: $issues[0]}' > "$existing"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$existing"
+          git commit -m "chore(data): update progress snapshot [skip ci]"
+          git push

@@ -1,0 +1,3380 @@
+{
+  "generated_at": "2026-08-02T20:57:12Z",
+  "issues": [
+    {
+      "body": "### Builder Name\n\nJimwell Bryll Santos\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/jimwellbryllsantos-dot/dep-data-engineering-jimwellbryllsantos\n\n### Commit Hash\n\n8432d10153c816406ede45047a39b69a91578573`\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-08-02T14:44:15Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/169",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 169,
+      "pull_request": false,
+      "title": "[M2] Jimwell Bryll Santos — Bata, Bata, Saan Ka Nagmula? From Birthplace to Opportunity: Building Provincial Opportunity Index for the Philippines",
+      "updated_at": "2026-08-02T15:31:39Z",
+      "user": {
+        "login": "jimwellbryllsantos-dot"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJerome Fabrero\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/jffabrero/dep-data-engineering-jffabrero\n\n### Commit Hash\n\nd9a60b9600fb5af6e8d033580e5e574c1e85a8b6\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-08-02T14:36:13Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/168",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        },
+        {
+          "name": "waiting-on-prerequisite"
+        }
+      ],
+      "number": 168,
+      "pull_request": false,
+      "title": "[M2] Jerome Fabrero — Philippine Wholesale Electricity Market Analytics",
+      "updated_at": "2026-08-02T14:36:31Z",
+      "user": {
+        "login": "jffabrero"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nAb Gacusan \n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/abgacs/dep-data-engineering-princegacusan\n\n### Commit Hash\n\n9d2c68dc563b0ef1115cc7d308f433c120a78cad\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-08-02T13:54:54Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/167",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 167,
+      "pull_request": false,
+      "title": "[M2] Prince Abraham Gacusan — MakatiAir Insight: Urban Air Quality & Health Correlation Engine",
+      "updated_at": "2026-08-02T13:55:07Z",
+      "user": {
+        "login": "abgacs"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nXein Virgines\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/xeind/dep-data-engineering-xeind\n\n### Commit Hash\n\nba3c40eed368b1fa1b314b4496ac272654f9733b\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-08-02T13:47:16Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/166",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 166,
+      "pull_request": false,
+      "title": "[M2] Xein Virgines — 1960 vs 2025: Who Had It Better?",
+      "updated_at": "2026-08-02T13:47:38Z",
+      "user": {
+        "login": "xeind"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nReiner John Santiago\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/reinerjohnsantiago/dep-data-engineering-ReinerSantiago\n\n### Commit Hash\n\n3e5055e7e80b73d1a917deafa522764791221d4c\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-08-02T13:40:37Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/165",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "needs-improvement"
+        },
+        {
+          "name": "M2"
+        }
+      ],
+      "number": 165,
+      "pull_request": false,
+      "title": "[M2] <Reiner John Santiago> — <Flood-Risk and Weather Monitoring>",
+      "updated_at": "2026-08-02T13:40:48Z",
+      "user": {
+        "login": "reinerjohnsantiago"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nRobert Tulagan\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/robaaaru/dep-data-engineering-open-track-roberttulagan\n\n### Commit Hash\n\na98ea697a2a9bc01536e71c6cbe3274e07f37e70\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-08-02T13:40:00Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/164",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        },
+        {
+          "name": "waiting-on-prerequisite"
+        }
+      ],
+      "number": 164,
+      "pull_request": false,
+      "title": "[M2] Robert Tulagan — Rice Price Spike and Recovery Across Philippine Regions After Typhoons",
+      "updated_at": "2026-08-02T13:40:15Z",
+      "user": {
+        "login": "robaaaru"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJohn Kenneth Priol\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/johnkennethpriol/dep-data-engineering-jkrp\n\n### Commit Hash\n\n49ecbdc6bc08982b80131a4514009f019e44b325\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-08-02T12:57:28Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/162",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 162,
+      "pull_request": false,
+      "title": "[M2] <John Kenneth Priol> — <NCR Air Quality and EV Fleet Growth: Measuring EVIDA's Impact (2014-Present)>",
+      "updated_at": "2026-08-02T12:57:43Z",
+      "user": {
+        "login": "johnkennethpriol"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nAdrean Jan Quidor\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/ssuish/dep-data-engineering-ssuish\n\n### Commit Hash\n\nba034a5d1c4a5c950fd79069fed41bebab7603f8\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-08-02T10:08:21Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/161",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 161,
+      "pull_request": false,
+      "title": "[M2] ssuish — Mapping Service Voids",
+      "updated_at": "2026-08-02T14:38:53Z",
+      "user": {
+        "login": "ssuish"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nSean Fernandez\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/penOnFire/dep-data-engineering-SeanFrn\n\n### Commit Hash\n\nd59ee2c81a3c540a78716afb5eb1292212ebc1d3\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-08-02T07:07:55Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/160",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 160,
+      "pull_request": false,
+      "title": "[M2] Sean Fernandez — The AI Divide in Computer Studies Education",
+      "updated_at": "2026-08-02T12:32:56Z",
+      "user": {
+        "login": "penOnFire"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJan Ric Hogat\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Jan-Ric/dep-data-engineering-jan-ric\n\n### Commit Hash\n\n907df63\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-08-01T18:11:32Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/159",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 159,
+      "pull_request": false,
+      "title": "[M2] Jan Ric Hogat — Solar Power Plant Inverter Analysis: A 12-month AC output quantification of inverters with a negative gap between actual and predictive yield",
+      "updated_at": "2026-08-01T18:11:45Z",
+      "user": {
+        "login": "Jan-Ric"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nVhon\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/vn0raven/dep-data-engineering-vn0raven\n\n### Commit Hash\n\nd58d28e5752e4caa2159da533f0636151a1be4d5\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-08-01T10:27:27Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/157",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 157,
+      "pull_request": false,
+      "title": "[M2] <Your Name> — <Project Title>",
+      "updated_at": "2026-08-01T10:27:42Z",
+      "user": {
+        "login": "vn0raven"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nKier Guiang\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Kaigosama/dep-data-engineering-kier_guiang\n\n### Commit Hash\n\n492b6187792939d9268d59d06686432b2468b55b\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-08-01T10:10:27Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/156",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 156,
+      "pull_request": false,
+      "title": "[M2] Kier Guiang — National Underemployment Forecast: Is Philippine Economic Growth Creating Real Jobs?",
+      "updated_at": "2026-08-02T12:27:05Z",
+      "user": {
+        "login": "Kaigosama"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nNaehum Dela Cruz\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Naehum-Dela-Cruz/dep-data-engineering-naehum\n\n### Commit Hash\n\n50dc6e66984a8d5ea49f06990ff21a36b435aba3\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-07-31T14:46:52Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/155",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 155,
+      "pull_request": false,
+      "title": "[M2] <Naehum Dela Cruz> — <MassKara Festival Google Trends Interest & MNL-BCD Travel Price Surge Tracker>",
+      "updated_at": "2026-08-02T11:40:39Z",
+      "user": {
+        "login": "Naehum-Dela-Cruz"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nMark Ivan Contemprato\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/navikram03/dep-data-engineering-ivan.git\n\n### Commit Hash\n\n074b90b564b57304cba0e9470d53f69a131a73f8\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-30T12:21:16Z",
+      "created_at": "2026-07-30T12:20:56Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/154",
+      "labels": [
+        {
+          "name": "duplicate"
+        },
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 154,
+      "pull_request": false,
+      "title": "[M1] Mark Ivan Contemprato — Weekly Fuel Price Volatility and Spike Detection in Cavite",
+      "updated_at": "2026-07-30T12:21:17Z",
+      "user": {
+        "login": "navikram03"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nRainer Alano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/rainer-r/dep-data-engineering-rainer\n\n### Commit Hash\n\na5edc0216148c8565992ef942e5aa7a8f42bcbab\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-08-02T05:53:03Z",
+      "created_at": "2026-07-29T12:08:58Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/153",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 153,
+      "pull_request": false,
+      "title": "[M2] Rainer — TaxTracePH",
+      "updated_at": "2026-08-02T05:53:03Z",
+      "user": {
+        "login": "rainer-r"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/Froncoyz/dep-starter-kit\n\n### Commit Hash\n\nd81b85af28c19763e7220724bd1b403d7c9af076\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-28T23:40:53Z",
+      "created_at": "2026-07-28T23:40:40Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/152",
+      "labels": [
+        {
+          "name": "duplicate"
+        },
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        }
+      ],
+      "number": 152,
+      "pull_request": false,
+      "title": "[M2] <Froncoyz Verano> — <Philippines Regional Poverty Divergence Tracker>",
+      "updated_at": "2026-07-28T23:40:53Z",
+      "user": {
+        "login": "Froncoyz"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJohn Benedict Lopez\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/jatjatlopez/dep-data-engineering-lopez\n\n### Commit Hash\n\nf1d378150215c98df70ddaeed61928414fbc4be1\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-07-28T15:06:08Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/151",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 151,
+      "pull_request": false,
+      "title": "[M2] John Lopez — MaxiPay PH",
+      "updated_at": "2026-08-02T02:55:05Z",
+      "user": {
+        "login": "jatjatlopez"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJerome Fabrero\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/jffabrero/dep-data-engineering-jffabrero\n\n### Commit Hash\n\n0e850735f78dd38c651d24fe517a48b197237158\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-27T23:32:15Z",
+      "created_at": "2026-07-27T23:32:02Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/150",
+      "labels": [
+        {
+          "name": "duplicate"
+        },
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 150,
+      "pull_request": false,
+      "title": "[M1] Jerome Fabrero — Philippine Wholesale Electricity Market Analytics",
+      "updated_at": "2026-07-27T23:32:15Z",
+      "user": {
+        "login": "jffabrero"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nLeandra Oania \n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/supjkay/dep-data-engineering-supjkay.git\n\n### Commit Hash\n\n935c9b2475329a235f704b42ac1b88e1ea8bdd75\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-27T07:27:22Z",
+      "created_at": "2026-07-27T07:27:05Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/149",
+      "labels": [
+        {
+          "name": "duplicate"
+        },
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 149,
+      "pull_request": false,
+      "title": "[M1] supjkay — Beating the Rush: The Metro Manila Rail Dashboard",
+      "updated_at": "2026-07-27T07:27:22Z",
+      "user": {
+        "login": "supjkay"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nMark Cabael\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/MCabs28/dep-data-engineering-mark-cabael\n\n### Commit Hash\n\n896b0b6d4061b092c3e28266e2d2bc749c62002e\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-07-26T12:39:13Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/148",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 148,
+      "pull_request": false,
+      "title": "[M2] <Mark Cabael> — <BahaPredict: Building an Automated Regional Weather Data Pipeline in the Philippines>",
+      "updated_at": "2026-07-26T12:39:28Z",
+      "user": {
+        "login": "MCabs28"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJoseph Crisostomo\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/kathulhur/dep-data-engineering-joseph\n\n### Commit Hash\n\nfc8a7f3\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-30T15:28:05Z",
+      "created_at": "2026-07-26T12:27:40Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/147",
+      "labels": [
+        {
+          "name": "duplicate"
+        },
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "needs-improvement"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 147,
+      "pull_request": false,
+      "title": "[M1] Joseph — I'm Kinda Likin' the Vibe: Tracking Sentiment Shifts in a Filipino AI App-Building Community",
+      "updated_at": "2026-07-30T15:28:06Z",
+      "user": {
+        "login": "kathulhur"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nRainer Alano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/rainer-r/dep-data-engineering-rainer\n\n### Commit Hash\n\na5edc0216148c8565992ef942e5aa7a8f42bcbab\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-25T15:58:58Z",
+      "created_at": "2026-07-25T15:58:46Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/145",
+      "labels": [
+        {
+          "name": "duplicate"
+        },
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 145,
+      "pull_request": false,
+      "title": "[M1] Rainer — TaxTracePH",
+      "updated_at": "2026-07-25T15:58:59Z",
+      "user": {
+        "login": "rainer-r"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nRainer Alano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/rainer-r/dep-data-engineering-rainer\n\n### Commit Hash\n\na5edc0216148c8565992ef942e5aa7a8f42bcbab\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-29T08:12:04Z",
+      "created_at": "2026-07-25T15:58:36Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/144",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        },
+        {
+          "name": "late-submission"
+        }
+      ],
+      "number": 144,
+      "pull_request": false,
+      "title": "[M1] Rainer — TaxTracePH",
+      "updated_at": "2026-07-29T08:12:26Z",
+      "user": {
+        "login": "rainer-r"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nMiko Torres\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/miksss1412/dep-data-engineering-miko\n\n### Commit Hash\n\n[5e8e434](https://github.com/miksss1412/dep-data-engineering-miko/commit/5e8e434)\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-07-25T13:08:25Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/143",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "needs-improvement"
+        },
+        {
+          "name": "M1"
+        },
+        {
+          "name": "late-submission"
+        }
+      ],
+      "number": 143,
+      "pull_request": false,
+      "title": "[M1] Miko John Torres — Philippine Tech Skills Demand Tracker",
+      "updated_at": "2026-07-28T11:42:41Z",
+      "user": {
+        "login": "miksss1412"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nKier Guiang\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Kaigosama/dep-data-engineering-kier_guiang\n\n### Commit Hash\n\ndc94290b0874940bd472a532a5c66282fb40e9ef\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-20T14:45:36Z",
+      "created_at": "2026-07-20T14:45:23Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/142",
+      "labels": [
+        {
+          "name": "duplicate"
+        },
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 142,
+      "pull_request": false,
+      "title": "[M1] Kier Guiang — National Underemployment Forecast: Is Philippine Economic Growth Creating Real Jobs? (Revised)",
+      "updated_at": "2026-07-20T14:47:46Z",
+      "user": {
+        "login": "Kaigosama"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nAb Gacusan\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/abgacs/dep-data-engineering-princegacusan#\n\n### Commit Hash\n\n7946490876243d24f962ce8884dacc13d10a3abe\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-18T10:23:06Z",
+      "created_at": "2026-07-18T10:22:52Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/141",
+      "labels": [
+        {
+          "name": "duplicate"
+        },
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 141,
+      "pull_request": false,
+      "title": "[M1] Prince Abraham Gacusan — MakatiAir Insight: Urban Air Quality & Health Correlation Engine",
+      "updated_at": "2026-07-18T10:23:07Z",
+      "user": {
+        "login": "abgacs"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nNaehum Dela Cruz\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Naehum-Dela-Cruz/dep-data-engineering-naehum.git\n\n### Commit Hash\n\n58ae45c0ce7f9558fbd0a87cad6cef76d14e3edd\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-26T10:18:46Z",
+      "created_at": "2026-07-15T23:36:10Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/139",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        },
+        {
+          "name": "late-submission"
+        }
+      ],
+      "number": 139,
+      "pull_request": false,
+      "title": "[M1] <Naehum Dela Cruz> — <MassKara Festival Google Trends Interest & MNL-BCD Travel Price Surge Tracker>",
+      "updated_at": "2026-07-26T10:18:47Z",
+      "user": {
+        "login": "Naehum-Dela-Cruz"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJoseph Crisostomo\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/kathulhur/dep-data-engineering-joseph\n\n### Commit Hash\n\nfc8a7f3\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-15T07:49:18Z",
+      "created_at": "2026-07-15T07:49:05Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/136",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 136,
+      "pull_request": false,
+      "title": "[M1] Joseph — I'm Kinda Likin' the Vibe: Tracking Sentiment Shifts in a Filipino AI App-Building Community",
+      "updated_at": "2026-07-26T12:29:34Z",
+      "user": {
+        "login": "kathulhur"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nRolando Asa\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/ambs78/dep-data-engineering-open-track-ambs\n\n### Commit Hash\n\n4abba13b49b1533c7202274d1f01cd9ae3e29526\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-14T13:36:13Z",
+      "created_at": "2026-07-14T13:35:58Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/135",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 135,
+      "pull_request": false,
+      "title": "[M1] <Rolando Asa> — <NBA GOAT Comprehensive Data Analysis>",
+      "updated_at": "2026-07-14T13:36:13Z",
+      "user": {
+        "login": "ambs78"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nKier Guiang\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Kaigosama/dep-data-engineering-kier_guiang\n\n### Commit Hash\n\n00abcb465cb0088bd18700e0065d23d45d1fb7e6\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-25T10:50:31Z",
+      "created_at": "2026-07-14T11:49:54Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/134",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        },
+        {
+          "name": "late-submission"
+        }
+      ],
+      "number": 134,
+      "pull_request": false,
+      "title": "[M1] Kier Guiang — National Underemployment Forecast: Is Philippine Economic Growth Creating Real Jobs?",
+      "updated_at": "2026-07-25T10:50:35Z",
+      "user": {
+        "login": "Kaigosama"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nReiner John Santiago\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/reinerjohnsantiago/dep-data-engineering-open-track-ReinerJohnSantiago.git\n\n### Commit Hash\n\n3e5055e7e80b73d1a917deafa522764791221d4c\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-14T00:51:06Z",
+      "created_at": "2026-07-14T00:50:56Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/133",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 133,
+      "pull_request": false,
+      "title": "[M1] <Reiner John Santiago> — <Flood-Risk and Weather Monitoring>",
+      "updated_at": "2026-07-14T00:51:06Z",
+      "user": {
+        "login": "reinerjohnsantiago"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nReiner John Santiago\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/reinerjohnsantiago/dep-data-engineering-ReinerSantiago.git\n\n### Commit Hash\n\n3e5055e7e80b73d1a917deafa522764791221d4c\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-13T07:28:15Z",
+      "created_at": "2026-07-13T07:28:04Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/132",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 132,
+      "pull_request": false,
+      "title": "[M0] <Reiner John Santiago> — <Flood-Risk and Weather Monitoring>",
+      "updated_at": "2026-07-13T07:28:15Z",
+      "user": {
+        "login": "reinerjohnsantiago"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nReiner John Santiago\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/reinerjohnsantiago/dep-data-engineering-ReinerSantiago.git\n\n### Commit Hash\n\n3e5055e7e80b73d1a917deafa522764791221d4c\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-13T06:51:38Z",
+      "created_at": "2026-07-13T06:51:25Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/131",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 131,
+      "pull_request": false,
+      "title": "[M1] <Reiner John Santiago> — <Flood-Risk and Weather Monitoring>",
+      "updated_at": "2026-07-13T06:51:38Z",
+      "user": {
+        "login": "reinerjohnsantiago"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nReiner John Santiago\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/reinerjohnsantiago/dep-data-engineering-ReinerSantiago\n\n### Commit Hash\n\n3e5055e7e80b73d1a917deafa522764791221d4c\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-13T06:46:38Z",
+      "created_at": "2026-07-13T06:46:28Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/130",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 130,
+      "pull_request": false,
+      "title": "[M1] <Reiner John Santiago> — <Flood-Risk and Weather Monitoring>",
+      "updated_at": "2026-07-13T06:46:38Z",
+      "user": {
+        "login": "reinerjohnsantiago"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nMichael Bacus\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/michaelbacus-lab/dep-data-engineering-open-track\n\n### Commit Hash\n\n8ea613542043975691526ce781987d9fa0304ed6\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-13T05:48:13Z",
+      "created_at": "2026-07-13T05:48:01Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/129",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 129,
+      "pull_request": false,
+      "title": "Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
+      "updated_at": "2026-07-13T05:48:13Z",
+      "user": {
+        "login": "michaelbacus-lab"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/Froncoyz/dep-starter-kit\n\n### Commit Hash\n\n47ad92bb6e930817de2ade0906fd5070bbc3859a\n\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-07-13T03:50:03Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/128",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        }
+      ],
+      "number": 128,
+      "pull_request": false,
+      "title": "[M2] <Froncoyz Verano> — <Philippine Regional Poverty Divergence Tracker>",
+      "updated_at": "2026-08-02T14:08:25Z",
+      "user": {
+        "login": "Froncoyz"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nGailyn German\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/yugiakame/dep-data-engineering-yugi\n\n### Commit Hash\n\n3886db8351b1e8f49fdf2b2c6e1bd4a6000e0312\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-26T14:39:28Z",
+      "created_at": "2026-07-12T17:33:22Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/125",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 125,
+      "pull_request": false,
+      "title": "[M1] Gail — The Philippine Digital Economy by Region",
+      "updated_at": "2026-07-26T14:39:40Z",
+      "user": {
+        "login": "yugiakame"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nLord Gideon Marin\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/lordgpm/dep-data-engineering-lord_marin\n\n### Commit Hash\n\n1c8dfbb6eb0cd45aac97b58479635352f0e91f45\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-27T10:43:44Z",
+      "created_at": "2026-07-12T15:38:46Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/124",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 124,
+      "pull_request": false,
+      "title": "[M1] <Lord Gideon Marin> — <Temporal Dynamics of Connection-Seeking in PH r4r Subreddits>",
+      "updated_at": "2026-07-27T10:43:50Z",
+      "user": {
+        "login": "lordgpm"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJohn Kenneth Priol\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/johnkennethpriol/dep-data-engineering-jkrp\n\n### Commit Hash\n\n096d2b38ba84cc8dd7cadb7adea0a89da2627ab3\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-18T03:49:07Z",
+      "created_at": "2026-07-12T12:44:20Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/123",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 123,
+      "pull_request": false,
+      "title": "[M1] <John Kenneth Priol> — <NCR Air Quality and EV Fleet Growth: Measuring EVIDA's Impact (2014–Present)>",
+      "updated_at": "2026-07-18T03:49:58Z",
+      "user": {
+        "login": "johnkennethpriol"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nElizhea Camonias\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/aezhile/dep-data-engineering-elizhea\n\n### Commit Hash\n\neb521359c7b7b99a564ce462f2afc67fdad907dc\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-24T14:41:14Z",
+      "created_at": "2026-07-12T12:29:09Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/122",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 122,
+      "pull_request": false,
+      "title": "[M1] <Elizhea Camonias> — <NCR Minimum-Wage Grocery Basket Optimizer>",
+      "updated_at": "2026-07-24T14:41:25Z",
+      "user": {
+        "login": "aezhile"
+      }
+    },
+    {
+      "body": "### Builder Name\n\n Marciano Salazar\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/MarcianoSalazar/dep-data-engineering-salazar\n\n### Commit Hash\n\n47fcb56ab5dddfa1b514813aba4eec402238c3e2\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-12T12:27:04Z",
+      "created_at": "2026-07-12T12:26:52Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/121",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 121,
+      "pull_request": false,
+      "title": "[M1] Marciano Salazar — Data Quality Assessment System for Selected Philippine Education Open Datasets",
+      "updated_at": "2026-07-12T12:27:04Z",
+      "user": {
+        "login": "Sheyxii"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nReiner John Santiago\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/reinerjohnsantiago/dep-data-engineering-ReinerSantiago\n\n### Commit Hash\n\n3e5055e7e80b73d1a917deafa522764791221d4c\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-12T12:23:50Z",
+      "created_at": "2026-07-12T12:23:40Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/120",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 120,
+      "pull_request": false,
+      "title": "[M1] <Reiner John Santiago> — <Flood-Risk and Weather Monitoring>",
+      "updated_at": "2026-07-12T12:23:50Z",
+      "user": {
+        "login": "reinerjohnsantiago"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nReiner John Santiago\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/reinerjohnsantiago/dep-data-engineering-ReinerSantiago\n\n### Commit Hash\n\n3e5055e7e80b73d1a917deafa522764791221d4c\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-26T10:54:09Z",
+      "created_at": "2026-07-12T12:21:11Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/119",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 119,
+      "pull_request": false,
+      "title": "[M1] <Reiner John Santiago> — <Flood-Risk and Weather Monitoring>",
+      "updated_at": "2026-07-26T10:54:15Z",
+      "user": {
+        "login": "reinerjohnsantiago"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nReiner John Santiago\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/reinerjohnsantiago/dep-data-engineering-open-track-ReinerJohnSantiago.git\n\n### Commit Hash\n\n3e5055e7e80b73d1a917deafa522764791221d4c\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-12T12:18:00Z",
+      "created_at": "2026-07-12T12:17:47Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/118",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 118,
+      "pull_request": false,
+      "title": "[M1] <Reiner Santiago> — <Flood-Risk and Weather Monitoring for Noveleta, Cavite>",
+      "updated_at": "2026-07-14T10:39:26Z",
+      "user": {
+        "login": "reinerjohnsantiago"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nKier Guiang\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Kaigosama/dep-data-engineering-kier_guiang\n\n### Commit Hash\n\n00abcb465cb0088bd18700e0065d23d45d1fb7e6\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-12T11:17:53Z",
+      "created_at": "2026-07-12T11:17:41Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/116",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 116,
+      "pull_request": false,
+      "title": "[M1] Kier Guiang — National Underemployment Forecast: Is Philippine Economic Growth Creating Real Jobs?",
+      "updated_at": "2026-07-12T11:17:53Z",
+      "user": {
+        "login": "Kaigosama"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJimwell Bryll Santos\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/jimwellbryllsantos-dot/dep-data-engineering-jimwellbryllsantos\n\n### Commit Hash\n\n8f912529bbc1364da52cde663984be04a7f2aef1\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-21T14:25:13Z",
+      "created_at": "2026-07-12T11:15:38Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/115",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 115,
+      "pull_request": false,
+      "title": "[M1] Jimwell Bryll Santos — Bata, Bata, Saan Ka Nagmula? From Birthplace to Opportunity: Building Provincial Opportunity Index for the Philippines",
+      "updated_at": "2026-07-21T14:25:14Z",
+      "user": {
+        "login": "jimwellbryllsantos-dot"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nAdrean Jan Quidor\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/ssuish/dep-data-engineering-ssuish\n\n### Commit Hash\n\ne2d3de8666d9c6bd8bcb7835b96df6302e501db3\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-15T23:33:10Z",
+      "created_at": "2026-07-12T07:03:08Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/114",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 114,
+      "pull_request": false,
+      "title": "[M1] ssuish — Mapping Service Voids",
+      "updated_at": "2026-07-29T11:43:35Z",
+      "user": {
+        "login": "ssuish"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nRolando Asa\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/ambs78/dep-data-engineering-open-track-ambs\n\n### Commit Hash\n\n3430246371411ccd1bcf323f2690e9286bbd5171\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-24T14:00:48Z",
+      "created_at": "2026-07-12T06:40:52Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/113",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 113,
+      "pull_request": false,
+      "title": "[M1] <Rolando Asa> — <NBA GOAT Comprehensive Data Analysis>",
+      "updated_at": "2026-07-24T14:00:54Z",
+      "user": {
+        "login": "ambs78"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nRobert Tulagan\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/robaaaru/dep-data-engineering-open-track-roberttulagan\n\n### Commit Hash\n\n7b5a48afa5836a12fcc26b263ada8c736c4d1a5e\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-07-12T06:30:51Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/112",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 112,
+      "pull_request": false,
+      "title": "[M1] Robert Tulagan — Rice Price Spike and Recovery Across Philippine Regions After Typhoons",
+      "updated_at": "2026-08-02T03:14:04Z",
+      "user": {
+        "login": "robaaaru"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nAdriane Jone Abunda\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/AdrianeJone/dep-data-engineering-open-track-adriane\n\n### Commit Hash\n\ndf39a94f02ebf73171ee2e5c92f9d230cfc193dc\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-16T17:58:04Z",
+      "created_at": "2026-07-11T17:38:19Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/111",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 111,
+      "pull_request": false,
+      "title": "[M1] <Adriane Jone Abunda> — <Seismic Risk and Actual Damage Analysis for General Santos City>",
+      "updated_at": "2026-07-29T08:06:11Z",
+      "user": {
+        "login": "AdrianeJone"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nKier Guiang\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Kaigosama/dep-data-engineering-kier_guiang\n\n### Commit Hash\n\n20efcca6cac0d499bb8d4aae7faf4e38ab13cf37\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-11T15:33:57Z",
+      "created_at": "2026-07-11T15:33:46Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/110",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 110,
+      "pull_request": false,
+      "title": "[M0] Kier Guiang — National Underemployment Forecast: Is Philippine Economic Growth Creating Real Jobs? (Revised 2)",
+      "updated_at": "2026-07-13T14:06:39Z",
+      "user": {
+        "login": "Kaigosama"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nKier Guiang\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Kaigosama/dep-data-engineering-kier_guiang\n\n### Commit Hash\n\ndc94290b0874940bd472a532a5c66282fb40e9ef\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-11T15:19:21Z",
+      "created_at": "2026-07-11T15:19:11Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/109",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 109,
+      "pull_request": false,
+      "title": "[M1] Kier Guiang — National Underemployment Forecast: Is Philippine Economic Growth Creating Real Jobs?",
+      "updated_at": "2026-07-11T15:19:21Z",
+      "user": {
+        "login": "Kaigosama"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJan Ric Hogat\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Jan-Ric/dep-data-engineering-jan-ric\n\n### Commit Hash\n\n3adc340\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-18T07:04:18Z",
+      "created_at": "2026-07-11T14:46:59Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/108",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 108,
+      "pull_request": false,
+      "title": "[M1] Jan Ric Hogat — Solar Power Plant Inverter Analysis: A 12-month AC output quantification of inverters with a negative performance ratio gap",
+      "updated_at": "2026-07-18T07:04:19Z",
+      "user": {
+        "login": "Jan-Ric"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nAndrea Kristine S. Pongco\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/andreapongco/dep-data-engineering-andrea\n\n### Commit Hash\n\n5ffd866bec059029c529b826699a5f801bc8271b\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-15T23:13:58Z",
+      "created_at": "2026-07-11T14:45:45Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/107",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 107,
+      "pull_request": false,
+      "title": "[M1] Andrea Kristine S. Pongco — Price, Poverty, and Superbugs: Modeling AMR Exposure Risk in Tondo, Manila",
+      "updated_at": "2026-07-29T11:43:41Z",
+      "user": {
+        "login": "andreapongco"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJimwell Bryll Santos\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/jimwellbryllsantos-dot/dep-data-engineering-jimwellbryllsantos\n\n### Commit Hash\n\n8f912529bbc1364da52cde663984be04a7f2aef1\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-21T14:25:09Z",
+      "created_at": "2026-07-11T12:10:30Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/106",
+      "labels": [
+        {
+          "name": "duplicate"
+        },
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 106,
+      "pull_request": false,
+      "title": "[M1] Jimwell Bryll Santos — Bata, Bata, Saan Ka Nagmula? From Birthplace to Opportunity: Building Provincial Opportunity Index for the Philippines",
+      "updated_at": "2026-07-21T14:25:09Z",
+      "user": {
+        "login": "jimwellbryllsantos-dot"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nSean Fernandez\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/penOnFire/dep-data-engineering-SeanFrn\n\n### Commit Hash\n\n8eb2bfb9d18d97b67943d607b10328bd4f06862d\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-24T14:33:54Z",
+      "created_at": "2026-07-11T04:49:35Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/105",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 105,
+      "pull_request": false,
+      "title": "[M1] Sean Fernandez — The AI Divide in Computer Studies Education",
+      "updated_at": "2026-07-24T14:34:08Z",
+      "user": {
+        "login": "penOnFire"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nMark Ivan Contemprato\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/navikram03/dep-data-engineering-ivan.git\n\n### Commit Hash\n\n074b90b564b57304cba0e9470d53f69a131a73f8\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-07-10T12:18:57Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/104",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "needs-improvement"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 104,
+      "pull_request": false,
+      "title": "[M1] Mark Ivan Contemprato — Weekly Fuel Price Volatility and Spike Detection in Cavite",
+      "updated_at": "2026-07-30T12:26:36Z",
+      "user": {
+        "login": "navikram03"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nMark Cabael\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/MCabs28/dep-data-engineering-mark-cabael\n\n### Commit Hash\n\n80a6faa3d6af5255c619d407efaf07b7e644720e\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-21T15:44:28Z",
+      "created_at": "2026-07-10T11:00:43Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/103",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 103,
+      "pull_request": false,
+      "title": "[M1] <Mark Cabael> — <BahaPredict: Building an Automated Regional Weather Data Pipeline in the Philippines>",
+      "updated_at": "2026-07-21T15:44:43Z",
+      "user": {
+        "login": "MCabs28"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJohn Benedict Lopez\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/jatjatlopez/dep-data-engineering-lopez\n\n### Commit Hash\n\nfbad9ae29b092f9cb10498e43860c3a63c4a0265\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-24T14:45:04Z",
+      "created_at": "2026-07-10T10:14:55Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/102",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 102,
+      "pull_request": false,
+      "title": "[M1] <John Lopez> — <MaxiPay PH>",
+      "updated_at": "2026-07-29T11:43:44Z",
+      "user": {
+        "login": "jatjatlopez"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJeanne Marie B. Quiñanola\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/shivaa-bit/dep-data-engineering-open-track-Shiva\n\n### Commit Hash\n\n86b86d950d00037d1c2e86a7e6c6666f16c73037\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-10T06:27:20Z",
+      "created_at": "2026-07-10T06:27:05Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/101",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 101,
+      "pull_request": false,
+      "title": "[M1] <Jeanne Marie B. Quiñanola> — <Real Wage Stability by Industry: A PPP (Purchasing Power of the Peso) - Deflated Analysis for Philippine Job Seekers>",
+      "updated_at": "2026-07-10T06:27:20Z",
+      "user": {
+        "login": "shivaa-bit"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJeanne Marie B. Quiñanola\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/shivaa-bit/dep-data-engineering-open-track\n\n### Commit Hash\n\n32b5db6c1e3cf9d6ef2b356db97925982a1520bd\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-22T07:53:18Z",
+      "created_at": "2026-07-10T04:15:01Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/100",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 100,
+      "pull_request": false,
+      "title": "[M1] <Jeanne Marie B. Quiñanola> — <Real Wage Stability by Industry: A PPP (Purchasing Power of the Peso) - Deflated Analysis for Philippine Job Seekers>",
+      "updated_at": "2026-07-22T12:16:58Z",
+      "user": {
+        "login": "shivaa-bit"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJeanne Marie B. Quiñanola\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/shivaa-bit/dep-data-engineering-open-track\n\n### Commit Hash\n\n32b5db6c1e3cf9d6ef2b356db97925982a1520bd\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-23T10:28:35Z",
+      "created_at": "2026-07-10T03:58:59Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/99",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "auto-check-pending"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 99,
+      "pull_request": false,
+      "title": "[M1] <Jeanne Marie B. Quiñanola> — < [Data Source] Real Wage Stability by Industry: A PPP (Purchasing Power of the Peso) - Deflated Analysis for Philippine Job Seekers>",
+      "updated_at": "2026-07-23T10:28:35Z",
+      "user": {
+        "login": "shivaa-bit"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nGailyn German\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/yugiakame/dep-data-engineering-yugi\n\n### Commit Hash\n\n2b0c9f48e13154f0565613f039145dfa25ff9ceb\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-07-09T20:09:05Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/98",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 98,
+      "pull_request": false,
+      "title": "[M0] Gail — The Philippine Digital Economy by Region",
+      "updated_at": "2026-07-12T23:07:24Z",
+      "user": {
+        "login": "yugiakame"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJerome Fabrero\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/jffabrero/dep-data-engineering-jffabrero\n\n### Commit Hash\n\n055a9816b0a3c6fea3ded458c9c195766a173638\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-30T15:27:58Z",
+      "created_at": "2026-07-09T19:46:39Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/97",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 97,
+      "pull_request": false,
+      "title": "[M1] Jerome Fabrero — Philippine Wholesale Electricity Market Analytics",
+      "updated_at": "2026-07-30T15:27:58Z",
+      "user": {
+        "login": "jffabrero"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJerome Fabrero\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/jffabrero/dep-data-engineering-jffabrero\n\n### Commit Hash\n\n3161a6034a68d5ee0c09cf92399e78d5c4bc8ee4\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-07-09T19:35:57Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/96",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 96,
+      "pull_request": false,
+      "title": "[M0] Jerome Fabrero — Philippine Wholesale Electricity Market Analytics",
+      "updated_at": "2026-07-09T19:36:08Z",
+      "user": {
+        "login": "jffabrero"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nAaron Creed Celindro\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/credough/dep-data-engineering-open-track-aaron-celindro.git\n\n### Commit Hash\n\nafe15aaf9d0c20a9703986a7bc28d22514c78a6d\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-20T11:24:05Z",
+      "created_at": "2026-07-09T15:53:16Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/95",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 95,
+      "pull_request": false,
+      "title": "[M1] Aaron Celindro — Philippine Fuel Price Data Pipeline",
+      "updated_at": "2026-07-20T11:24:56Z",
+      "user": {
+        "login": "credough"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nAaron Creed Celindro\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/credough/dep-data-engineering-open-track-aaron-celindro.git\n\n### Commit Hash\n\nafe15aaf9d0c20a9703986a7bc28d22514c78a6d\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-09T16:26:15Z",
+      "created_at": "2026-07-09T15:42:28Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/94",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 94,
+      "pull_request": false,
+      "title": "[M0] Aaron Celindro — Philippine Fuel Price Data Pipeline",
+      "updated_at": "2026-07-09T16:26:15Z",
+      "user": {
+        "login": "credough"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nMark Ivan Contemprato\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/navikram03/dep-data-engineering-ivan.git\n\n### Commit Hash\n\n37d209b37cdc6a8260ea6c4f6bdced2119bb5d13\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-07-09T14:58:21Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/92",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 92,
+      "pull_request": false,
+      "title": "[M0] Mark Ivan Contemprato — Weekly Fuel Price Volatility and Spike Detection in Cavite",
+      "updated_at": "2026-07-09T14:58:39Z",
+      "user": {
+        "login": "navikram03"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nMark Ivan Contemprato\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/navikram03/dep-data-engineering-ivan.git\n\n### Commit Hash\n\n483e93ab2d556e49c9a3c335924be337cf9b997c\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-09T14:04:28Z",
+      "created_at": "2026-07-09T14:04:12Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/91",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 91,
+      "pull_request": false,
+      "title": "[M1] Mark Ivan Contemprato — Weekly Fuel Price Volatility and Spike Detection in Cavite",
+      "updated_at": "2026-07-27T10:40:58Z",
+      "user": {
+        "login": "navikram03"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nAb Gacusan\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/abgacs/dep-data-engineering-princegacusan\n\n### Commit Hash\n\n3180b9a915a8e9c8ac1d4e513eec9596a3223d7f\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-26T11:02:59Z",
+      "created_at": "2026-07-09T01:31:44Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/90",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 90,
+      "pull_request": false,
+      "title": "[M1] Prince Abraham Gacusan — MakatiAir Insight: Urban Air Quality & Health Correlation Engine",
+      "updated_at": "2026-07-26T11:03:13Z",
+      "user": {
+        "login": "abgacs"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nVhon\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/vn0raven/dep-data-engineering-vn0raven\n\n### Commit Hash\n\n9b2b0557109778fee1f743b42cc0707b978b00b0\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-26T10:15:30Z",
+      "created_at": "2026-07-08T15:39:47Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/89",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 89,
+      "pull_request": false,
+      "title": "[M1] Vhon - Davao Commute Router",
+      "updated_at": "2026-07-26T10:15:49Z",
+      "user": {
+        "login": "vn0raven"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nEric Mojares\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/emojares/dep-data-engineering-etm\n\n### Commit Hash\n\na07b29220d8a31eb8dfa3c54046df24bf26ca795\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-25T11:35:16Z",
+      "created_at": "2026-07-08T15:37:44Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/88",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 88,
+      "pull_request": false,
+      "title": "[M0] <Eric Mojares> - <Flood Watch in Calumpit>",
+      "updated_at": "2026-07-25T11:37:45Z",
+      "user": {
+        "login": "emojares"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nEric Mojares\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/emojares/dep-data-engineering-etm\n\n### Commit Hash\n\nhttps://github.com/emojares/dep-data-engineering-etm/commit/a07b29220d8a31eb8dfa3c54046df24bf26ca795\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-08T15:34:48Z",
+      "created_at": "2026-07-08T15:34:34Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/87",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 87,
+      "pull_request": false,
+      "title": "[M0] <Eric Mojares> - <Flood Watch in Calumpit>",
+      "updated_at": "2026-07-08T15:34:48Z",
+      "user": {
+        "login": "emojares"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nRolando Asa\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/ambs78/dep-data-engineering-open-track-ambs\n\n### Commit Hash\n\n63f132bc54946813eae6323ea3b777253c506427\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-14T11:32:05Z",
+      "created_at": "2026-07-08T12:37:11Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/86",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 86,
+      "pull_request": false,
+      "title": "[M0] Rolando Asa — <NBA GOAT Comprehensive Data Analysis>",
+      "updated_at": "2026-07-14T11:32:09Z",
+      "user": {
+        "login": "ambs78"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJaren Balberan\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/anonggentlegentle/dep-data-engineering-jaren\n\n### Commit Hash\n\naddad6bf9195cf10153ebea48aaafe480c0fba62\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-25T10:45:34Z",
+      "created_at": "2026-07-08T10:46:18Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/85",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 85,
+      "pull_request": false,
+      "title": "[M1] Jaren Balberan — Impact of Natural Disasters on Regional Unemployment in the Philippines",
+      "updated_at": "2026-07-25T10:45:46Z",
+      "user": {
+        "login": "anonggentlegentle"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nAdrean Jan Quidor\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/ssuish/dep-data-engineering-ssuish\n\n### Commit Hash\n\nd1b384d4355f0d2309d2c868f58b3cd73da6ff13\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-07-07T14:08:51Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/83",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 83,
+      "pull_request": false,
+      "title": "[M0] ssuish — Mapping Service Void Revision",
+      "updated_at": "2026-07-07T14:09:05Z",
+      "user": {
+        "login": "ssuish"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nLeandra Oania\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/supjkay/dep-data-engineering-supjkay.git\n\n### Commit Hash\n\n7c40b5b74f2dbaf75651b17a13c061493ff0f3c1\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-29T08:26:42Z",
+      "created_at": "2026-07-07T13:58:51Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/82",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 82,
+      "pull_request": false,
+      "title": "[M1] supjkay — Beating the Rush: The Metro Manila Rail Dashboard",
+      "updated_at": "2026-07-29T08:26:53Z",
+      "user": {
+        "login": "supjkay"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJaren Balberan\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/anonggentlegentle/dep-data-engineering-jaren\n\n### Commit Hash\n\n2960e71dfe8569a5abe5db38143408b1671e96ca\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-07T13:57:03Z",
+      "created_at": "2026-07-07T13:56:50Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/81",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 81,
+      "pull_request": false,
+      "title": "[M1] Jaren Balberan — Impact of Natural Disasters on Regional Unemployment in the Philippines",
+      "updated_at": "2026-07-25T11:39:13Z",
+      "user": {
+        "login": "anonggentlegentle"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nLeandra Oania\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/supjkay/dep-data-engineering-supjkay.git\n\n### Commit Hash\n\n7c40b5b74f2dbaf75651b17a13c061493ff0f3c1\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-07-07T13:09:48Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/80",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "needs-improvement"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 80,
+      "pull_request": false,
+      "title": "[M1] supjkay — Beating the Rush: The Metro Manila Rail Dashboard",
+      "updated_at": "2026-07-24T14:38:25Z",
+      "user": {
+        "login": "supjkay"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJaren Kim Balberan\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/anonggentlegentle/dep-data-engineering-jaren\n\n### Commit Hash\n\n2960e71dfe8569a5abe5db38143408b1671e96ca\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-07T11:04:05Z",
+      "created_at": "2026-07-07T11:03:52Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/79",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 79,
+      "pull_request": false,
+      "title": "[M1] Jaren Kim Balberan — Impact of Natural Disasters on Regional Unemployment in the Philippines",
+      "updated_at": "2026-07-07T11:04:05Z",
+      "user": {
+        "login": "anonggentlegentle"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nLeandra Oania\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/supjkay/dep-data-engineering-supjkay.git\n\n### Commit Hash\n\n7c40b5b74f2dbaf75651b17a13c061493ff0f3c1\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-07T10:45:16Z",
+      "created_at": "2026-07-07T10:45:03Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/78",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 78,
+      "pull_request": false,
+      "title": "[M1] supjkay — Beating the Rush: The Metro Manila Rail Dashboard",
+      "updated_at": "2026-07-07T10:45:16Z",
+      "user": {
+        "login": "supjkay"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nLeandra Oania\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/supjkay/dep-data-engineering-supjkay.git\n\n### Commit Hash\n\n7c40b5b74f2dbaf75651b17a13c061493ff0f3c1\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-07T10:42:05Z",
+      "created_at": "2026-07-07T10:41:54Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/77",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M2"
+        }
+      ],
+      "number": 77,
+      "pull_request": false,
+      "title": "[M2] supjkay — Beating the Rush: The Metro Manila Rail Dashboard",
+      "updated_at": "2026-07-07T10:42:06Z",
+      "user": {
+        "login": "supjkay"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nXein Virgines\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/xeind/dep-data-engineering-xeind/\n\n### Commit Hash\n\nebfea7eeb6d924ab4b48c7217a4661b106e96a66\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-21T13:53:31Z",
+      "created_at": "2026-07-07T09:15:27Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/76",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 76,
+      "pull_request": false,
+      "title": "[M1] Xein Virgines — 1960 vs 2025: Who Had It Better?",
+      "updated_at": "2026-07-21T13:53:50Z",
+      "user": {
+        "login": "xeind"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nXein Virgines\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/xeind/dep-data-engineering-xeind/\n\n### Commit Hash\n\n2248173c3bbb7f2e37817d23d82c9380182968fd\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-08T17:19:34Z",
+      "created_at": "2026-07-07T09:14:03Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/75",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 75,
+      "pull_request": false,
+      "title": "[M0] Xein Virgines — 1960 vs 2025: Who Had It Better?",
+      "updated_at": "2026-07-08T17:19:34Z",
+      "user": {
+        "login": "xeind"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nXein Virgines\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/xeind/dep-data-engineering-xeind\n\n### Commit Hash\n\nebfea7eeb6d924ab4b48c7217a4661b106e96a66\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-07T09:03:09Z",
+      "created_at": "2026-07-07T09:02:54Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/74",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 74,
+      "pull_request": false,
+      "title": "[M1] Xein Virgines — 1960 vs 2025: Who Had It Better?",
+      "updated_at": "2026-07-07T09:03:09Z",
+      "user": {
+        "login": "xeind"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nSean Fernandez\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/penOnFire/dep-data-engineering-SeanFrn\n\n### Commit Hash\n\na8484a92eed650217c9f199c9cd1f4817cbaacde\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-19T04:41:09Z",
+      "created_at": "2026-07-07T08:39:27Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/73",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 73,
+      "pull_request": false,
+      "title": "[M0] Sean Fernandez — (v2) The AI Divide in Computer Studies Education",
+      "updated_at": "2026-07-19T04:41:28Z",
+      "user": {
+        "login": "penOnFire"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/Froncoyz/dep-starter-kit\n\n### Commit Hash\n\nefe9e9eeda6ffcbc5407ec5e8a4a4be36f4d58b9\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-25T10:48:45Z",
+      "created_at": "2026-07-07T06:05:12Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/72",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 72,
+      "pull_request": false,
+      "title": "[M1] <Froncoyz Verano> — <Philippine Regional Divergence Tracker>",
+      "updated_at": "2026-07-25T10:48:55Z",
+      "user": {
+        "login": "Froncoyz"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nAb Gacusan\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/abgacs/dep-data-engineering-princegacusan#\n\n### Commit Hash\n\n9df750081801ddccc2346abbe358e1ecb6e9f085\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-26T10:56:01Z",
+      "created_at": "2026-07-07T04:09:48Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/71",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 71,
+      "pull_request": false,
+      "title": "[M0] Prince Abraham Gacusan — MakatiAir Insight: Urban Air Quality & Health Correlation Engine",
+      "updated_at": "2026-07-26T10:56:01Z",
+      "user": {
+        "login": "abgacs"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nFroncoyz Verano \n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit/blob/main/M1_README.md\n\n### Commit Hash\n\n67b04b170756be1595109da95c6385cf3e2666d8\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-07T03:15:07Z",
+      "created_at": "2026-07-07T03:14:56Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/70",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 70,
+      "pull_request": false,
+      "title": "[M1] <Froncoyz Verano> — <Philippine Regional Poverty Divergence Tracker>",
+      "updated_at": "2026-07-07T03:15:07Z",
+      "user": {
+        "login": "Froncoyz"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nFroncoyz Verano \n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit/blob/main/M1_README.md\n\n### Commit Hash\n\n67b04b170756be1595109da95c6385cf3e2666d8\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-07T00:46:00Z",
+      "created_at": "2026-07-07T00:45:48Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/69",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 69,
+      "pull_request": false,
+      "title": "[M1] <Froncoyz Verano > — <Philippine Regional Poverty Divergence Tracker>",
+      "updated_at": "2026-07-07T00:46:00Z",
+      "user": {
+        "login": "Froncoyz"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJC\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n67b04b170756be1595109da95c6385cf3e2666d8\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-07-06T12:52:33Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/67",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "auto-check-pending"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 67,
+      "pull_request": false,
+      "title": "[M1] JC Testing — JC Testing",
+      "updated_at": "2026-07-06T12:52:33Z",
+      "user": {
+        "login": "Zeraphim"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJeanne Marie B. Quiñanola\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/shivaa-bit/dep-data-engineering-open-track\n\n### Commit Hash\n\n60da8f8cb7a5cb31ca89903459906be9a7454579\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-07T12:12:01Z",
+      "created_at": "2026-07-05T15:45:28Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/64",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 64,
+      "pull_request": false,
+      "title": "[M0] <Jeanne Marie B. Quiñanola> — <[Version 2] Real Wage Stability by Industry: A PPP (Purchasing Power of Peso) - Deflated Analysis for Philippine Job Seekers>",
+      "updated_at": "2026-07-07T12:13:16Z",
+      "user": {
+        "login": "shivaa-bit"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit/blob/main/M1_README.md\n\n### Commit Hash\n\n67b04b170756be1595109da95c6385cf3e2666d8\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-05T14:22:35Z",
+      "created_at": "2026-07-05T14:22:23Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/63",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 63,
+      "pull_request": false,
+      "title": "[M1] <Froncoyz Verano> — <Philippines Regional Poverty Divergence Tracker>",
+      "updated_at": "2026-07-05T14:22:35Z",
+      "user": {
+        "login": "Froncoyz"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJC Diamante\n\n### Cohort\n\n2026-D\n\n### GitHub Repo URL\n\nhttps://github.com/Zeraphim/JCDiamante-V2\n\n### Commit Hash\n\ndded76190c86de20f41b3e941fac604518cc0d41\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-03T13:52:19Z",
+      "created_at": "2026-07-03T13:52:09Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/62",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 62,
+      "pull_request": false,
+      "title": "[M0] JC Diamante — testinggg",
+      "updated_at": "2026-07-03T13:52:19Z",
+      "user": {
+        "login": "Zeraphim"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJC Diamante\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Zeraphim/jcddddddd\n\n### Commit Hash\n\ndded76190c86de20f41b3e941fac604518cc0d41\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-03T13:51:33Z",
+      "created_at": "2026-07-03T13:45:34Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/61",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 61,
+      "pull_request": false,
+      "title": "[M0] JC Diamante — JC testinggg",
+      "updated_at": "2026-07-06T12:36:47Z",
+      "user": {
+        "login": "Zeraphim"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJC Diamante\n\n### Cohort\n\n2026-a\n\n### GitHub Repo URL\n\nhttps://github.com/zeraphim/jcdiamanteeeee\n\n### Commit Hash\n\ndded76190c86de20f41b3e941fac604518cc0d41\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-03T13:44:27Z",
+      "created_at": "2026-07-03T13:44:15Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/60",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 60,
+      "pull_request": false,
+      "title": "[M1] JC Diamante — Testing",
+      "updated_at": "2026-07-03T13:44:27Z",
+      "user": {
+        "login": "Zeraphim"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJoseph Crisostomo\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/kathulhur/dep-data-engineering-joseph\n\n### Commit Hash\n\ned019b4e2e91547d95a59f171c725f4396ea8e76\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-09T20:09:40Z",
+      "created_at": "2026-07-03T13:09:38Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/59",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 59,
+      "pull_request": false,
+      "title": "[M0] Joseph — I'm Kinda Likin' the Vibe: Tracking Sentiment Shifts in a Filipino AI App-Building Community",
+      "updated_at": "2026-07-09T20:09:50Z",
+      "user": {
+        "login": "kathulhur"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJohn Benedict Angeles Monfero\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Monferium/dep-data-engineering-JB\n\n### Commit Hash\n\n5aae35920e6b354916b0c29a59dfc4205882469d\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-11T04:48:58Z",
+      "created_at": "2026-07-03T12:51:46Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/58",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 58,
+      "pull_request": false,
+      "title": "[M0] JB — Shield Against Volatility: Analyzing the Financial Resilience and Insurance Penetration Gap in the Philippine",
+      "updated_at": "2026-07-11T04:49:13Z",
+      "user": {
+        "login": "Monferium"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nKier Guiang\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Kaigosama/dep-data-engineering-kier_guiang\n\n### Commit Hash\n\n86790b616a29c57100f17f4aa7b2c6bcb1641e46\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-11T16:06:42Z",
+      "created_at": "2026-07-03T12:40:26Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/57",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 57,
+      "pull_request": false,
+      "title": "[M0] Kier Guiang — National Underemployment Forecast: Is Philippine Economic Growth Creating Real Jobs?",
+      "updated_at": "2026-07-11T16:06:42Z",
+      "user": {
+        "login": "Kaigosama"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJoseph Crisostomo\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/kathulhur/dep-data-engineering-joseph\n\n### Commit Hash\n\ned019b4e2e91547d95a59f171c725f4396ea8e76\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above. \n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-03T13:09:54Z",
+      "created_at": "2026-07-03T12:24:31Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/56",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 56,
+      "pull_request": false,
+      "title": "[M0] Joseph — I'm Kinda Likin' the Vibe: Tracking Sentiment Shifts in a Filipino AI App-Building Community",
+      "updated_at": "2026-07-03T13:09:54Z",
+      "user": {
+        "login": "kathulhur"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nRainer Alano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/rainer-r/dep-data-engineering-rainer\n\n### Commit Hash\n\n37be9a5c4d9b02ea4d2c7b4247dd9ffc7f00bbd0\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-07-03T09:03:00Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/55",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 55,
+      "pull_request": false,
+      "title": "[M0] Rainer — TaxTracePH",
+      "updated_at": "2026-07-03T09:03:12Z",
+      "user": {
+        "login": "rainer-r"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nRainer Alano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/rainer-r/dep-data-engineering-rainer\n\n### Commit Hash\n\nb2baf3293757ba9749112062b196e141fdbc16ee\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-03T08:57:47Z",
+      "created_at": "2026-07-03T08:55:53Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/54",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 54,
+      "pull_request": false,
+      "title": "[M0] Rainer — TaxTracePH",
+      "updated_at": "2026-07-06T12:36:45Z",
+      "user": {
+        "login": "rainer-r"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit/blob/main/M1_README.md\n\n### Commit Hash\n\n67b04b170756be1595109da95c6385cf3e2666d8\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-03T05:32:47Z",
+      "created_at": "2026-07-03T05:32:36Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/53",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 53,
+      "pull_request": false,
+      "title": "[M1] <Froncoyz Verano> — <Philippine Regional Poverty Divergence Tracker>",
+      "updated_at": "2026-07-03T05:32:47Z",
+      "user": {
+        "login": "Froncoyz"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nLeandra Oania\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/supjkay/dep-data-engineering-supjkay.git\n\n### Commit Hash\n\n7c40b5b74f2dbaf75651b17a13c061493ff0f3c1\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-02T14:05:22Z",
+      "created_at": "2026-07-02T14:05:09Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/52",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 52,
+      "pull_request": false,
+      "title": "[M1] supjkay — Beating the Rush: The Metro Manila Rail Dashboard",
+      "updated_at": "2026-07-02T14:05:22Z",
+      "user": {
+        "login": "supjkay"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nAdriane Jone Abunda\n\n### Cohort\n\nCohort 1\n\n### GitHub Repo URL\n\nhttps://github.com/AdrianeJone/dep-data-engineering-open-track-adriane\n\n### Commit Hash\n\nab310f9a180c3bb711310b5c20784ffbb48b3bc2\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-08T15:58:36Z",
+      "created_at": "2026-07-01T15:50:51Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/51",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 51,
+      "pull_request": false,
+      "title": "[M0] <Adriane Jone Abunda> — <Seismic Risk and Actual Damage Analysis for General Santos City>",
+      "updated_at": "2026-07-09T15:48:41Z",
+      "user": {
+        "login": "AdrianeJone"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit/blob/main/M1_README.md\n\n### Commit Hash\n\n67b04b170756be1595109da95c6385cf3e2666d8\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-01T09:26:21Z",
+      "created_at": "2026-07-01T09:26:10Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/50",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 50,
+      "pull_request": false,
+      "title": "[M1] <Froncoyz Verano> — <Philippine Regional Poverty Divergence Tracker>",
+      "updated_at": "2026-07-01T09:26:21Z",
+      "user": {
+        "login": "Froncoyz"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJohn Benedict Angeles Monfero\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Monferium/dep-data-engineering-JB/tree/main/cohorts/starter-kit\n\n### Commit Hash\n\n7c503a67ceb934cc4608feb052954b13aed2a208\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-03T12:51:43Z",
+      "created_at": "2026-06-29T09:12:48Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/49",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 49,
+      "pull_request": false,
+      "title": "[M0] JB — Shield Against Volatility: Analyzing the Financial Resilience and Insurance Penetration Gap in the Philippines",
+      "updated_at": "2026-07-03T12:51:43Z",
+      "user": {
+        "login": "Monferium"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nSean Fernandez\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/penOnFire/dep-data-engineering-SeanFrn\n\n### Commit Hash\n\n8236fcbe0228d7a65f82e7ace8d77e2d37404c30\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-06-29T08:33:50Z",
+      "created_at": "2026-06-29T08:33:40Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/48",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M1"
+        }
+      ],
+      "number": 48,
+      "pull_request": false,
+      "title": "[M1] Cyan — The AI Divide in Computer Studies Education",
+      "updated_at": "2026-06-29T08:33:50Z",
+      "user": {
+        "login": "penOnFire"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJohn Benedict Angeles Monfero\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Monferium/dep-data-engineering-JohnBenedictMonfero/tree/main/01-foundations/week-01\n\n### Commit Hash\n\nc048dea22e91fe284c7396900191431de28a576e\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-12T14:50:30Z",
+      "created_at": "2026-06-29T05:59:39Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/47",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 47,
+      "pull_request": false,
+      "title": "[M0] John Benedict Angeles Monfero — Spray and Pray: Analyzing the Ingestion Pipeline and Conversion Funnel of Mass Job Applications in the National Capital Region",
+      "updated_at": "2026-07-12T14:50:30Z",
+      "user": {
+        "login": "Monferium"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nKen Shamrock Dizon\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/ksdizon/dep-data-engineering-open-track\n\n### Commit Hash\n\n1de0f9bcb0a6eaf083f731798234bd87714e189e\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-06-28T22:49:06Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/46",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 46,
+      "pull_request": false,
+      "title": "[M0] Ken Shamrock Dizon — How has bird species diversity in Luzon changed from 2020–2025",
+      "updated_at": "2026-07-08T17:28:10Z",
+      "user": {
+        "login": "ksdizon"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nGailyn German\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/yugiakame/dep-data-engineering-yugi\n\n### Commit Hash\n\n5a0014acb8892615c9f3bcafda42008c95a0c892\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-23T01:17:42Z",
+      "created_at": "2026-06-28T17:02:30Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/45",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "auto-check-pending"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 45,
+      "pull_request": false,
+      "title": "[M0] Gail — The Philippine Digital Economy by Region",
+      "updated_at": "2026-07-23T01:17:42Z",
+      "user": {
+        "login": "yugiakame"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nRainer Alano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/rainer-r/dep-data-engineering-rainer\n\n### Commit Hash\n\n814635bf0349092b43c2612bbeb12be75e86fb04\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-08T15:55:06Z",
+      "created_at": "2026-06-28T15:47:19Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/44",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 44,
+      "pull_request": false,
+      "title": "[M0] Rainer — TaxTracePH",
+      "updated_at": "2026-07-09T15:48:50Z",
+      "user": {
+        "login": "rainer-r"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJohn Benedict Angeles Monfero\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new?template=milestone-m0.yml\n\n### Commit Hash\n\nc048dea22e91fe284c7396900191431de28a576e\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-06-29T06:00:23Z",
+      "created_at": "2026-06-28T14:10:03Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/43",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 43,
+      "pull_request": false,
+      "title": "[M0] John Benedict Angeles Monfero — Spray and Pray: Analyzing the Ingestion Pipeline and Conversion Funnel of Mass Job Applications in the National Capital RegionVulnerability",
+      "updated_at": "2026-06-29T06:00:23Z",
+      "user": {
+        "login": "Monferium"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nAndrea Kristine Pongco\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/andreapongco/dep-data-engineering-andrea\n\n### Commit Hash\n\n56366785f4aa6deb90c9d8cf46cdea79a90af29b\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-07T12:13:51Z",
+      "created_at": "2026-06-28T12:11:53Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/42",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 42,
+      "pull_request": false,
+      "title": "[M0] Andrea Kristine Pongco — Price, Poverty, and Superbugs: Modeling AMR Exposure Risk in Tondo, Manila",
+      "updated_at": "2026-07-09T10:57:18Z",
+      "user": {
+        "login": "andreapongco"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJan Ric Hogat\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Jan-Ric/dep-data-engineering-jan-ric\n\n### Commit Hash\n\n81e9615e39e7cf33cbaf1ede0c00a8772236e508\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-08T01:24:21Z",
+      "created_at": "2026-06-28T10:03:41Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/41",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 41,
+      "pull_request": false,
+      "title": "[M0] Jan Ric Hogat — Solar Power Plant Inverter Analysis: A 12-month AC output quantification of inverters with a negative gap between actual and predictive yield.",
+      "updated_at": "2026-07-08T01:24:21Z",
+      "user": {
+        "login": "Jan-Ric"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nElizhea Camonias\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/aezhile/dep-data-engineering-elizhea\n\n### Commit Hash\n\nde936d4adbe6437bb9899439d6a6f0d8982a6c97\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-27T23:29:22Z",
+      "created_at": "2026-06-27T18:27:30Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/40",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "needs-improvement"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 40,
+      "pull_request": false,
+      "title": "[M0] <Elizhea Camonias> — <NCR Minimum-Wage Grocery Basket Optimizer>",
+      "updated_at": "2026-07-27T23:29:22Z",
+      "user": {
+        "login": "aezhile"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nMarciano Salazar\n\n### Cohort\n\n2026\n\n### GitHub Repo URL\n\nhttps://github.com/MarcianoSalazar/dep-data-engineering-salazar\n\n### Commit Hash\n\n3c6099c35569e8241219643df286085c9bca0def\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-06-27T11:25:26Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/39",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 39,
+      "pull_request": false,
+      "title": "[M0] <Marciano Salazar > — <Data Quality Assessment System for Philippine Education Open Datasets>",
+      "updated_at": "2026-06-27T11:25:40Z",
+      "user": {
+        "login": "Sheyxii"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJeanne Marie B. Quiñanola \n\n### Cohort\n\n2026 - A \n\n### GitHub Repo URL\n\nhttps://github.com/shivaa-bit/dep-data-engineering-open-track\n\n### Commit Hash\n\nf04ebf315fe7d18365789ec2d0109d736736b414\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-06-27T08:21:45Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/38",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 38,
+      "pull_request": false,
+      "title": "[M0] Jeanne Marie B. Quiñanola (Is Your Job Plan Safe? A Job Seeker's Guide to PH Industries",
+      "updated_at": "2026-06-27T08:21:55Z",
+      "user": {
+        "login": "shivaa-bit"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nDionard Ernest Vale\n\n### Cohort\n\n2026\n\n### GitHub Repo URL\n\nhttps://github.com/DioVale2002/dep-project\n\n### Commit Hash\n\n2b61356c9b3b259890d77004e4fde6b24e1b42e4\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-08T01:16:14Z",
+      "created_at": "2026-06-27T07:04:15Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/37",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 37,
+      "pull_request": false,
+      "title": "[M0] <Dionard Ernest Vale> — <Steam Game Engagement Analysis>",
+      "updated_at": "2026-07-08T01:16:14Z",
+      "user": {
+        "login": "DioVale2002"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nNeil Yurri Taclino\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/neyu007/dep-data-engineering-neilyurri\n\n### Commit Hash\n\nf4f03028d680213a854891a3252fe51506155910\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-10T08:37:25Z",
+      "created_at": "2026-06-27T05:49:39Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/36",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 36,
+      "pull_request": false,
+      "title": "[M0] Neil Yurri Taclino — Correlating Wholesale Spot Market Volatility with Localized Consumer Energy Rates",
+      "updated_at": "2026-07-10T08:38:35Z",
+      "user": {
+        "login": "neyu007"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nMiko John Torres\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/miksss1412/dep-data-engineering-miko\n\n### Commit Hash\n\n[60558e1](https://github.com/miksss1412/dep-data-engineering-miko/commit/60558e1ba0ddcf7d81b3ed4decfda512a4061d54)\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-08T17:22:10Z",
+      "created_at": "2026-06-27T04:54:42Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/35",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 35,
+      "pull_request": false,
+      "title": "[M0] Miko John Torres — Philippine Tech Skills Demand Tracker",
+      "updated_at": "2026-07-09T15:48:27Z",
+      "user": {
+        "login": "miksss1412"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nNaehum Dela Cruz\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Naehum-Dela-Cruz/dep-data-engineering-naehum\n\n### Commit Hash\n\na2a567bf0e0ec42f3d6ea6e5e596cb4140685a61\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-14T12:12:46Z",
+      "created_at": "2026-06-26T23:59:08Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/34",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 34,
+      "pull_request": false,
+      "title": "[M0] Naehum Dela Cruz — MassKara Festival Google Trends Interest & MNL-BCD Travel Price Surge Tracker",
+      "updated_at": "2026-07-14T12:12:46Z",
+      "user": {
+        "login": "Naehum-Dela-Cruz"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nShaina Soya\n\n### Cohort\n\nOpen Learner\n\n### GitHub Repo URL\n\nhttps://github.com/avsguy/dep-data-engineering-open-track-avsguy\n\n### Commit Hash\n\n2f06440a022f10160df023feeeca4c3df419d887\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-06-26T17:14:21Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/33",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 33,
+      "pull_request": false,
+      "title": "[M0] Shaina Soya — Economic Performance of Philippine Provinces",
+      "updated_at": "2026-06-26T17:16:09Z",
+      "user": {
+        "login": "avsguy"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nKier Guiang\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Kaigosama/dep-data-engineering-kier_guiang\n\n### Commit Hash\n\nf0dd71391e04e262b07ca7f3ead7d2ddb581d867\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-14T11:54:59Z",
+      "created_at": "2026-06-26T13:54:36Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/32",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "auto-check-pending"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 32,
+      "pull_request": false,
+      "title": "[M0] Kier Guiang — National Underemployment Forecast: Is Philippine Economic Growth Creating Real Jobs?",
+      "updated_at": "2026-07-14T11:54:59Z",
+      "user": {
+        "login": "Kaigosama"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJohn Benedict Lopez\n\n### Cohort\n\nCohort 1\n\n### GitHub Repo URL\n\nhttps://github.com/jatjatlopez/dep-data-engineering-lopez\n\n### Commit Hash\n\n2a90356f36a5d4836f353998e93be412e8707a99\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-08T01:21:51Z",
+      "created_at": "2026-06-26T11:08:08Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/31",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 31,
+      "pull_request": false,
+      "title": "[M0] <John Lopez> — <MaxiPay PH>",
+      "updated_at": "2026-07-08T01:21:52Z",
+      "user": {
+        "login": "jatjatlopez"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nLord Gideon Marin\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/lordgpm/dep-data-engineering-lord_marin\n\n### Commit Hash\n\nb5b126a513174a6c324f76e1e0fc985cc1e9f27b\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-07T17:40:10Z",
+      "created_at": "2026-06-26T09:01:49Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/30",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 30,
+      "pull_request": false,
+      "title": "[M0] Lord Gideon Marin — Temporal Dynamics of Connection-Seeking in PH r4r Subreddits",
+      "updated_at": "2026-07-09T10:56:47Z",
+      "user": {
+        "login": "lordgpm"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJimwell Bryll Santos\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/jimwellbryllsantos-dot/dep-data-engineering-jimwellbryllsantos\n\n### Commit Hash\n\nf8da29175c759b80c6dd3574f551e0e29c3ae74b\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-10T10:21:06Z",
+      "created_at": "2026-06-26T05:52:26Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/29",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 29,
+      "pull_request": false,
+      "title": "[M0] Jimwell Bryll Santos — Bata, Bata, Saan Ka Nagmula? From Birthplace to Opportunity: Building Provincial Opportunity Index for the Philippines",
+      "updated_at": "2026-07-10T10:21:20Z",
+      "user": {
+        "login": "jimwellbryllsantos-dot"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJohn Kenneth Priol\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/johnkennethpriol/dep-data-engineering-jkrp\n\n### Commit Hash\n\nf52440cdd205f8e5350c6d629e7e4741d5776110\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-09T00:03:53Z",
+      "created_at": "2026-06-24T19:26:39Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/28",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 28,
+      "pull_request": false,
+      "title": "[M0] <John Kenneth Priol> — <NCR Air Quality and EV Fleet Growth: Measuring EVIDA's Impact (2014–Present)>",
+      "updated_at": "2026-07-09T15:48:36Z",
+      "user": {
+        "login": "johnkennethpriol"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nXein Virgines\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/xeind/dep-data-engineering-xeind\n\n### Commit Hash\n\n2248173\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-07T09:14:48Z",
+      "created_at": "2026-06-24T15:16:59Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/27",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 27,
+      "pull_request": false,
+      "title": "[M0] Xein Virgines — 1960 vs 2025: Who Had It Better?",
+      "updated_at": "2026-07-07T09:14:48Z",
+      "user": {
+        "login": "xeind"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJerome Fabrero\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/jffabrero/dep-data-engineering-jffabrero\n\n### Commit Hash\n\n83560a6c6b45f026ac85b021f81f7ccb9a8c49e5\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-14T12:10:42Z",
+      "created_at": "2026-06-24T14:52:20Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/26",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 26,
+      "pull_request": false,
+      "title": "[M0] Jerome Fabrero — Philippine Wholesale Electricity Market Analytics",
+      "updated_at": "2026-07-14T12:10:51Z",
+      "user": {
+        "login": "jffabrero"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nReiner John Santiago\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/reinerjohnsantiago/dep-data-engineering-ReinerSantiago\n\n### Commit Hash\n\n3e5055e7e80b73d1a917deafa522764791221d4c\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-09T00:16:05Z",
+      "created_at": "2026-06-24T13:53:01Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/25",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 25,
+      "pull_request": false,
+      "title": "[M0] <Reiner John Santiago> — <Flood-Risk and Weather Monitoring>",
+      "updated_at": "2026-07-15T12:06:53Z",
+      "user": {
+        "login": "reinerjohnsantiago"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nReiner John Santiago\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/reinerjohnsantiago/dep-data-engineering-open-track-ReinerJohnSantiago\n\n### Commit Hash\n\n 28109c9\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-06-24T13:49:34Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/24",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 24,
+      "pull_request": false,
+      "title": "[M0] <Reiner John Santiago> — <Flood-Risk and Weather Monitoring>",
+      "updated_at": "2026-06-24T13:49:49Z",
+      "user": {
+        "login": "reinerjohnsantiago"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nReiner John Santiago\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/reinerjohnsantiago/dep-data-engineering-open-track-ReinerJohnSantiago/tree/main\n\n### Commit Hash\n\n28109c9dd953848919ba6918bca9474408693bcf\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-09T00:15:03Z",
+      "created_at": "2026-06-24T13:44:21Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/23",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 23,
+      "pull_request": false,
+      "title": "[M0] <Reiner John Santiago> — <Flood-Risk and Weather Monitoring for Noveleta and Rosario>",
+      "updated_at": "2026-07-09T00:15:22Z",
+      "user": {
+        "login": "reinerjohnsantiago"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nJaren Balberan\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/anonggentlegentle/dep-data-engineering-jaren\n### Commit Hash\n\n2960e71dfe8569a5abe5db38143408b1671e96ca\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-08T15:36:37Z",
+      "created_at": "2026-06-24T12:30:58Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/22",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 22,
+      "pull_request": false,
+      "title": "[M0] Jaren Balberan — Impact of Natural Disasters on Regional Unemployment in the Philippines\n\n",
+      "updated_at": "2026-07-08T15:36:37Z",
+      "user": {
+        "login": "anonggentlegentle"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nRobert Angelo Tulagan\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/robaaaru/dep-data-engineering-open-track-roberttulagan\n\n### Commit Hash\n\n3c40414baee396b92bd8143275f3cf9ec9bc5fe8\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-08T01:20:02Z",
+      "created_at": "2026-06-24T11:42:41Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/21",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 21,
+      "pull_request": false,
+      "title": "[M0] Robert Tulagan — Rice Price Spike and Recovery Across Philippine Regions After Typhoons",
+      "updated_at": "2026-07-08T01:20:02Z",
+      "user": {
+        "login": "robaaaru"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nMark Ivan V. Contemprato\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/navikram03/dep-data-engineering-open-track.git\n\n### Commit Hash\n\nc25adcaba888c14a242ff3d495ae0870de50d76c\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-08T16:03:21Z",
+      "created_at": "2026-06-23T14:34:26Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/20",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 20,
+      "pull_request": false,
+      "title": "[M0] <Mark Ivan V. Contemprato> — <End-to-End Data Pipeline for Fuel Price Volatility Analysis in Cavite>",
+      "updated_at": "2026-07-09T15:48:46Z",
+      "user": {
+        "login": "navikram03"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nVhon \n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/vn0raven/dep-data-engineering-vn0raven\n\n### Commit Hash\n\nbe84c19d5b7ba624127c2548cbfe0c1a18d34899\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-08T01:23:00Z",
+      "created_at": "2026-06-22T23:48:57Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/19",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 19,
+      "pull_request": false,
+      "title": "[M0] Vhon  — Davao Commute Router",
+      "updated_at": "2026-07-09T09:24:24Z",
+      "user": {
+        "login": "vn0raven"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nSean Fernandez\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/penOnFire/dep-data-engineering-SeanFrn\n\n### Commit Hash\n\n08969917279bf13fb396ff029e60ec43aa1facb2\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-06-22T16:17:50Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/18",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "needs-improvement"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 18,
+      "pull_request": false,
+      "title": "[M0] Cyan — The AI Divide in Computer Studies Education",
+      "updated_at": "2026-08-02T01:58:56Z",
+      "user": {
+        "login": "penOnFire"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nDEP Test Bot\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/dataengineeringpilipinas/dep-data-engineering-open-track\n\n### Commit Hash\n\n04b04965d6087405763e8d0658f1a82d4ddd3c2b\n\n### Self-Checklist\n\n- [x] My repo is public\n- [x] My README describes my project",
+      "closed_at": "2026-06-22T16:14:31Z",
+      "created_at": "2026-06-22T16:12:35Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/17",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 17,
+      "pull_request": false,
+      "title": "[M0] TEST — Discord Webhook Live Test",
+      "updated_at": "2026-06-22T16:14:31Z",
+      "user": {
+        "login": "cancinoray"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nTEST BOT\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/dataengineeringpilipinas/dep-data-engineering-open-track\n\n### Commit Hash\n\n7deeb44b1234567890abcdef1234567890abcdef\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-06-22T16:17:29Z",
+      "created_at": "2026-06-22T15:56:40Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/16",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 16,
+      "pull_request": false,
+      "title": "[M0] TEST — Discord Webhook Test",
+      "updated_at": "2026-06-22T16:17:29Z",
+      "user": {
+        "login": "cancinoray"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nAdrean Jan Quidor\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/ssuish/dep-data-engineering-ssuish\n\n### Commit Hash\n\n7c239b0\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-08T14:12:45Z",
+      "created_at": "2026-06-22T15:11:31Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/15",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 15,
+      "pull_request": false,
+      "title": "[M0] ssuish — Mapping Service Voids",
+      "updated_at": "2026-07-09T10:57:12Z",
+      "user": {
+        "login": "ssuish"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nGerald John Alviar\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/GeraldAlviar/dep-data-engineering-Gerald-Alviar-1\n\n### Commit Hash\n\n9521419c4dd1cd92b00dfdaa92ec41ff602f5d86\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-06-22T15:02:35Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/14",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 14,
+      "pull_request": false,
+      "title": "[M0] Gerald John Alviar — AirLytics PH",
+      "updated_at": "2026-06-22T15:02:51Z",
+      "user": {
+        "login": "GeraldAlviar"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nMark Cabael\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/MCabs28/dep-data-engineering-mark-cabael\n\n### Commit Hash\n\n0b43a64ff3a2cb85e274a6b391c5ef56fb2dc7a4\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-03T22:12:35Z",
+      "created_at": "2026-06-22T14:03:13Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/13",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 13,
+      "pull_request": false,
+      "title": "[M0] <Mark Cabael> — <BahaPredict: Building an Automated Regional Weather Data Pipeline in the Philippines>",
+      "updated_at": "2026-07-06T12:36:42Z",
+      "user": {
+        "login": "MCabs28"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nLeandra Oania\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/supjkay/dep-data-engineering-supjkay\n\n### Commit Hash\n\nd637344d96999f1ec85ecd4a88bacc37373f5f58\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-08T00:25:44Z",
+      "created_at": "2026-06-22T10:44:45Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/12",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 12,
+      "pull_request": false,
+      "title": "[M0] supjkay — Beating the Rush: The Metro Manila Rail Dashboard",
+      "updated_at": "2026-07-08T00:25:54Z",
+      "user": {
+        "login": "supjkay"
+      }
+    },
+    {
+      "body": "### Builder Name\nFroncoyz Verano\n\n### Cohort\nOpen Track\n\n### GitHub Repo URL\nhttps://github.com/Froncoyz/dep-starter-kit\n\n### Commit Hash\n4e3301fbdc993b5ab7d123fa2f7764292b799f49\n\n### Self-Check\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-07-08T01:15:46Z",
+      "created_at": "2026-06-22T08:58:15Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/11",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 11,
+      "pull_request": false,
+      "title": "[M0] <Froncoyz Verano> — <Philippine Regional Poverty Divergence Tracker>",
+      "updated_at": "2026-07-08T03:52:55Z",
+      "user": {
+        "login": "Froncoyz"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-06-22T08:53:05Z",
+      "created_at": "2026-06-22T08:33:57Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/10",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M0"
+        }
+      ],
+      "number": 10,
+      "pull_request": false,
+      "title": "[M0] Froncoyz Verano — \"FINEX: Financial Analytics for SJIT Student Organizations\"",
+      "updated_at": "2026-07-06T12:36:18Z",
+      "user": {
+        "login": "Froncoyz"
+      }
+    }
+  ]
+}

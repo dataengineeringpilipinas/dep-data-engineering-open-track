@@ -24,6 +24,8 @@ Find a real data source that can answer your problem statement. Evaluate it befo
 
 **Optional:** [Database Technology Overview](https://halvorsen.blog/documents/database/database.php)
 
+**Datasets:** [Philippine open data sources](../../docs/RESOURCES.md) — PSA OpenSTAT, data.gov.ph, PAGASA, and more
+
 ---
 
 ## Task

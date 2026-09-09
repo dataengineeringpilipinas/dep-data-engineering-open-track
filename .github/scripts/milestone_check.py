@@ -19,11 +19,12 @@ def has_file(root: Path, *parts: str) -> bool:
 
 
 def dir_has_real_files(root: Path, *parts: str) -> bool:
-    """True if the directory exists and contains at least one non-.gitkeep file."""
+    """True if the directory exists and contains at least one non-.gitkeep file,
+    searching subdirectories recursively."""
     d = root / Path(*parts)
     if not d.is_dir():
         return False
-    return any(f.name != ".gitkeep" for f in d.iterdir() if f.is_file())
+    return any(f.name != ".gitkeep" for f in d.rglob("*") if f.is_file())
 
 
 def readme_has_content(root: Path, min_chars: int = 100) -> bool:
