@@ -804,3 +804,103 @@ if (builderDashboard) {
       container.innerHTML = `<p class="builder-empty">Updates unavailable.</p>`;
     });
 })();
+
+// Render the community projects list from data/community-projects.json. These
+// are builder- and volunteer-built projects, not official program metrics.
+(function renderCommunityProjects() {
+  const container = document.querySelector("[data-community-projects]");
+  if (!container) return;
+
+  const escapeHtml = (value) =>
+    String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  const TYPE_LABELS = {
+    community: "Community project",
+    individual: "Individual project",
+  };
+
+  const renderCard = (project) => {
+    const type = TYPE_LABELS[project.type] ? project.type : "individual";
+    const author = escapeHtml(project.author || "");
+    const authorLine = author
+      ? `<p class="project-author">By ${author}${
+          project.cohort ? ` · ${escapeHtml(project.cohort)}` : ""
+        }</p>`
+      : "";
+
+    const highlights = Array.isArray(project.highlights)
+      ? project.highlights.filter(Boolean)
+      : [];
+    const highlightsHtml = highlights.length
+      ? `<ul class="project-highlights">${highlights
+          .map((item) => `<li>${escapeHtml(item)}</li>`)
+          .join("")}</ul>`
+      : "";
+
+    const tags = Array.isArray(project.tags) ? project.tags.filter(Boolean) : [];
+    const tagsHtml = tags.length
+      ? `<ul class="project-tags">${tags
+          .map((tag) => `<li>${escapeHtml(tag)}</li>`)
+          .join("")}</ul>`
+      : "";
+
+    const links = [
+      project.liveUrl
+        ? `<a class="project-link" href="${escapeHtml(project.liveUrl)}" target="_blank" rel="noopener noreferrer">Live project<span class="sr-only"> (opens in new tab)</span></a>`
+        : "",
+      project.repoUrl
+        ? `<a class="project-link" href="${escapeHtml(project.repoUrl)}" target="_blank" rel="noopener noreferrer">Source repo<span class="sr-only"> (opens in new tab)</span></a>`
+        : "",
+    ]
+      .filter(Boolean)
+      .join("");
+
+    return `
+      <article class="project-card project-${type} reveal">
+        <div class="project-badges">
+          <span class="project-badge">${escapeHtml(TYPE_LABELS[type])}</span>
+          ${project.featured ? '<span class="project-badge-featured">Featured</span>' : ""}
+        </div>
+        <h3 class="project-title">${escapeHtml(project.title || "Project")}</h3>
+        ${authorLine}
+        <p class="project-summary">${escapeHtml(project.summary || "")}</p>
+        ${highlightsHtml}
+        ${tagsHtml}
+        ${links ? `<div class="project-links">${links}</div>` : ""}
+      </article>
+    `;
+  };
+
+  fetch("data/community-projects.json")
+    .then((response) => {
+      if (!response.ok) throw new Error("Community projects unavailable");
+      return response.json();
+    })
+    .then((projects) => {
+      if (!Array.isArray(projects) || projects.length === 0) {
+        container.innerHTML = `<p class="builder-empty">No community projects listed yet.</p>`;
+        return;
+      }
+
+      const sorted = [...projects].sort((a, b) => {
+        if (Boolean(b.featured) !== Boolean(a.featured)) {
+          return Number(Boolean(b.featured)) - Number(Boolean(a.featured));
+        }
+        return String(a.title || "").localeCompare(String(b.title || ""));
+      });
+
+      container.innerHTML = sorted.map(renderCard).join("");
+
+      // Cards are injected after the scroll-reveal observer is registered, so
+      // hand them to the shared helper to keep the reveal animation consistent.
+      observeRevealItems(container.querySelectorAll(".reveal"));
+    })
+    .catch(() => {
+      container.innerHTML = `<p class="builder-empty">Community projects unavailable.</p>`;
+    });
+})();

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Changelog for the DEP Engineering Program — notable updates to the curriculum, submission system, and program infrastructure." />
         <title>Changelog — DEP Engineering Program</title>
-        <link rel="stylesheet" href="assets/site.css?v=10" />
+        <link rel="stylesheet" href="assets/site.css?v=11" />
         <style>
             #main { background: #F9FAFB; }
 
@@ -59,6 +59,7 @@
                     <a href="index.html#about">About</a>
                     <a href="index.html#process">Process</a>
                     <a href="index.html#outputs">Outputs</a>
+                    <a href="index.html#projects">Projects</a>
                     <a href="ai-guide.html">AI Guide</a>
                     <a href="index.html#updates">Updates</a>
                     <a href="index.html#builders">Builders</a>
@@ -78,6 +79,35 @@
                     Notable updates to the curriculum, submission system, and program infrastructure.
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
+
+                <!-- 0.6.0 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.6.0</span>
+                        <span class="cl-version-date">2026-09-16</span>
+                        <span class="cl-version-tag">Community Projects and Builder Tooling</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Added a <strong>Community projects</strong> section to the docs site, with a new <code>docs/data/community-projects.json</code> that the homepage renders into cards. Each project is labelled <code>community</code> or <code>individual</code> in the data file, so classifying a project later is a one-word change. The section states plainly that these are independent builder- and volunteer-built projects rather than official program metrics, so a project's own figures never compete with the submission tracker. First entry: the <code>dep-submission-pipeline</code> capstone by <code>kimodri</code>.</li>
+                            <li>Added <code>progress-snapshot.yml</code> &mdash; hourly workflow that commits a trimmed issue snapshot to <code>docs/data/progress-snapshot.json</code>, so the progress dashboard no longer depends on the visitor's unauthenticated GitHub API quota (60 requests/hour/IP). Commits are skipped when the data has not changed.</li>
+                            <li>Added a Milestone Self-Check workflow to the starter kit &mdash; builders see the official structural checks on every push and can run a targeted pass/fail check for one milestone before submitting. The checker script is fetched from this repo at run time, so builder copies never drift from the central validator. Ships the "builder-side prechecks" part of #2.</li>
+                            <li>Added <code>docs/RESOURCES.md</code> &mdash; Philippine open data sources, general dataset catalogs, and DEP community links, linked from the root README, the six phase READMEs, and the week 2 data-discovery resources. (#3)</li>
+                            <li>Added a LinkedIn badge/CTA to the homepage Updates section so LinkedIn-sourced posts are visually distinguished from other updates, and featured the latest DEP builder cohort spotlight from LinkedIn as the top update.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Changed the progress dashboard to render from the committed snapshot first, falling back to the live GitHub API when the snapshot is unavailable.</li>
+                            <li>Removed 18 builders still at milestone 0 from the public builder directory; the snapshot now shows the 32 builders who have progressed beyond onboarding.</li>
+                            <li>Unfeatured the Week 2 check-in update in <code>docs/data/updates.json</code> now that a newer post is featured.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
 
                 <!-- 0.5.4 -->
                 <div class="cl-version">
@@ -533,6 +563,6 @@
             </nav>
         </footer>
 
-        <script src="assets/site.js?v=9"></script>
+        <script src="assets/site.js?v=10"></script>
     </body>
 </html>
