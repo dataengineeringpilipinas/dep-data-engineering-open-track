@@ -79,6 +79,53 @@
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
 
+                <!-- 0.5.4 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.5.4</span>
+                        <span class="cl-version-date">2026-09-16</span>
+                        <span class="cl-version-tag">Recheck Hash and Guidance Consistency</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li><code>extract_recheck_hash()</code> in <code>milestone_policy.py</code> still required exactly 40 characters; it now accepts the same 7–40 character hashes as the recheck parsers in <code>milestone-recheck.yml</code> and <code>_milestone-evaluate.yml</code>, with a cross-reference comment so the three cannot drift silently again.</li>
+                            <li>Restored the missing <code>0.5.3</code> section on this page — it existed in <code>CHANGELOG.md</code> but the page had skipped it.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Corrected the <code>/recheck</code> guidance across the seven issue templates, <code>docs/FAQ.md</code>, <code>docs/VOLUNTEER_GUIDE.md</code>, <code>docs/MILESTONE_CHECKLIST.md</code>, <code>docs/MILESTONE_PIPELINE_MENTOR_GUIDE.md</code>, and the starter kit README. They asked builders for a "full 40-character commit hash" even though short hashes have been accepted since <code>0.5.2</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.5.3 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.5.3</span>
+                        <span class="cl-version-date">2026-08-03</span>
+                        <span class="cl-version-tag">Nested Data Directory Support</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Fixed the M2, M3, and M5 data directory checks ignoring files inside subdirectories of <code>data/raw/</code> and <code>data/processed/</code>. Builders who group raw files by source or year no longer fail the auto-check with real data committed. (#170)</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Added a CI workflow that runs the milestone script tests on pull requests touching <code>.github/scripts/</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
                 <!-- 0.5.2 -->
                 <div class="cl-version">
                     <div class="cl-version-header">

@@ -61,7 +61,7 @@ The Builder must fix the project, push the fix, and comment on the **same issue*
 /recheck 0123456789abcdef0123456789abcdef01234567
 ```
 
-The hash must be the full 40-character commit hash. Pushing a commit by itself does not trigger the milestone system.
+The hash may be short (7 characters) or full (40 characters) — both are accepted. Pushing a commit by itself does not trigger the milestone system.
 
 ### “The `auto-check-pending` label was removed. Is that a problem?”
 
@@ -120,7 +120,7 @@ Do not ask the Builder to open another issue. Send the issue to a maintainer for
 
 ### When the Builder needs to fix something
 
-> Please fix the items listed by the bot, push your changes, and comment `/recheck <full-40-character-commit-hash>` on this same issue. Do not open another submission issue.
+> Please fix the items listed by the bot, push your changes, and comment `/recheck <commit-hash>` on this same issue. Do not open another submission issue.
 
 ### When the previous milestone is still pending
 
@@ -144,7 +144,7 @@ Do not ask the Builder to open another issue. Send the issue to a maintainer for
 
 - Point the Builder to the bot's latest comment and current status label.
 - Read `late-submission` separately from the workflow status that determines the next action.
-- Remind the Builder to use the same issue and a full 40-character commit hash.
+- Remind the Builder to use the same issue and a commit hash (short or full).
 - Tell the Builder when no action is required and the reviewer or maintainer must act.
 - Escalate old closed issues, missing statuses, or an incorrect late indicator to a maintainer.
 

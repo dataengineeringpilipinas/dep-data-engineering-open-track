@@ -70,6 +70,14 @@ def test_all_milestone_neighbors_are_sequential():
         ("Please /recheck ABCDEF0123456789ABCDEF0123456789ABCDEF01 now", "abcdef0123456789abcdef0123456789abcdef01"),
         ("0123456789abcdef0123456789abcdef01234567", "0123456789abcdef0123456789abcdef01234567"),
         ("commit 0123456789abcdef0123456789abcdef01234567", ""),
+        # GitHub renders commit links as 7-character short hashes by default.
+        ("/recheck a1b2c3d", "a1b2c3d"),
+        ("/recheck A1B2C3D", "a1b2c3d"),
+        ("a1b2c3d", "a1b2c3d"),
+        ("commit a1b2c3d", ""),
+        # Shorter than a short hash must not be accepted.
+        ("/recheck a1b2c3", ""),
+        ("a1b2c3", ""),
     ],
 )
 def test_extract_recheck_hash(comment, expected):

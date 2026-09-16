@@ -21,6 +21,19 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.5.4] - 2026-09-16 — Recheck Hash and Guidance Consistency
+
+### Fixed
+
+- Fixed `extract_recheck_hash()` in `milestone_policy.py` still requiring exactly 40 characters. It now accepts the same 7–40 character hashes as the recheck parsers in `milestone-recheck.yml` and `_milestone-evaluate.yml`, with a cross-reference comment so the three cannot drift silently again.
+- Restored the missing `0.5.3` block in `docs/changelog.html`; the section existed in `CHANGELOG.md` but the page had skipped it.
+
+### Changed
+
+- Corrected the `/recheck` guidance across the seven issue templates, `docs/FAQ.md`, `docs/VOLUNTEER_GUIDE.md`, `docs/MILESTONE_CHECKLIST.md`, `docs/MILESTONE_PIPELINE_MENTOR_GUIDE.md`, and the starter kit README. They asked builders for a "full 40-character commit hash" even though short hashes have been accepted since `0.5.2`.
+
+---
+
 ## [0.5.3] - 2026-08-03 — Nested Data Directory Support
 
 ### Fixed

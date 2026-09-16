@@ -10,7 +10,7 @@ on:
         required: true
         type: number
       commit_hash:
-        description: Optional 40-character commit hash override
+        description: Optional commit hash override (short or full)
         required: false
         type: string
 

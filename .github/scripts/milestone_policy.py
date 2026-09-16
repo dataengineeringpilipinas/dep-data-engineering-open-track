@@ -92,12 +92,16 @@ def next_milestone(milestone: str) -> str | None:
 
 
 def extract_recheck_hash(comment: str) -> str:
-    """Accept ``/recheck <hash>`` and legacy comments containing only a hash."""
+    """Accept ``/recheck <hash>`` and legacy comments containing only a hash.
+
+    Regex pattern must stay in sync with the recheck parsers in
+    .github/workflows/milestone-recheck.yml and _milestone-evaluate.yml.
+    """
     text = (comment or "").strip()
-    command = re.search(r"(?:^|\s)/recheck\s+([0-9a-f]{40})(?:\s|$)", text, re.I)
+    command = re.search(r"(?:^|\s)/recheck\s+([0-9a-f]{7,40})(?:\s|$)", text, re.I)
     if command:
         return command.group(1).lower()
-    if re.fullmatch(r"[0-9a-f]{40}", text, re.I):
+    if re.fullmatch(r"[0-9a-f]{7,40}", text, re.I):
         return text.lower()
     return ""
 

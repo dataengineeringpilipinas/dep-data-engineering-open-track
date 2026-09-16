@@ -208,10 +208,10 @@ At the end of each phase, submit a milestone issue on the **curriculum repo**:
 ```bash
 git log --oneline -1
 # Example output: a1b2c3d feat: add ingestion script
-# Your commit hash is: a1b2c3d (or the full 40-character version)
+# Your commit hash is: a1b2c3d (short or full — both work)
 ```
 
-Copy the full hash:
+Or grab the full hash:
 
 ```bash
 git log -1 --format="%H"

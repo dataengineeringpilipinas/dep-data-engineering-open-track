@@ -82,7 +82,7 @@ The prerequisite queue protects builders from reviewer timing. A next-milestone 
 - Run live lectures or synchronous sessions
 - Write code for Builders
 - Remove a valid `late-submission` indicator or bypass the normal review checklist
-- Ask builders to open replacement milestone issues; revisions belong on the canonical issue as `/recheck <40-character-hash>`
+- Ask builders to open replacement milestone issues; revisions belong on the canonical issue as `/recheck <commit-hash>`
 - Make unilateral changes to the curriculum repo
 
 For curriculum changes, open a PR. For policy questions, raise it with the program lead.
