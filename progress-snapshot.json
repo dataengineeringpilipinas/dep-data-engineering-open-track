@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-19T14:18:25Z",
+  "generated_at": "2026-10-19T15:38:15Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -1257,7 +1257,7 @@
     },
     {
       "body": "### Builder Name\n\nJC\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n67b04b170756be1595109da95c6385cf3e2666d8\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-10-19T14:52:45Z",
       "created_at": "2026-07-06T12:52:33Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/67",
       "labels": [
@@ -1274,7 +1274,7 @@
       "number": 67,
       "pull_request": false,
       "title": "[M1] JC Testing — JC Testing",
-      "updated_at": "2026-07-06T12:52:33Z",
+      "updated_at": "2026-10-19T14:52:45Z",
       "user": {
         "login": "Zeraphim"
       }
@@ -1593,7 +1593,7 @@
     },
     {
       "body": "### Builder Name\n\nAdrean Jan Quidor\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/ssuish/dep-data-engineering-ssuish\n\n### Commit Hash\n\nd1b384d4355f0d2309d2c868f58b3cd73da6ff13\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-10-19T14:52:34Z",
       "created_at": "2026-07-07T14:08:51Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/83",
       "labels": [
@@ -1610,7 +1610,7 @@
       "number": 83,
       "pull_request": false,
       "title": "[M0] ssuish — Mapping Service Void Revision",
-      "updated_at": "2026-07-07T14:09:05Z",
+      "updated_at": "2026-10-19T14:52:34Z",
       "user": {
         "login": "ssuish"
       }
@@ -1779,7 +1779,7 @@
     },
     {
       "body": "### Builder Name\n\nMark Ivan Contemprato\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/navikram03/dep-data-engineering-ivan.git\n\n### Commit Hash\n\n37d209b37cdc6a8260ea6c4f6bdced2119bb5d13\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-10-19T14:52:36Z",
       "created_at": "2026-07-09T14:58:21Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/92",
       "labels": [
@@ -1796,7 +1796,7 @@
       "number": 92,
       "pull_request": false,
       "title": "[M0] Mark Ivan Contemprato — Weekly Fuel Price Volatility and Spike Detection in Cavite",
-      "updated_at": "2026-07-09T14:58:39Z",
+      "updated_at": "2026-10-19T14:52:36Z",
       "user": {
         "login": "navikram03"
       }
@@ -1851,7 +1851,7 @@
     },
     {
       "body": "### Builder Name\n\nJerome Fabrero\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/jffabrero/dep-data-engineering-jffabrero\n\n### Commit Hash\n\n3161a6034a68d5ee0c09cf92399e78d5c4bc8ee4\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-10-19T14:52:39Z",
       "created_at": "2026-07-09T19:35:57Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/96",
       "labels": [
@@ -1868,7 +1868,7 @@
       "number": 96,
       "pull_request": false,
       "title": "[M0] Jerome Fabrero — Philippine Wholesale Electricity Market Analytics",
-      "updated_at": "2026-07-09T19:36:08Z",
+      "updated_at": "2026-10-19T14:52:39Z",
       "user": {
         "login": "jffabrero"
       }
@@ -3281,7 +3281,7 @@
       "number": 165,
       "pull_request": false,
       "title": "[M2] <Reiner John Santiago> — <Flood-Risk and Weather Monitoring>",
-      "updated_at": "2026-09-20T11:13:09Z",
+      "updated_at": "2026-10-19T15:14:36Z",
       "user": {
         "login": "reinerjohnsantiago"
       }
