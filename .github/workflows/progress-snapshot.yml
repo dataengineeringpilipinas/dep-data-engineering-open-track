@@ -1,9 +1,11 @@
 name: Progress Snapshot
 
-# Writes docs/data/progress-snapshot.json so the Pages dashboard can render
-# without hitting api.github.com from the visitor's browser (60 req/hr/IP
-# unauthenticated). The dashboard falls back to the live API when the
-# snapshot is missing.
+# Publishes progress-snapshot.json to the unprotected `progress-data` branch so
+# the Pages dashboard can render without hitting api.github.com from the
+# visitor's browser (60 req/hr/IP unauthenticated). Keeping the snapshot off
+# `main` means the bot never needs to bypass branch protection or open a PR on
+# every run. The dashboard falls back to the live API when the snapshot is
+# missing.
 
 on:
   schedule:
@@ -35,18 +37,42 @@ jobs:
                           pull_request: (has("pull_request"))}]' \
             | jq -s 'add // []' > new-issues.json
 
-      - name: Write snapshot only when the data changed
+      - name: Fetch existing snapshot from the data branch
         run: |
-          existing="docs/data/progress-snapshot.json"
-          if [ -f "$existing" ] && \
-             diff -q <(jq -S .issues "$existing") <(jq -S . new-issues.json) >/dev/null; then
-            echo "No change; skipping commit."
-            exit 0
+          if git fetch --depth=1 origin progress-data 2>/dev/null && \
+             git show origin/progress-data:progress-snapshot.json > existing.json; then
+            echo "Loaded the existing snapshot."
+          else
+            echo '{}' > existing.json
           fi
-          jq -n --slurpfile issues new-issues.json \
-            '{generated_at: (now | todate), issues: $issues[0]}' > "$existing"
+
+      - name: Build snapshot
+        id: build
+        run: |
+          result="$(python3 .github/scripts/progress_snapshot.py \
+            --issues new-issues.json \
+            --existing existing.json \
+            --output progress-snapshot.json)"
+          echo "$result"
+          echo "result=$result" >> "$GITHUB_OUTPUT"
+
+      - name: Publish snapshot to the data branch
+        if: steps.build.outputs.result == 'changed'
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$existing"
+
+          if git show-ref --verify --quiet refs/remotes/origin/progress-data; then
+            git worktree add --detach "$RUNNER_TEMP/progress-data" origin/progress-data
+          else
+            git worktree add --detach "$RUNNER_TEMP/progress-data" HEAD
+            cd "$RUNNER_TEMP/progress-data"
+            git checkout --orphan progress-data
+            git rm -rf .
+          fi
+
+          cp "$GITHUB_WORKSPACE/progress-snapshot.json" "$RUNNER_TEMP/progress-data/progress-snapshot.json"
+          cd "$RUNNER_TEMP/progress-data"
+          git add progress-snapshot.json
           git commit -m "chore(data): update progress snapshot [skip ci]"
-          git push
+          git push origin HEAD:progress-data

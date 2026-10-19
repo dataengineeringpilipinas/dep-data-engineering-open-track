@@ -4,6 +4,23 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.6.1] - 2026-10-19 — Progress Snapshot Publishing Fix
+
+### Added
+
+- Added unit coverage for the progress snapshot pipeline: `pytest` tests for snapshot generation and comparison in `progress_snapshot.py`, and Node tests for the dashboard's snapshot URL and staleness helpers. CI now runs both suites.
+
+### Changed
+
+- Moved `progress-snapshot.json` out of `docs/data/` and onto an unprotected `progress-data` branch. The dashboard fetches it from `raw.githubusercontent.com` and still falls back to the live GitHub API when the snapshot is unavailable, so `main` branch protection stays intact.
+- The dashboard now shows the snapshot's `generated_at` timestamp instead of the browser's current time, and highlights snapshots older than 12 hours as potentially delayed.
+
+### Fixed
+
+- Fixed `progress-snapshot.yml` failing on every hourly run with `GH006: Protected branch update failed` because branch protection on `main` requires a pull request. The workflow now publishes to the `progress-data` branch and creates it on first run if needed.
+
+---
+
 ## [0.6.0] - 2026-09-16 — Community Projects and Builder Tooling
 
 ### Added
