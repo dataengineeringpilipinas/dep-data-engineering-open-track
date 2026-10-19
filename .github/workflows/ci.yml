@@ -3,9 +3,7 @@ name: CI
 on:
   pull_request:
     paths:
-      - ".github/scripts/**"
-      - ".github/workflows/ci.yml"
-      - ".github/workflows/progress-snapshot.yml"
+      - ".github/**"
       - "docs/assets/progress.js"
       - "docs/assets/progress-snapshot.js"
   workflow_dispatch:

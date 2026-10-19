@@ -4,6 +4,14 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.7.3] - 2026-10-19 — CI Covers Workflow Changes
+
+### Changed
+
+- The CI workflow now triggers on any change under `.github/`, so edits to `_milestone-evaluate.yml`, `milestone-check.yml`, `milestone-recheck.yml`, `milestone-repair.yml`, `milestone-verdict.yml`, and `notify-reviewer.yml` run the script tests instead of shipping without feedback.
+
+---
+
 ## [0.7.2] - 2026-10-19 — Shared Milestone Policy Module
 
 ### Added
