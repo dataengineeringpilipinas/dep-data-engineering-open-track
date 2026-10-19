@@ -4,6 +4,23 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.7.2] - 2026-10-19 — Shared Milestone Policy Module
+
+### Added
+
+- Added `.github/scripts/milestone_logic.js` as the single source of truth for milestone field extraction, repo/commit-hash parsing, commenter authorization, deadline classification, milestone sequencing, and state decisions.
+- Added Node tests for the shared policy helpers and an invariant test asserting the policy-consumer workflows reference the shared module.
+
+### Changed
+
+- The evaluate, recheck, verdict, and notify workflows now `require` the shared module instead of re-implementing policy logic inline.
+
+### Fixed
+
+- Removed the unused Python policy mirror (`milestone_policy.py` and its tests), whose tests passed independently of the JavaScript that actually ran. The tested module is now the code the workflows execute.
+
+---
+
 ## [0.7.1] - 2026-10-19 — Enrollment Allowlist Corrections
 
 ### Added

@@ -43,14 +43,9 @@ jobs:
         with:
           script: |
             const fs = require('fs');
+            const policy = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/milestone_logic.js`);
             const issueNumber = Number(process.env.ISSUE_NUMBER);
-            const stateLabels = [
-              'auto-check-pending',
-              'waiting-on-prerequisite',
-              'ready-for-review',
-              'needs-improvement',
-              'passed'
-            ];
+            const stateLabels = policy.STATE_LABELS;
             const labelDefinitions = {
               'waiting-on-prerequisite': {
                 color: 'FBCA04',
@@ -97,14 +92,8 @@ jobs:
               return;
             }
             const body = issue.body || '';
-            // Regex mirrors extract_field() in .github/scripts/milestone_policy.py — keep in sync.
-            const extract = heading => {
-              const match = body.match(new RegExp(`###\\s+${heading}\\s*\\n+([^\\n#]+)`, 'i'));
-              return match ? match[1].trim() : '';
-            };
-            const rawRepoUrl = extract('GitHub Repo URL');
-            const repoMatch = rawRepoUrl.match(/^https?:\/\/github\.com\/([\w.-]+)\/([\w.-]+?)(?:\.git)?(?:\/|$)/i);
-            const repoUrl = repoMatch ? `https://github.com/${repoMatch[1]}/${repoMatch[2]}` : '';
+            const extract = heading => policy.extractField(body, heading);
+            const repoUrl = policy.extractRepoUrl(extract('GitHub Repo URL'));
 
             let commitHash = (process.env.INPUT_COMMIT_HASH || '').trim().toLowerCase();
             if (!commitHash) {
@@ -115,14 +104,9 @@ jobs:
                 per_page: 100
               });
               for (const comment of comments) {
-                const authorized = comment.user.login.toLowerCase() === issue.user.login.toLowerCase() ||
-                  ['OWNER', 'MEMBER', 'COLLABORATOR'].includes(comment.author_association);
-                if (!authorized) continue;
-                const text = (comment.body || '').trim();
-                const command = text.match(/(?:^|\s)\/recheck\s+([0-9a-f]{7,40})(?:\s|$)/i);
-                const legacy = text.match(/^[0-9a-f]{7,40}$/i);
-                const match = command || legacy;
-                if (match) commitHash = (command ? command[1] : legacy[0]).toLowerCase();
+                if (!policy.isAuthorizedCommenter(issue.user.login, comment.user.login, comment.author_association)) continue;
+                const hash = policy.extractRecheckHash(comment.body || '');
+                if (hash) commitHash = hash;
               }
             }
             if (!commitHash) commitHash = extract('Commit Hash').toLowerCase();
@@ -202,7 +186,7 @@ jobs:
 
             const deadlines = JSON.parse(fs.readFileSync('.github/milestone-deadlines.json', 'utf8'));
             const deadline = deadlines[milestone];
-            const isLate = Boolean(deadline) && new Date(issue.created_at) > new Date(deadline);
+            const isLate = policy.isLate(issue.created_at, deadline);
             if (isLate) {
               const marker = `<!-- dep-eval:${milestone}:late-submission -->`;
               if (!labelNames.includes('late-submission')) {
@@ -283,15 +267,14 @@ jobs:
           ISSUE_AUTHOR: ${{ steps.submission.outputs.issue_author }}
         with:
           script: |
-            const milestones = ['M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6'];
+            const policy = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/milestone_logic.js`);
             const milestone = process.env.MILESTONE;
-            const index = milestones.indexOf(milestone);
-            if (index <= 0) {
+            const previous = policy.previousMilestone(milestone);
+            if (!previous) {
               core.setOutput('gate_ok', 'true');
               core.setOutput('previous', 'none');
               return;
             }
-            const previous = milestones[index - 1];
             const issues = await github.paginate(github.rest.issues.listForRepo, {
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -319,6 +302,7 @@ jobs:
         with:
           script: |
             const fs = require('fs');
+            const policy = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/milestone_logic.js`);
             const issueNumber = Number(process.env.ISSUE_NUMBER);
             const issue = (await github.rest.issues.get({
               owner: context.repo.owner,
@@ -337,17 +321,8 @@ jobs:
             }
             const snapshotOk = process.env.CLONE_OK === 'true' && results?.all_passed === true;
             const prerequisiteOk = process.env.GATE_OK === 'true';
-            const target = !snapshotOk
-              ? 'needs-improvement'
-              : prerequisiteOk
-                ? 'ready-for-review'
-                : 'waiting-on-prerequisite';
-            const stateLabels = [
-              'auto-check-pending',
-              'waiting-on-prerequisite',
-              'ready-for-review',
-              'needs-improvement'
-            ];
+            const target = policy.decideState({ snapshotOk, prerequisiteOk });
+            const stateLabels = policy.STATE_LABELS.filter(label => label !== 'passed');
             for (const label of stateLabels) {
               if (label === target || !currentLabels.includes(label)) continue;
               try {

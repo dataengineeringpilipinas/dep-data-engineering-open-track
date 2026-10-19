@@ -80,6 +80,36 @@
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
 
+                <!-- 0.7.2 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.7.2</span>
+                        <span class="cl-version-date">2026-10-19</span>
+                        <span class="cl-version-tag">Shared Milestone Policy Module</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Added <code>.github/scripts/milestone_logic.js</code> as the single source of truth for milestone field extraction, repo/commit-hash parsing, commenter authorization, deadline classification, milestone sequencing, and state decisions.</li>
+                            <li>Added Node tests for the shared policy helpers and an invariant test asserting the policy-consumer workflows reference the shared module.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>The evaluate, recheck, verdict, and notify workflows now require the shared module instead of re-implementing policy logic inline.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Removed the unused Python policy mirror (<code>milestone_policy.py</code> and its tests), whose tests passed independently of the JavaScript that actually ran. The tested module is now the code the workflows execute.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
                 <!-- 0.7.1 -->
                 <div class="cl-version">
                     <div class="cl-version-header">

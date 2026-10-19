@@ -19,22 +19,23 @@ jobs:
       authorized: ${{ steps.parse.outputs.authorized }}
       commit_hash: ${{ steps.parse.outputs.commit_hash }}
     steps:
+      - name: Check out curriculum repo
+        uses: actions/checkout@v4
+
       - name: Parse and authorize recheck command
         id: parse
         uses: actions/github-script@v7
         with:
           script: |
-            const comment = (context.payload.comment.body || '').trim();
-            const command = comment.match(/(?:^|\s)\/recheck\s+([0-9a-f]{7,40})(?:\s|$)/i);
-            const legacy = comment.match(/^[0-9a-f]{7,40}$/i);
-            const hash = command ? command[1] : legacy ? legacy[0] : '';
-            const issueAuthor = context.payload.issue.user.login.toLowerCase();
-            const commentAuthor = context.payload.comment.user.login.toLowerCase();
+            const policy = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/milestone_logic.js`);
+            const comment = context.payload.comment.body || '';
+            const hash = policy.extractRecheckHash(comment);
+            const issueAuthor = context.payload.issue.user.login;
+            const commentAuthor = context.payload.comment.user.login;
             const association = context.payload.comment.author_association;
-            const authorized = commentAuthor === issueAuthor ||
-              ['OWNER', 'MEMBER', 'COLLABORATOR'].includes(association);
+            const authorized = policy.isAuthorizedCommenter(issueAuthor, commentAuthor, association);
             core.setOutput('authorized', authorized && hash ? 'true' : 'false');
-            core.setOutput('commit_hash', hash.toLowerCase());
+            core.setOutput('commit_hash', hash);
             if (hash && !authorized) {
               core.warning('Ignoring a recheck hash from an unauthorized commenter.');
             }

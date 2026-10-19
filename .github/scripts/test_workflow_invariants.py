@@ -13,6 +13,13 @@ PASSED_LABEL_PATTERN = re.compile(
     r"labels:\s*\[\s*['\"]passed['\"]\s*\]",
     re.IGNORECASE,
 )
+LOGIC_MODULE = "milestone_logic.js"
+LOGIC_CONSUMERS = (
+    "_milestone-evaluate.yml",
+    "milestone-recheck.yml",
+    "milestone-verdict.yml",
+    "notify-reviewer.yml",
+)
 
 
 def test_no_workflow_applies_passed_label_directly():
@@ -26,3 +33,13 @@ def test_no_workflow_applies_passed_label_directly():
         "Workflows must not add the `passed` label with the default token; "
         f"finalization would not run: {offenders}"
     )
+
+
+def test_workflows_use_shared_milestone_logic_module():
+    """Policy parsing must come from the tested module, not inline copies."""
+    for name in LOGIC_CONSUMERS:
+        text = (WORKFLOWS / name).read_text(encoding="utf-8")
+        assert LOGIC_MODULE in text, (
+            f"{name} must require .github/scripts/{LOGIC_MODULE} instead of "
+            "re-implementing milestone policy inline"
+        )

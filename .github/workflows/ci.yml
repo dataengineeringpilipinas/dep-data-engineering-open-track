@@ -40,3 +40,6 @@ jobs:
 
       - name: Run progress dashboard tests
         run: node --test .github/scripts/test_progress_snapshot_js.js
+
+      - name: Run milestone logic tests
+        run: node --test .github/scripts/test_milestone_logic.js
