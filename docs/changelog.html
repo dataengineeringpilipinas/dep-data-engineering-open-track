@@ -80,6 +80,31 @@
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
 
+                <!-- 0.7.5 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.7.5</span>
+                        <span class="cl-version-date">2026-10-19</span>
+                        <span class="cl-version-tag">Resilient Short-SHA Snapshot Resolution</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Added <code>.github/scripts/clone_snapshot.py</code>, which clones a builder repo, resolves the submitted revision, checks it out, and reports clone status back to the workflow.</li>
+                            <li>Added behavioral tests covering reachable and orphaned commits, missing hashes, invalid input, and unclonable repositories.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Submissions by short hash for commits no longer reachable from a ref (for example after a force-push or rebase) now fail with a distinct error explaining that the full 40-character hash is required, instead of a generic &quot;commit not found&quot; message.</li>
+                            <li>Full 40-character hashes for unadvertised commits are now resolved by fetching the exact object before failing.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
                 <!-- 0.7.4 -->
                 <div class="cl-version">
                     <div class="cl-version-header">

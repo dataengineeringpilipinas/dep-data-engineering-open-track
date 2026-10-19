@@ -4,6 +4,20 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.7.5] - 2026-10-19 — Resilient Short-SHA Snapshot Resolution
+
+### Added
+
+- Added `.github/scripts/clone_snapshot.py`, which clones a builder repo, resolves the submitted revision, checks it out, and reports clone status back to the workflow.
+- Added behavioral tests covering reachable and orphaned commits, missing hashes, invalid input, and unclonable repositories.
+
+### Fixed
+
+- Submissions by short hash for commits no longer reachable from a ref (for example after a force-push or rebase) now fail with a distinct error explaining that the full 40-character hash is required, instead of a generic "commit not found" message.
+- Full 40-character hashes for unadvertised commits are now resolved by fetching the exact object before failing.
+
+---
+
 ## [0.7.4] - 2026-10-19 — M5 Output Location Alignment
 
 ### Fixed

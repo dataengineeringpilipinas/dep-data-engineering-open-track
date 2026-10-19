@@ -229,24 +229,11 @@ jobs:
           REPO_URL: ${{ steps.submission.outputs.repo_url }}
           COMMIT_HASH: ${{ steps.submission.outputs.commit_hash }}
         run: |
-          if [[ ! "$COMMIT_HASH" =~ ^[0-9a-fA-F]{7,40}$ ]] || [ -z "$REPO_URL" ]; then
-            echo "clone_ok=false" >> "$GITHUB_OUTPUT"
-            echo "clone_error=The repository URL or commit hash is invalid." >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          if ! git clone --filter=blob:none --no-checkout "$REPO_URL" builder-repo; then
-            echo "clone_ok=false" >> "$GITHUB_OUTPUT"
-            echo "clone_error=The repository could not be cloned. Confirm it is public." >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          cd builder-repo
-          git fetch --depth 1 origin "$COMMIT_HASH" || true
-          if ! git checkout --detach "$COMMIT_HASH"; then
-            echo "clone_ok=false" >> "$GITHUB_OUTPUT"
-            echo "clone_error=The submitted commit was not found in the repository." >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          echo "clone_ok=true" >> "$GITHUB_OUTPUT"
+          python .github/scripts/clone_snapshot.py \
+            --repo-url "$REPO_URL" \
+            --commit-hash "$COMMIT_HASH" \
+            --dest builder-repo \
+            --github-output "$GITHUB_OUTPUT"
 
       - name: Run milestone structural checks
         id: checks
@@ -369,7 +356,7 @@ jobs:
             }
             let guidance;
             if (target === 'needs-improvement') {
-              guidance = '**Action required:** Fix the problems above, push a commit, then comment `/recheck <commit-hash>` on this issue (7- or 40-character hash both work). Your original submission date remains preserved.';
+              guidance = '**Action required:** Fix the problems above, push a commit, then comment `/recheck <commit-hash>` on this issue (7- or 40-character hash both work; use the full 40-character hash if the commit was force-pushed or rebased). Your original submission date remains preserved.';
             } else if (target === 'waiting-on-prerequisite') {
               guidance = `**Submission recorded.** This issue will remain open until ${process.env.PREVIOUS_MILESTONE} is marked \`passed\`. It will then be checked again and released automatically. Do not open another issue.`;
             } else {
