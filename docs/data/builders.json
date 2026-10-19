@@ -1,6 +1,6 @@
 {
   "cohort": "2026 Open Track",
-  "updatedAt": "2026-08-17",
+  "updatedAt": "2026-10-19",
   "source": "Sanitized participant tracker CSV snapshot",
   "builders": [
     {
@@ -412,7 +412,7 @@
     {
       "id": "L048",
       "name": "Celindro, Aaron Creed P.",
-      "github": "",
+      "github": "https://github.com/credough",
       "status": "Active",
       "squad": "",
       "projectTopic": "",
@@ -426,7 +426,7 @@
     {
       "id": "L049",
       "name": "Verano, Froncoyz Peteros",
-      "github": "https://github.com/Connette",
+      "github": "https://github.com/Froncoyz",
       "status": "Active",
       "squad": "",
       "projectTopic": "",

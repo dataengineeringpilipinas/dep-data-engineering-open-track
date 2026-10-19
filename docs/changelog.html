@@ -80,6 +80,37 @@
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
 
+                <!-- 0.7.1 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.7.1</span>
+                        <span class="cl-version-date">2026-10-19</span>
+                        <span class="cl-version-tag">Enrollment Allowlist Corrections</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Added regression tests that require every GitHub username in <code>docs/data/builders.json</code> to appear in <code>enrolled-participants.json</code>, and that prevent workflows from reintroducing a bot-applied <code>passed</code> label.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Added <code>rainer-r</code>, <code>ksdizon</code>, <code>aezhile</code>, <code>credough</code>, and <code>Froncoyz</code> to the enrollment allowlist based on the 50-person roster and their submitted issues.</li>
+                            <li>Replaced the dead <code>Connette</code> entry with <code>Froncoyz</code>, and corrected the roster entries for Aaron Creed Celindro (<code>credough</code>) and Froncoyz Verano (<code>Froncoyz</code>).</li>
+                            <li>Removed resolved names from <code>_missing_github</code> so it reflects only participants whose usernames are still unknown.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Fixed reviewer Discord alerts not firing for five official builders whose usernames were missing or wrong in the enrollment allowlist.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
                 <!-- 0.7.0 -->
                 <div class="cl-version">
                     <div class="cl-version-header">

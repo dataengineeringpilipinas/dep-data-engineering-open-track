@@ -4,6 +4,24 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.7.1] - 2026-10-19 — Enrollment Allowlist Corrections
+
+### Added
+
+- Added regression tests that require every GitHub username in `docs/data/builders.json` to appear in `enrolled-participants.json`, and that prevent workflows from reintroducing a bot-applied `passed` label.
+
+### Changed
+
+- Added `rainer-r`, `ksdizon`, `aezhile`, `credough`, and `Froncoyz` to the enrollment allowlist based on the 50-person roster and their submitted issues.
+- Replaced the dead `Connette` entry with `Froncoyz`, and corrected the roster entries for Aaron Creed Celindro (`credough`) and Froncoyz Verano (`Froncoyz`).
+- Removed resolved names from `_missing_github` so it reflects only participants whose usernames are still unknown.
+
+### Fixed
+
+- Fixed reviewer Discord alerts not firing for five official builders whose usernames were missing or wrong in the enrollment allowlist.
+
+---
+
 ## [0.7.0] - 2026-10-19 — Submission Tracker Enhancements
 
 ### Added
