@@ -152,6 +152,9 @@ def checks_m5(root: Path) -> list:
     )
     req = root / "requirements.txt"
     req_has_content = req.is_file() and len(req.read_text().strip()) > 0
+    has_output = dir_has_real_files(root, "data", "processed") or dir_has_real_files(
+        root, "output"
+    )
     return [
         check(
             "`requirements.txt` exists and has content",
@@ -164,8 +167,8 @@ def checks_m5(root: Path) -> list:
             "Your analysis or model notebook should be in `notebooks/`.",
         ),
         check(
-            "`data/processed/` contains at least one output file",
-            dir_has_real_files(root, "data", "processed"),
+            "`data/processed/` or `output/` contains at least one output file",
+            has_output,
             "Save processed/model outputs to `data/processed/` or `output/`.",
         ),
     ]

@@ -4,6 +4,14 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.7.4] - 2026-10-19 — M5 Output Location Alignment
+
+### Fixed
+
+- The M5 structural check now accepts a real output file in either `data/processed/` or `output/`, matching the hint and the M5 self-check. Previously a builder who saved model results to `output/` failed despite following the instructions.
+
+---
+
 ## [0.7.3] - 2026-10-19 — CI Covers Workflow Changes
 
 ### Changed
