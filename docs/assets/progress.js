@@ -277,14 +277,18 @@ function filterIssues(batch) {
   });
 }
 
-// Hourly server-side snapshot committed by progress-snapshot.yml. Same origin
-// as the Pages site, so no api.github.com rate limit applies.
+// Hourly server-side snapshot published by progress-snapshot.yml to the
+// progress-data branch, so no api.github.com rate limit applies to visitors.
 async function fetchSnapshot() {
-  const response = await fetch("data/progress-snapshot.json");
+  const response = await fetch(ProgressSnapshot.snapshotUrl(OWNER, REPO));
   if (!response.ok) throw new Error(`snapshot fetch: ${response.status}`);
   const payload = await response.json();
   if (!Array.isArray(payload.issues)) throw new Error("snapshot has no issues array");
-  return filterIssues(payload.issues);
+  return {
+    issues: filterIssues(payload.issues),
+    generatedAt: payload.generated_at || null,
+    live: false,
+  };
 }
 
 async function fetchLive() {
@@ -308,26 +312,36 @@ async function fetchAll() {
     return await fetchSnapshot();
   } catch (err) {
     console.warn("Falling back to live GitHub API:", err.message);
-    return fetchLive();
+    return { issues: await fetchLive(), generatedAt: null, live: true };
   }
+}
+
+function renderSnapshotStatus(generatedAt, isLive) {
+  const element = document.getElementById("last-updated");
+  if (isLive) {
+    element.textContent = "Live GitHub API";
+    element.classList.remove("is-stale");
+    element.title = "The snapshot is unavailable, so the dashboard is reading issues directly.";
+    return;
+  }
+
+  const status = ProgressSnapshot.formatSnapshotStatus(generatedAt);
+  element.textContent = status.text;
+  element.classList.toggle("is-stale", status.stale);
+  element.title = status.stale
+    ? "The dashboard is showing the last snapshot the workflow published successfully."
+    : "";
 }
 
 async function load() {
   document.getElementById("last-updated").textContent = "Loading…";
 
-  [enrolledSet, allIssues] = await Promise.all([
-    fetchEnrolled(),
-    fetchAll().then((raw) => raw.map(enrich)),
-  ]);
+  const [enrolled, snapshot] = await Promise.all([fetchEnrolled(), fetchAll()]);
+  enrolledSet = enrolled;
+  allIssues = snapshot.issues.map(enrich);
 
   renderAll();
-
-  document.getElementById("last-updated").textContent =
-    `Updated ${new Date().toLocaleTimeString("en-PH", {
-      hour: "2-digit",
-      minute: "2-digit",
-      timeZone: "Asia/Manila",
-    })}`;
+  renderSnapshotStatus(snapshot.generatedAt, snapshot.live);
 }
 
 load();

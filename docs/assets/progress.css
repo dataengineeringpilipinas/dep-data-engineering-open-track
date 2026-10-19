@@ -377,6 +377,10 @@
   font-size: 12px;
 }
 
+.progress-last-updated.is-stale {
+  color: #fca5a5;
+}
+
 .progress-empty,
 .progress-loading {
   color: var(--sub);

@@ -80,6 +80,36 @@
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
 
+                <!-- 0.6.1 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.6.1</span>
+                        <span class="cl-version-date">2026-10-19</span>
+                        <span class="cl-version-tag">Progress Snapshot Publishing Fix</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Added unit coverage for the progress snapshot pipeline: <code>pytest</code> tests for snapshot generation and comparison in <code>progress_snapshot.py</code>, and Node tests for the dashboard's snapshot URL and staleness helpers. CI now runs both suites.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Moved <code>progress-snapshot.json</code> out of <code>docs/data/</code> and onto an unprotected <code>progress-data</code> branch. The dashboard fetches it from <code>raw.githubusercontent.com</code> and still falls back to the live GitHub API when the snapshot is unavailable, so <code>main</code> branch protection stays intact.</li>
+                            <li>The dashboard now shows the snapshot's <code>generated_at</code> timestamp instead of the browser's current time, and highlights snapshots older than 12 hours as potentially delayed.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Fixed <code>progress-snapshot.yml</code> failing on every hourly run with <code>GH006: Protected branch update failed</code> because branch protection on <code>main</code> requires a pull request. The workflow now publishes to the <code>progress-data</code> branch and creates it on first run if needed.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
                 <!-- 0.6.0 -->
                 <div class="cl-version">
                     <div class="cl-version-header">
