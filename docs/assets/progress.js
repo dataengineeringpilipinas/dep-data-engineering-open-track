@@ -74,13 +74,14 @@ function statusBadges(issue) {
 }
 
 function daysBadge(days, status) {
-  if (status === "passed") return `<span class="progress-days ok">${days}d</span>`;
+  const title = ' title="Days since the issue was submitted"';
+  if (status === "passed") return `<span class="progress-days ok"${title}>${days}d</span>`;
   if (status === "waiting-on-prerequisite") {
-    return `<span class="progress-days warn">${days}d queued</span>`;
+    return `<span class="progress-days warn"${title}>${days}d queued</span>`;
   }
-  if (days >= 5) return `<span class="progress-days breach">${days}d overdue</span>`;
-  if (days >= 3) return `<span class="progress-days warn">${days}d waiting</span>`;
-  return `<span class="progress-days ok">${days}d</span>`;
+  if (days >= 5) return `<span class="progress-days breach"${title}>${days}d overdue</span>`;
+  if (days >= 3) return `<span class="progress-days warn"${title}>${days}d waiting</span>`;
+  return `<span class="progress-days ok"${title}>${days}d</span>`;
 }
 
 function formatDate(iso) {
@@ -92,31 +93,37 @@ function formatDate(iso) {
   });
 }
 
+function renderViewButtons() {
+  for (const mode of ProgressSnapshot.VIEWS) {
+    const button = document.getElementById(`btn-${mode === "non-enrolled" ? "non-enrolled" : mode}`);
+    if (!button) continue;
+    button.classList.toggle("active", viewMode === mode);
+    button.setAttribute("aria-pressed", String(viewMode === mode));
+  }
+}
+
 function setView(mode) {
   viewMode = mode;
-  document.getElementById("btn-enrolled").classList.toggle("active", mode === "enrolled");
-  document.getElementById("btn-non-enrolled").classList.toggle("active", mode === "non-enrolled");
-  document.getElementById("btn-all").classList.toggle("active", mode === "all");
-  document.getElementById("btn-enrolled").setAttribute("aria-pressed", String(mode === "enrolled"));
-  document.getElementById("btn-non-enrolled").setAttribute("aria-pressed", String(mode === "non-enrolled"));
-  document.getElementById("btn-all").setAttribute("aria-pressed", String(mode === "all"));
+  renderViewButtons();
   renderAll();
 }
 
-function applyFilters(issues) {
-  let filtered = issues;
-
+function applyView(issues) {
   if (viewMode === "enrolled" && enrolledSet) {
-    filtered = filtered.filter((issue) => enrolledSet.has(issue.user.login.toLowerCase()));
-  } else if (viewMode === "non-enrolled" && enrolledSet) {
-    filtered = filtered.filter((issue) => !enrolledSet.has(issue.user.login.toLowerCase()));
+    return issues.filter((issue) => enrolledSet.has(issue.user.login.toLowerCase()));
   }
+  if (viewMode === "non-enrolled" && enrolledSet) {
+    return issues.filter((issue) => !enrolledSet.has(issue.user.login.toLowerCase()));
+  }
+  return issues;
+}
 
+function applyFilters(issues) {
   const query = (document.getElementById("search")?.value || "").toLowerCase().trim();
   const milestoneFilter = document.getElementById("filter-milestone")?.value || "";
   const statusFilter = document.getElementById("filter-status")?.value || "";
 
-  return filtered.filter((issue) => {
+  return applyView(issues).filter((issue) => {
     if (
       query &&
       !`${issue._builder} ${issue._cohort} ${issue._milestone}`.toLowerCase().includes(query)
@@ -127,6 +134,42 @@ function applyFilters(issues) {
     if (statusFilter && issue._status !== statusFilter) return false;
     return true;
   });
+}
+
+function clearFilters() {
+  document.getElementById("search").value = "";
+  document.getElementById("filter-milestone").value = "";
+  document.getElementById("filter-status").value = "";
+  renderAll();
+}
+
+function currentDashboardState() {
+  return {
+    view: viewMode,
+    q: document.getElementById("search")?.value || "",
+    milestone: document.getElementById("filter-milestone")?.value || "",
+    status: document.getElementById("filter-status")?.value || "",
+  };
+}
+
+function syncDashboardQuery() {
+  if (typeof history === "undefined" || typeof history.replaceState !== "function") return;
+  const query = ProgressSnapshot.buildDashboardQuery(currentDashboardState());
+  const url = `${location.pathname}${query ? `?${query}` : ""}${location.hash}`;
+  try {
+    history.replaceState(null, "", url);
+  } catch (_) {
+    // Some local file:// contexts block history updates; filters still work.
+  }
+}
+
+function applyInitialState() {
+  const state = ProgressSnapshot.readDashboardState(window.location.search);
+  viewMode = state.view;
+  renderViewButtons();
+  document.getElementById("search").value = state.q;
+  document.getElementById("filter-milestone").value = state.milestone;
+  document.getElementById("filter-status").value = state.status;
 }
 
 function applySort(issues, tableKey) {
@@ -159,11 +202,13 @@ function applySort(issues, tableKey) {
   });
 }
 
-function thSort(tableKey, col, label) {
+function thSort(tableKey, col, label, title = "") {
   const state = sortState[tableKey];
   const active = state.col === col;
   const icon = active ? (state.dir === "asc" ? "↑" : "↓") : "↕";
-  return `<th class="progress-sortable${active ? " is-active" : ""}" scope="col"><button type="button" aria-pressed="${String(active)}" onclick="handleSort('${tableKey}','${col}')">${label} <span class="progress-sort-icon" aria-hidden="true">${icon}</span></button></th>`;
+  const ariaSort = active ? (state.dir === "asc" ? "ascending" : "descending") : "none";
+  const titleAttr = title ? ` title="${title}"` : "";
+  return `<th class="progress-sortable${active ? " is-active" : ""}" scope="col" aria-sort="${ariaSort}"${titleAttr}><button type="button" aria-pressed="${String(active)}" onclick="handleSort('${tableKey}','${col}')">${label} <span class="progress-sort-icon" aria-hidden="true">${icon}</span></button></th>`;
 }
 
 function handleSort(tableKey, col) {
@@ -187,29 +232,50 @@ function buildTable(issues, tableKey) {
       <th class="progress-hide-mobile" scope="col">Cohort</th>
       ${thSort(tableKey, "milestone", "Milestone")}
       <th class="progress-hide-mobile" scope="col">Submitted</th>
-      ${thSort(tableKey, "days", "Days")}
+      ${thSort(tableKey, "days", "Elapsed", "Days since the issue was submitted")}
       ${thSort(tableKey, "status", "Status")}
       <th scope="col">Repo</th><th scope="col">Issue</th>
     </tr></thead>
     <tbody>${rows
-      .map(
-        (issue) => `<tr>
-      <td>${issue._builder}</td>
-      <td class="progress-hide-mobile">${issue._cohort}</td>
-      <td><span class="progress-m-badge">${issue._milestone}</span></td>
+      .map((issue) => {
+        const repoUrl = ProgressSnapshot.safeExternalUrl(issue._repoUrl);
+        const issueUrl = ProgressSnapshot.safeExternalUrl(issue.html_url);
+        return `<tr>
+      <td>${ProgressSnapshot.escapeHtml(issue._builder)}</td>
+      <td class="progress-hide-mobile">${ProgressSnapshot.escapeHtml(issue._cohort)}</td>
+      <td><span class="progress-m-badge">${ProgressSnapshot.escapeHtml(issue._milestone)}</span></td>
       <td class="progress-hide-mobile">${formatDate(issue.created_at)}</td>
       <td>${daysBadge(issue._days, issue._status)}</td>
       <td>${statusBadges(issue)}</td>
       <td>${
-        issue._repoUrl !== "—"
-          ? `<a href="${issue._repoUrl}" target="_blank" rel="noopener noreferrer">repo<span class="sr-only"> (opens in new tab)</span></a>`
+        repoUrl
+          ? `<a href="${repoUrl}" target="_blank" rel="noopener noreferrer">repo<span class="sr-only"> (opens in new tab)</span></a>`
           : "—"
       }</td>
-      <td><a href="${issue.html_url}" target="_blank" rel="noopener noreferrer">#${issue.number}<span class="sr-only"> (opens in new tab)</span></a></td>
-    </tr>`,
-      )
+      <td>${
+        issueUrl
+          ? `<a href="${issueUrl}" target="_blank" rel="noopener noreferrer">#${issue.number}<span class="sr-only"> (opens in new tab)</span></a>`
+          : `#${issue.number}`
+      }</td>
+    </tr>`;
+      })
       .join("")}</tbody>
   </table></div>`;
+}
+
+function exportCsv() {
+  const rows = applySort(applyFilters(allIssues), "all");
+  const blob = new Blob([`\uFEFF${ProgressSnapshot.buildCsv(rows)}`], {
+    type: "text/csv;charset=utf-8",
+  });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `dep-submissions-${new Date().toISOString().slice(0, 10)}.csv`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
 }
 
 function renderAll() {
@@ -224,7 +290,16 @@ function renderAll() {
   document.getElementById("queue-improvement").innerHTML = buildTable(improvement, "improvement");
   document.getElementById("queue-all").innerHTML = buildTable(allIssues, "all");
 
+  const scoped = applyView(allIssues);
   const visible = applyFilters(allIssues);
+  document.getElementById("filter-summary").textContent =
+    `${visible.length} of ${scoped.length} submissions shown`;
+  document.getElementById("clear-filters").hidden = !(
+    document.getElementById("search").value ||
+    document.getElementById("filter-milestone").value ||
+    document.getElementById("filter-status").value
+  );
+
   document.getElementById("s-total").textContent = visible.length;
   document.getElementById("s-waiting").textContent = visible.filter(
     (issue) => issue._status === "waiting-on-prerequisite",
@@ -242,14 +317,22 @@ function renderAll() {
   document.getElementById("milestone-grid").innerHTML = MILESTONES.map((milestone) => {
     const milestoneIssues = visible.filter((issue) => issue._milestone === milestone);
     const passedCount = milestoneIssues.filter((issue) => issue._status === "passed").length;
+    const percent = milestoneIssues.length
+      ? Math.round((passedCount / milestoneIssues.length) * 100)
+      : 0;
     return `<div class="progress-milestone-col">
       <div class="m-label">${milestone}</div>
       <div class="m-bar">
-        <div class="m-passed">${passedCount}</div>
-        <div class="m-total">${milestoneIssues.length} submitted</div>
+        <div class="m-passed">${passedCount}<span class="m-denom">/${milestoneIssues.length}</span></div>
+        <div class="m-track" role="progressbar" aria-label="${milestone} submissions passed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${percent}">
+          <div class="m-fill" style="width: ${percent}%"></div>
+        </div>
+        <div class="m-total">${percent}% passed</div>
       </div>
     </div>`;
   }).join("");
+
+  syncDashboardQuery();
 }
 
 async function fetchEnrolled() {
@@ -344,4 +427,7 @@ async function load() {
   renderSnapshotStatus(snapshot.generatedAt, snapshot.live);
 }
 
-load();
+if (typeof document !== "undefined" && typeof window !== "undefined") {
+  applyInitialState();
+  load();
+}

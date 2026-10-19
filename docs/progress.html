@@ -9,7 +9,7 @@
         />
         <title>Submission Tracker — DEP Engineering Program</title>
         <link rel="stylesheet" href="assets/site.css?v=11" />
-        <link rel="stylesheet" href="assets/progress.css?v=4" />
+        <link rel="stylesheet" href="assets/progress.css?v=5" />
     </head>
     <body>
         <a class="skip-link" href="#main">Skip to content</a>
@@ -93,6 +93,13 @@
                         aria-live="polite"
                     ></span>
                     <button
+                        class="progress-export-btn"
+                        type="button"
+                        onclick="exportCsv()"
+                    >
+                        Export CSV
+                    </button>
+                    <button
                         class="progress-refresh-btn"
                         type="button"
                         onclick="load()"
@@ -161,6 +168,19 @@
                 </select>
             </div>
 
+            <div class="progress-filter-meta">
+                <span id="filter-summary" aria-live="polite"></span>
+                <button
+                    class="progress-clear-btn"
+                    id="clear-filters"
+                    type="button"
+                    onclick="clearFilters()"
+                    hidden
+                >
+                    Clear filters
+                </button>
+            </div>
+
             <section class="progress-section" aria-labelledby="waiting-queue-title">
                 <h2 id="waiting-queue-title">Submissions waiting on a prerequisite</h2>
                 <div id="queue-waiting">
@@ -217,7 +237,7 @@
         </footer>
 
         <script src="assets/site.js?v=10"></script>
-        <script src="assets/progress-snapshot.js?v=1"></script>
-        <script src="assets/progress.js?v=4"></script>
+        <script src="assets/progress-snapshot.js?v=2"></script>
+        <script src="assets/progress.js?v=5"></script>
     </body>
 </html>

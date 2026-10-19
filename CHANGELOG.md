@@ -4,6 +4,27 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.7.0] - 2026-10-19 — Submission Tracker Enhancements
+
+### Added
+
+- Added a CSV export button that downloads the currently filtered and sorted submissions, including cohort, milestone, status, late flag, submission and update timestamps, repo URL, and issue URL.
+- Added shareable dashboard state: the active cohort view, search query, milestone filter, and status filter are written to the URL, so a reviewer can bookmark or share an exact queue.
+- Added milestone pass-rate bars and a `passed / submitted` count to the milestone progress cards.
+- Added a live result count and a **Clear filters** action below the filters, plus tests for escaping, URL state, and CSV generation.
+
+### Changed
+
+- Renamed the table's **Days** column to **Elapsed**, with a tooltip clarifying that it measures days since submission.
+- Table headers now expose `aria-sort` so screen readers can announce the active sort.
+
+### Fixed
+
+- Escaped builder names, cohorts, and milestones before inserting them into the table, and restricted repo and issue links to `http`/`https`. Issue-form values are user-controlled and were previously rendered as raw HTML.
+- Prefix spreadsheet-formula characters in exported CSV cells to prevent CSV injection from issue-controlled fields.
+
+---
+
 ## [0.6.1] - 2026-10-19 — Progress Snapshot Publishing Fix
 
 ### Added
