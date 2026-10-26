@@ -14,6 +14,7 @@ All notable changes to this repository are recorded here.
 ### Fixed
 
 - Builders with no submissions are no longer presented as active on the public homepage.
+- Bumped the homepage script cache version so returning visitors load the new public status labels.
 
 ---
 
