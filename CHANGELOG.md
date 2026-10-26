@@ -4,6 +4,28 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.8.0] - 2026-10-26 — Automated Builder Directory
+
+### Added
+
+- Added `.github/scripts/builders_snapshot.py`, which derives the public builder directory from the hourly milestone issue snapshot and the enrollment allowlist.
+- Added display names, name opt-outs, cohort start date, and manual status overrides to `.github/enrolled-participants.json`.
+- Added tests for implied milestone passes, duplicate/late filtering, M5 path mapping, project-title extraction, active-week calculation, name opt-outs, and manual status overrides.
+
+### Changed
+
+- The homepage now loads the generated `builders.json` from the `progress-data` branch and falls back to the checked-in copy.
+- The public directory shows Active, Dropped, and Completed builders. At Risk remains an internal support signal documented in `docs/VOLUNTEER_GUIDE.md`.
+- Project titles are derived from the latest submission title, and the unmaintained squad field is no longer displayed.
+- CI now runs when the homepage, builder data, or homepage assets change.
+
+### Fixed
+
+- The homepage now reports 37 builders, 102 milestones passed, the current phases, and Week 19 instead of the stale 32 builders, 0 passed, all-Foundations, Week 2 values.
+- Builders `MCabs28`, `kathulhur`, and `ksdizon`, who had submissions but were missing from the directory, now appear.
+
+---
+
 ## [0.7.5] - 2026-10-19 — Resilient Short-SHA Snapshot Resolution
 
 ### Added

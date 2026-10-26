@@ -1,5 +1,6 @@
 import json
 import re
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -58,3 +59,37 @@ def test_issue_227_allowlist_gaps_are_closed():
 
     assert EXPECTED_ADDED <= participants
     assert "connette" not in participants
+
+
+def test_display_names_are_allowlisted_and_nonempty():
+    allowlist = load_json(ALLOWLIST)
+    participants = {user.lower() for user in allowlist["participants"]}
+    display_names = allowlist["display_names"]
+
+    assert {user.lower() for user in display_names} <= participants
+    assert all(name.strip() for name in display_names.values())
+
+
+def test_name_opt_outs_are_allowlisted():
+    allowlist = load_json(ALLOWLIST)
+    participants = {user.lower() for user in allowlist["participants"]}
+
+    assert {user.lower() for user in allowlist["name_opt_outs"]} <= participants
+
+
+def test_status_overrides_are_public_statuses_and_allowlisted():
+    allowlist = load_json(ALLOWLIST)
+    participants = {user.lower() for user in allowlist["participants"]}
+
+    assert {user.lower() for user in allowlist["status_overrides"]} <= participants
+    assert set(allowlist["status_overrides"].values()) <= {
+        "Active",
+        "Dropped",
+        "Completed",
+    }
+
+
+def test_start_date_is_an_iso_date():
+    start_date = load_json(ALLOWLIST)["start_date"]
+
+    assert date.fromisoformat(start_date).isoformat() == start_date

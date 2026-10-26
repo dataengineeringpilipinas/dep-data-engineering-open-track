@@ -4,8 +4,11 @@ on:
   pull_request:
     paths:
       - ".github/**"
-      - "docs/assets/progress.js"
-      - "docs/assets/progress-snapshot.js"
+      - "docs/assets/*.js"
+      - "docs/data/**"
+      - "docs/index.html"
+      - "docs/progress.html"
+      - "docs/VOLUNTEER_GUIDE.md"
   workflow_dispatch:
 
 permissions:
@@ -38,6 +41,9 @@ jobs:
 
       - name: Run progress dashboard tests
         run: node --test .github/scripts/test_progress_snapshot_js.js
+
+      - name: Check homepage script syntax
+        run: node --check docs/assets/site.js
 
       - name: Run milestone logic tests
         run: node --test .github/scripts/test_milestone_logic.js

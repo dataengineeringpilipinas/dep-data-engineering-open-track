@@ -121,14 +121,14 @@ if (builderDashboard) {
     "Data Collection",
     "Data Processing",
     "Analysis & Insights",
+    "Predictive / Alt Track",
     "Predictive",
     "Non-Predictive",
     "Packaging & Deployment",
   ];
-  const statusOrder = ["Active", "At Risk", "Dropped", "Completed"];
+  const statusOrder = ["Active", "Dropped", "Completed"];
   const statusLabels = {
     Active: "Active",
-    "At Risk": "At risk",
     Dropped: "Dropped",
     Completed: "Completed",
   };
@@ -382,7 +382,6 @@ if (builderDashboard) {
       const haystack = [
         builder.name,
         builder.github,
-        builder.squad,
         builder.projectTopic,
         builder.status,
         builder.phase,
@@ -400,16 +399,18 @@ if (builderDashboard) {
 
   const renderStats = () => {
     const active = builders.filter((builder) => builder.status === "Active").length;
-    const atRisk = builders.filter((builder) => builder.status === "At Risk").length;
     const completed = builders.filter((builder) => builder.status === "Completed").length;
+    const withSubmissions = builders.filter(
+      (builder) => Number(builder.milestonesSubmitted) > 0,
+    ).length;
     const submitted = sumBy(builders, "milestonesSubmitted");
     const passed = sumBy(builders, "milestonesPassed");
 
     statsEl.innerHTML = [
-      ["Total builders", builders.length],
+      ["Builders listed", builders.length],
       ["Active", active],
-      ["At risk", metricValue(atRisk)],
       ["Completed", metricValue(completed)],
+      ["With submissions", metricValue(withSubmissions)],
       ["Milestones submitted", metricValue(submitted)],
       ["Milestones passed", metricValue(passed)],
     ]
@@ -530,7 +531,6 @@ if (builderDashboard) {
         const github = getSafeUrl(builder.github);
         const name = escapeHtml(builder.name || builder.id || "Builder");
         const topic = escapeHtml(builder.projectTopic || "Project topic to be announced");
-        const squad = escapeHtml(builder.squad || "Squad pending");
         const activeWeek = escapeHtml(builder.activeWeek || "Week pending");
         const phase = escapeHtml(builder.phase || "Phase pending");
         const status = escapeHtml(statusLabels[builder.status] || builder.status || "Status pending");
@@ -548,13 +548,12 @@ if (builderDashboard) {
             <span>${phase}</span>
             <span>${milestone}</span>
             <span>${activeWeek}</span>
-            <span>${squad}</span>
           </div>
           <div class="builder-card-footer">
             <span>${escapeHtml(builder.milestonesPassed || 0)} passed / ${escapeHtml(builder.milestonesSubmitted || 0)} submitted</span>
             ${
               github
-                ? `<a href="${escapeHtml(github)}" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository for ${name} (opens in new tab)">GitHub</a>`
+                ? `<a href="${escapeHtml(github)}" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile for ${name} (opens in new tab)">GitHub</a>`
                 : "<span>GitHub pending</span>"
             }
           </div>
@@ -602,11 +601,28 @@ if (builderDashboard) {
     }
   };
 
-  fetch("data/builders.json")
-    .then((response) => {
-      if (!response.ok) throw new Error("Builder data unavailable");
-      return response.json();
-    })
+  // The hourly snapshot workflow publishes both the issue snapshot and the
+  // derived builder directory to `progress-data`, keeping the public dashboard
+  // out of the protected `main` branch. The checked-in file is a fallback for
+  // local previews and for the brief window before the first workflow run.
+  const builderDataUrls = [
+    "https://raw.githubusercontent.com/dataengineeringpilipinas/dep-data-engineering-open-track/progress-data/builders.json",
+    "data/builders.json",
+  ];
+
+  const fetchBuilderSnapshot = async () => {
+    for (const url of builderDataUrls) {
+      try {
+        const response = await fetch(url, { cache: "no-cache" });
+        if (response.ok) return await response.json();
+      } catch (_) {
+        // Try the next source.
+      }
+    }
+    throw new Error("Builder data unavailable");
+  };
+
+  fetchBuilderSnapshot()
     .then((snapshot) => {
       bindBuilderFilters();
       renderBuilders(snapshot);

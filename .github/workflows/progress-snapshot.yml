@@ -1,11 +1,11 @@
-name: Progress Snapshot
+name: Progress and Builder Snapshots
 
-# Publishes progress-snapshot.json to the unprotected `progress-data` branch so
-# the Pages dashboard can render without hitting api.github.com from the
-# visitor's browser (60 req/hr/IP unauthenticated). Keeping the snapshot off
-# `main` means the bot never needs to bypass branch protection or open a PR on
-# every run. The dashboard falls back to the live API when the snapshot is
-# missing.
+# Publishes progress-snapshot.json and the derived builders.json to the
+# unprotected `progress-data` branch so the Pages dashboards can render without
+# hitting api.github.com from the visitor's browser (60 req/hr/IP
+# unauthenticated). Keeping the snapshots off `main` means the bot never needs
+# to bypass branch protection or open a PR on every run. The dashboards fall
+# back to the live API or the checked-in copy when a snapshot is missing.
 
 on:
   schedule:
@@ -37,28 +37,52 @@ jobs:
                           pull_request: (has("pull_request"))}]' \
             | jq -s 'add // []' > new-issues.json
 
-      - name: Fetch existing snapshot from the data branch
+      - name: Fetch existing data from the data branch
         run: |
-          if git fetch --depth=1 origin progress-data 2>/dev/null && \
-             git show origin/progress-data:progress-snapshot.json > existing.json; then
-            echo "Loaded the existing snapshot."
+          if git fetch --depth=1 origin progress-data 2>/dev/null; then
+            git show origin/progress-data:progress-snapshot.json > existing-snapshot.json 2>/dev/null || echo '{}' > existing-snapshot.json
+            git show origin/progress-data:builders.json > existing-builders.json 2>/dev/null || echo '{}' > existing-builders.json
+            echo "Loaded the existing snapshots."
           else
-            echo '{}' > existing.json
+            echo '{}' > existing-snapshot.json
+            echo '{}' > existing-builders.json
           fi
 
-      - name: Build snapshot
-        id: build
+      - name: Build progress snapshot
+        id: snapshot
         run: |
           result="$(python3 .github/scripts/progress_snapshot.py \
             --issues new-issues.json \
-            --existing existing.json \
+            --existing existing-snapshot.json \
             --output progress-snapshot.json)"
           echo "$result"
           echo "result=$result" >> "$GITHUB_OUTPUT"
 
-      - name: Publish snapshot to the data branch
-        if: steps.build.outputs.result == 'changed'
+      - name: Build builder snapshot
+        id: builders
         run: |
+          result="$(python3 .github/scripts/builders_snapshot.py \
+            --issues new-issues.json \
+            --allowlist .github/enrolled-participants.json \
+            --existing existing-builders.json \
+            --output builders.json)"
+          echo "$result"
+          echo "result=$result" >> "$GITHUB_OUTPUT"
+
+      - name: Publish changed data to the data branch
+        if: steps.snapshot.outputs.result == 'changed' || steps.builders.outputs.result == 'changed'
+        env:
+          SNAPSHOT_RESULT: ${{ steps.snapshot.outputs.result }}
+          BUILDERS_RESULT: ${{ steps.builders.outputs.result }}
+        run: |
+          # Keep unchanged files byte-for-byte so their timestamps do not churn.
+          if [ "$SNAPSHOT_RESULT" != "changed" ]; then
+            cp existing-snapshot.json progress-snapshot.json
+          fi
+          if [ "$BUILDERS_RESULT" != "changed" ]; then
+            cp existing-builders.json builders.json
+          fi
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
@@ -72,7 +96,8 @@ jobs:
           fi
 
           cp "$GITHUB_WORKSPACE/progress-snapshot.json" "$RUNNER_TEMP/progress-data/progress-snapshot.json"
+          cp "$GITHUB_WORKSPACE/builders.json" "$RUNNER_TEMP/progress-data/builders.json"
           cd "$RUNNER_TEMP/progress-data"
-          git add progress-snapshot.json
-          git commit -m "chore(data): update progress snapshot [skip ci]"
+          git add progress-snapshot.json builders.json
+          git commit -m "chore(data): update progress and builder snapshots [skip ci]"
           git push origin HEAD:progress-data

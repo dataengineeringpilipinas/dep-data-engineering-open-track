@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Changelog for the DEP Engineering Program — notable updates to the curriculum, submission system, and program infrastructure." />
         <title>Changelog — DEP Engineering Program</title>
-        <link rel="stylesheet" href="assets/site.css?v=11" />
+        <link rel="stylesheet" href="assets/site.css?v=12" />
         <style>
             #main { background: #F9FAFB; }
 
@@ -79,6 +79,41 @@
                     Notable updates to the curriculum, submission system, and program infrastructure.
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
+
+                <!-- 0.8.0 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.8.0</span>
+                        <span class="cl-version-date">2026-10-26</span>
+                        <span class="cl-version-tag">Automated Builder Directory</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Added <code>.github/scripts/builders_snapshot.py</code>, which derives the public builder directory from the hourly milestone issue snapshot and the enrollment allowlist.</li>
+                            <li>Added display names, name opt-outs, cohort start date, and manual status overrides to <code>.github/enrolled-participants.json</code>.</li>
+                            <li>Added tests for implied milestone passes, duplicate and late filtering, M5 path mapping, project-title extraction, active-week calculation, name opt-outs, and manual status overrides.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>The homepage now loads the generated <code>builders.json</code> from the <code>progress-data</code> branch and falls back to the checked-in copy.</li>
+                            <li>The public directory shows Active, Dropped, and Completed builders. At Risk remains an internal support signal documented in <code>docs/VOLUNTEER_GUIDE.md</code>.</li>
+                            <li>Project titles are derived from the latest submission title, and the unmaintained squad field is no longer displayed.</li>
+                            <li>CI now runs when the homepage, builder data, or homepage assets change.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>The homepage now reports 37 builders, 102 milestones passed, the current phases, and Week 19 instead of the stale 32 builders, 0 passed, all-Foundations, Week 2 values.</li>
+                            <li>Builders <code>MCabs28</code>, <code>kathulhur</code>, and <code>ksdizon</code>, who had submissions but were missing from the directory, now appear.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
 
                 <!-- 0.7.5 -->
                 <div class="cl-version">
@@ -747,6 +782,6 @@
             </nav>
         </footer>
 
-        <script src="assets/site.js?v=10"></script>
+        <script src="assets/site.js?v=11"></script>
     </body>
 </html>

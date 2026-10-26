@@ -45,6 +45,27 @@ Paired with stuck Builders. Limited slots. Only for Builders who are blocked, no
 
 ---
 
+## At Risk Definition
+
+A Builder is **At Risk** when either condition is true:
+
+- **Behind pace:** they are **2 or more milestones behind** the most recent deadline that has passed. For example, if M4 is the latest passed deadline, a Builder who has not passed M2 is behind pace.
+- **Inactive:** there has been no new submission or `/recheck` for **14 days since the next action became the Builder's**, and the Builder is either waiting on a revision (`needs-improvement`) or has no open issue while being behind pace or having never submitted.
+
+A Builder waiting on the program (`ready-for-review` or `waiting-on-prerequisite`) is **not** At Risk because of that wait.
+
+At Risk is an internal support signal. It is not shown on the public homepage. `Dropped` remains a manual status, set only when the Builder or the program lead confirms it.
+
+The v1 tracker uses the issue's `updated_at` as the `/recheck` proxy. A reviewer label change also updates that timestamp, so confirm the comment history before escalating a Builder who may have rechecked.
+
+---
+
+## Public Builder Directory
+
+The homepage directory is generated hourly from the milestone issue snapshot and published to the `progress-data` branch. The checked-in `docs/data/builders.json` is only a fallback. Display names live in `display_names` in [`.github/enrolled-participants.json`](../.github/enrolled-participants.json). Add a GitHub username to `name_opt_outs` to publish the username instead. Use `status_overrides` only for manual `Dropped` statuses; At Risk is derived internally and never published.
+
+---
+
 ## Operating Rhythm
 
 | Cadence | Activity |
