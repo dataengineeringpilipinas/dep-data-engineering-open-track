@@ -76,7 +76,7 @@ def test_builder_list_comes_from_allowlist_even_without_issues():
         "Linus",
     ]
     linus = builder_for(snapshot, "Linus")
-    assert linus["status"] == "Active"
+    assert linus["status"] == "Enrolled"
     assert linus["currentMilestone"] == 0
     assert linus["milestonesSubmitted"] == 0
     assert linus["milestonesPassed"] == 0
@@ -93,6 +93,7 @@ def test_later_pass_implies_earlier_passes_and_current_milestone():
     )
 
     ada = builder_for(snapshot, "Ada")
+    assert ada["status"] == "In progress"
     assert ada["milestonesSubmitted"] == 2
     assert ada["milestonesPassed"] == 4
     assert ada["currentMilestone"] == 4

@@ -126,11 +126,12 @@ if (builderDashboard) {
     "Non-Predictive",
     "Packaging & Deployment",
   ];
-  const statusOrder = ["Active", "Dropped", "Completed"];
+  const statusOrder = ["Enrolled", "In progress", "Completed", "Dropped"];
   const statusLabels = {
-    Active: "Active",
-    Dropped: "Dropped",
+    Enrolled: "Enrolled",
+    "In progress": "In progress",
     Completed: "Completed",
+    Dropped: "Dropped",
   };
 
   const metaEl = builderDashboard.querySelector("[data-builder-meta]");
@@ -398,19 +399,17 @@ if (builderDashboard) {
   };
 
   const renderStats = () => {
-    const active = builders.filter((builder) => builder.status === "Active").length;
+    const enrolled = builders.filter((builder) => builder.status === "Enrolled").length;
+    const inProgress = builders.filter((builder) => builder.status === "In progress").length;
     const completed = builders.filter((builder) => builder.status === "Completed").length;
-    const withSubmissions = builders.filter(
-      (builder) => Number(builder.milestonesSubmitted) > 0,
-    ).length;
     const submitted = sumBy(builders, "milestonesSubmitted");
     const passed = sumBy(builders, "milestonesPassed");
 
     statsEl.innerHTML = [
       ["Builders listed", builders.length],
-      ["Active", active],
+      ["Enrolled", metricValue(enrolled)],
+      ["In progress", metricValue(inProgress)],
       ["Completed", metricValue(completed)],
-      ["With submissions", metricValue(withSubmissions)],
       ["Milestones submitted", metricValue(submitted)],
       ["Milestones passed", metricValue(passed)],
     ]
