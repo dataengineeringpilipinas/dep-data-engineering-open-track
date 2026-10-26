@@ -42,7 +42,6 @@
   ],
   "display_names": {
     "anonggentlegentle": "Balberan, Jaren Kim, C.",
-    "sarmientobengjii": "Sarmiento, Harvy",
     "miksss1412": "Torres, Miko John T.",
     "AdrianeJone": "Abunda, Adriane Jone A.",
     "johnkennethpriol": "Priol, John Kenneth R.",
@@ -50,7 +49,6 @@
     "MCabs28": "Cabael, Mark",
     "jffabrero": "Fabrero, Jerome F.",
     "kathulhur": "Crisostomo, Joseph",
-    "YeXiu2001": "Paraiso, Allan Raymart",
     "jimwellbryllsantos-dot": "Santos, Jimwell Bryll, N",
     "Naehum-Dela-Cruz": "Dela Cruz, Naehum, D.",
     "xeind": "Virgines, Xein Deniel M.",
@@ -79,7 +77,10 @@
     "credough": "Celindro, Aaron Creed P.",
     "Froncoyz": "Verano, Froncoyz Peteros"
   },
-  "name_opt_outs": [],
+  "name_opt_outs": [
+    "sarmientobengjii",
+    "YeXiu2001"
+  ],
   "status_overrides": {},
   "_missing_github": [
     "Caliao, Stefany Mae O.",

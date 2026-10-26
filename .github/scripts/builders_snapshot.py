@@ -29,7 +29,7 @@ PROCESS_LABELS = {
     "needs-improvement",
     "passed",
 }
-PUBLIC_STATUSES = {"Active", "Dropped", "Completed"}
+PUBLIC_STATUSES = {"Enrolled", "In progress", "Completed", "Dropped"}
 PHILIPPINE_TZ = timezone(timedelta(hours=8))
 COHORT_WEEKS = 24
 DEFAULT_START_DATE = date(2026, 6, 22)
@@ -226,7 +226,12 @@ def build_builders_snapshot(
                     f"Unsupported public status override for {login}: {status!r}"
                 )
         else:
-            status = "Completed" if highest_passed >= 6 else "Active"
+            if highest_passed >= 6:
+                status = "Completed"
+            elif submitted_milestones:
+                status = "In progress"
+            else:
+                status = "Enrolled"
 
         builders.append(
             {

@@ -83,9 +83,10 @@ def test_status_overrides_are_public_statuses_and_allowlisted():
 
     assert {user.lower() for user in allowlist["status_overrides"]} <= participants
     assert set(allowlist["status_overrides"].values()) <= {
-        "Active",
-        "Dropped",
+        "Enrolled",
+        "In progress",
         "Completed",
+        "Dropped",
     }
 
 
@@ -93,3 +94,11 @@ def test_start_date_is_an_iso_date():
     start_date = load_json(ALLOWLIST)["start_date"]
 
     assert date.fromisoformat(start_date).isoformat() == start_date
+
+
+def test_unconfirmed_names_stay_username_only():
+    allowlist = load_json(ALLOWLIST)
+    unconfirmed = {"YeXiu2001", "sarmientobengjii"}
+
+    assert unconfirmed <= set(allowlist["name_opt_outs"])
+    assert not unconfirmed & set(allowlist["display_names"])

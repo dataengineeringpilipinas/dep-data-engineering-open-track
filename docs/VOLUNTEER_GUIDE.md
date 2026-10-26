@@ -62,7 +62,7 @@ The v1 tracker uses the issue's `updated_at` as the `/recheck` proxy. A reviewer
 
 ## Public Builder Directory
 
-The homepage directory is generated hourly from the milestone issue snapshot and published to the `progress-data` branch. The checked-in `docs/data/builders.json` is only a fallback. Display names live in `display_names` in [`.github/enrolled-participants.json`](../.github/enrolled-participants.json). Add a GitHub username to `name_opt_outs` to publish the username instead. Use `status_overrides` only for manual `Dropped` statuses; At Risk is derived internally and never published.
+The homepage directory is generated hourly from the milestone issue snapshot and published to the `progress-data` branch. The checked-in `docs/data/builders.json` is only a fallback. Display names live in `display_names` in [`.github/enrolled-participants.json`](../.github/enrolled-participants.json). Add a GitHub username to `name_opt_outs` to publish the username instead. Public statuses are `Enrolled` (no submissions), `In progress` (at least one submission), `Completed` (M6 passed), and `Dropped` (manual). Use `status_overrides` only for manual `Dropped` statuses; At Risk is derived internally and never published.
 
 ---
 

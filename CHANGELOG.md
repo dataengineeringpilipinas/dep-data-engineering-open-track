@@ -4,6 +4,19 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.8.1] - 2026-10-26 — Clearer Public Builder Status
+
+### Changed
+
+- Public builder status now reads `Enrolled` (no submissions), `In progress` (at least one submission), `Completed` (M6 passed), or `Dropped` (manual), instead of the ambiguous `Active` label.
+- `YeXiu2001` and `sarmientobengjii` are published by username only until their roster name mappings are confirmed.
+
+### Fixed
+
+- Builders with no submissions are no longer presented as active on the public homepage.
+
+---
+
 ## [0.8.0] - 2026-10-26 — Automated Builder Directory
 
 ### Added
