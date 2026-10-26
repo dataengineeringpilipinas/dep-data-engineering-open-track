@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-20T06:02:57Z",
+  "generated_at": "2026-10-26T13:43:27Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -4254,7 +4254,7 @@
     },
     {
       "body": "### Builder Name\n\nMark Cabael\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/MCabs28/dep-data-engineering-mark-cabael\n\n### Commit Hash\n\n63652ad6eaa09925d7b0a31621e5533162fadc1e\n\n### Self-Check\n\n- [x] `notebooks/` contains at least one `.ipynb` analysis notebook.\n- [x] The notebook runs end-to-end without errors on `data/processed/` inputs.\n- [x] `requirements.txt` is up to date.\n- [x] My README documents the key findings and links to the notebook.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-10-26T11:49:15Z",
       "created_at": "2026-10-11T12:46:29Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/218",
       "labels": [
@@ -4262,16 +4262,16 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M4"
+          "name": "passed"
         },
         {
-          "name": "ready-for-review"
+          "name": "M4"
         }
       ],
       "number": 218,
       "pull_request": false,
       "title": "[M4] Mark Cabael — BahaPredict: Building an Automated Regional Weather Data Pipeline in the Philippines",
-      "updated_at": "2026-10-19T13:22:15Z",
+      "updated_at": "2026-10-26T11:49:30Z",
       "user": {
         "login": "MCabs28"
       }
@@ -4298,7 +4298,7 @@
       "number": 219,
       "pull_request": false,
       "title": "[M4] Xein Virgines — 1960 vs 2025: Who Had It Better?",
-      "updated_at": "2026-10-16T10:02:51Z",
+      "updated_at": "2026-10-26T11:49:26Z",
       "user": {
         "login": "xeind"
       }
@@ -4352,7 +4352,7 @@
       "number": 221,
       "pull_request": false,
       "title": "[M4] Naehum Dela Cruz — MassKara Festival Google Trends Interest & MNL-BCD Travel Price Surge Tracker",
-      "updated_at": "2026-10-16T10:02:56Z",
+      "updated_at": "2026-10-26T11:49:23Z",
       "user": {
         "login": "Naehum-Dela-Cruz"
       }
@@ -4430,7 +4430,7 @@
       "number": 224,
       "pull_request": false,
       "title": "[M4] Lord Marin — Temporal Dynamics of Connection-Seeking in PH r4r Subreddits",
-      "updated_at": "2026-10-18T14:45:16Z",
+      "updated_at": "2026-10-26T11:49:31Z",
       "user": {
         "login": "lordgpm"
       }
