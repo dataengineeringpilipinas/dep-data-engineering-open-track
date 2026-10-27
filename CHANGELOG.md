@@ -4,6 +4,14 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.9.0] - 2026-11-07 — Declare the Phase 5 Path at M4
+
+### Added
+
+- The M4 submission form now asks for the Phase 5 path (Path A, Path B, or Undecided), so reviewers can confirm it at M4 as the review rubric expects. The path is not scored.
+
+---
+
 ## [0.8.2] - 2026-11-07 — Record a Dropped Builder
 
 ### Changed
