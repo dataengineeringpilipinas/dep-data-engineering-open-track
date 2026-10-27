@@ -50,6 +50,18 @@ body:
     validations:
       required: true
 
+  - type: dropdown
+    id: phase5_path
+    attributes:
+      label: Phase 5 path
+      description: Which path will you take after M4? Choose Path A only if your project has a numeric or yes/no outcome worth predicting. Path B is equally valid. This does not affect your M4 result.
+      options:
+        - "Path A — Predictive / ML"
+        - "Path B — Advanced EDA & Stakeholder Track"
+        - "Undecided"
+    validations:
+      required: true
+
   - type: checkboxes
     id: self_check
     attributes:
