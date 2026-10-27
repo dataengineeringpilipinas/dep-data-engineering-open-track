@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-27T00:27:02Z",
+  "generated_at": "2026-10-27T13:13:41Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -4286,10 +4286,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "needs-improvement"
+          "name": "M4"
         },
         {
-          "name": "M4"
+          "name": "ready-for-review"
         },
         {
           "name": "late-submission"
@@ -4298,7 +4298,7 @@
       "number": 219,
       "pull_request": false,
       "title": "[M4] Xein Virgines — 1960 vs 2025: Who Had It Better?",
-      "updated_at": "2026-10-26T11:49:26Z",
+      "updated_at": "2026-10-27T08:33:36Z",
       "user": {
         "login": "xeind"
       }
@@ -4352,7 +4352,7 @@
       "number": 221,
       "pull_request": false,
       "title": "[M4] Naehum Dela Cruz — MassKara Festival Google Trends Interest & MNL-BCD Travel Price Surge Tracker",
-      "updated_at": "2026-10-26T22:27:50Z",
+      "updated_at": "2026-10-27T09:10:47Z",
       "user": {
         "login": "Naehum-Dela-Cruz"
       }
@@ -4410,7 +4410,7 @@
     },
     {
       "body": "### Builder Name\n\nLord Gideon Marin\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/lordgpm/dep-data-engineering-lord_marin\n\n### Commit Hash\n\n4648600\n\n### Self-Check\n\n- [x] `notebooks/` contains at least one `.ipynb` analysis notebook.\n- [x] The notebook runs end-to-end without errors on `data/processed/` inputs.\n- [x] `requirements.txt` is up to date.\n- [x] My README documents the key findings and links to the notebook.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-10-27T07:59:24Z",
       "created_at": "2026-10-18T14:44:59Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/224",
       "labels": [
@@ -4418,10 +4418,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M4"
+          "name": "passed"
         },
         {
-          "name": "ready-for-review"
+          "name": "M4"
         },
         {
           "name": "late-submission"
@@ -4430,7 +4430,7 @@
       "number": 224,
       "pull_request": false,
       "title": "[M4] Lord Marin — Temporal Dynamics of Connection-Seeking in PH r4r Subreddits",
-      "updated_at": "2026-10-26T11:49:31Z",
+      "updated_at": "2026-10-27T08:42:24Z",
       "user": {
         "login": "lordgpm"
       }
@@ -4445,10 +4445,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M4"
+          "name": "needs-improvement"
         },
         {
-          "name": "ready-for-review"
+          "name": "M4"
         },
         {
           "name": "late-submission"
@@ -4457,7 +4457,7 @@
       "number": 225,
       "pull_request": false,
       "title": "[M4] Vhon Raven Dingal — Davao Commute Router",
-      "updated_at": "2026-10-19T07:05:36Z",
+      "updated_at": "2026-10-27T10:36:46Z",
       "user": {
         "login": "vn0raven"
       }

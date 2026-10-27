@@ -1,6 +1,6 @@
 {
   "cohort": "2026-A",
-  "updatedAt": "2026-10-26",
+  "updatedAt": "2026-10-27",
   "source": "GitHub milestone-submission issues + enrolled-participants.json",
   "builders": [
     {
@@ -262,10 +262,10 @@
       "projectTopic": "Temporal Dynamics of Connection-Seeking in PH r4r Subreddits",
       "startDate": "2026-06-22",
       "activeWeek": "W19",
-      "currentMilestone": 4,
+      "currentMilestone": 5,
       "milestonesSubmitted": 5,
-      "milestonesPassed": 4,
-      "phase": "Analysis & Insights"
+      "milestonesPassed": 5,
+      "phase": "Predictive / Alt Track"
     },
     {
       "name": "Oania, Leandra E",
