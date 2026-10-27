@@ -4,6 +4,14 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- The M4 submission form now asks for the Phase 5 path (Path A, Path B, or Undecided), so reviewers can confirm it at M4 as the review rubric expects. The path is not scored.
+
+---
+
 ## [0.8.1] - 2026-10-26 — Clearer Public Builder Status
 
 ### Changed
