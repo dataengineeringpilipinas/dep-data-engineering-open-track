@@ -137,20 +137,22 @@ erDiagram
 ### Setup Environment
 
 Bash
-# Clone the repository
-git clone [https://github.com/michaelbacus-lab/dep-data-engineering-open-track.git](https://github.com/michaelbacus-lab/dep-data-engineering-open-track.git)
-cd dep-data-engineering-open-track
+### Clone the repository
+| git clone [https://github.com/michaelbacus-lab/dep-data-engineering-open-track.git](https://github.com/michaelbacus-lab/dep-data-engineering-open-track.git)
+cd dep-data-engineering-open-track |
 
-# Create and activate virtual environment
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+### Create and activate virtual environment
+| python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate |
 
-# Install requirements
-pip install -r requirements.txt
-Run Raw Ingestion
+### Install requirements
+| pip install -r requirements.txt |
+
+### Run Raw Ingestion
 
 Bash
-python scripts/ingest.py
+| python scripts/ingest.py |
+
 ⚠️ Data Quality & Investigation Limitations Disclaimer
 Self-Reported Data Vulnerabilities: This dataset reflects DPWH's self-reported submissions, which have been subject to formal Senate Blue Ribbon Committee inquiry and internal DPWH validation regarding coordinate accuracy and potential non-existent ("ghost") entries.
 
