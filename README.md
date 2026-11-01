@@ -1,128 +1,93 @@
-# Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)
+# Public Data Patterns in DPWH Flood Control Projects (2022–2025)
 
 ## Problem Statement
 
 I want to answer:
-
 **"Can publicly available DPWH flood control project data reveal unusual geographic, financial, and contractor-related patterns that may indicate areas requiring further audit or investigation between 2022 and 2025?"**
 
 My hypothesis is that while most flood control projects are distributed according to infrastructure and disaster mitigation needs, the data may reveal patterns that warrant closer examination. These may include unusually high concentrations of projects within specific provinces, repeated awards to the same contractors, or significant differences in project costs across comparable locations. Such patterns do **not** establish corruption, fraud, or wrongdoing. Instead, they provide evidence-based indicators that can help auditors, policymakers, journalists, and citizens identify projects that deserve further review. If the analysis finds no unusual concentrations or inconsistencies, it would suggest that the observed project distribution is generally consistent with available public data. If notable anomalies are identified, the findings could support stronger transparency initiatives, more detailed public reporting, and more targeted oversight by government auditing agencies.
 
+---
+
 ## Audience
 
-This project is intended for the Commission on Audit (COA), the Department of Public Works and Highways (DPWH), policymakers, local government units (LGUs), journalists, researchers, civil society organizations, and citizens interested in government transparency and infrastructure accountability. It aims to provide an objective, data-driven view of how publicly funded flood control projects are distributed across the Philippines.
+- **Primary Audience:** **Commission on Audit (COA) — Infrastructure Audit Division** (to assist in identifying high-risk geographic clusters and prioritizing physical/financial field audits).
+- **Secondary Audience:** Department of Public Works and Highways (DPWH) internal oversight, Local Government Units (LGUs), investigative journalists, civil society organizations (CSOs), and citizens interested in infrastructure transparency.
+
+---
 
 ## KPI or Key Metric
 
-The primary metrics I want to track include:
+- **Primary Metric:** **Contractor Concentration Ratio** (Percentage share of total regional/provincial flood control project value awarded to top contractors).
+- **Secondary / Supporting Metrics:**
+  - **Cost Anomaly Z-Score:** Statistical deviation of unit/km project cost relative to regional benchmarks.
+  - **Geographic Investment Density:** Total project allocation per province/municipality normalized by land area and population.
+  - **Contractor Project Volume:** Total count and aggregate contract value of completed projects per contractor.
 
-* Number of completed flood control projects per province and region
-* Total project cost by province and region
-* Average project cost
-* Number of projects awarded per contractor
-* Contractor concentration ratio
-* Geographic distribution of completed projects
-* Project density relative to province or municipality
-* Identification of statistical outliers in project allocation and cost
+---
 
 ## Likely Data Source
 
-I will explore the following data sources:
+The primary dataset for this project is the **[DPWH Flood Control Projects Dataset on Kaggle](https://www.kaggle.com/datasets/bwandowando/dpwh-flood-control-projects)** (9,855 rows, July 2022 – May 2025).
 
-* DPWH Flood Control Projects Dataset (Kaggle) — https://www.kaggle.com/datasets/bwandowando/dpwh-flood-control-projects
-* DPWH Project DIME Dashboard — https://www.dime.gov.ph/dashboard
-* DPWH Official Website — https://www.dpwh.gov.ph
-* Commission on Audit (COA) Annual Audit Reports — https://www.coa.gov.ph
-* Philippine Statistics Authority (PSA) — https://psa.gov.ph (for regional and population statistics if normalization is required)
+---
 
 ## Possible Final Dashboard
 
-The dashboard should help users quickly identify how flood control projects are distributed across regions and provinces, which contractors receive the highest number of projects, how project costs compare geographically, and whether statistically unusual allocation patterns exist. Interactive maps, contractor rankings, regional summaries, and cost distribution charts will allow users to explore the data and identify projects or areas that may warrant further review by oversight agencies.
+The dashboard should help audit teams and researchers quickly identify geographic hotspots with high contractor concentration, pinpoint cost outliers among completed projects, and filter by province or region to flag specific project IDs for further review. It will feature interactive choropleth maps, contractor distribution rankings, cost dispersion scatter plots, and regional summary tables.
+
+---
 
 ## Data Source Notes
 
-### Flood Control Projects
+### Primary Source
+- **Name:** DPWH Flood Control Projects Dataset (Kaggle)
+- **URL:** https://www.kaggle.com/datasets/bwandowando/dpwh-flood-control-projects
+- **Format:** CSV
+- **Coverage:** 9,855 completed DPWH flood control project records nationwide (July 2022 – May 2025)
+- **Why it fits:** Provides structured, project-level metadata—including contract amounts, contractor names, project titles, coordinates, and implementing offices—enabling direct calculation of contractor concentration, cost variances, and spatial distribution.
+- **Known limitations:** Covers completed projects only and relies on self-reported government entries. Data is subject to ongoing coordinate inaccuracies and potential non-existent ("ghost") project entries under Senate and internal review.
 
-**Primary:** DPWH Flood Control Projects Dataset (Kaggle)
+### Fallback Source
+- **Name:** DPWH Project DIME (Digital Information for Monitoring and Evaluation) Dashboard
+- **URL:** https://www.dime.gov.ph/dashboard
+- **Format:** HTML Web Dashboard / Downloadable Reports
+- **Coverage:** National infrastructure project monitoring status
+- **Why it could still work:** Acts as an independent government monitoring baseline to validate project existence, financial details, and implementation status if the primary mirror becomes unavailable.
+- **Known limitations:** Field schema differs from the Kaggle dataset, requiring manual table extraction and custom field mapping.
 
-* URL: https://www.kaggle.com/datasets/bwandowando/dpwh-flood-control-projects
-* Format: CSV
-* Coverage: Completed DPWH flood control projects from July 2022 to May 2025
-* Why it fits: Provides structured project-level information including project names, locations, implementing offices, contractors, coordinates, and other metadata suitable for ETL and analytics.
-* Known limitations: Covers completed projects only and relies on publicly available government records compiled into a machine-readable dataset.
+### Secondary / Normalization Sources
+- **Philippine Statistics Authority (PSA):** https://psa.gov.ph (CSV / Excel / PDF) — Provides regional population and land area data to normalize project density and cost allocation per capita.
+- **Commission on Audit (COA) Annual Audit Reports:** https://www.coa.gov.ph (PDF) — Provides qualitative audit findings to cross-reference and ground statistical outliers.
 
-**Fallback:** DPWH Project DIME Dashboard
+---
 
-* URL: https://www.dime.gov.ph/dashboard
-* Format: Web dashboard / downloadable reports
-* Coverage: Government infrastructure project monitoring and implementation status
-* Why it fits: Can supplement project metadata and validate project information.
-* Known limitations: Coverage and available fields may differ from the Kaggle dataset and may require manual extraction.
+## Pipeline Architecture & Requirements
 
-## Requirements
-**Primary:** Python Libraries
-kaggle
-Path
-os
+### Project Dependencies
+- **Primary Python Modules:** `pandas`, `kaggle`, `pathlib`, `os`, `geopandas`
 
+### Data Pipeline Strategy (Medallion Architecture)
+1. **Bronze Layer:** Raw ingestion of the Kaggle DPWH dataset via manual download or Kaggle API into `data/raw/`.
+2. **Silver Layer:** Clean contractor names, standardize geographic boundaries (Region/Province/LGU), parse project dates, validate GPS coordinates, and join PSA demographic data.
+3. **Gold Layer:** Build analytical tables aggregating contractor market concentration, provincial spend per capita, and statistical cost anomaly scores for dashboard consumption.
 
-### Audit and Oversight Data
+---
 
-**Primary:** Commission on Audit (COA) Annual Audit Reports
+## Data Quality & Investigation Limitations Disclaimer
 
-* URL: https://www.coa.gov.ph
-* Format: PDF
-* Coverage: Audit findings and observations on government infrastructure projects
-* Why it fits: Provides additional context for interpreting observed data patterns.
-* Known limitations: Reports are document-based and require PDF extraction; audit observations may not correspond directly to every project in the dataset.
+- **Self-Reported Data Vulnerabilities:** This dataset reflects DPWH's self-reported submissions, which have been subject to formal Senate Blue Ribbon Committee inquiry and internal DPWH validation regarding coordinate accuracy and potential non-existent ("ghost") entries. 
+- **Validation Context:** As of DPWH internal validation efforts in late 2025, 15 projects out of 1,600 validated sites were confirmed non-existent, with roughly 160 locations pending verification. Additionally, Senate committee inquiries noted allegations of inaccurate grid coordinates across nationwide submissions.
+- **Analytical Scope:** Findings from this project serve as **data-driven indicators warranting further physical verification and audit**, not definitive proof of legal wrongdoing or fraud.
 
-### Geographic and Demographic Data
+---
 
-**Primary:** Philippine Statistics Authority (PSA)
+## Data Specifications
 
-* URL: https://psa.gov.ph
-* Format: CSV, Excel, PDF
-* Coverage: Population and regional statistics
-* Why it fits: Enables normalization of project counts and supports regional comparisons.
-* Known limitations: May require joining multiple datasets and harmonizing geographic identifiers.
-
-### First Pull Path
-
-Download the Kaggle DPWH Flood Control Projects dataset as the primary source and ingest it into the Bronze layer. Clean and standardize project locations, contractor names, and administrative boundaries in the Silver layer. Enrich the data by joining regional information from PSA and validating selected projects against the DPWH Project DIME Dashboard. Finally, build Gold-layer analytical tables that summarize project distribution, contractor participation, regional investment patterns, and statistical outliers for visualization in an interactive dashboard.
-
-### Limitations
-- Known limitations: Covers completed projects only and relies on publicly available
-  government records compiled into a machine-readable dataset. This dataset reflects
-  DPWH's own self-reported project submissions, which are currently under Senate Blue
-  Ribbon Committee and internal DPWH investigation for coordinate inaccuracies and
-  possible non-existent ("ghost") project entries — as of DPWH's own validation efforts
-  in late 2025, 15 projects out of 1,600 validated sites were found non-existent, with
-  roughly 160 more locations still pending verification, and Senate committee chair
-  Panfilo Lacson has alleged that incorrect grid coordinates were submitted for
-  thousands of projects nationwide. Findings from this analysis should be treated as
-  indicators warranting further verification, not as confirmed conclusions.
-
-# Data
-
-## Raw Data
-
-**File:** `data/raw/dpwh_flood_control_projects.csv`
-
-**Source:** [DPWH Flood Control Projects Dataset](https://www.kaggle.com/datasets/bwandowando/dpwh-flood-control-projects)
-(Kaggle, compiled by bwandowando from publicly available DPWH project records)
-
-**Ingestion method:** Manual download (one of the three DEP-approved ingestion paths:
-API / web scraping / manual download)
-
-**Pulled on:** <FILL IN — the actual date you downloaded this file>
-
-**Row count:** 9,855
-
-**Known limitations:** See root README's Data Source Notes section — this dataset
-reflects DPWH's own self-reported submissions, which are currently under formal
-Senate and internal DPWH investigation for coordinate accuracy and possible
-non-existent project entries.
-
-**Repeatability:** Re-downloadable at any time from the Kaggle URL above. Note that
-Kaggle dataset versions can update as the maintainer refreshes the underlying
-compiled data, so a re-pull may not be byte-identical to this snapshot.
+### Raw Data Metadata
+- **File Path:** `data/raw/dpwh_flood_control_projects.csv`
+- **Source:** DPWH Flood Control Projects Dataset (Compiled by Kaggle user `bwandowando` from public DPWH records)
+- **Ingestion Method:** Manual download (DEP-approved path)
+- **Pulled On:** `<YYYY-MM-DD>` *(Update with your actual download date)*
+- **Row Count:** 9,855 rows
+- **Repeatability:** Downloadable directly via the Kaggle URL. Future pulls may differ if the upstream maintainer updates the dataset version.
