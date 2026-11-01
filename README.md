@@ -141,11 +141,11 @@ git clone [https://github.com/michaelbacus-lab/dep-data-engineering-open-track.g
 cd dep-data-engineering-open-track
 
 `# Create and activate virtual environment`
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+$\color{red}{\textsf{python -m venv .venv}}$ 
+$\color{red}{\textsf{source .venv/bin/activate}}$  `# On Windows: .venv\Scripts\activate`
 
 `# Install requirements`
-pip install -r requirements.txt
+$\color{red}{\textsf{pip install -r requirements.txt}}$
 
 ### Run Raw Ingestion
 
