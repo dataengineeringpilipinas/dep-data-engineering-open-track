@@ -88,6 +88,6 @@ The dashboard should help audit teams and researchers quickly identify geographi
 - **File Path:** `data/raw/dpwh_flood_control_projects.csv`
 - **Source:** DPWH Flood Control Projects Dataset (Compiled by Kaggle user `bwandowando` from public DPWH records)
 - **Ingestion Method:** Manual download (DEP-approved path)
-- **Pulled On:** `<YYYY-MM-DD>` *(Update with your actual download date)*
+- **Pulled On:** 2026-09-26
 - **Row Count:** 9,855 rows
 - **Repeatability:** Downloadable directly via the Kaggle URL. Future pulls may differ if the upstream maintainer updates the dataset version.
