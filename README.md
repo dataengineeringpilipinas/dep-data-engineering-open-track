@@ -92,18 +92,27 @@ The dashboard should help audit teams and researchers quickly identify geographi
 - **Row Count:** 9,855 rows
 - **Repeatability:** Downloadable directly via the Kaggle URL. Future pulls may differ if the upstream maintainer updates the dataset version.
 
-## Processed Data Plan (Gold Layer Schema)
+## Processed Data Plan
 
-### Fact Table
-- **Name:** `fact_flood_control_projects`
-- **Grain:** One row = One completed DPWH flood control project contract.
-- **Primary Key:** `project_id`
+### Main Table or File
+- **Name:** `fact_flood_control_projects` (Gold Layer) / `processed_dpwh_flood_control.parquet` (Silver Layer)
+- **Grain:** One row = One completed DPWH flood control project contract
+- **Primary key:** `project_id`
 
-### Key Joins & Relationships
-- `fact_flood_control_projects.contractor_id` $\rightarrow$ `dim_contractor.contractor_id`
-- `fact_flood_control_projects.location_id` $\rightarrow$ `dim_location.location_id`
-- `fact_flood_control_projects.office_id` $\rightarrow$ `dim_implementing_office.office_id`
+### Important Columns
+| Column | Meaning | Expected Type |
+|--------|---------|---------------|
+| `project_id` | Unique identifier generated from contract title and ID metadata | String |
+| `contractor_id` | Identifier for the winning contractor or joint venture | String |
+| `location_id` | Standard Geographic Code (PSGC) linking to province/municipality | String |
+| `office_id` | Identifier for the implementing DPWH District Engineering Office | String |
+| `contract_cost_php` | Total reported project contract cost in Philippine Pesos | Float |
+| `completion_date` | Date the project was logged as completed | Date |
+| `cost_zscore_regional` | Statistical deviation of project cost relative to regional mean | Float |
+| `latitude` | Validated GPS latitude coordinate | Float |
+| `longitude` | Validated GPS longitude coordinate | Float |
 
-### Analytical Target Metrics
-1. **Contractor Market Concentration (CR3/CR5):** Aggregated `SUM(contract_cost_php)` by `contractor_id` grouped by `province`.
-2. **Cost Anomaly Indicator:** Filtering projects where `cost_zscore_regional > 2.5` to highlight potential budget outliers for auditing.
+### Related Tables or Files
+- `dim_contractor`: Joins on `contractor_id` to aggregate contractor market concentration ratios (top-N share) and total contract volume.
+- `dim_location`: Joins on `location_id` to pull PSA provincial population and land area for normalizing spend per capita.
+- `dim_implementing_office`: Joins on `office_id` to categorize projects by District Engineering Office (DEO) versus Regional Office (RO).
