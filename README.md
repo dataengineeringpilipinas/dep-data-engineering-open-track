@@ -107,6 +107,17 @@ erDiagram
         float cost_zscore_regional
     }
 ```
+Column,Meaning,Expected Type
+project_id,Unique identifier generated from contract title and ID metadata,String
+contractor_id,Identifier for the winning contractor or joint venture,String
+location_id,Standard Geographic Code (PSGC) linking to province/municipality,String
+office_id,Identifier for the implementing DPWH District Engineering Office,String
+contract_cost_php,Total reported project contract cost in Philippine Pesos,Float
+completion_date,Date the project was logged as completed,Date
+cost_zscore_regional,Statistical deviation of project cost relative to regional mean,Float
+latitude,Validated GPS latitude coordinate,Float
+longitude,Validated GPS longitude coordinate,Float
+
 Related Dimensions
 dim_contractor: Joins on contractor_id to aggregate contractor market concentration ratios (top-N share) and total contract volume.
 
