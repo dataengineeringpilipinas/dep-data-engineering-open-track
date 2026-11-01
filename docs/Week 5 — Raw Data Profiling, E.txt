@@ -1,0 +1,95 @@
+# 🔍 Week 5 — Raw Data Profiling, Exploratory Analysis & Schema Inspection
+
+**Project Title:** Public Data Patterns in DPWH Flood Control Projects (2022–2025)  
+**Target Audience:** Commission on Audit (COA) — Infrastructure Audit Division  
+**Document Path:** `docs/week05_raw_data_profiling.md`  
+
+---
+
+## 📌 Executive Summary
+
+Week 5 executes comprehensive data profiling and exploratory data analysis (EDA) on the raw Bronze layer dataset (`data/raw/dpwh_flood_control_projects.csv`). Before building automated transformation pipelines, this milestone examines column datatypes, value distributions, missingness patterns, statistical summary metrics, and structural anomalies present in the uncleaned source data.
+
+---
+
+## 📊 Summary of Raw Data Profiling Metrics
+
+Using Pandas inspection methods (`info()`, `describe()`, `isnull().sum()`), the structural baseline of the raw dataset was established:
+
+| Attribute / Field | Raw Data Type | Identified Missing Count | Data Quality Observation |
+| :--- | :--- | :--- | :--- |
+| `ProjectId` | `object` (string) | 0 | String identifiers; requires whitespace trimming and deduplication check. |
+| `Contractor` | `object` (string) | Minor | Includes joint ventures (`JV`), variations in capitalizations, and leading/trailing spaces. |
+| `DistrictEngineeringOffice` | `object` (string) | Present | Contains non-standardized office abbreviations (e.g., `1st DEO`, `1ST DISTRICT`). |
+| `Province` | `province` | Present | Blank/null values present; requires normalization to standard PSA provinces. |
+| `Region` | `object` (string) | Present | Mixed formatting across regional identifiers (e.g., `Region III` vs `REGION 3`). |
+| `ContractCost` | `float64` / `object` | 0 | Highly right-skewed distribution; contains extreme high-value outliers. |
+| `CompletionDate` | `object` (string) | Present | Mixed string date formats (e.g., `YYYY-MM-DD`, `MM/DD/YYYY`); requires datetime parsing. |
+| `Latitude` / `Longitude` | `float64` | Significant | Missing coordinates on subset of records; requires spatial completeness flagging. |
+
+---
+
+## 📈 Key Preliminary Exploratory Findings
+
+### 1. Contract Cost Distribution (Financial Skewness)
+Preliminary statistical summary (`describe()`) indicates severe right-skewness in contract costs across flood control infrastructure:
+- **Min Contract Cost:** $\approx ₱0.00$ (indicates placeholders or cancelled bid records requiring filtering).
+- **Median Contract Cost:** Significantly lower than the parametric mean, driven by a small number of multi-billion peso mega-projects.
+- **Max Contract Cost:** Extreme outliers exceeding standard district-level funding norms, highlighting candidates for statistical $Z$-score anomaly flags.
+
+### 2. Geographic & District Distribution
+- Financial allocations are heavily concentrated in disaster-prone river basin corridors (e.g., Central Luzon, Bicol Region, and Cotabato basin).
+- High variance in average contract size between rural District Engineering Offices and major urban/regional offices.
+
+### 3. Contractor Concentration Patterns
+- Initial `value_counts()` inspection reveals that a minority of construction firms hold disproportionate project volumes across multiple engineering districts.
+
+---
+
+## 🛠️ Data Anomalies Identified for Transformation (Phase 3 Backlog)
+
+During raw inspection, four primary data cleanliness issues were logged to be resolved during downstream Silver/Gold transformations (Weeks 9–10):
+
+1. **Inconsistent Column Naming:** Source columns (`ProjectId`, `ContractCost`, `DistrictEngineeringOffice`) require conversion to standard `snake_case`.
+2. **String Whitespace & Null Variants:** String fields contain leading padding spaces and mixed representations of null values (`"nan"`, `"None"`, `"N/A"`, `""`).
+3. **Date Unification:** Raw completion strings require parsing into ISO-8601 timestamps to derive temporal analysis features (`completion_year`, `completion_quarter`).
+4. **Coordinate Outliers:** Isolated GPS entries fall outside valid Philippine geographical bounds ($11^\circ \text{N} - 21^\circ \text{N}, 118^\circ \text{E} - 127^\circ \text{E}$).
+
+---
+
+## 📜 Exploratory Profiling Script (`scripts/profile_raw.py`)
+
+```python
+from pathlib import Path
+import pandas as pd
+
+RAW_FILE = Path("data/raw/dpwh_flood_control_projects.csv")
+
+def inspect_raw_dataset():
+    if not RAW_FILE.exists():
+        print(f"❌ File not found: {RAW_FILE}")
+        return
+
+    df = pd.read_csv(RAW_FILE, low_memory=False)
+    
+    print("==================================================")
+    print("      DPWH RAW DATASET PROFILING REPORT           ")
+    print("==================================================")
+    print(f"Total Rows: {len(df):,}")
+    print(f"Total Columns: {len(df.columns)}")
+    print("\n--- Column Types and Non-Null Counts ---")
+    df.info()
+    
+    print("\n--- Missing Values Breakdown ---")
+    nulls = df.isnull().sum()
+    print(nulls[nulls > 0])
+    
+    print("\n--- Numeric Fields Summary ---")
+    print(df.describe().T)
+    
+    print("\n--- Top 10 Contractors by Project Count ---")
+    if "Contractor" in df.columns:
+        print(df["Contractor"].value_counts().head(10))
+
+if __name__ == "__main__":
+    inspect_raw_dataset()

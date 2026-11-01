@@ -1,0 +1,43 @@
+Week 6 — Ingestion Hardening, Automated Validation & Pipeline Security
+
+**Project Title:** Public Data Patterns in DPWH Flood Control Projects (2022–2025)  
+**Target Audience:** Commission on Audit (COA) — Infrastructure Audit Division  
+**Document Path:** `docs/week06_ingestion_hardening_and_validation.md`  
+
+---
+
+## 📌 Executive Summary
+
+Week 6 completes Phase 2 (Ingestion & Data Quality) by hardening the automated ingestion pipeline (`scripts/ingest.py`). This milestone integrates environment security controls for Kaggle API authentication (`KAGGLE_KEY`), embeds automated pre-flight schema validation checks before writing raw files, enforces `.gitignore` security boundaries, and establishes end-to-end logging for the Bronze data extraction layer.
+
+---
+
+## 🛡️ Security Architecture & Credentials Management
+
+To prevent sensitive credentials and large dataset files from leaking into public Git repositories:
+
+1. **Environment Security (`.env` Integration):** Kaggle API tokens (`KGAT_347a62e398f8e71ebe56c9f14ef0dfff`) are loaded via environment variables or a local `.env` file rather than hardcoded string literals.
+2. **Git Exclusion Rules (`.gitignore`):** Enforces strict exclusion of raw `.csv` data files, virtual environment directories, and configuration secrets while retaining `.gitkeep` placeholders to preserve folder hierarchy.
+
+### `.gitignore` Baseline Configuration
+```text
+# Virtual Environments
+.venv/
+env/
+venv/
+
+# Environment Variables & Secrets
+.env
+*.env
+kaggle.json
+
+# Data Storage Boundaries (Track structure, ignore large binaries)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Python Runtime Artifacts
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/

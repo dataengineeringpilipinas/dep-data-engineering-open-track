@@ -1,0 +1,47 @@
+# ⚡ Week 10 — Advanced Transformation & Feature Engineering
+
+**Project Title:** Public Data Patterns in DPWH Flood Control Projects (2022–2025)  
+**Input Dataset:** `data/raw/dpwh_flood_control_projects.csv`  
+**Processed Output:** `data/processed/dpwh_flood_control_analysis_ready.csv`  
+
+---
+
+## 📌 Milestone Overview & Transformation Strategy
+
+Week 10 extends initial data cleaning by enriching the DPWH dataset with time-based groupings, statistical regional benchmarks via aggregations (`groupby` + `merge`), and COA audit risk indicators.
+
+---
+
+## 🛠️ Summary of Data Operations
+
+### 1. Missing Value Strategy & Type Conversion
+* **Financial Amounts (`contract_cost_php`):** Coerced to `float64` and filled missing values with `0.0`.
+* **Dates (`completion_date`):** Parsed into standard `datetime64[ns]`. Unparseable dates defaulted to `NaT`.
+* **String Fields (`contractor`, `province`, `region`, `district_engineering_office`):** Normalized empty strings, `None`, and `NaN` values to `'Unknown'` for grouping integrity.
+
+### 2. Time-Based Grouping Features
+* `completion_year`: Extracted calendar year from `completion_date` (e.g., `2022`, `2023`, `2024`, `2025`).
+* `completion_quarter`: Extracted fiscal quarter (`1`, `2`, `3`, `4`).
+* `completion_month`: Extracted numeric month (`1`–`12`).
+
+### 3. Aggregations & Regional Baseline Joins
+Using Pandas `groupby("region")` and left merge, regional financial metrics were computed to benchmark each project against its administrative region:
+$$\text{Cost Z-Score} = \frac{\text{Contract Cost} - \text{Regional Mean Cost}}{\text{Regional Std Dev}}$$
+
+### 4. COA Audit Risk Flags Engineered
+
+| Derived Column | Data Type | Formula / Logic | Audit Rationale |
+| :--- | :--- | :--- | :--- |
+| `cost_diff_from_regional_avg` | `Float64` | `contract_cost_php - regional_avg_cost` | Identifies peso deviation relative to regional average. |
+| `cost_zscore_regional` | `Float64` | $(X - \mu_{\text{region}}) / \sigma_{\text{region}}$ | Standardizes cost outliers across regions with varying budget sizes. |
+| `is_high_cost_outlier` | `Integer` | `1` if `cost_zscore_regional >= 2.0` else `0` | Isolates contracts exceeding 2 standard deviations for prioritized COA audit. |
+| `has_valid_coords` | `Integer` | `1` if `latitude` & `longitude` present else `0` | Flags projects missing GPS coordinates for physical site verification. |
+
+---
+
+## 🔄 Re-Run Instructions
+
+To run the pipeline and generate the analysis-ready dataset in Google Colab or terminal:
+
+```bash
+python scripts/advanced_transform.py

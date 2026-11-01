@@ -1,0 +1,65 @@
+# 🏗️ Week 2 — Data Architecture, Technology Stack & Pipeline Design
+
+**Project Title:** Public Data Patterns in DPWH Flood Control Projects (2022–2025)  
+**Target Audience:** Commission on Audit (COA) — Infrastructure Audit Division  
+**Document Path:** `docs/week02_architecture_and_stack.md`  
+
+---
+
+## 📌 Executive Summary
+
+This document defines the high-level system architecture, technology stack, data flow pipeline, and repository layout for the DPWH Flood Control Data Pipeline. The architecture follows a medallion (Bronze → Silver → Gold) data engineering framework designed to ingest public procurement datasets, standardize schemas, execute relational SQL queries, and surface audit risk indicators in a fully reproducible environment.
+
+---
+
+## 🛠️ Technology Stack & Tooling Selection
+
+The pipeline utilizes lightweight, open-source, and cloud-compatible technologies to ensure seamless execution across local developer machines and Google Colab environments.
+
+| Layer / Category | Tool / Library | Selection Rationale & Purpose |
+| :--- | :--- | :--- |
+| **Language & Runtime** | Python 3.10+ | Primary execution environment for ingestion, transformation, and automation scripts. |
+| **Data Ingestion** | `kaggle` API / `requests` | Programmatic extraction of public DPWH datasets directly into project storage. |
+| **Data Processing** | `pandas` / `numpy` | High-performance in-memory dataset inspection, cleaning, type casting, and feature engineering. |
+| **Database Engine** | `sqlite3` / `duckdb` | Lightweight, serverless relational database engine for executing ANSI SQL queries without database server overhead. |
+| **Path & File Management** | `pathlib` | Cross-platform OS path handling compatible across Linux, macOS, Windows, and Google Colab. |
+| **Version Control** | Git & GitHub | Code versioning, collaboration, and reviewer verification repository host. |
+| **Execution Platforms** | Local Terminal & Google Colab | dual-execution setup supporting both `.py` terminal execution and interactive `.ipynb` notebooks. |
+
+---
+
+## 🔄 End-to-End Pipeline Architecture (Medallion Pattern)
+
+```text
++-----------------------------------------------------------------------------------+
+|                                  DATA PIPELINE                                    |
++-----------------------------------------------------------------------------------+
+                                          │
+                                          ▼
+   +-----------------------------------------------------------------------------+
+   |  BRONZE LAYER (Raw Data)                                                    |
+   |  Source: Kaggle API (bwandowando/dpwh-flood-control-projects)               |
+   |  Path: data/raw/dpwh_flood_control_projects.csv                            |
+   |  Format: Uncleaned Raw CSV                                                  |
+   +-----------------------------------------------------------------------------+
+                                          │
+                                          │  scripts/transform.py
+                                          ▼
+   +-----------------------------------------------------------------------------+
+   |  SILVER LAYER (Cleaned & Standardized)                                      |
+   |  Operation: Snake_case headers, whitespace trimming, type casting          |
+   |  Path: data/processed/dpwh_flood_control_projects_cleaned.csv               |
+   |  Format: Standardized CSV / In-Memory SQLite Table                          |
+   +-----------------------------------------------------------------------------+
+                                          │
+                                          │  scripts/advanced_transform.py
+                                          ▼
+   +-----------------------------------------------------------------------------+
+   |  GOLD LAYER (Analysis-Ready & Enriched)                                     |
+   |  Operation: Regional aggregations, Z-score computation, audit risk flags    |
+   |  Path: data/processed/dpwh_flood_control_analysis_ready.csv                |
+   |  Format: Analytics-Ready Table / Star Schema Relational Model               |
+   +-----------------------------------------------------------------------------+
+                                          │
+                                          ├──► SQL Analytics (scripts/run_sql_queries.py)
+                                          └──► Audit Reports & Dashboards
