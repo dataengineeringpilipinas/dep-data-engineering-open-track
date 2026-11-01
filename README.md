@@ -107,26 +107,35 @@ erDiagram
         float cost_zscore_regional
     }
 ```
-Column,Meaning,Expected Type
-project_id,Unique identifier generated from contract title and ID metadata,String
-contractor_id,Identifier for the winning contractor or joint venture,String
-location_id,Standard Geographic Code (PSGC) linking to province/municipality,String
-office_id,Identifier for the implementing DPWH District Engineering Office,String
-contract_cost_php,Total reported project contract cost in Philippine Pesos,Float
-completion_date,Date the project was logged as completed,Date
-cost_zscore_regional,Statistical deviation of project cost relative to regional mean,Float
-latitude,Validated GPS latitude coordinate,Float
-longitude,Validated GPS longitude coordinate,Float
+### Processed Data Plan & Table Specifications
 
-Related Dimensions
-dim_contractor: Joins on contractor_id to aggregate contractor market concentration ratios (top-N share) and total contract volume.
+**Main Fact Table:** `fact_flood_control_projects`
+- **Grain:** One row = One completed DPWH flood control project contract
+- **Primary Key:** `project_id`
 
-dim_location: Joins on location_id to pull PSA provincial population and land area for normalizing spend per capita.
+| Column | Meaning | Expected Type |
+| :--- | :--- | :--- |
+| `project_id` | Unique identifier generated from contract title and ID metadata | String |
+| `contractor_id` | Identifier for the winning contractor or joint venture | String |
+| `location_id` | Standard Geographic Code (PSGC) linking to province/municipality | String |
+| `office_id` | Identifier for the implementing DPWH District Engineering Office | String |
+| `contract_cost_php` | Total reported project contract cost in Philippine Pesos | Float |
+| `completion_date` | Date the project was logged as completed | Date |
+| `cost_zscore_regional` | Statistical deviation of project cost relative to regional mean | Float |
+| `latitude` | Validated GPS latitude coordinate | Float |
+| `longitude` | Validated GPS longitude coordinate | Float |
 
-dim_implementing_office: Joins on office_id to categorize projects by District Engineering Office (DEO) versus Regional Office (RO).
+...
 
-💻 Quickstart & Ingestion
-Setup Environment
+### Related Dimensions
+- `dim_contractor` : **Joins on** `contractor_id` **to aggregate contractor market concentration ratios (top-N share) and total contract volume.**
+- `dim_location` : **Joins on** `location_id` **to pull PSA provincial population and land area for normalizing spend per capita.**
+- `dim_implementing_office` : **Joins on** `office_id` **to categorize projects by District Engineering Office (DEO) versus Regional Office (RO).**
+
+## 💻 Quickstart & Ingestion
+
+### Setup Environment
+
 Bash
 # Clone the repository
 git clone [https://github.com/michaelbacus-lab/dep-data-engineering-open-track.git](https://github.com/michaelbacus-lab/dep-data-engineering-open-track.git)
@@ -139,6 +148,7 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 # Install requirements
 pip install -r requirements.txt
 Run Raw Ingestion
+
 Bash
 python scripts/ingest.py
 ⚠️ Data Quality & Investigation Limitations Disclaimer
