@@ -133,20 +133,19 @@ erDiagram
 - `dim_implementing_office` : **Joins on** `office_id` **to categorize projects by District Engineering Office (DEO) versus Regional Office (RO).**
 
 ## 💻 Quickstart & Ingestion
-
 ### Setup Environment
 
 Bash
-#### Clone the repository
-`git clone https://github.com/michaelbacus-lab/dep-data-engineering-open-track.git`
-`cd dep-data-engineering-open-track`
+`# Clone the repository`
+git clone [https://github.com/michaelbacus-lab/dep-data-engineering-open-track.git](https://github.com/michaelbacus-lab/dep-data-engineering-open-track.git)
+cd dep-data-engineering-open-track
 
-#### Create and activate virtual environment
-`python -m venv .venv`
-`source .venv/bin/activate  # On Windows: .venv\Scripts\activate`
+`# Create and activate virtual environment`
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
-#### Install requirements
-`pip install -r requirements.txt`
+`# Install requirements`
+pip install -r requirements.txt
 
 ### Run Raw Ingestion
 
