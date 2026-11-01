@@ -151,9 +151,9 @@ pip install -r requirements.txt
 ```
 
 ### Run Raw Ingestion
-Bash
+```bash
 ` python scripts/ingest.py`
-
+```
 ## ⚠️ Data Quality & Investigation Limitations Disclaimer
 - `Self-Reported Data Vulnerabilities`: **This dataset reflects DPWH's self-reported submissions, which have been subject to formal Senate Blue Ribbon Committee inquiry and internal DPWH validation regarding coordinate accuracy and potential non-existent ("ghost") entries.**
 
