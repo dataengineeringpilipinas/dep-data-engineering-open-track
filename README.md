@@ -91,3 +91,19 @@ The dashboard should help audit teams and researchers quickly identify geographi
 - **Pulled On:** 2026-09-26
 - **Row Count:** 9,855 rows
 - **Repeatability:** Downloadable directly via the Kaggle URL. Future pulls may differ if the upstream maintainer updates the dataset version.
+
+## Processed Data Plan (Gold Layer Schema)
+
+### Fact Table
+- **Name:** `fact_flood_control_projects`
+- **Grain:** One row = One completed DPWH flood control project contract.
+- **Primary Key:** `project_id`
+
+### Key Joins & Relationships
+- `fact_flood_control_projects.contractor_id` $\rightarrow$ `dim_contractor.contractor_id`
+- `fact_flood_control_projects.location_id` $\rightarrow$ `dim_location.location_id`
+- `fact_flood_control_projects.office_id` $\rightarrow$ `dim_implementing_office.office_id`
+
+### Analytical Target Metrics
+1. **Contractor Market Concentration (CR3/CR5):** Aggregated `SUM(contract_cost_php)` by `contractor_id` grouped by `province`.
+2. **Cost Anomaly Indicator:** Filtering projects where `cost_zscore_regional > 2.5` to highlight potential budget outliers for auditing.
