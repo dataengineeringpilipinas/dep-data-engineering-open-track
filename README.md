@@ -64,6 +64,54 @@ The dashboard should help audit teams and researchers quickly identify geographi
 
 ## Pipeline Architecture & Requirements
 
+## 🏗️ Storage Design & Data Architecture
+
+This project follows a **Medallion Architecture** pattern, taking raw CSV ingest through a clean Silver transformation layer into an analytical Gold Star Schema.
+
+- **Bronze Layer (`data/raw/`):** Immutable raw CSV landing zone (`dpwh_flood_control_projects.csv`).
+- **Silver Layer (`data/processed/`):** Cleaned, deduplicated, and canonicalized columnar Parquet dataset.
+- **Gold Layer (Analytics):** OLAP Star Schema for outlier analytics and contractor concentration queries.
+
+### Dimensional Data Model (Gold Layer Schema)
+
+```mermaid
+erDiagram
+    dim_location ||--o{ fact_flood_control_projects : "1:N"
+    dim_contractor ||--o{ fact_flood_control_projects : "1:N"
+    dim_implementing_office ||--o{ fact_flood_control_projects : "1:N"
+
+    dim_location {
+        string location_id PK "PSGC Code"
+        string province
+        string region
+        int population
+        float land_area_sqkm
+    }
+
+    dim_contractor {
+        string contractor_id PK "Canonical Hash Key"
+        string name_raw "Original DPWH string"
+        string name_clean "Deduplicated Name"
+        boolean is_consortium
+    }
+
+    dim_implementing_office {
+        string office_id PK "Office Hash Key"
+        string office_name "e.g., Pampanga 1st DEO"
+        string office_type "DEO or RO"
+    }
+
+    fact_flood_control_projects {
+        string project_id PK "Surrogate Hash Key"
+        string contractor_id FK
+        string location_id FK
+        string office_id FK
+        date completion_date
+        float contract_cost_php
+        float cost_zscore_regional
+    }
+```
+
 ### Project Dependencies
 - **Primary Python Modules:** `pandas`, `kaggle`, `pathlib`, `os`, `geopandas`
 
