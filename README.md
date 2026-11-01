@@ -128,27 +128,29 @@ erDiagram
 ...
 
 ### Related Dimensions
-- `dim_contractor` : **Joins on** `contractor_id` **to aggregate contractor market concentration ratios (top-N share) and total contract volume.**
-- `dim_location` : **Joins on** `location_id` **to pull PSA provincial population and land area for normalizing spend per capita.**
-- `dim_implementing_office` : **Joins on** `office_id` **to categorize projects by District Engineering Office (DEO) versus Regional Office (RO).**
+
+* `dim_contractor`: Joins on `contractor_id` to aggregate contractor market concentration ratios (top-N share) and total contract volume.
+* `dim_location`: Joins on `location_id` to pull PSA provincial population and land area for normalizing spend per capita.
+* `dim_implementing_office`: Joins on `office_id` to categorize projects by District Engineering Office (DEO) versus Regional Office (RO).
 
 ## 💻 Quickstart & Ingestion
+
 ### Setup Environment
 
-Bash
-`# Clone the repository`
+```bash
+# Clone the repository
 git clone [https://github.com/michaelbacus-lab/dep-data-engineering-open-track.git](https://github.com/michaelbacus-lab/dep-data-engineering-open-track.git)
 cd dep-data-engineering-open-track
 
-`# Create and activate virtual environment`
+# Create and activate virtual environment
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
-`# Install requirements`
+# Install requirements
 pip install -r requirements.txt
+```
 
 ### Run Raw Ingestion
-
 Bash
 ` python scripts/ingest.py`
 
