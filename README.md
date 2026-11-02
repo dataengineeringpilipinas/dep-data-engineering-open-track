@@ -1,157 +1,162 @@
-# DPWH Flood Control Projects Audit Signals
+# Public Data Patterns in DPWH Flood Control Projects (2022–2025)
 
-This repository is my personal implementation of the Data Engineering Pilipinas Open Track, focused on the Phase 3 / Milestone 3 requirement: a clean, reproducible, auditable dataset pipeline.
+## Problem Statement
 
-## Project question
+I want to answer:
+**"Can publicly available DPWH flood control project data reveal unusual geographic, financial, and contractor-related patterns that may indicate areas requiring further audit or investigation between 2022 and 2025?"**
 
-Can publicly available DPWH flood control project data reveal geographic, financial, and contractor-related patterns that deserve closer audit review?
+My hypothesis is that while most flood control projects are distributed according to infrastructure and disaster mitigation needs, the data may reveal patterns that warrant closer examination. These may include unusually high concentrations of projects within specific provinces, repeated awards to the same contractors, or significant differences in project costs across comparable locations. Such patterns do **not** establish corruption, fraud, or wrongdoing. Instead, they provide evidence-based indicators that can help auditors, policymakers, journalists, and citizens identify projects that deserve further review. If the analysis finds no unusual concentrations or inconsistencies, it would suggest that the observed project distribution is generally consistent with available public data. If notable anomalies are identified, the findings could support stronger transparency initiatives, more detailed public reporting, and more targeted oversight by government auditing agencies.
+
+---
 
 ## Audience
 
-- Commission on Audit (COA) infrastructure audit teams
-- DPWH internal oversight reviewers
-- civic and investigative researchers
-- local data practitioners building an audit-oriented data project
+- **Primary Audience:** **Commission on Audit (COA) — Infrastructure Audit Division** (to assist in identifying high-risk geographic clusters and prioritizing physical/financial field audits).
+- **Secondary Audience:** Department of Public Works and Highways (DPWH) internal oversight, Local Government Units (LGUs), investigative journalists, civil society organizations (CSOs), and citizens interested in infrastructure transparency.
 
-## Data source
+---
 
-- Dataset: DPWH Flood Control Projects (Kaggle)
-- Source URL: https://www.kaggle.com/datasets/bwandowando/dpwh-flood-control-projects
-- Format: CSV
-- Coverage: nationwide DPWH flood control project records from 2022 to 2025
-- Raw file path: `data/raw/dpwh_flood_control_projects.csv`
+## KPI or Key Metric
 
-## Project goal
+- **Primary Metric:** **Contractor Concentration Ratio** (Percentage share of total regional/provincial flood control project value awarded to top contractors).
+- **Secondary / Supporting Metrics:**
+  - **Cost Anomaly Z-Score:** Statistical deviation of unit/km project cost relative to regional benchmarks.
+  - **Geographic Investment Density:** Total project allocation per province/municipality normalized by land area and population.
+  - **Contractor Project Volume:** Total count and aggregate contract value of completed projects per contractor.
 
-This project builds a clean and reviewable dataset for identifying:
+---
 
-- contractor concentration patterns
-- geographic hotspots of project spending
-- unusually high or low contract cost signals
-- office-level project patterns worthy of follow-up review
+## Possible Final Dashboard
 
-## Repository structure
+The dashboard should help audit teams and researchers quickly identify geographic hotspots with high contractor concentration, pinpoint cost outliers among completed projects, and filter by province or region to flag specific project IDs for further review. It will feature interactive choropleth maps, contractor distribution rankings, cost dispersion scatter plots, and regional summary tables.
 
-```text
-.
-├── data/
-│   ├── raw/                  # source CSV downloaded from Kaggle
-│   ├── processed/           # cleaned project dataset
-│   ├── output/              # analysis/export files
-│   └── README.md
-├── notebooks/
-│   └── data_transform_report.md
-├── scripts/
-│   ├── ingest.py            # download raw dataset
-│   ├── injest.py            # compatibility alias
-│   ├── transform.py         # cleaning and validation
-│   └── analysis/
-│       └── analyze_silver.py
-├── sql/
-│   ├── README.md
-│   ├── schema_ddl.sql
-│   └── business_questions.sql
-├── dashboard/
-│   └── README.md
-├── requirements.txt
-├── README.md
-└── .gitignore
+---
+
+## Data Source Notes
+
+### Primary Source
+- **Name:** DPWH Flood Control Projects Dataset (Kaggle)
+- **URL:** https://www.kaggle.com/datasets/bwandowando/dpwh-flood-control-projects
+- **Format:** CSV
+- **Coverage:** 9,855 completed DPWH flood control project records nationwide (July 2022 – May 2025)
+- **Raw Data Path:** `data/raw/dpwh_flood_control_projects.csv` (Pulled: 2026-09-26)
+- **Why it fits:** Provides structured, project-level metadata—including contract amounts, contractor names, project titles, coordinates, and implementing offices—enabling direct calculation of contractor concentration, cost variances, and spatial distribution.
+- **Known limitations:** Covers completed projects only and relies on self-reported government entries subject to ongoing coordinate inaccuracies under review.
+
+### Fallback Source
+- **Name:** DPWH Project DIME (Digital Information for Monitoring and Evaluation) Dashboard
+- **URL:** https://www.dime.gov.ph/dashboard
+- **Format:** HTML Web Dashboard / Downloadable Reports
+- **Coverage:** National infrastructure project monitoring status
+- **Why it could still work:** Acts as an independent government monitoring baseline to validate project existence, financial details, and implementation status if the primary mirror becomes unavailable.
+- **Known limitations:** Field schema differs from the Kaggle dataset, requiring manual table extraction and custom field mapping.
+
+### Secondary / Normalization Sources
+- **Philippine Statistics Authority (PSA):** https://psa.gov.ph (CSV / Excel / PDF) — Provides regional population and land area data to normalize project density and cost allocation per capita.
+- **Commission on Audit (COA) Annual Audit Reports:** https://www.coa.gov.ph (PDF) — Provides qualitative audit findings to cross-reference and ground statistical outliers.
+
+---
+
+## 🏗️ Storage Design & Data Architecture
+
+This project follows a 3-tier **Medallion Architecture**:
+
+1. **Bronze Layer (`data/raw/`):** Immutable raw CSV landing zone (`dpwh_flood_control_projects.csv`) ingested via manual download or Kaggle API.
+2. **Silver Layer (`data/processed/`):** Standardized, deduplicated, and canonicalized Parquet dataset (cleaning contractor names, validating GPS coordinates, parsing dates, and mapping PSGC boundaries).
+3. **Gold Layer (Analytics):** Analytical Star Schema aggregating contractor concentration, provincial spend per capita, and cost anomaly z-scores.
+
+### Project Dependencies
+- **Primary Python Modules:** `pandas`, `kaggle`, `pathlib`, `os`, `geopandas`
+
+### Dimensional Data Model (Gold Layer Schema)
+
+```mermaid
+erDiagram
+    dim_location ||--o{ fact_flood_control_projects : "1:N"
+    dim_contractor ||--o{ fact_flood_control_projects : "1:N"
+    dim_implementing_office ||--o{ fact_flood_control_projects : "1:N"
+
+    dim_location {
+        string location_id PK "PSGC Code"
+        string province
+        string region
+        int population
+        float land_area_sqkm
+    }
+
+    dim_contractor {
+        string contractor_id PK "Canonical Hash Key"
+        string name_raw "Original DPWH string"
+        string name_clean "Deduplicated Name"
+        boolean is_consortium
+    }
+
+    dim_implementing_office {
+        string office_id PK "Office Hash Key"
+        string office_name "e.g., Pampanga 1st DEO"
+        string office_type "DEO or RO"
+    }
+
+    fact_flood_control_projects {
+        string project_id PK "Surrogate Hash Key"
+        string contractor_id FK
+        string location_id FK
+        string office_id FK
+        date completion_date
+        float contract_cost_php
+        float cost_zscore_regional
+    }
 ```
+### Processed Data Plan & Table Specifications
 
-## DEP milestone alignment
+**Main Fact Table:** `fact_flood_control_projects`
+- **Grain:** One row = One completed DPWH flood control project contract
+- **Primary Key:** `project_id`
 
-This repo follows the DEP track milestones for a data project:
+| Column | Meaning | Expected Type |
+| :--- | :--- | :--- |
+| `project_id` | Unique identifier generated from contract title and ID metadata | String |
+| `contractor_id` | Identifier for the winning contractor or joint venture | String |
+| `location_id` | Standard Geographic Code (PSGC) linking to province/municipality | String |
+| `office_id` | Identifier for the implementing DPWH District Engineering Office | String |
+| `contract_cost_php` | Total reported project contract cost in Philippine Pesos | Float |
+| `completion_date` | Date the project was logged as completed | Date |
+| `cost_zscore_regional` | Statistical deviation of project cost relative to regional mean | Float |
+| `latitude` | Validated GPS latitude coordinate | Float |
+| `longitude` | Validated GPS longitude coordinate | Float |
 
-- M2: ingestion script + raw dataset landed in `data/raw/`
-- M3: clean dataset + data quality checks + SQL business questions + reproducible pipeline
+...
 
-## Pipeline flow
+### Related Dimensions
 
-```text
-1. Download raw source
-   python scripts/ingest.py
+* `dim_contractor`: Joins on `contractor_id` to aggregate contractor market concentration ratios (top-N share) and total contract volume.
+* `dim_location`: Joins on `location_id` to pull PSA provincial population and land area for normalizing spend per capita.
+* `dim_implementing_office`: Joins on `office_id` to categorize projects by District Engineering Office (DEO) versus Regional Office (RO).
 
-2. Clean and validate data
-   python scripts/transform.py
+## 💻 Quickstart & Ingestion
 
-3. Analyze cleaned data
-   python scripts/analysis/analyze_silver.py \
-     --input data/processed/dpwh_flood_control_projects_cleaned.csv \
-     --output-dir data/output/analysis
-```
-
-## Data processing notes
-
-The transformation step performs the following:
-
-- standardize column names
-- clean string fields
-- convert numeric columns safely
-- remove exact duplicate rows
-- validate row count and key integrity
-- write the cleaned output to `data/processed/`
-
-## SQL deliverable
-
-The project includes SQL files in `sql/` to answer core business questions, including:
-
-- top contractors by contract value
-- provinces with the highest project spend
-- district engineering offices with the highest average project costs
-
-See:
-- `sql/business_questions.sql`
-- `sql/schema_ddl.sql`
-
-## How to run the project
-
-### 1) Install dependencies
+### Setup Environment
 
 ```bash
+# Clone the repository
+git clone https://github.com/michaelbacus-lab/dep-data-engineering-open-track.git
+cd dep-data-engineering-open-track
+
+# Create and activate virtual environment
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install requirements
 pip install -r requirements.txt
 ```
 
-### 2) Set Kaggle credentials
-
-```bash
-export KAGGLE_USERNAME="your_kaggle_username"
-export KAGGLE_KEY="your_kaggle_api_key"
-```
-
-Or place them in `~/.kaggle/kaggle.json`.
-
-### 3) Run ingestion
-
+### Run Raw Ingestion
 ```bash
 python scripts/ingest.py
 ```
+## ⚠️ Data Quality & Investigation Limitations Disclaimer
+- `Self-Reported Data Vulnerabilities`: **This dataset reflects DPWH's self-reported submissions, which have been subject to formal Senate Blue Ribbon Committee inquiry and internal DPWH validation regarding coordinate accuracy and potential non-existent ("ghost") entries.**
 
-### 4) Run transformation
+- `Validation Context`: **As of DPWH internal validation efforts in late 2025, 15 projects out of 1,600 validated sites were confirmed non-existent, with roughly 160 locations pending verification. Additionally, Senate committee inquiries noted allegations of inaccurate grid coordinates across nationwide submissions.**
 
-```bash
-python scripts/transform.py
-```
-
-### 5) Run analysis
-
-```bash
-python scripts/analysis/analyze_silver.py \
-  --input data/processed/dpwh_flood_control_projects_cleaned.csv \
-  --output-dir data/output/analysis
-```
-
-## Data quality and audit note
-
-This dataset is self-reported and should be treated as a screening tool for audit follow-up, not as proof of wrongdoing.
-
-## Milestone 3 completion status
-
-This repo includes the key M3 items:
-
-- processed dataset saved in `data/processed/`
-- cleaning logic and validation checks
-- schema planning and SQL query deliverables
-- repeatable pipeline structure for reviewers
-- clear run instructions
+- `Analytical Scope`: **Findings from this project serve as data-driven indicators warranting further physical verification and audit, not definitive proof of legal wrongdoing or fraud.**
