@@ -1,4 +1,4 @@
-# 📥 Week 4 — Raw Data Ingestion & Bronze Layer Pipeline
+# Week 4 — Raw Data Ingestion & Bronze Layer Pipeline
 
 **Project Title:** Public Data Patterns in DPWH Flood Control Projects (2022–2025)  
 **Target Audience:** Commission on Audit (COA) — Infrastructure Audit Division  
@@ -6,13 +6,13 @@
 
 ---
 
-## 📌 Executive Summary
+## Executive Summary
 
 Week 4 focuses on building the **Bronze Layer** ingestion pipeline (`scripts/ingest.py`). This milestone automates programmatic extraction of public DPWH flood control datasets from Kaggle (`bwandowando/dpwh-flood-control-projects`) into local and cloud runtime environments (`data/raw/`). The pipeline implements environment-variable authentication, pre-flight schema validation, directory creation, and error logging to ensure deterministic and repeatable data extraction.
 
 ---
 
-## ⚙️ Ingestion Architecture & API Integration
+## Ingestion Architecture & API Integration
 
 The raw ingestion workflow retrieves source data via the Kaggle API without requiring manual file uploads or interactive browser downloads.
 
