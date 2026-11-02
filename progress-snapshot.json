@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T17:45:14Z",
+  "generated_at": "2026-11-02T15:58:07Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -687,12 +687,15 @@
         },
         {
           "name": "M0"
+        },
+        {
+          "name": "catching-up"
         }
       ],
       "number": 39,
       "pull_request": false,
       "title": "[M0] <Marciano Salazar > — <Data Quality Assessment System for Philippine Education Open Datasets>",
-      "updated_at": "2026-06-27T11:25:40Z",
+      "updated_at": "2026-11-02T13:23:15Z",
       "user": {
         "login": "Sheyxii"
       }
@@ -2550,7 +2553,7 @@
     },
     {
       "body": "### Builder Name\n\nMichael Bacus\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/michaelbacus-lab/dep-data-engineering-open-track\n\n### Commit Hash\n\n8ea613542043975691526ce781987d9fa0304ed6\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": "2026-07-13T05:48:13Z",
+      "closed_at": null,
       "created_at": "2026-07-13T05:48:01Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/129",
       "labels": [
@@ -2559,12 +2562,15 @@
         },
         {
           "name": "M0"
+        },
+        {
+          "name": "catching-up"
         }
       ],
       "number": 129,
       "pull_request": false,
-      "title": "Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-09-15T19:06:40Z",
+      "title": "[M0] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
+      "updated_at": "2026-11-02T13:30:05Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4083,12 +4089,15 @@
         },
         {
           "name": "late-submission"
+        },
+        {
+          "name": "catching-up"
         }
       ],
       "number": 211,
       "pull_request": false,
       "title": "[M1] ncjbakx — Philippine Rice Import Supplier Concentration Tracker",
-      "updated_at": "2026-10-16T10:03:25Z",
+      "updated_at": "2026-11-02T13:22:13Z",
       "user": {
         "login": "ncjbakx04"
       }
@@ -4149,7 +4158,7 @@
     },
     {
       "body": "### Builder Name\n\nMichael Bacus\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/michaelbacus-lab/dep-data-engineering-open-track\n\n### Commit Hash\n\n7614c7d\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": "2026-09-28T05:49:22Z",
+      "closed_at": null,
       "created_at": "2026-09-26T09:00:21Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/214",
       "labels": [
@@ -4157,19 +4166,22 @@
           "name": "milestone-submission"
         },
         {
-          "name": "needs-improvement"
-        },
-        {
           "name": "M1"
         },
         {
+          "name": "waiting-on-prerequisite"
+        },
+        {
           "name": "late-submission"
+        },
+        {
+          "name": "catching-up"
         }
       ],
       "number": 214,
       "pull_request": false,
-      "title": "[M1] <Your Name> — <Project Title>",
-      "updated_at": "2026-09-28T05:49:22Z",
+      "title": "[M1] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
+      "updated_at": "2026-11-02T13:30:09Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4184,10 +4196,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "needs-improvement"
+          "name": "M2"
         },
         {
-          "name": "M2"
+          "name": "waiting-on-prerequisite"
         },
         {
           "name": "late-submission"
@@ -4195,8 +4207,8 @@
       ],
       "number": 215,
       "pull_request": false,
-      "title": "[M2] <Your Name> — <Project Title>",
-      "updated_at": "2026-09-28T08:18:54Z",
+      "title": "[M2] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
+      "updated_at": "2026-11-02T13:30:13Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4367,10 +4379,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "needs-improvement"
+          "name": "M3"
         },
         {
-          "name": "M3"
+          "name": "waiting-on-prerequisite"
         },
         {
           "name": "late-submission"
@@ -4379,7 +4391,7 @@
       "number": 222,
       "pull_request": false,
       "title": "[M3] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-10-16T14:52:41Z",
+      "updated_at": "2026-11-02T13:30:34Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4487,6 +4499,30 @@
       "updated_at": "2026-10-31T17:05:00Z",
       "user": {
         "login": "credough"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nMichael Bacus\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/michaelbacus-lab/dep-data-engineering-open-track/tree/main\n\n### Commit Hash\n\n1cc26c1\n\n### Self-Check\n\n- [x] `scripts/transform.py` exists and runs without crashing.\n- [x] `data/processed/` contains at least one output file from the transformation.\n- [x] `requirements.txt` is up to date.\n- [x] My README documents the schema and how to run the transformation script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-11-02T09:34:51Z",
+      "created_at": "2026-11-02T09:34:38Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/236",
+      "labels": [
+        {
+          "name": "duplicate"
+        },
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M3"
+        }
+      ],
+      "number": 236,
+      "pull_request": false,
+      "title": "[M3] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
+      "updated_at": "2026-11-02T09:34:52Z",
+      "user": {
+        "login": "michaelbacus-lab"
       }
     }
   ]
