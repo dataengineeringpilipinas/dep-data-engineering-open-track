@@ -6,7 +6,7 @@ Week 9 — Data Cleaning & Shaping Deliverable
 
 ---
 
-## 📌 Executive Summary & Profiling Decisions
+## Executive Summary & Profiling Decisions
 
 During initial data inspection via `df.info()` and `df.isnull().sum()`, key data quality baseline items were identified and addressed:
 
@@ -17,7 +17,7 @@ During initial data inspection via `df.info()` and `df.isnull().sum()`, key data
 
 ---
 
-## 🛠️ Data Cleaning Pipeline (`scripts/transform.py`)
+## Data Cleaning Pipeline (`scripts/transform.py`)
 
 | Raw Field Name | Processed Field Name | Target Data Type | Transformation Applied |
 | :--- | :--- | :--- | :--- |
