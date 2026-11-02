@@ -1,0 +1,6 @@
+pandas>=2.0.0
+numpy>=1.24.0
+sqlite3-api; python_version < '3.0'
+kaggle>=1.5.12
+ipython>=8.0.0
+pathlib>=1.0.1
