@@ -1,4 +1,5 @@
 from pathlib import Path
+
 import pandas as pd
 from IPython.display import display
 
@@ -29,36 +30,73 @@ def clean_dpwh_dataset(df: pd.DataFrame) -> pd.DataFrame:
 
     # Map raw schema to explicit standardized column names
     rename_mapping = {
-        "projectid": "project_id",
-        "districtengineeringoffice": "district_engineering_office",
-        "contractcost": "contract_cost_php",
-        "contractor": "contractor",
-        "province": "province",
-        "region": "region",
+        "projectid": "ProjectId",
+        "districtengineeringoffice": "DistrictEngineeringOffice",
+        "contractcost": "ContractCost",
+        "contractor": "Contractor",
+        "province": "Province",
+        "region": "Region",
+        "municipality": "Municipality",
+        "approvedbudgetforcontract": "ApprovedBudgetForContract",
+        "fundingyear": "FundingYear",
+        "contractid": "ContractId",
+        "completiondate": "CompletionDate",
+        "startdate": "StartDate",
+        "typeofwork": "TypeOfWork",
+        "projecttitle": "ProjectTitle",
     }
     df_clean.rename(columns=rename_mapping, inplace=True)
 
-    # 2. Clean text columns (strip leading/trailing whitespace & handle missing text)
-    string_cols = df_clean.select_dtypes(include=["object"]).columns
-    for col in string_cols:
+    # 2. Clean text columns
+    for col in df_clean.select_dtypes(include=["object"]).columns:
         df_clean[col] = df_clean[col].astype(str).str.strip()
-        # Normalize empty strings or stringified nulls to 'Unknown'
         df_clean[col] = df_clean[col].replace(["nan", "None", "", "N/A"], "Unknown")
 
-    # 3. Clean numeric fields (ensure contract cost is valid float)
-    if "contract_cost_php" in df_clean.columns:
-        df_clean["contract_cost_php"] = pd.to_numeric(
-            df_clean["contract_cost_php"], errors="coerce"
-        ).fillna(0.0)
+    # 3. Convert numeric values safely
+    numeric_cols = [
+        "ApprovedBudgetForContract",
+        "ContractCost",
+        "FundingYear",
+    ]
+    for col in numeric_cols:
+        if col in df_clean.columns:
+            df_clean[col] = pd.to_numeric(df_clean[col], errors="coerce")
 
-    # 4. Remove exact duplicate rows if any exist
+    # 4. Remove duplicate rows and keep deterministic ordering
     initial_rows = len(df_clean)
-    df_clean.drop_duplicates(inplace=True)
+    df_clean = df_clean.drop_duplicates().copy()
     deduped_rows = initial_rows - len(df_clean)
     if deduped_rows > 0:
-        print(f"\ud83e\uddf9 Removed {deduped_rows:,} exact duplicate rows.")
+        print(f"🧹 Removed {deduped_rows:,} exact duplicate rows.")
+
+    if {"ProjectId", "ContractId", "FundingYear"}.issubset(df_clean.columns):
+        df_clean = df_clean.sort_values(
+            by=["ProjectId", "ContractId", "FundingYear"],
+            kind="mergesort",
+        ).reset_index(drop=True)
 
     return df_clean
+
+
+def validate_cleaned_dataset(raw_df: pd.DataFrame, clean_df: pd.DataFrame) -> None:
+    """Checks for structural integrity and reproducibility in the cleaned data."""
+    if len(clean_df) != len(raw_df):
+        raise ValueError(
+            f"Row count mismatch: raw={len(raw_df)} but cleaned={len(clean_df)}"
+        )
+
+    key_cols = ["ProjectId", "ContractId", "FundingYear"]
+    if all(col in clean_df.columns for col in key_cols):
+        duplicate_keys = clean_df.duplicated(subset=key_cols).sum()
+        if duplicate_keys > 0:
+            raise ValueError(f"Duplicate key combinations found: {duplicate_keys}")
+
+    required_cols = {"ProjectId", "ContractId", "FundingYear", "Region", "Province", "Contractor"}
+    missing_cols = sorted(required_cols - set(clean_df.columns))
+    if missing_cols:
+        raise ValueError(f"Missing required columns: {missing_cols}")
+
+    print("✅ Validation checks passed: row count matches source and keys remain unique.")
 
 
 def main():
@@ -66,19 +104,16 @@ def main():
         print(f"Error: Raw data file not found at {RAW_FILE}")
         return
 
-    # Load and Profile Raw Dataset
     df_raw = pd.read_csv(RAW_FILE)
     profile_dataset(df_raw, "Raw")
 
-    # Clean and Transform
     df_cleaned = clean_dpwh_dataset(df_raw)
+    validate_cleaned_dataset(df_raw, df_cleaned)
 
-    # Ensure destination directory exists before saving
     PROCESSED_FILE.parent.mkdir(parents=True, exist_ok=True)
     df_cleaned.to_csv(PROCESSED_FILE, index=False)
-    print(f"\u2705 Cleaned data successfully saved to {PROCESSED_FILE}")
+    print(f"✅ Cleaned data successfully saved to {PROCESSED_FILE}")
 
-    # Profile Processed Dataset
     profile_dataset(df_cleaned, "Processed")
 
 
