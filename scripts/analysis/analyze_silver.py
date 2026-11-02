@@ -141,7 +141,7 @@ def main() -> None:
         "Grouped CSVs and project-level review flags are saved in the output directory.",
     ]
     report_text = "\n".join(report) + "\n"
-    (args.output_dir / "silver_analysis_summary.txt").write_text(report_text, encoding="utf-8")
+    (args.output_dir / "analysis_summary.txt").write_text(report_text, encoding="utf-8")
     print(report_text, end="")
     print(f"Output directory: {args.output_dir}")
 
