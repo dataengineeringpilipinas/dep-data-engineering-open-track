@@ -1,4 +1,4 @@
-# 🎯 Week 1 — Project Scoping & Problem Definition
+# Week 1 — Project Scoping & Problem Definition
 
 **Project Title:** Public Data Patterns in DPWH Flood Control Projects (2022–2025)  
 **Target Audience:** Commission on Audit (COA) — Infrastructure Audit Division  
@@ -6,7 +6,7 @@
 
 ---
 
-## 📌 Executive Summary
+## Executive Summary
 
 This document establishes the project charter, problem statement, core audit hypotheses, analytical scope, and initial data source mapping for the data engineering pipeline analyzing Department of Public Works and Highways (DPWH) flood control projects completed between 2022 and 2025.
 
@@ -14,13 +14,13 @@ The primary goal of this project is to build an automated, reproducible data eng
 
 ---
 
-## ❓ Problem Statement
+## Problem Statement
 
 > **"Can publicly available DPWH flood control project data reveal unusual geographic, financial, and contractor-related patterns that may indicate areas requiring further audit or investigation between 2022 and 2025?"**
 
 ---
 
-## 💡 Audit Hypothesis
+## Audit Hypothesis
 
 While flood control infrastructure allocations are expected to align with geographic vulnerability, disaster mitigation urgency, and regional engineering requirements, public data may expose underlying structural anomalies. 
 
@@ -33,7 +33,7 @@ While flood control infrastructure allocations are expected to align with geogra
 
 ---
 
-## 🎯 Analytical Scope & Boundaries
+## Analytical Scope & Boundaries
 
 | Parameter | In-Scope | Out-of-Scope |
 | :--- | :--- | :--- |
@@ -44,7 +44,7 @@ While flood control infrastructure allocations are expected to align with geogra
 
 ---
 
-## 📊 Key Risk Indicators (KRIs) Defined
+## Key Risk Indicators (KRIs) Defined
 
 1. **Contractor Concentration Ratio (Top-10 Share):** Percentage of total multi-billion peso allocations awarded to the top 10 receiving contractors nationwide and per region.
 2. **Regional/Provincial Cost Density:** Total provincial budget allocation and average project cost benchmarking across geographical regions.
@@ -54,7 +54,7 @@ While flood control infrastructure allocations are expected to align with geogra
 
 ---
 
-## 🗄️ Target Data Schema Overview
+## Target Data Schema Overview
 
 The raw ingestion relies on public disclosures containing the following baseline entities:
 
