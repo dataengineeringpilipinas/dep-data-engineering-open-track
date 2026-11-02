@@ -1,4 +1,4 @@
-# ⚡ Week 10 — Advanced Transformation & Feature Engineering
+# Week 10 — Advanced Transformation & Feature Engineering
 
 **Project Title:** Public Data Patterns in DPWH Flood Control Projects (2022–2025)  
 **Input Dataset:** `data/raw/dpwh_flood_control_projects.csv`  
@@ -6,7 +6,7 @@
 
 ---
 
-## 📌 Milestone Overview & Transformation Strategy
+##  Milestone Overview & Transformation Strategy
 
 Week 10 extends initial data cleaning by enriching the DPWH dataset with time-based groupings, statistical regional benchmarks via aggregations (`groupby` + `merge`), and COA audit risk indicators.
 
