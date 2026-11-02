@@ -6,13 +6,13 @@ Week 7 — Relational Storage & Star Schema Design
 
 ---
 
-## 📌 Executive Summary
+## Executive Summary
 
 Week 7 transitions the project storage design from a flat, unnormalized Bronze dataset (`data/raw/dpwh_flood_control_projects.csv`) into a structured **Star Schema Relational Model**. Storing records in a dimensional schema (Fact and Dimension tables) inside SQLite/DuckDB eliminates field redundancy, optimizes SQL analytical query execution, and enforces relational integrity across entities (contractors, locations, implementing offices).
 
 ---
 
-## 📐 Star Schema Architecture
+## Star Schema Architecture
 
 The relational storage model centers on a core fact table surrounded by three primary dimension tables:
 
