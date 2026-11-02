@@ -1,4 +1,4 @@
-# 🔍 Week 5 — Raw Data Profiling, Exploratory Analysis & Schema Inspection
+# Week 5 — Raw Data Profiling, Exploratory Analysis & Schema Inspection
 
 **Project Title:** Public Data Patterns in DPWH Flood Control Projects (2022–2025)  
 **Target Audience:** Commission on Audit (COA) — Infrastructure Audit Division  
@@ -6,13 +6,13 @@
 
 ---
 
-## 📌 Executive Summary
+## Executive Summary
 
 Week 5 executes comprehensive data profiling and exploratory data analysis (EDA) on the raw Bronze layer dataset (`data/raw/dpwh_flood_control_projects.csv`). Before building automated transformation pipelines, this milestone examines column datatypes, value distributions, missingness patterns, statistical summary metrics, and structural anomalies present in the uncleaned source data.
 
 ---
 
-## 📊 Summary of Raw Data Profiling Metrics
+## Summary of Raw Data Profiling Metrics
 
 Using Pandas inspection methods (`info()`, `describe()`, `isnull().sum()`), the structural baseline of the raw dataset was established:
 
@@ -57,7 +57,7 @@ During raw inspection, four primary data cleanliness issues were logged to be re
 
 ---
 
-## 📜 Exploratory Profiling Script (`scripts/profile_raw.py`)
+## Exploratory Profiling Script (`scripts/profile_raw.py`)
 
 ```python
 from pathlib import Path
