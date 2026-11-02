@@ -1,9 +1,14 @@
 # Data folder
 
-This directory stores the project’s datasets in a clear, tiered structure:
+This folder stores the project data in a simple, review-friendly structure.
 
-- `data/raw/` — source files downloaded from Kaggle
-- `data/processed/` — cleaned and standardized datasets used for downstream analysis
-- `data/output/` — summary files and review-ready export tables
+## Structure
 
-Do not commit sensitive or temporary files here unless they are part of the project pipeline.
+- `data/raw/` — downloaded source CSV files
+- `data/processed/` — cleaned dataset used for analysis
+- `data/output/` — generated summaries and export tables
+
+## Notes
+
+- Raw data should remain separate from cleaned output.
+- Processed data should be reproducible from the raw source using the project scripts.
