@@ -1,4 +1,4 @@
-# 🛡️ Week 3 — Data Quality Baseline, Governance & Risk Assessment
+# Week 3 — Data Quality Baseline, Governance & Risk Assessment
 
 **Project Title:** Public Data Patterns in DPWH Flood Control Projects (2022–2025)  
 **Target Audience:** Commission on Audit (COA) — Infrastructure Audit Division  
@@ -6,13 +6,13 @@
 
 ---
 
-## 📌 Executive Summary
+## Executive Summary
 
 This document details the data quality baseline framework, risk assessment, data governance guidelines, and ethical principles established during Week 3. Before executing full raw data ingestion (Phase 2), this policy defines expected quality dimensions, addresses critical audit disclaimers regarding self-reported government datasets, and sets validation guardrails to prevent corrupted or unverified records from entering downstream pipeline layers.
 
 ---
 
-## 📐 Data Quality Dimensions Matrix
+## Data Quality Dimensions Matrix
 
 To ensure data integrity for audit screening, public DPWH flood control records are evaluated across five core data quality dimensions:
 
@@ -26,7 +26,7 @@ To ensure data integrity for audit screening, public DPWH flood control records 
 
 ---
 
-## ⚠️ Ingestion Risk Assessment & Audit Limitations
+## Ingestion Risk Assessment & Audit Limitations
 
 Analyzing government infrastructure data requires strict acknowledgement of inherent dataset limitations and external validation context:
 
@@ -43,7 +43,7 @@ This data engineering pipeline functions strictly as a **macro-level screening t
 
 ---
 
-## ⚖️ Ethics & Responsible Data Governance
+## Ethics & Responsible Data Governance
 
 1. **Non-Accusatory Screening Principle:** Flagged anomalies (e.g., `is_high_cost_outlier = 1`) represent statistical deviations requiring investigation, not proof of wrongdoing.
 2. **Public Interest & Transparency:** All data processing relies exclusively on publicly disclosed datasets (`bwandowando/dpwh-flood-control-projects`) in compliance with government open data principles.
@@ -51,7 +51,7 @@ This data engineering pipeline functions strictly as a **macro-level screening t
 
 ---
 
-## 🛑 Pre-Flight Ingestion Validation Rules
+## Pre-Flight Ingestion Validation Rules
 
 Before writing raw data to the **Bronze Layer** (`data/raw/dpwh_flood_control_projects.csv`), the ingestion script (`scripts/ingest.py`) must execute the following automated validation checks:
 
