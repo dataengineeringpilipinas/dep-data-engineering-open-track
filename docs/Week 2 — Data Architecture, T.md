@@ -1,4 +1,4 @@
-# 🏗️ Week 2 — Data Architecture, Technology Stack & Pipeline Design
+# Week 2 — Data Architecture, Technology Stack & Pipeline Design
 
 **Project Title:** Public Data Patterns in DPWH Flood Control Projects (2022–2025)  
 **Target Audience:** Commission on Audit (COA) — Infrastructure Audit Division  
@@ -6,13 +6,13 @@
 
 ---
 
-## 📌 Executive Summary
+## Executive Summary
 
 This document defines the high-level system architecture, technology stack, data flow pipeline, and repository layout for the DPWH Flood Control Data Pipeline. The architecture follows a medallion (Bronze → Silver → Gold) data engineering framework designed to ingest public procurement datasets, standardize schemas, execute relational SQL queries, and surface audit risk indicators in a fully reproducible environment.
 
 ---
 
-## 🛠️ Technology Stack & Tooling Selection
+## Technology Stack & Tooling Selection
 
 The pipeline utilizes lightweight, open-source, and cloud-compatible technologies to ensure seamless execution across local developer machines and Google Colab environments.
 
