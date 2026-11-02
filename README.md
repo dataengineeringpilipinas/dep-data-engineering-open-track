@@ -57,6 +57,179 @@ The dashboard should help audit teams and researchers quickly identify geographi
 
 ---
 
+# Phase 3 / Milestone 3 — Clean Dataset
+
+## Overview
+
+This project is now at the Phase 3 / Milestone 3 stage: a clean, structured, and reproducible dataset for downstream audit analysis and SQL-based review.
+
+Current processed outputs include:
+
+- `data/processed/dpwh_flood_control_projects_cleaned.csv`
+- `data/output/analysis/` for grouped summaries and review flags
+
+The repo is structured so a reviewer can run the full pipeline from raw input to analysis output without guessing the order.
+
+---
+
+## Pipeline
+
+```text
+data/raw/dpwh_flood_control_projects.csv
+        |
+        v
+scripts/transform.py
+        |
+        +--> data/processed/dpwh_flood_control_projects_cleaned.csv
+        |
+        v
+scripts/analysis/analyze_silver.py
+        |
+        +--> data/output/analysis/
+```
+
+The project follows a clear raw-to-processed-to-analysis flow:
+
+1. Download the raw source data
+2. Clean and standardize the dataset
+3. Save the processed dataset
+4. Generate analysis outputs for review and audit screening
+
+---
+
+## Processed Schema
+
+### Main processed table
+
+**File:** `data/processed/dpwh_flood_control_projects_cleaned.csv`
+
+**Grain:** one row = one project record
+
+**Primary key idea:** each row is retained as one cleaned project record, with validation checks ensuring the dataset does not silently lose integrity during transformation.
+
+**Key expected columns:**
+
+- `ProjectId`
+- `ContractId`
+- `FundingYear`
+- `Region`
+- `Province`
+- `Municipality`
+- `DistrictEngineeringOffice`
+- `Contractor`
+- `ApprovedBudgetForContract`
+- `ContractCost`
+- `ProjectTitle`
+- `TypeOfWork`
+- `StartDate`
+- `CompletionDate`
+
+This is the working data table for downstream analysis and audit screening.
+
+---
+
+## Cleaning Decisions
+
+The transform script applies the following rules:
+
+- standardizes inconsistent column names
+- strips whitespace and normalizes text values
+- converts numeric fields to numeric data types where appropriate
+- removes exact duplicate rows
+- preserves missing values where they are meaningful instead of silently discarding them
+- keeps the dataset deterministic by sorting cleaned records in a stable order
+
+The cleaning log and validation notes are documented in `scripts/README.md`.
+
+---
+
+## Validation
+
+Validation checks are built into `scripts/transform.py`.
+
+The pipeline checks:
+
+- raw row count is preserved after cleaning
+- key combinations remain unique
+- required project columns are present
+- output data remains structurally consistent before writing
+
+This makes the transform reproducible and easier for reviewers to validate.
+
+---
+
+## SQL Business Questions
+
+SQL queries are stored in:
+
+- `sql/business_questions.sql`
+- `sql/schema_ddl.sql`
+
+The project currently answers three business questions:
+
+1. Which contractors received the largest total contract value?
+2. Which provinces received the highest total flood control funding?
+3. Which District Engineering Offices manage the highest average project costs?
+
+These queries directly support the project’s audit-oriented analysis and align with the DEP milestone requirement for SQL business questions.
+
+---
+
+## Reproducibility
+
+The transform process is designed to be reproducible:
+
+- same raw file + same transform script = same cleaned output structure
+- validation checks ensure the cleaned file stays structurally consistent
+- output ordering is stable by key columns
+
+This is important for a reviewer who wants to re-run the pipeline and confirm that the same dataset is produced.
+
+---
+
+## Run the Phase 3 Pipeline
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run ingestion:
+
+```bash
+python scripts/ingest.py
+```
+
+Run transformation:
+
+```bash
+python scripts/transform.py
+```
+
+Run analysis:
+
+```bash
+python scripts/analysis/analyze_silver.py \
+  --input data/processed/dpwh_flood_control_projects_cleaned.csv \
+  --output-dir data/output/analysis
+```
+
+---
+
+## Milestone 3 Checklist
+
+- [x] Processed dataset saved in `/data/processed/`
+- [x] Schema plan documented
+- [x] SQL business questions documented and saved in `sql/`
+- [x] Missing values and cleaning decisions documented
+- [x] Validation checks integrated into the transform flow
+- [x] Reproducible script flow documented for reviewers
+
+This Phase 3 output is the clean foundation for later analysis, deeper audit review, and dashboard-ready outputs.
+
+---
+
 ## 🏗️ Storage Design & Data Architecture
 
 This project follows a 3-tier **Medallion Architecture**:
