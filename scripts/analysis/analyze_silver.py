@@ -7,8 +7,8 @@ import pandas as pd
 
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_INPUT = ROOT / "data" / "silver" / "dpwh_flood_control_projects_silver.csv"
-DEFAULT_OUTPUT = ROOT / "data" / "analytics"
+DEFAULT_INPUT = ROOT / "data" / "processed" / "dpwh_flood_control_projects_cleaned.csv"
+DEFAULT_OUTPUT = ROOT / "data" / "output" / "analysis"
 
 REQUIRED_COLUMNS = {
     "Region",
@@ -51,9 +51,9 @@ def contractor_summary(df: pd.DataFrame) -> pd.DataFrame:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Analyze geographic, financial, and contractor patterns in the silver DPWH data."
+        description="Analyze geographic, financial, and contractor patterns in the cleaned DPWH data."
     )
-    parser.add_argument("--input", type=Path, default=DEFAULT_INPUT, help="Silver-layer CSV path")
+    parser.add_argument("--input", type=Path, default=DEFAULT_INPUT, help="Cleaned dataset path")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT, help="Directory for analysis outputs")
     args = parser.parse_args()
 
@@ -123,7 +123,7 @@ def main() -> None:
 
     years = df["FundingYear"].dropna()
     report = [
-        "DPWH FLOOD CONTROL PROJECTS - SILVER-LAYER ANALYSIS",
+        "DPWH FLOOD CONTROL PROJECTS - CLEANED-DATA ANALYSIS",
         f"Input: {args.input}",
         f"Rows: {len(df):,}",
         f"Unique project IDs: {df['ProjectId'].nunique():,}",
