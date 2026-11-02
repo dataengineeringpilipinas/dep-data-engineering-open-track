@@ -6,13 +6,13 @@ Week 6 — Ingestion Hardening, Automated Validation & Pipeline Security
 
 ---
 
-## 📌 Executive Summary
+## Executive Summary
 
 Week 6 completes Phase 2 (Ingestion & Data Quality) by hardening the automated ingestion pipeline (`scripts/ingest.py`). This milestone integrates environment security controls for Kaggle API authentication (`KAGGLE_KEY`), embeds automated pre-flight schema validation checks before writing raw files, enforces `.gitignore` security boundaries, and establishes end-to-end logging for the Bronze data extraction layer.
 
 ---
 
-## 🛡️ Security Architecture & Credentials Management
+## Security Architecture & Credentials Management
 
 To prevent sensitive credentials and large dataset files from leaking into public Git repositories:
 
