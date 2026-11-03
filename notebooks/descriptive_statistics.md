@@ -1,4 +1,4 @@
-# Week 13 — Descriptive Statistics for Project Understanding
+Descriptive Statistics for Project Understanding
 
 ## Section Overview
 
