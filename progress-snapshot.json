@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-02T15:58:07Z",
+  "generated_at": "2026-11-04T01:23:54Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -4521,6 +4521,33 @@
       "pull_request": false,
       "title": "[M3] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
       "updated_at": "2026-11-02T09:34:52Z",
+      "user": {
+        "login": "michaelbacus-lab"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nMichael Bacus\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/michaelbacus-lab/dep-data-engineering-open-track\n\n### Commit Hash\n\n7bd3e77454f3b83d121f5d8f4e52377e0a02239c\n\n### Self-Check\n\n- [x] `notebooks/` contains at least one `.ipynb` analysis notebook.\n- [x] The notebook runs end-to-end without errors on `data/processed/` inputs.\n- [x] `requirements.txt` is up to date.\n- [x] My README documents the key findings and links to the notebook.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-11-03T21:25:32Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/237",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M4"
+        },
+        {
+          "name": "waiting-on-prerequisite"
+        },
+        {
+          "name": "late-submission"
+        }
+      ],
+      "number": 237,
+      "pull_request": false,
+      "title": "[M4] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
+      "updated_at": "2026-11-03T21:26:26Z",
       "user": {
         "login": "michaelbacus-lab"
       }
