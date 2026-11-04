@@ -328,6 +328,37 @@ The next phase (M5) should focus on:
 
 ---
 
+## Phase 5 — Path B: Segmentation, KPIs and Stakeholder Brief
+
+**Path:** B (Alt Track). The project question calls for description and prioritising review, not prediction.
+
+### Run the full pipeline
+
+```bash
+pip install -r requirements.txt
+python scripts/run_pipeline.py                 # transform -> analysis-ready -> Phase 5 analysis
+# python scripts/run_pipeline.py --with-ingest  # also downloads the raw data (needs Kaggle credentials)
+jupyter notebook notebooks/M5_segmentation_kpis_brief.ipynb
+```
+
+### Phase 5 outputs
+
+| Output | Location |
+|---|---|
+| Segmentation, KPI and brief notebook | `notebooks/M5_segmentation_kpis_brief.ipynb` |
+| Analysis script (shared with the notebook) | `scripts/analysis/m5_segmentation_kpis.py` |
+| Segment, KPI and shortlist tables | `data/processed/m5_*.csv` |
+| Charts 6–9 | `output/figures/m5_*.png` |
+| One-page stakeholder brief | `docs/stakeholder_brief.pdf` |
+
+### Milestone 5 Checklist
+
+- [x] Segmentation notebook section (3 dimensions)
+- [x] 5 KPI definitions with trend over time
+- [x] 1-page stakeholder brief
+- [x] Clean, runnable pipeline (`scripts/run_pipeline.py`)
+- [x] `requirements.txt` updated
+
 ---
 
 ## 🏗️ Storage Design & Data Architecture
