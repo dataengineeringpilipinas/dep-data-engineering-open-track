@@ -175,11 +175,11 @@
       "name": "Jeanne Marie B. Quiñanola",
       "github": "https://github.com/shivaa-bit",
       "status": "In progress",
-      "projectTopic": "Real Wage Stability by Industry: A PPP (Purchasing Power of Peso) - Deflated Analysis for Philippine Job Seekers",
+      "projectTopic": "Real Wage Stability by Industry: A PPP (Purchasing Power of the Peso) - Deflated Analysis for Philippine Job Seekers",
       "startDate": "2026-06-22",
       "activeWeek": "W20",
       "currentMilestone": 2,
-      "milestonesSubmitted": 3,
+      "milestonesSubmitted": 2,
       "milestonesPassed": 2,
       "phase": "Data Collection"
     },
@@ -226,10 +226,10 @@
       "projectTopic": "Flood-Risk and Weather Monitoring",
       "startDate": "2026-06-22",
       "activeWeek": "W20",
-      "currentMilestone": 2,
+      "currentMilestone": 3,
       "milestonesSubmitted": 3,
-      "milestonesPassed": 2,
-      "phase": "Data Collection"
+      "milestonesPassed": 3,
+      "phase": "Data Processing"
     },
     {
       "name": "Taclino, Neil Yurri, N",
@@ -430,10 +430,10 @@
       "projectTopic": "Philippine Fuel Price Data Pipeline",
       "startDate": "2026-06-22",
       "activeWeek": "W20",
-      "currentMilestone": 4,
+      "currentMilestone": 5,
       "milestonesSubmitted": 4,
-      "milestonesPassed": 4,
-      "phase": "Analysis & Insights"
+      "milestonesPassed": 5,
+      "phase": "Predictive / Alt Track"
     },
     {
       "name": "Verano, Froncoyz Peteros",

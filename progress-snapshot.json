@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04T17:20:55Z",
+  "generated_at": "2026-11-04T23:41:43Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -657,7 +657,7 @@
     },
     {
       "body": "### Builder Name\n\nJeanne Marie B. Quiñanola \n\n### Cohort\n\n2026 - A \n\n### GitHub Repo URL\n\nhttps://github.com/shivaa-bit/dep-data-engineering-open-track\n\n### Commit Hash\n\nf04ebf315fe7d18365789ec2d0109d736736b414\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-04T21:51:41Z",
       "created_at": "2026-06-27T08:21:45Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/38",
       "labels": [
@@ -671,7 +671,7 @@
       "number": 38,
       "pull_request": false,
       "title": "[M0] Jeanne Marie B. Quiñanola (Is Your Job Plan Safe? A Job Seeker's Guide to PH Industries",
-      "updated_at": "2026-06-27T08:21:55Z",
+      "updated_at": "2026-11-04T21:51:41Z",
       "user": {
         "login": "shivaa-bit"
       }
@@ -3270,7 +3270,7 @@
     },
     {
       "body": "### Builder Name\n\nReiner John Santiago\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/reinerjohnsantiago/dep-data-engineering-ReinerSantiago\n\n### Commit Hash\n\n4debca0faeb0a61771b0e8add90dae08abb860ff\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-04T20:38:25Z",
       "created_at": "2026-08-02T13:40:37Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/165",
       "labels": [
@@ -3278,7 +3278,7 @@
           "name": "milestone-submission"
         },
         {
-          "name": "needs-improvement"
+          "name": "passed"
         },
         {
           "name": "M2"
@@ -3287,7 +3287,7 @@
       "number": 165,
       "pull_request": false,
       "title": "[M2] <Reiner John Santiago> — <Flood-Risk and Weather Monitoring>",
-      "updated_at": "2026-10-19T15:14:36Z",
+      "updated_at": "2026-11-04T20:52:58Z",
       "user": {
         "login": "reinerjohnsantiago"
       }
@@ -3390,18 +3390,18 @@
     },
     {
       "body": "### Builder Name\n\nJeanne Marie B. Quiñanola\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/shivaa-bit/dep-data-engineering-open-track-Shiva\n\n### Commit Hash\n\ne7bbce5c12a1d1bdeeffbb6999723178cb98c614\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-04T21:47:26Z",
       "created_at": "2026-08-05T11:55:14Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/177",
       "labels": [
+        {
+          "name": "wontfix"
+        },
         {
           "name": "milestone-submission"
         },
         {
           "name": "M2"
-        },
-        {
-          "name": "ready-for-review"
         },
         {
           "name": "late-submission"
@@ -3410,7 +3410,7 @@
       "number": 177,
       "pull_request": false,
       "title": "[M2] <Jeanne Marie B. Quiñanola> — <Real Wage Stability by Industry: A PPP (Purchasing Power of Peso) - Deflated Analysis for Philippine Job Seekers>",
-      "updated_at": "2026-08-31T08:30:10Z",
+      "updated_at": "2026-11-04T21:47:26Z",
       "user": {
         "login": "shivaa-bit"
       }
@@ -3971,10 +3971,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M3"
+          "name": "needs-improvement"
         },
         {
-          "name": "ready-for-review"
+          "name": "M3"
         },
         {
           "name": "late-submission"
@@ -3983,7 +3983,7 @@
       "number": 206,
       "pull_request": false,
       "title": "[M3] <John Kenneth Priol> — <NCR Air Quality and EV Fleet Growth: Measuring EVIDA's Impact (2014-Present)>",
-      "updated_at": "2026-10-05T12:19:39Z",
+      "updated_at": "2026-11-04T20:13:00Z",
       "user": {
         "login": "johnkennethpriol"
       }
@@ -4476,7 +4476,7 @@
     },
     {
       "body": "### Builder Name\n\nAaron Creed Celindro\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/credough/dep-data-engineering-open-track-aaron-celindro\n\n### Commit Hash\n\n16bae566e45b921926e92efde6807675057124e4\n\n### Self-Check\n\n- [x] `notebooks/` contains at least one `.ipynb` analysis notebook.\n- [x] The notebook runs end-to-end without errors on `data/processed/` inputs.\n- [x] `requirements.txt` is up to date.\n- [x] My README documents the key findings and links to the notebook.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-04T21:04:35Z",
       "created_at": "2026-10-29T11:55:30Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/235",
       "labels": [
@@ -4484,10 +4484,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M4"
+          "name": "passed"
         },
         {
-          "name": "ready-for-review"
+          "name": "M4"
         },
         {
           "name": "late-submission"
@@ -4496,7 +4496,7 @@
       "number": 235,
       "pull_request": false,
       "title": "[M4] Aaron Creed Celindro — Philippine Fuel Price Data Pipeline",
-      "updated_at": "2026-10-31T17:05:00Z",
+      "updated_at": "2026-11-04T21:17:56Z",
       "user": {
         "login": "credough"
       }
@@ -4598,7 +4598,7 @@
       "number": 239,
       "pull_request": false,
       "title": "[M4] Robert Tulagan — Rice Price Spikes vs. Typhoon Warnings: A Province-Level Overlap Analysis",
-      "updated_at": "2026-11-04T13:04:53Z",
+      "updated_at": "2026-11-04T21:17:54Z",
       "user": {
         "login": "robaaaru"
       }
