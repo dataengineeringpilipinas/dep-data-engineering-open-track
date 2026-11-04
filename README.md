@@ -230,6 +230,106 @@ This Phase 3 output is the clean foundation for later analysis, deeper audit rev
 
 ---
 
+# Phase 4 / Milestone 4 — Initial Insights
+
+## Overview
+
+This project has completed the Phase 4 / Milestone 4 pass focused on exploratory analysis and initial insight generation for the DPWH flood control project dataset.
+
+The full working notebook is:
+
+- `notebooks/M4_initial_insights.ipynb`
+
+This phase answers the project question:
+
+> Can publicly available DPWH flood control project data reveal unusual geographic, financial, and contractor-related patterns that may warrant further audit review?
+
+The analysis is intentionally framed as exploratory and investigative, not as proof of wrongdoing or misconduct. The goal is to identify patterns worth deeper validation.
+
+---
+
+## M4 Scope
+
+The M4 notebook follows the milestone structure:
+
+1. Week 13 — Descriptive statistics
+2. Week 14 — EDA and visualization (5 core charts)
+3. Week 15 — Inference with analytical caution
+4. Week 16 — Narrative insights and review shortlist
+
+---
+
+## Working Outputs
+
+Key M4 deliverables include:
+
+- descriptive baseline statistics for project volume, cost, and regional variation
+- cost outlier analysis using regional z-score benchmarking
+- contractor concentration analysis by province
+- geographic concentration and project volume comparison by region
+- statistical checks for whether observed patterns exceed a simple random baseline
+- summary narrative for audit-oriented interpretation
+
+Relevant files:
+
+- `notebooks/M4_initial_insights.ipynb`
+- `docs/week_13_descriptive_statistics.md`
+- `output/figures/` (generated chart outputs)
+
+---
+
+## M4 Summary Findings
+
+### Geographic patterns
+- Project volume and value are uneven across regions.
+- Region III stands out as the largest concentration of projects and total spending.
+- Regional variation suggests that geography and project mix matter when comparing patterns.
+
+### Financial patterns
+- Contract costs are right-skewed, with a long tail of large-value projects.
+- A subset of projects is flagged as unusually high-cost relative to their regional baseline.
+- Roughly 3.3% of projects are flagged as high-cost outliers, with some regions showing materially higher rates.
+
+### Contractor patterns
+- National contractor concentration is limited, but provincial concentration can be much higher.
+- Some provinces show a single contractor accounting for a large share of local project value.
+- This indicates that concentration is not random and may be worth investigating in context.
+
+### Analytical caution
+- These patterns are statistically distinguishable from a naive random model.
+- However, they do not establish wrongdoing or corruption by themselves.
+- Additional validation is required using project type, province size, and external references.
+
+---
+
+## M4 Review Checklist
+
+- [x] Descriptive statistics executed and interpreted
+- [x] EDA conducted with 5 labelled charts
+- [x] Cost outlier patterns reviewed
+- [x] Contractor concentration reviewed by province
+- [x] Statistical inference included with caution
+- [x] Final insights narrative documented
+- [x] Limitations and next steps identified
+
+---
+
+## Interpretation
+
+The M4 pass confirms that the public data can reveal patterns worth closer audit review. These findings are best understood as leads for investigation rather than final conclusions.
+
+The next phase (M5) should focus on:
+
+1. cleaning contractor names and handling joint ventures consistently
+2. normalizing geography with PSA population and land-area data
+3. benchmarking costs by project type and size
+4. validating flagged projects against government monitoring sources
+5. preparing the final dashboard and stakeholder-ready brief
+
+---
+
+---
+
 ## 🏗️ Storage Design & Data Architecture
 
 This project follows a 3-tier **Medallion Architecture**:
