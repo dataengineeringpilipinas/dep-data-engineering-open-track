@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04T09:16:13Z",
+  "generated_at": "2026-11-04T17:20:55Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -4290,7 +4290,7 @@
     },
     {
       "body": "### Builder Name\n\nXein Virgines\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/xeind/dep-data-engineering-xeind\n\n### Commit Hash\n\n4e5eef56ed61998bc4d07c27b7a80be1c455dafb\n\n### Self-Check\n\n- [x] `notebooks/` contains at least one `.ipynb` analysis notebook.\n- [x] The notebook runs end-to-end without errors on `data/processed/` inputs.\n- [x] `requirements.txt` is up to date.\n- [x] My README documents the key findings and links to the notebook.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-04T13:39:20Z",
       "created_at": "2026-10-11T16:15:52Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/219",
       "labels": [
@@ -4298,10 +4298,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M4"
+          "name": "passed"
         },
         {
-          "name": "ready-for-review"
+          "name": "M4"
         },
         {
           "name": "late-submission"
@@ -4310,7 +4310,7 @@
       "number": 219,
       "pull_request": false,
       "title": "[M4] Xein Virgines — 1960 vs 2025: Who Had It Better?",
-      "updated_at": "2026-10-31T17:04:47Z",
+      "updated_at": "2026-11-04T13:39:36Z",
       "user": {
         "login": "xeind"
       }
@@ -4364,7 +4364,7 @@
       "number": 221,
       "pull_request": false,
       "title": "[M4] Naehum Dela Cruz — MassKara Festival Google Trends Interest & MNL-BCD Travel Price Surge Tracker",
-      "updated_at": "2026-10-27T09:10:47Z",
+      "updated_at": "2026-11-04T13:39:42Z",
       "user": {
         "login": "Naehum-Dela-Cruz"
       }
@@ -4442,7 +4442,7 @@
       "number": 224,
       "pull_request": false,
       "title": "[M4] Lord Marin — Temporal Dynamics of Connection-Seeking in PH r4r Subreddits",
-      "updated_at": "2026-10-27T08:42:24Z",
+      "updated_at": "2026-11-04T11:22:50Z",
       "user": {
         "login": "lordgpm"
       }
@@ -4574,6 +4574,33 @@
       "updated_at": "2026-11-04T08:35:01Z",
       "user": {
         "login": "michaelbacus-lab"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nRobert Angelo Tulagan\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/robaaaru/dep-data-engineering-open-track-roberttulagan\n\n### Commit Hash\n\nf7de3a55b479558f8e92d689d09b2e9e14d69fe8\n\n### Self-Check\n\n- [x] `notebooks/` contains at least one `.ipynb` analysis notebook.\n- [x] The notebook runs end-to-end without errors on `data/processed/` inputs.\n- [x] `requirements.txt` is up to date.\n- [x] My README documents the key findings and links to the notebook.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-11-04T12:22:25Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/239",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "needs-improvement"
+        },
+        {
+          "name": "M4"
+        },
+        {
+          "name": "late-submission"
+        }
+      ],
+      "number": 239,
+      "pull_request": false,
+      "title": "[M4] Robert Tulagan — Rice Price Spikes vs. Typhoon Warnings: A Province-Level Overlap Analysis",
+      "updated_at": "2026-11-04T13:04:53Z",
+      "user": {
+        "login": "robaaaru"
       }
     }
   ]

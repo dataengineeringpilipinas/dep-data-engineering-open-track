@@ -1,6 +1,6 @@
 {
   "cohort": "2026-A",
-  "updatedAt": "2026-11-02",
+  "updatedAt": "2026-11-05",
   "source": "GitHub milestone-submission issues + enrolled-participants.json",
   "builders": [
     {
@@ -154,10 +154,10 @@
       "projectTopic": "1960 vs 2025: Who Had It Better?",
       "startDate": "2026-06-22",
       "activeWeek": "W20",
-      "currentMilestone": 4,
+      "currentMilestone": 5,
       "milestonesSubmitted": 5,
-      "milestonesPassed": 4,
-      "phase": "Analysis & Insights"
+      "milestonesPassed": 5,
+      "phase": "Predictive / Alt Track"
     },
     {
       "name": "Quidor, Adrean Jan G.",
@@ -355,11 +355,11 @@
       "name": "Tulagan, Robert Angelo H.",
       "github": "https://github.com/robaaaru",
       "status": "In progress",
-      "projectTopic": "Rice Price Spikes vs. Typhoon Severity: A Province-Level Deviation Analysis",
+      "projectTopic": "Rice Price Spikes vs. Typhoon Warnings: A Province-Level Overlap Analysis",
       "startDate": "2026-06-22",
       "activeWeek": "W20",
       "currentMilestone": 4,
-      "milestonesSubmitted": 4,
+      "milestonesSubmitted": 5,
       "milestonesPassed": 4,
       "phase": "Analysis & Insights"
     },
