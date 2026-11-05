@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T06:49:55Z",
+  "generated_at": "2026-11-05T15:29:58Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -4442,7 +4442,7 @@
       "number": 224,
       "pull_request": false,
       "title": "[M4] Lord Marin — Temporal Dynamics of Connection-Seeking in PH r4r Subreddits",
-      "updated_at": "2026-11-04T11:22:50Z",
+      "updated_at": "2026-11-05T13:41:44Z",
       "user": {
         "login": "lordgpm"
       }
@@ -4578,7 +4578,7 @@
     },
     {
       "body": "### Builder Name\n\nRobert Angelo Tulagan\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/robaaaru/dep-data-engineering-open-track-roberttulagan\n\n### Commit Hash\n\nf7de3a55b479558f8e92d689d09b2e9e14d69fe8\n\n### Self-Check\n\n- [x] `notebooks/` contains at least one `.ipynb` analysis notebook.\n- [x] The notebook runs end-to-end without errors on `data/processed/` inputs.\n- [x] `requirements.txt` is up to date.\n- [x] My README documents the key findings and links to the notebook.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-05T12:21:08Z",
       "created_at": "2026-11-04T12:22:25Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/239",
       "labels": [
@@ -4586,7 +4586,7 @@
           "name": "milestone-submission"
         },
         {
-          "name": "needs-improvement"
+          "name": "passed"
         },
         {
           "name": "M4"
@@ -4598,7 +4598,7 @@
       "number": 239,
       "pull_request": false,
       "title": "[M4] Robert Tulagan — Rice Price Spikes vs. Typhoon Warnings: A Province-Level Overlap Analysis",
-      "updated_at": "2026-11-04T21:17:54Z",
+      "updated_at": "2026-11-05T12:21:10Z",
       "user": {
         "login": "robaaaru"
       }
@@ -4625,6 +4625,30 @@
       "updated_at": "2026-11-05T05:56:07Z",
       "user": {
         "login": "michaelbacus-lab"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nKier guiang\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Kaigosama/dep-data-engineering-kier_guiang\n\n### Commit Hash\n\ned74d0d39dce654865b835da47f057744bed7ee4\n\n### Which path did you take?\n\nPath A — Predictive / ML\n\n### Notes (optional)\n\n_No response_\n\n### Self-Check (both paths)\n\n- [x] `requirements.txt` is up to date with all dependencies.\n- [x] `notebooks/` contains analysis or model notebooks.\n- [x] `data/processed/` contains all output files needed for the next phase.\n- [x] The commit hash above points to my latest submission snapshot.\n\n### Path A Additional Checks (skip if Path B)\n\n- [x] Model results or predictions are saved to `output/` or `data/processed/`.\n- [x] Model metrics and assumptions are documented in the notebook or README.\n\n### Path B Additional Checks (skip if Path A)\n\n- [ ] Segmentation or advanced EDA outputs are saved.\n- [ ] A stakeholder brief or KPI summary is included.",
+      "closed_at": null,
+      "created_at": "2026-11-05T12:25:37Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/242",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M5"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 242,
+      "pull_request": false,
+      "title": "[M5] Kier Guiang — National Underemployment Forecast: Is Philippine Economic Growth Creating Real Jobs?",
+      "updated_at": "2026-11-05T12:25:55Z",
+      "user": {
+        "login": "Kaigosama"
       }
     }
   ]

@@ -358,10 +358,10 @@
       "projectTopic": "Rice Price Spikes vs. Typhoon Warnings: A Province-Level Overlap Analysis",
       "startDate": "2026-06-22",
       "activeWeek": "W20",
-      "currentMilestone": 4,
+      "currentMilestone": 5,
       "milestonesSubmitted": 5,
-      "milestonesPassed": 4,
-      "phase": "Analysis & Insights"
+      "milestonesPassed": 5,
+      "phase": "Predictive / Alt Track"
     },
     {
       "name": "Guiang, Tristan Kier, D.",
@@ -371,9 +371,9 @@
       "startDate": "2026-06-22",
       "activeWeek": "W20",
       "currentMilestone": 5,
-      "milestonesSubmitted": 5,
+      "milestonesSubmitted": 6,
       "milestonesPassed": 5,
-      "phase": "Predictive / Alt Track"
+      "phase": "Predictive"
     },
     {
       "name": "Vale, Dionard Ernest D.",
