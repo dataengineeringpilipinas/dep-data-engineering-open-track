@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04T23:41:43Z",
+  "generated_at": "2026-11-05T06:49:55Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -4553,7 +4553,7 @@
       }
     },
     {
-      "body": "### Builder Name\n\nMichael Bacus\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/michaelbacus-lab/dep-data-engineering-open-track\n\n### Commit Hash\n\nb58db10382be44c7f239382b728d3e4ede9de249\n\n### Which path did you take?\n\nPath A — Predictive / ML\n\n### Notes (optional)\n\n_No response_\n\n### Self-Check (both paths)\n\n- [x] `requirements.txt` is up to date with all dependencies.\n- [x] `notebooks/` contains analysis or model notebooks.\n- [x] `data/processed/` contains all output files needed for the next phase.\n- [x] The commit hash above points to my latest submission snapshot.\n\n### Path A Additional Checks (skip if Path B)\n\n- [ ] Model results or predictions are saved to `output/` or `data/processed/`.\n- [ ] Model metrics and assumptions are documented in the notebook or README.\n\n### Path B Additional Checks (skip if Path A)\n\n- [x] Segmentation or advanced EDA outputs are saved.\n- [x] A stakeholder brief or KPI summary is included.",
+      "body": "### Builder Name\n\nMichael Bacus\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/michaelbacus-lab/dep-data-engineering-open-track\n\n### Commit Hash\n\nb58db10382be44c7f239382b728d3e4ede9de249\n\n### Which path did you take?\n\nPath B — Non-Predictive Alt Track\n\n### Notes (optional)\n\n_No response_\n\n### Self-Check (both paths)\n\n- [x] `requirements.txt` is up to date with all dependencies.\n- [x] `notebooks/` contains analysis or model notebooks.\n- [x] `data/processed/` contains all output files needed for the next phase.\n- [x] The commit hash above points to my latest submission snapshot.\n\n### Path A Additional Checks (skip if Path B)\n\n- [ ] Model results or predictions are saved to `output/` or `data/processed/`.\n- [ ] Model metrics and assumptions are documented in the notebook or README.\n\n### Path B Additional Checks (skip if Path A)\n\n- [x] Segmentation or advanced EDA outputs are saved.\n- [x] A stakeholder brief or KPI summary is included.",
       "closed_at": null,
       "created_at": "2026-11-04T08:34:45Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/238",
@@ -4571,7 +4571,7 @@
       "number": 238,
       "pull_request": false,
       "title": "[M5] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-11-04T08:35:01Z",
+      "updated_at": "2026-11-05T05:36:38Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4601,6 +4601,30 @@
       "updated_at": "2026-11-04T21:17:54Z",
       "user": {
         "login": "robaaaru"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nMichael Bacus\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/michaelbacus-lab/dep-data-engineering-open-track\n\n### Commit Hash\n\n8c6269225080e7c0a02534ad4c27214a7b5fcced\n\n### Live Project URL\n\nhttps://github.com/michaelbacus-lab/dep-data-engineering-open-track/tree/main\n\n### Self-Check\n\n- [x] `dashboard/index.html` exists in my repo.\n- [x] The live URL above loads correctly in a browser.\n- [x] `requirements.txt` is complete and up to date.\n- [x] My README includes the live URL and a project summary.\n- [x] I have a short demo script or presentation ready.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-11-05T05:54:59Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/241",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M6"
+        },
+        {
+          "name": "waiting-on-prerequisite"
+        }
+      ],
+      "number": 241,
+      "pull_request": false,
+      "title": "[M6] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
+      "updated_at": "2026-11-05T05:56:07Z",
+      "user": {
+        "login": "michaelbacus-lab"
       }
     }
   ]
