@@ -1,7 +1,6 @@
 # Public Data Patterns in DPWH Flood Control Projects (2022–2025)
 
-**Live dashboard: dashboard/index.html**
-
+**Live dashboard: https://michaelbacus-lab.github.io/dep-data-engineering-open-track/
 A data engineering project built in the [DEP Data Engineering Open Track](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track). It turns public records of completed DPWH flood control projects into a clean dataset, a set of KPIs and an interactive dashboard that shows where an auditor might look first.
 
 > The indicators here are for prioritising review. They are **not** evidence of wrongdoing, fraud or corruption.
