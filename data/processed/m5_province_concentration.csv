@@ -1,0 +1,85 @@
+province,region,projects,contractors,top1_share,top3_share,outlier_rate,outlier_rate_time_adjusted
+Quirino,Region II,7,2,0.8189,1.0,0.0,0.0
+Lanao del Sur,Region X,13,7,0.6509,0.876,0.0,0.0769
+Siquijor,Region VII,4,3,0.612,1.0,0.0,0.0
+Apayao,Cordillera Administrative Region,34,15,0.5033,0.6889,0.0,0.0
+Dinagat Islands,Region XIII,15,9,0.475,0.8037,0.0,0.0
+Ifugao,Cordillera Administrative Region,27,13,0.4686,0.6922,0.0,0.0
+Misamis Occidental,Region X,33,13,0.4349,0.6938,0.0,0.0
+Marinduque,Region IV-B,70,32,0.4137,0.5702,0.0714,0.0571
+Sulu,Region IX,3,3,0.4113,1.0,0.0,0.0
+Guimaras,Region VI,7,5,0.4094,0.7338,0.0,0.0
+Basilan,Region IX,10,5,0.406,0.8366,0.1,0.2
+Zamboanga City,Region IX,7,7,0.3911,0.7155,0.1429,0.1429
+Bukidnon,Region X,110,32,0.3889,0.6317,0.0545,0.0636
+Romblon,Region IV-B,87,20,0.3873,0.6713,0.023,0.0345
+Abra,Cordillera Administrative Region,105,12,0.385,0.7946,0.0952,0.1429
+Davao Occidental,Region XI,22,11,0.3815,0.6206,0.0,0.0
+Sorsogon,Region V,129,24,0.3616,0.5369,0.0388,0.0465
+Eastern Samar,Region VIII,22,11,0.3427,0.6086,0.0,0.0
+Maguindanao del Norte,Region XII,13,8,0.3328,0.6845,0.0769,0.0769
+Maguindanao del Sur,Region XII,22,8,0.3288,0.6951,0.0,0.0
+Samar,Region VIII,55,15,0.3278,0.6052,0.0545,0.0545
+Capiz,Region VI,24,11,0.3238,0.644,0.0,0.0
+Camarines Norte,Region V,97,22,0.2928,0.5671,0.0309,0.0206
+Sarangani,Region XII,41,24,0.2838,0.5123,0.0244,0.0
+Agusan del Sur,Region XIII,59,24,0.2824,0.4931,0.0,0.0169
+Cotabato,Region XII,68,21,0.2697,0.63,0.0,0.0
+Batanes,Region II,32,13,0.2691,0.6021,0.0,0.0
+Surigao del Norte,Region XIII,79,31,0.2643,0.4478,0.0127,0.0127
+Cebu,Region VII,414,118,0.2602,0.4156,0.0411,0.0193
+Sultan Kudarat,Region XII,69,29,0.2481,0.4163,0.0,0.0145
+Northern Samar,Region VIII,49,27,0.2332,0.482,0.0408,0.0612
+Davao de Oro,Region XI,59,28,0.2313,0.427,0.0,0.0
+Benguet,Cordillera Administrative Region,79,50,0.2277,0.3293,0.0,0.0506
+Negros Oriental,Region VII,117,34,0.2238,0.4338,0.0,0.0
+Davao del Sur,Region XI,120,59,0.2226,0.3525,0.05,0.0417
+Camiguin,Region X,32,13,0.2215,0.5808,0.0,0.0312
+South Cotabato,Region XII,86,40,0.2207,0.437,0.0233,0.0233
+Antique,Region VI,36,11,0.2197,0.6383,0.0278,0.0278
+Biliran,Region VIII,73,18,0.2195,0.5147,0.0,0.0
+Kalinga,Cordillera Administrative Region,63,26,0.2186,0.4589,0.0159,0.0
+Catanduanes,Region V,46,19,0.2112,0.5836,0.0435,0.0435
+Surigao del Sur,Region XIII,60,25,0.2033,0.4865,0.0,0.0
+Aurora,Region III,64,24,0.1986,0.4727,0.0938,0.0625
+Zambales,Region III,73,26,0.1964,0.3877,0.0137,0.0137
+Masbate,Region V,69,31,0.1937,0.3405,0.0,0.0
+Davao City,Region XI,48,27,0.1923,0.3194,0.0,0.0
+Negros Occidental,Region VI,208,53,0.1917,0.4023,0.0096,0.024
+Bataan,Region III,98,39,0.1913,0.443,0.0102,0.0102
+Nueva Vizcaya,Region II,85,24,0.19,0.5088,0.0824,0.0118
+Tarlac,Region III,258,63,0.1858,0.3533,0.0426,0.0194
+Cagayan,Region II,165,58,0.1849,0.316,0.0121,0.0182
+Camarines Sur,Region V,249,54,0.1844,0.4061,0.0723,0.012
+Lanao del Norte,Region X,59,27,0.1782,0.4625,0.0,0.0339
+Davao del Norte,Region XI,35,21,0.1773,0.3522,0.0571,0.0286
+Zamboanga Sibugay,Region IX,25,15,0.1732,0.4466,0.04,0.04
+Ilocos Norte,Region I,223,58,0.1661,0.2958,0.0135,0.0538
+Cavite,Region IV-A,192,52,0.1655,0.3478,0.0208,0.0104
+Ilocos Sur,Region I,149,38,0.1592,0.3631,0.0201,0.0201
+Agusan del Norte,Region XIII,89,22,0.1538,0.4316,0.1236,0.0899
+Davao Oriental,Region XI,60,31,0.1525,0.3481,0.0,0.0
+Iloilo,Region VI,167,62,0.1499,0.3931,0.0359,0.0299
+Occidental Mindoro,Region IV-B,105,43,0.1489,0.3398,0.1524,0.0667
+Palawan,Region IV-B,96,55,0.1469,0.3881,0.0104,0.0104
+Zamboanga del Sur,Region IX,55,32,0.142,0.3508,0.0,0.0
+Batangas,Region IV-A,189,81,0.1377,0.3091,0.0212,0.0212
+Mountain Province,Cordillera Administrative Region,44,33,0.1327,0.3192,0.0,0.0227
+La Union,Region I,166,43,0.131,0.3611,0.1024,0.1024
+Zamboanga del Norte,Region IX,32,21,0.1299,0.34,0.0,0.0312
+Leyte,Region VIII,261,96,0.1228,0.2613,0.0421,0.0498
+Isabela,Region II,337,56,0.1176,0.2855,0.0445,0.0059
+Bohol,Region VII,79,36,0.1164,0.3036,0.0506,0.0253
+Quezon,Region IV-A,128,51,0.116,0.2817,0.0156,0.0156
+Misamis Oriental,Region X,181,65,0.1146,0.3025,0.0276,0.0663
+Nueva Ecija,Region III,163,50,0.1144,0.2615,0.0123,0.0
+Pampanga,Region III,293,105,0.114,0.225,0.0307,0.0137
+Laguna,Region IV-A,152,57,0.109,0.2389,0.0132,0.0132
+Southern Leyte,Region VIII,55,27,0.1049,0.2772,0.0,0.0727
+Albay,Region V,273,79,0.0995,0.2583,0.0623,0.0586
+Aklan,Region VI,60,29,0.0964,0.2635,0.0333,0.05
+Oriental Mindoro,Region IV-B,139,74,0.0959,0.2487,0.1727,0.1439
+Pangasinan,Region I,313,78,0.0945,0.2558,0.0128,0.0096
+Rizal,Region IV-A,167,81,0.0735,0.2117,0.0359,0.0299
+Bulacan,Region III,668,132,0.0731,0.2005,0.0135,0.009
+Metro Manila,National Capital Region,1057,304,0.0611,0.1196,0.0293,0.0407

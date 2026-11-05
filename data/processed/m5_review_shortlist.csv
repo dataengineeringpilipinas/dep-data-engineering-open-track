@@ -1,0 +1,8 @@
+province,region,projects,contractors,top1_share,top3_share,outlier_rate,outlier_rate_time_adjusted,reason
+Marinduque,Region IV-B,70,32,0.4137,0.5702,0.0714,0.0571,Top-quartile contractor concentration and above-median time-adjusted outlier rate
+Bukidnon,Region X,110,32,0.3889,0.6317,0.0545,0.0636,Top-quartile contractor concentration and above-median time-adjusted outlier rate
+Romblon,Region IV-B,87,20,0.3873,0.6713,0.023,0.0345,Top-quartile contractor concentration and above-median time-adjusted outlier rate
+Abra,Cordillera Administrative Region,105,12,0.385,0.7946,0.0952,0.1429,Top-quartile contractor concentration and above-median time-adjusted outlier rate
+Sorsogon,Region V,129,24,0.3616,0.5369,0.0388,0.0465,Top-quartile contractor concentration and above-median time-adjusted outlier rate
+Samar,Region VIII,55,15,0.3278,0.6052,0.0545,0.0545,Top-quartile contractor concentration and above-median time-adjusted outlier rate
+Northern Samar,Region VIII,49,27,0.2332,0.482,0.0408,0.0612,Top-quartile contractor concentration and above-median time-adjusted outlier rate

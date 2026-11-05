@@ -2,7 +2,7 @@
 """Run the project pipeline in order, with no manual steps.
 
 Run from the repository root:
-    python scripts/run_pipeline.py                 # transform -> analysis-ready -> Phase 5 analysis
+    python scripts/run_pipeline.py                 # transform -> analysis-ready -> analysis -> dashboard
     python scripts/run_pipeline.py --with-ingest   # also download the raw data first (needs Kaggle credentials)
 
 Steps
@@ -10,6 +10,7 @@ Steps
     2. scripts/transform.py                      -> data/processed/dpwh_flood_control_projects_cleaned.csv
     3. scripts/advanced_transform.py             -> data/processed/dpwh_flood_control_analysis_ready.csv
     4. scripts/analysis/m5_segmentation_kpis.py  -> data/processed/m5_*.csv, output/figures/m5_*.png
+    5. scripts/build_dashboard.py                -> dashboard/index.html (published to GitHub Pages)
 
 The notebooks in notebooks/ read these outputs; open them after the pipeline finishes.
 """
@@ -23,6 +24,7 @@ STEPS = [
     ("Clean raw data", "scripts/transform.py"),
     ("Build analysis-ready data", "scripts/advanced_transform.py"),
     ("Segmentation, KPIs and review shortlist", "scripts/analysis/m5_segmentation_kpis.py"),
+    ("Build the dashboard", "scripts/build_dashboard.py"),
 ]
 
 
@@ -45,7 +47,7 @@ def main() -> None:
         sys.exit(f"{RAW_FILE} not found. Run with --with-ingest or place the raw CSV there.")
     for label, script in STEPS:
         run(label, script)
-    print("\nPipeline complete. Outputs: data/processed/ and output/figures/")
+    print("\nPipeline complete. Outputs: data/processed/, output/figures/ and dashboard/index.html")
 
 
 if __name__ == "__main__":

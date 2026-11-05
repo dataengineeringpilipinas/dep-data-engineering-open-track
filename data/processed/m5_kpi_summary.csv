@@ -1,0 +1,6 @@
+kpi,name,value,unit
+KPI 1,High-cost outlier rate,0.0335,share of projects
+KPI 2,Average contract cost (PHP M),55.3264,PHP millions
+KPI 3,Top-10 contractor share of value,0.1029,share of value
+KPI 4,"Median provincial top-contractor share (69 provinces, 30+ projects)",0.19,share of province value
+KPI 5,Over-budget rate,0.0794,share of projects with a budget
