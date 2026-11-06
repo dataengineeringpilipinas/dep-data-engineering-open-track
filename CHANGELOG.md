@@ -4,6 +4,14 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.8.2] - 2026-11-07 — Record a Dropped Builder
+
+### Changed
+
+- `shivaa-bit` now shows as `Dropped` on the public builder directory, set through `status_overrides` after the program lead confirmed she left the program.
+
+---
+
 ## [0.8.1] - 2026-10-26 — Clearer Public Builder Status
 
 ### Changed
