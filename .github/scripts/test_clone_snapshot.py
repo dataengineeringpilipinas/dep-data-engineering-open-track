@@ -59,9 +59,10 @@ def test_clones_full_sha_for_orphaned_commit(tmp_path, source_repo):
     run_git(source_repo, "reset", "--hard", first)
 
     dest = tmp_path / "builder-repo"
-    ok, error = clone_snapshot(clone_url(source_repo), orphaned, dest)
+    ok, error, resolved = clone_snapshot(clone_url(source_repo), orphaned, dest)
 
     assert ok, error
+    assert resolved == orphaned
     assert run_git(dest, "rev-parse", "HEAD").stdout.strip() == orphaned
 
 
@@ -69,9 +70,10 @@ def test_resolves_short_sha_when_commit_is_reachable(tmp_path, source_repo):
     submitted = commit(source_repo, "first.txt")
 
     dest = tmp_path / "builder-repo"
-    ok, error = clone_snapshot(clone_url(source_repo), submitted[:7], dest)
+    ok, error, resolved = clone_snapshot(clone_url(source_repo), submitted[:7], dest)
 
     assert ok, error
+    assert resolved == submitted
     assert run_git(dest, "rev-parse", "HEAD").stdout.strip() == submitted
 
 
@@ -81,9 +83,10 @@ def test_short_sha_for_orphaned_commit_reports_specific_error(tmp_path, source_r
     run_git(source_repo, "reset", "--hard", first)
 
     dest = tmp_path / "builder-repo"
-    ok, error = clone_snapshot(clone_url(source_repo), orphaned[:7], dest)
+    ok, error, resolved = clone_snapshot(clone_url(source_repo), orphaned[:7], dest)
 
     assert not ok
+    assert resolved == ""
     assert error == SHORT_SHA_ERROR
     assert "full 40-character hash" in error
 
@@ -92,26 +95,31 @@ def test_full_sha_for_missing_commit_reports_not_found(tmp_path, source_repo):
     commit(source_repo, "first.txt")
 
     dest = tmp_path / "builder-repo"
-    ok, error = clone_snapshot(clone_url(source_repo), "0" * 40, dest)
+    ok, error, resolved = clone_snapshot(clone_url(source_repo), "0" * 40, dest)
 
     assert not ok
+    assert resolved == ""
     assert error == NOT_FOUND_ERROR
 
 
 def test_invalid_hash_is_rejected_without_cloning(tmp_path):
     dest = tmp_path / "builder-repo"
-    ok, error = clone_snapshot("https://example.com/not-a-repo.git", "not-a-sha", dest)
+    ok, error, resolved = clone_snapshot(
+        "https://example.com/not-a-repo.git", "not-a-sha", dest
+    )
 
     assert not ok
+    assert resolved == ""
     assert error == INVALID_ERROR
     assert not dest.exists()
 
 
 def test_unclonable_repo_reports_public_error(tmp_path):
     dest = tmp_path / "builder-repo"
-    ok, error = clone_snapshot((tmp_path / "missing").as_uri(), "a" * 7, dest)
+    ok, error, resolved = clone_snapshot((tmp_path / "missing").as_uri(), "a" * 7, dest)
 
     assert not ok
+    assert resolved == ""
     assert error == CLONE_ERROR
 
 
@@ -127,7 +135,7 @@ def test_main_writes_success_to_github_output(tmp_path, source_repo):
     ])
 
     assert rc == 0
-    assert output.read_text(encoding="utf-8") == "clone_ok=true\n"
+    assert output.read_text(encoding="utf-8") == f"clone_ok=true\ncommit_sha={submitted}\n"
 
 
 def test_main_writes_failure_and_error_to_github_output(tmp_path, source_repo):
@@ -146,4 +154,5 @@ def test_main_writes_failure_and_error_to_github_output(tmp_path, source_repo):
     assert rc == 0
     text = output.read_text(encoding="utf-8")
     assert "clone_ok=false" in text
+    assert "commit_sha=" not in text
     assert f"clone_error={SHORT_SHA_ERROR}" in text

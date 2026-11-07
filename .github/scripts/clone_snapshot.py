@@ -53,35 +53,38 @@ def resolve_commit(dest: Path, commit_hash: str) -> str | None:
     return resolved.stdout.strip()
 
 
-def clone_snapshot(repo_url: str, commit_hash: str, dest: Path) -> tuple[bool, str]:
+def clone_snapshot(repo_url: str, commit_hash: str, dest: Path) -> tuple[bool, str, str]:
     """Clone repo_url into dest and check out commit_hash.
 
-    Returns (True, "") on success or (False, error_message) on failure.
+    Returns (True, "", resolved_sha) on success or (False, error_message, "")
+    on failure.
     """
     if not repo_url or not SHA_PATTERN.match(commit_hash or ""):
-        return False, INVALID_ERROR
+        return False, INVALID_ERROR, ""
 
     clone = run_git("clone", "--filter=blob:none", "--no-checkout", repo_url, str(dest))
     if clone.returncode != 0:
         print(clone.stderr.strip(), file=sys.stderr)
-        return False, CLONE_ERROR
+        return False, CLONE_ERROR, ""
 
     resolved = resolve_commit(dest, commit_hash)
     if resolved is None:
         error = SHORT_SHA_ERROR if len(commit_hash) < 40 else NOT_FOUND_ERROR
-        return False, error
+        return False, error, ""
 
     checkout = run_git("checkout", "--detach", resolved, cwd=dest)
     if checkout.returncode != 0:
         print(checkout.stderr.strip(), file=sys.stderr)
-        return False, NOT_FOUND_ERROR
+        return False, NOT_FOUND_ERROR, ""
 
-    return True, ""
+    return True, "", resolved
 
 
-def write_output(path: str, clone_ok: bool, error: str) -> None:
+def write_output(path: str, clone_ok: bool, error: str, resolved_sha: str = "") -> None:
     with open(path, "a", encoding="utf-8") as f:
         f.write(f"clone_ok={'true' if clone_ok else 'false'}\n")
+        if resolved_sha:
+            f.write(f"commit_sha={resolved_sha}\n")
         if error:
             f.write(f"clone_error={error}\n")
 
@@ -94,12 +97,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--github-output", default=os.environ.get("GITHUB_OUTPUT"))
     args = parser.parse_args(argv)
 
-    clone_ok, error = clone_snapshot(args.repo_url, args.commit_hash, Path(args.dest))
+    clone_ok, error, resolved_sha = clone_snapshot(
+        args.repo_url, args.commit_hash, Path(args.dest)
+    )
 
     if args.github_output:
-        write_output(args.github_output, clone_ok, error)
+        write_output(args.github_output, clone_ok, error, resolved_sha)
     else:
         print(f"clone_ok={'true' if clone_ok else 'false'}")
+        if resolved_sha:
+            print(f"commit_sha={resolved_sha}")
         if error:
             print(f"clone_error={error}")
 

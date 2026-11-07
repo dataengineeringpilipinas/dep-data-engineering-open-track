@@ -12,6 +12,18 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.8.3] - 2026-11-07 — Manual Dispatch and Named Commits
+
+### Changed
+
+- Evaluation comments now name the full commit that was checked, so a builder can confirm which snapshot produced a verdict.
+
+### Fixed
+
+- Manually dispatching **Milestone Submission Evaluation** no longer fails before any job starts. `workflow_dispatch` inputs arrive as strings, and passing `issue_number` straight into a `number`-typed reusable workflow input rejected the job; the caller now coerces it with `fromJSON`.
+
+---
+
 ## [0.8.2] - 2026-11-07 — Record a Dropped Builder
 
 ### Changed

@@ -284,6 +284,7 @@ jobs:
           COMMIT_HASH: ${{ steps.submission.outputs.commit_hash }}
           CLONE_OK: ${{ steps.clone.outputs.clone_ok }}
           CLONE_ERROR: ${{ steps.clone.outputs.clone_error }}
+          RESOLVED_SHA: ${{ steps.clone.outputs.commit_sha }}
           GATE_OK: ${{ steps.gate.outputs.gate_ok }}
           PREVIOUS_MILESTONE: ${{ steps.gate.outputs.previous }}
         with:
@@ -365,6 +366,9 @@ jobs:
                 : '**Ready for human review.** The automated checks and prerequisite gate passed.';
             }
             const marker = `<!-- dep-eval:${process.env.MILESTONE}:${process.env.COMMIT_HASH}:${target} -->`;
+            const commitNote = process.env.RESOLVED_SHA
+              ? `**Commit evaluated:** \`${process.env.RESOLVED_SHA}\`\n\n`
+              : '';
             const comments = await github.paginate(github.rest.issues.listComments, {
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -376,7 +380,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: issueNumber,
-                body: `${marker}\n## Evaluation Results — ${process.env.MILESTONE}\n\n${details}\n\n${guidance}\n\n---\n_DEP submission bot_`
+                body: `${marker}\n## Evaluation Results — ${process.env.MILESTONE}\n\n${commitNote}${details}\n\n${guidance}\n\n---\n_DEP submission bot_`
               });
             }
 

@@ -97,6 +97,29 @@
 
                 <hr class="cl-divider" />
 
+                <!-- 0.8.3 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.8.3</span>
+                        <span class="cl-version-date">2026-11-07</span>
+                        <span class="cl-version-tag">Manual Dispatch and Named Commits</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Evaluation comments now name the full commit that was checked, so a builder can confirm which snapshot produced a verdict.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Manually dispatching <strong>Milestone Submission Evaluation</strong> no longer fails before any job starts. <code>workflow_dispatch</code> inputs arrive as strings, and passing <code>issue_number</code> straight into a <code>number</code>-typed reusable workflow input rejected the job; the caller now coerces it with <code>fromJSON</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
                 <!-- 0.8.2 -->
                 <div class="cl-version">
                     <div class="cl-version-header">
