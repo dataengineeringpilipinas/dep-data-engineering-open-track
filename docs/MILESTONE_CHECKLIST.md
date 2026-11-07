@@ -70,6 +70,8 @@ Aim to submit one issue per milestone by its target deadline. A late issue remai
 - [ ] One inference section that avoids overclaiming causality
 - [ ] Notebook is organized and annotated with markdown
 
+Declare your Phase 5 path (A, B, or Undecided) in the M4 submission form. It is not scored, but settle it before Week 17 work begins.
+
 **Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)
 
 ---
