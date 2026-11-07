@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T23:11:03Z",
+  "generated_at": "2026-11-07T10:14:20Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -186,7 +186,7 @@
     },
     {
       "body": "### Builder Name\n\nSean Fernandez\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/penOnFire/dep-data-engineering-SeanFrn\n\n### Commit Hash\n\n08969917279bf13fb396ff029e60ec43aa1facb2\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-07T05:12:44Z",
       "created_at": "2026-06-22T16:17:50Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/18",
       "labels": [
@@ -194,7 +194,7 @@
           "name": "milestone-submission"
         },
         {
-          "name": "needs-improvement"
+          "name": "passed"
         },
         {
           "name": "M0"
@@ -203,7 +203,7 @@
       "number": 18,
       "pull_request": false,
       "title": "[M0] Cyan — The AI Divide in Computer Studies Education",
-      "updated_at": "2026-08-02T01:58:56Z",
+      "updated_at": "2026-11-07T05:12:45Z",
       "user": {
         "login": "penOnFire"
       }
@@ -1385,6 +1385,9 @@
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/73",
       "labels": [
         {
+          "name": "duplicate"
+        },
+        {
           "name": "milestone-submission"
         },
         {
@@ -1394,7 +1397,7 @@
       "number": 73,
       "pull_request": false,
       "title": "[M0] Sean Fernandez — (v2) The AI Divide in Computer Studies Education",
-      "updated_at": "2026-07-19T04:41:28Z",
+      "updated_at": "2026-11-07T05:13:45Z",
       "user": {
         "login": "penOnFire"
       }
@@ -1908,12 +1911,15 @@
     },
     {
       "body": "### Builder Name\n\nGailyn German\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/yugiakame/dep-data-engineering-yugi\n\n### Commit Hash\n\n2b0c9f48e13154f0565613f039145dfa25ff9ceb\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-07T05:12:44Z",
       "created_at": "2026-07-09T20:09:05Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/98",
       "labels": [
         {
           "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
         },
         {
           "name": "M0"
@@ -1922,7 +1928,7 @@
       "number": 98,
       "pull_request": false,
       "title": "[M0] Gail — The Philippine Digital Economy by Region",
-      "updated_at": "2026-07-12T23:07:24Z",
+      "updated_at": "2026-11-07T05:12:46Z",
       "user": {
         "login": "yugiakame"
       }
@@ -2559,7 +2565,7 @@
     },
     {
       "body": "### Builder Name\n\nMichael Bacus\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/michaelbacus-lab/dep-data-engineering-open-track\n\n### Commit Hash\n\n8ea613542043975691526ce781987d9fa0304ed6\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-07T05:12:40Z",
       "created_at": "2026-07-13T05:48:01Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/129",
       "labels": [
@@ -2567,7 +2573,13 @@
           "name": "milestone-submission"
         },
         {
+          "name": "passed"
+        },
+        {
           "name": "M0"
+        },
+        {
+          "name": "late-submission"
         },
         {
           "name": "catching-up"
@@ -2576,7 +2588,7 @@
       "number": 129,
       "pull_request": false,
       "title": "[M0] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-11-02T13:30:05Z",
+      "updated_at": "2026-11-07T05:12:42Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -3746,7 +3758,7 @@
       "number": 196,
       "pull_request": false,
       "title": "[M3] supjkay — Beating the Rush: The Metro Manila Rail Dashboard",
-      "updated_at": "2026-10-05T12:28:07Z",
+      "updated_at": "2026-11-07T05:19:21Z",
       "user": {
         "login": "supjkay"
       }
@@ -3989,7 +4001,7 @@
       "number": 206,
       "pull_request": false,
       "title": "[M3] <John Kenneth Priol> — <NCR Air Quality and EV Fleet Growth: Measuring EVIDA's Impact (2014-Present)>",
-      "updated_at": "2026-11-04T20:13:00Z",
+      "updated_at": "2026-11-07T05:19:18Z",
       "user": {
         "login": "johnkennethpriol"
       }
@@ -4175,7 +4187,7 @@
           "name": "M1"
         },
         {
-          "name": "waiting-on-prerequisite"
+          "name": "ready-for-review"
         },
         {
           "name": "late-submission"
@@ -4187,7 +4199,7 @@
       "number": 214,
       "pull_request": false,
       "title": "[M1] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-11-02T13:30:09Z",
+      "updated_at": "2026-11-07T05:12:55Z",
       "user": {
         "login": "michaelbacus-lab"
       }
