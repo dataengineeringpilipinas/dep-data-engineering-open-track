@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07T16:29:14Z",
+  "generated_at": "2026-11-08T15:14:38Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -4115,7 +4115,7 @@
       "number": 211,
       "pull_request": false,
       "title": "[M1] ncjbakx — Philippine Rice Import Supplier Concentration Tracker",
-      "updated_at": "2026-11-02T13:22:13Z",
+      "updated_at": "2026-11-08T14:30:28Z",
       "user": {
         "login": "ncjbakx04"
       }
@@ -4301,7 +4301,7 @@
       "number": 218,
       "pull_request": false,
       "title": "[M4] Mark Cabael — BahaPredict: Building an Automated Regional Weather Data Pipeline in the Philippines",
-      "updated_at": "2026-11-07T12:37:33Z",
+      "updated_at": "2026-11-08T09:19:55Z",
       "user": {
         "login": "MCabs28"
       }
@@ -4667,6 +4667,30 @@
       "updated_at": "2026-11-06T18:56:27Z",
       "user": {
         "login": "Kaigosama"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nMark Cabael\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/MCabs28/dep-data-engineering-mark-cabael.git\n\n### Commit Hash\n\nef26d4d2fdaf18b178e2b020d13d4e4207f6d23c\n\n### Which path did you take?\n\nPath B — Advanced EDA & Stakeholder Track\n\n### Notes (optional)\n\n_No response_\n\n### Self-Check (both paths)\n\n- [x] `requirements.txt` is up to date with all dependencies.\n- [x] `notebooks/` contains analysis or model notebooks.\n- [x] `data/processed/` contains all output files needed for the next phase.\n- [x] The commit hash above points to my latest submission snapshot.\n\n### Path A Additional Checks (skip if Path B)\n\n- [ ] Model results or predictions are saved to `output/` or `data/processed/`.\n- [ ] Model metrics and assumptions are documented in the notebook or README.\n\n### Path B Additional Checks (skip if Path A)\n\n- [x] Segmentation or advanced EDA outputs are saved.\n- [x] A stakeholder brief or KPI summary is included.",
+      "closed_at": null,
+      "created_at": "2026-11-08T09:37:49Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/245",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M5"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 245,
+      "pull_request": false,
+      "title": "[M5] Mark Cabael — BahaPredict: Building an Automated Regional Weather Data Pipeline in the Philippines",
+      "updated_at": "2026-11-08T09:38:02Z",
+      "user": {
+        "login": "MCabs28"
       }
     }
   ]

@@ -1,6 +1,6 @@
 {
   "cohort": "2026-A",
-  "updatedAt": "2026-11-07",
+  "updatedAt": "2026-11-08",
   "source": "GitHub milestone-submission issues + enrolled-participants.json",
   "builders": [
     {
@@ -83,9 +83,9 @@
       "startDate": "2026-06-22",
       "activeWeek": "W20",
       "currentMilestone": 5,
-      "milestonesSubmitted": 5,
+      "milestonesSubmitted": 6,
       "milestonesPassed": 5,
-      "phase": "Predictive / Alt Track"
+      "phase": "Non-Predictive"
     },
     {
       "name": "Fabrero, Jerome F.",
