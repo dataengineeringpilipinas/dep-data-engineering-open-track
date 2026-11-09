@@ -1,6 +1,7 @@
 # Public Data Patterns in DPWH Flood Control Projects (2022–2025)
 
-**Live dashboard: https://michaelbacus-lab.github.io/dep-data-engineering-open-track/
+**Live dashboard: https://michaelbacus-lab.github.io/dep-data-engineering-open-track/**
+
 A data engineering project built in the [DEP Data Engineering Open Track](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track). It turns public records of completed DPWH flood control projects into a clean dataset, a set of KPIs and an interactive dashboard that shows where an auditor might look first.
 
 > The indicators here are for prioritising review. They are **not** evidence of wrongdoing, fraud or corruption.
@@ -18,7 +19,7 @@ Can publicly available DPWH flood control project data reveal unusual geographic
 
 | Source | Use |
 |---|---|
-| [DPWH Flood Control Projects (Kaggle)](https://www.kaggle.com/datasets/bwandowando/dpwh-flood-control-projects) | Primary: 9,855 raw completed-project records, July 2022 to May 2025 |
+| [DPWH Flood Control Projects (Kaggle)](https://www.kaggle.com/datasets/bwandowando/dpwh-flood-control-projects) | Primary: one CSV file, 9,855 completed-project records (22 columns), July 2022 to May 2025. Pulled with the Kaggle API on 2026-09-26; see [`data/raw/SOURCE.md`](data/raw/SOURCE.md) |
 | [DPWH Project DIME](https://www.dime.gov.ph/dashboard) | Fallback and validation baseline |
 | [PSA](https://psa.gov.ph) and [COA](https://www.coa.gov.ph) | Planned normalisation and audit-report context |
 
@@ -27,11 +28,11 @@ Known limits: completed projects only, self-reported government entries, partly 
 ## Pipeline
 
 ```text
-data/raw/dpwh_flood_control_projects.csv        (9,855 raw rows)
-   │  scripts/transform.py
+data/raw/dpwh_flood_control_projects.csv        (9,855 raw rows)       ◄── scripts/ingest.py (Kaggle API)
+   │  scripts/transform.py           clean names, types and dates; validation checks
    ▼
-data/processed/dpwh_flood_control_projects_cleaned.csv
-   │  scripts/advanced_transform.py
+data/processed/dpwh_flood_control_projects_cleaned.csv   (9,855 rows)
+   │  scripts/advanced_transform.py  one row per project; regional z-score; outlier flag
    ▼
 data/processed/dpwh_flood_control_analysis_ready.csv   (9,827 projects)
    │  scripts/analysis/m5_segmentation_kpis.py
@@ -42,7 +43,7 @@ data/processed/m5_*.csv  +  output/figures/m5_*.png
 dashboard/index.html   ──►  GitHub Pages
 ```
 
-SQL schema and business questions are in [`sql/`](sql/). Cleaning decisions and validation notes from the earlier phases are in [`docs/PROJECT_LOG.md`](docs/PROJECT_LOG.md).
+Every cleaning decision, with row counts and reasons, is in the cleaning log in [`scripts/README.md`](scripts/README.md). The three SQL business questions are in [`sql/`](sql/) (run them with `python scripts/run_sql_queries.py`). The full history of decisions by phase is in [`docs/PROJECT_LOG.md`](docs/PROJECT_LOG.md).
 
 ## Analysis
 
@@ -53,7 +54,7 @@ SQL schema and business questions are in [`sql/`](sql/). Cleaning decisions and 
 
 Main findings:
 
-- **The leads are local.** No contractor holds more than about 1.5% of national value, but in some provinces one contractor holds 36% to 41% (Marinduque, Bukidnon, Romblon, Abra). The typical province (30+ projects) is at 19%.
+- **The leads are local.** No contractor holds more than about 1.5% of national value, but in some provinces one contractor holds 39% to 50% (Apayao 50%, Misamis Occidental 43%, Marinduque 41%, Bukidnon, Romblon and Abra about 39%). The typical province (30+ projects) is at 19%.
 - **Costs rose over time** (average PHP 33M in mid-2022 to PHP 76M in early 2025), which inflated the original outlier flag. A time-adjusted flag compares projects within the same region and year.
 - **Region IV-B** has the highest outlier rate after adjustment (7.0%), led by Oriental Mindoro.
 - A seven-province **review shortlist** combines high concentration with an above-median time-adjusted outlier rate.
@@ -76,6 +77,8 @@ pip install -r requirements.txt
 python scripts/run_pipeline.py                  # clean, analyse and build the dashboard
 # python scripts/run_pipeline.py --with-ingest  # also downloads the raw data (needs Kaggle credentials)
 
+python scripts/run_sql_queries.py               # print the answers to the three SQL business questions
+
 python -m http.server -d dashboard              # then open http://localhost:8000
 jupyter notebook notebooks/                     # open the M4 and M5 notebooks
 python scripts/check_links.py                   # final QA: links, required files, live URL
@@ -94,12 +97,13 @@ output/figures/    saved charts
 dashboard/         deployable dashboard (index.html)
 docs/              weekly notes, wireframe, demo script, stakeholder brief, project log
 sql/               schema and business-question queries
-.github/           milestone checks and the GitHub Pages workflow
+.github/           GitHub Pages deploy workflow and the DEP milestone self-check
 ```
 
 ## Limitations
 
 - Completed projects only, July 2022 to May 2025; ongoing and cancelled projects are not in the data.
+- 27 multi-year (MYCA) projects have cost 0 in the analysis-ready file because the row kept for them is a continuation row without a cost. Fixing this would move total value from PHP 543.7B to PHP 545.6B and the outlier count from 329 to 326; the main findings do not change. Details in [`scripts/README.md`](scripts/README.md).
 - The outlier flag benchmarks by region (and region and year when time-adjusted) but not by project type or size.
 - Contractor names are as recorded; truncated or variant names undercount some contractors, and joint ventures are not split.
 - Provinces under 30 projects are left out of concentration rankings because the figures are noisy.

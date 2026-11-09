@@ -61,174 +61,58 @@ The dashboard should help audit teams and researchers quickly identify geographi
 
 # Phase 3 / Milestone 3 — Clean Dataset
 
-## Overview
-
-This project is now at the Phase 3 / Milestone 3 stage: a clean, structured, and reproducible dataset for downstream audit analysis and SQL-based review.
-
-Current processed outputs include:
-
-- `data/processed/dpwh_flood_control_projects_cleaned.csv`
-- `data/output/analysis/` for grouped summaries and review flags
-
-The repo is structured so a reviewer can run the full pipeline from raw input to analysis output without guessing the order.
-
----
+> Updated in the review pass so this section matches the code. The full cleaning log, with row counts and reasons, is in [`scripts/README.md`](../scripts/README.md).
 
 ## Pipeline
 
 ```text
-data/raw/dpwh_flood_control_projects.csv
-        |
+data/raw/dpwh_flood_control_projects.csv              9,855 rows, raw and unmodified
+        |  scripts/transform.py        (clean: names, types, dates, notes; validation)
         v
-scripts/transform.py
-        |
-        +--> data/processed/dpwh_flood_control_projects_cleaned.csv
-        |
+data/processed/dpwh_flood_control_projects_cleaned.csv   9,855 rows, 24 columns
+        |  scripts/advanced_transform.py   (one row per project, regional z-score, outlier flag)
         v
-scripts/analysis/analyze_silver.py
-        |
-        +--> data/output/analysis/
+data/processed/dpwh_flood_control_analysis_ready.csv     9,827 rows, 29 columns
 ```
 
-The project follows a clear raw-to-processed-to-analysis flow:
+## Schema plan
 
-1. Download the raw source data
-2. Clean and standardize the dataset
-3. Save the processed dataset
-4. Generate analysis outputs for review and audit screening
+| Table | Grain | Key | Main columns |
+|---|---|---|---|
+| Cleaned | one row per funding-year contract record | (`project_id`, `contractid`, `fundingyear`) | region, province, municipality, district_engineering_office, contractor, typeofwork, approvedbudgetforcontract, contract_cost_php, actualcompletiondate, startdate, coordinates, contract_cost_note, approved_budget_note |
+| Analysis-ready | one row per project | `project_id` | cleaned columns + regional_avg_cost, regional_std_cost, cost_diff_from_regional_avg, cost_zscore_regional, is_high_cost_outlier |
 
----
+Types: money columns are numbers, `actualcompletiondate` and `startdate` are dates, `fundingyear` and `contractorcount` are integers.
 
-## Processed Schema
+## Cleaning decisions (summary)
 
-### Main processed table
-
-**File:** `data/processed/dpwh_flood_control_projects_cleaned.csv`
-
-**Grain:** one row = one project record
-
-**Primary key idea:** each row is retained as one cleaned project record, with validation checks ensuring the dataset does not silently lose integrity during transformation.
-
-**Key expected columns:**
-
-- `ProjectId`
-- `ContractId`
-- `FundingYear`
-- `Region`
-- `Province`
-- `Municipality`
-- `DistrictEngineeringOffice`
-- `Contractor`
-- `ApprovedBudgetForContract`
-- `ContractCost`
-- `ProjectTitle`
-- `TypeOfWork`
-- `StartDate`
-- `CompletionDate`
-
-This is the working data table for downstream analysis and audit screening.
-
----
-
-## Cleaning Decisions
-
-The transform script applies the following rules:
-
-- standardizes inconsistent column names
-- strips whitespace and normalizes text values
-- converts numeric fields to numeric data types where appropriate
-- removes exact duplicate rows
-- preserves missing values where they are meaningful instead of silently discarding them
-- keeps the dataset deterministic by sorting cleaned records in a stable order
-
-The cleaning log and validation notes are documented in `scripts/README.md`.
-
----
+- Column names lowercased; three renamed (`project_id`, `district_engineering_office`, `contract_cost_php`).
+- Text that is not a number in a money column (28 "MYCA" costs, 157 "Clustered"/"MYCA" budgets) becomes empty, and the original text is kept in a note column.
+- 666 missing municipalities are left empty, not guessed.
+- Repeated project IDs (28, multi-year contracts) are kept in the cleaned file and reduced to one row per project in the analysis-ready file. Known limitation: 27 projects end up with cost 0 (see `scripts/README.md`).
 
 ## Validation
 
-Validation checks are built into `scripts/transform.py`.
+`transform.py` stops the pipeline if: the row count changes, required columns are missing, there are exact duplicates or missing project IDs, (`project_id`, `contractid`, `fundingyear`) is not unique, dates are invalid or a start date is after its completion date, or money columns are not numeric and non-negative. `advanced_transform.py` checks that `project_id` is unique, costs are present and non-negative, and the outlier flag is 0/1.
 
-The pipeline checks:
+## SQL business questions
 
-- raw row count is preserved after cleaning
-- key combinations remain unique
-- required project columns are present
-- output data remains structurally consistent before writing
-
-This makes the transform reproducible and easier for reviewers to validate.
-
----
-
-## SQL Business Questions
-
-SQL queries are stored in:
-
-- `sql/business_questions.sql`
-- `sql/schema_ddl.sql`
-
-The project currently answers three business questions:
-
-1. Which contractors received the largest total contract value?
-2. Which provinces received the highest total flood control funding?
-3. Which District Engineering Offices manage the highest average project costs?
-
-These queries directly support the project’s audit-oriented analysis and align with the DEP milestone requirement for SQL business questions.
-
----
+`sql/business_questions.sql` answers three questions on the cleaned table (top contractors by value, top provinces by funding, district offices with the highest average cost). Run them with `python scripts/run_sql_queries.py`. `sql/schema_ddl.sql` is the planned star schema (see Storage Design below).
 
 ## Reproducibility
 
-The transform process is designed to be reproducible:
-
-- same raw file + same transform script = same cleaned output structure
-- validation checks ensure the cleaned file stays structurally consistent
-- output ordering is stable by key columns
-
-This is important for a reviewer who wants to re-run the pipeline and confirm that the same dataset is produced.
-
----
-
-## Run the Phase 3 Pipeline
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Run ingestion:
-
-```bash
-python scripts/ingest.py
-```
-
-Run transformation:
-
-```bash
-python scripts/transform.py
-```
-
-Run analysis:
-
-```bash
-python scripts/analysis/analyze_silver.py \
-  --input data/processed/dpwh_flood_control_projects_cleaned.csv \
-  --output-dir data/output/analysis
-```
-
----
+`python scripts/run_pipeline.py` runs the whole flow. The same raw file gives the same output files on every run.
 
 ## Milestone 3 Checklist
 
-- [x] Processed dataset saved in `/data/processed/`
 - [x] Schema plan documented
-- [x] SQL business questions documented and saved in `sql/`
-- [x] Missing values and cleaning decisions documented
-- [x] Validation checks integrated into the transform flow
-- [x] Reproducible script flow documented for reviewers
-
-This Phase 3 output is the clean foundation for later analysis, deeper audit review, and dashboard-ready outputs.
+- [x] At least 3 SQL queries answering business questions
+- [x] Processed dataset saved in `data/processed/`
+- [x] Missing values handled with a reason
+- [x] Correct column types (dates as dates, numbers as numbers)
+- [x] Cleaning decisions logged
+- [x] Validation checks in the transform flow
+- [x] Same output on every run
 
 ---
 
@@ -364,6 +248,8 @@ jupyter notebook notebooks/M5_segmentation_kpis_brief.ipynb
 ---
 
 ## 🏗️ Storage Design & Data Architecture
+
+> **Planned design.** This section is the Week 2 and Week 7 storage plan. The implemented pipeline uses CSV files in `data/raw/` and `data/processed/` (see Phase 3 above); the Parquet silver layer and the star schema below were not built.
 
 This project follows a 3-tier **Medallion Architecture**:
 

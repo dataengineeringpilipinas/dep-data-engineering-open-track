@@ -1,8 +1,12 @@
 -- ============================================================
--- Phase 3 — Milestone 2: SQL Business Queries
+-- Phase 3 — Milestone 3 (Week 8): SQL Business Queries
 -- Public Data Patterns in DPWH Flood Control Projects (2022–2025)
 -- ============================================================
 
+-- Table: projects_cleaned = data/processed/dpwh_flood_control_projects_cleaned.csv
+-- Run all three: python scripts/run_sql_queries.py
+-- Note: rows with no numeric cost (multi-year contract continuation rows) are
+-- ignored by SUM and AVG, and COUNT(DISTINCT project_id) counts each project once.
 
 -- ------------------------------------------------------------
 -- QUESTION 1
@@ -11,18 +15,18 @@
 -- ------------------------------------------------------------
 
 SELECT
-    Contractor AS contractor_name,
-    COUNT(ProjectId) AS total_projects_awarded,
-    ROUND(SUM(ContractCost), 2) AS total_contract_value_php,
-    ROUND(AVG(ContractCost), 2) AS avg_project_cost_php
-FROM dpwh_flood_control_projects
-WHERE Contractor IS NOT NULL
-  AND Contractor != ''
+    contractor AS contractor_name,
+    COUNT(DISTINCT project_id) AS total_projects_awarded,
+    ROUND(SUM(contract_cost_php), 2) AS total_contract_value_php,
+    ROUND(AVG(contract_cost_php), 2) AS avg_project_cost_php
+FROM projects_cleaned
+WHERE contractor IS NOT NULL
+  AND contractor != ''
 GROUP BY
-    Contractor
+    contractor
 ORDER BY
     total_contract_value_php DESC,
-    Contractor
+    contractor
 LIMIT 10;
 
 
@@ -33,20 +37,20 @@ LIMIT 10;
 -- ------------------------------------------------------------
 
 SELECT
-    Province AS province,
-    Region AS region,
-    COUNT(ProjectId) AS total_projects,
-    ROUND(SUM(ContractCost), 2) AS total_provincial_funding_php,
-    ROUND(AVG(ContractCost), 2) AS avg_project_cost_php
-FROM dpwh_flood_control_projects
-WHERE Province IS NOT NULL
-  AND Province != ''
+    province AS province,
+    region AS region,
+    COUNT(DISTINCT project_id) AS total_projects,
+    ROUND(SUM(contract_cost_php), 2) AS total_provincial_funding_php,
+    ROUND(AVG(contract_cost_php), 2) AS avg_project_cost_php
+FROM projects_cleaned
+WHERE province IS NOT NULL
+  AND province != ''
 GROUP BY
-    Province,
-    Region
+    province,
+    region
 ORDER BY
     total_provincial_funding_php DESC,
-    Province
+    province
 LIMIT 15;
 
 
@@ -57,18 +61,18 @@ LIMIT 15;
 -- ------------------------------------------------------------
 
 SELECT
-    DistrictEngineeringOffice AS implementing_office,
-    COUNT(ProjectId) AS total_projects_managed,
-    ROUND(SUM(ContractCost), 2) AS total_budget_managed_php,
-    ROUND(AVG(ContractCost), 2) AS avg_contract_cost_php
-FROM dpwh_flood_control_projects
-WHERE DistrictEngineeringOffice IS NOT NULL
-  AND DistrictEngineeringOffice != ''
+    district_engineering_office AS implementing_office,
+    COUNT(DISTINCT project_id) AS total_projects_managed,
+    ROUND(SUM(contract_cost_php), 2) AS total_budget_managed_php,
+    ROUND(AVG(contract_cost_php), 2) AS avg_contract_cost_php
+FROM projects_cleaned
+WHERE district_engineering_office IS NOT NULL
+  AND district_engineering_office != ''
 GROUP BY
-    DistrictEngineeringOffice
+    district_engineering_office
 HAVING
-    COUNT(ProjectId) >= 10
+    COUNT(DISTINCT project_id) >= 10
 ORDER BY
     avg_contract_cost_php DESC,
-    DistrictEngineeringOffice
+    district_engineering_office
 LIMIT 10;

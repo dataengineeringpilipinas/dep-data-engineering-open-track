@@ -13,7 +13,8 @@ LINK = re.compile(r"!?\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 
 
 def main() -> None:
-    files = [Path("README.md"), *sorted(Path("docs").glob("*.md")), Path("dashboard/README.md")]
+    files = [Path("README.md"), *sorted(Path("docs").glob("*.md")), *sorted(Path(".").glob("*/README.md")),
+             Path("data/raw/SOURCE.md"), Path("notebooks/data_transform_report.md")]
     problems = []
     for f in files:
         if not f.exists():
@@ -24,7 +25,8 @@ def main() -> None:
             path = (f.parent / target.split("#")[0]).resolve()
             if not path.exists():
                 problems.append(f"{f}: missing file for link '{target}'")
-    for required in ["dashboard/index.html", "requirements.txt", "docs/stakeholder_brief.pdf"]:
+    for required in ["dashboard/index.html", "requirements.txt", "docs/stakeholder_brief.pdf",
+                     ".github/workflows/pages.yml", "data/raw/SOURCE.md"]:
         if not Path(required).exists():
             problems.append(f"missing required file: {required}")
     readme = Path("README.md").read_text(encoding="utf-8") if Path("README.md").exists() else ""

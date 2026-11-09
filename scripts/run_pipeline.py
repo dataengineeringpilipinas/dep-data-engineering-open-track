@@ -15,6 +15,7 @@ Steps
 The notebooks in notebooks/ read these outputs; open them after the pipeline finishes.
 """
 import argparse
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -30,7 +31,9 @@ STEPS = [
 
 def run(label: str, script: str) -> None:
     print(f"\n=== {label}: python {script}")
-    result = subprocess.run([sys.executable, script])
+    # Force UTF-8 output so names such as "Parañaque" print on any console (including Windows)
+    env = {**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}
+    result = subprocess.run([sys.executable, script], env=env)
     if result.returncode != 0:
         sys.exit(f"Step failed: {script} (exit code {result.returncode})")
 

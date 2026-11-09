@@ -1,12 +1,16 @@
+# OS and editor files
 .DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python
 __pycache__/
 *.pyc
+venv/
+.venv/
+.ipynb_checkpoints/
+
+# Secrets: never commit credentials
 .env
-
-reference-docs/
-AGENTS.md
-DESIGN.md
-CONTEXT.md
-
-# Local Google Sheets exports may contain private cohort tracking fields.
-docs/data/*.csv
+kaggle.json

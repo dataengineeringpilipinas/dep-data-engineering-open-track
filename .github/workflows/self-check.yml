@@ -1,0 +1,71 @@
+name: Milestone Self-Check
+
+# Runs the same structural checks the DEP curriculum repo runs on your
+# submission, so you see failures BEFORE opening a milestone issue.
+# The script is fetched from the curriculum repo at run time; you always
+# check against the same version the official auto-checker uses.
+#
+# On every push: all milestones are checked and summarized. This never
+# fails your build; failing M5 while you are working on M2 is expected.
+# To get a real pass/fail verdict for one milestone before submitting,
+# run this workflow manually (Actions tab -> Milestone Self-Check ->
+# Run workflow) and pick the milestone.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      milestone:
+        description: Check a single milestone and fail the run if it does not pass
+        type: choice
+        options: [M0, M1, M2, M3, M4, M5, M6]
+
+env:
+  CHECK_SCRIPT_URL: https://raw.githubusercontent.com/dataengineeringpilipinas/dep-data-engineering-open-track/main/.github/scripts/milestone_check.py
+
+jobs:
+  self-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Fetch the official milestone checker
+        run: curl -fsSL "$CHECK_SCRIPT_URL" -o /tmp/milestone_check.py
+
+      - name: Check one milestone (manual run)
+        if: inputs.milestone != ''
+        run: |
+          python /tmp/milestone_check.py \
+            --milestone "${{ inputs.milestone }}" \
+            --repo-path . \
+            --output-file /tmp/result.json
+        # Real exit code: a red run here means "not ready to submit yet".
+
+      - name: Check all milestones (push)
+        if: inputs.milestone == ''
+        run: |
+          {
+            echo "## Milestone self-check"
+            echo ""
+            echo "| Milestone | Result | Failing checks |"
+            echo "|-----------|--------|----------------|"
+          } >> "$GITHUB_STEP_SUMMARY"
+          for m in M0 M1 M2 M3 M4 M5 M6; do
+            python /tmp/milestone_check.py \
+              --milestone "$m" --repo-path . --output-file "/tmp/$m.json" || true
+            jq -r '
+              if .all_passed
+              then "| \(.milestone) | ✅ \(.passed)/\(.total) | |"
+              else "| \(.milestone) | ❌ \(.passed)/\(.total) | \([.checks[] | select(.passed | not) | .name] | join("<br>")) |"
+              end' "/tmp/$m.json" >> "$GITHUB_STEP_SUMMARY"
+          done
+          {
+            echo ""
+            echo "Failing a milestone you have not reached yet is normal."
+            echo "Before submitting milestone MX, run this workflow manually with MX selected and make sure it goes green."
+          } >> "$GITHUB_STEP_SUMMARY"
