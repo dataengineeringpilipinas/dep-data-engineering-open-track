@@ -1,47 +1,52 @@
 # Week 10 — Advanced Transformation & Feature Engineering
 
-**Project Title:** Public Data Patterns in DPWH Flood Control Projects (2022–2025)  
-**Input Dataset:** `data/raw/dpwh_flood_control_projects.csv`  
-**Processed Output:** `data/processed/dpwh_flood_control_analysis_ready.csv`  
+**Project Title:** Public Data Patterns in DPWH Flood Control Projects (2022–2025)
+**Input:** `data/processed/dpwh_flood_control_projects_cleaned.csv` (output of Week 9)
+**Output:** `data/processed/dpwh_flood_control_analysis_ready.csv` (9,827 rows, 29 columns)
+**Script:** `scripts/advanced_transform.py`
 
 ---
 
-##  Milestone Overview & Transformation Strategy
+## Overview
 
-Week 10 extends initial data cleaning by enriching the DPWH dataset with time-based groupings, statistical regional benchmarks via aggregations (`groupby` + `merge`), and COA audit risk indicators.
+Week 10 turns the cleaned table into an analysis-ready table with one row per project, a regional cost benchmark and an audit flag for unusually costly projects.
 
 ---
 
-## 🛠️ Summary of Data Operations
+## Steps
 
-### 1. Missing Value Strategy & Type Conversion
-* **Financial Amounts (`contract_cost_php`):** Coerced to `float64` and filled missing values with `0.0`.
-* **Dates (`completion_date`):** Parsed into standard `datetime64[ns]`. Unparseable dates defaulted to `NaT`.
-* **String Fields (`contractor`, `province`, `region`, `district_engineering_office`):** Normalized empty strings, `None`, and `NaN` values to `'Unknown'` for grouping integrity.
+### 1. One row per project
+`drop_duplicates(subset=["project_id"], keep="first")` removes 28 repeated rows from multi-year contracts, leaving 9,827 projects.
 
-### 2. Time-Based Grouping Features
-* `completion_year`: Extracted calendar year from `completion_date` (e.g., `2022`, `2023`, `2024`, `2025`).
-* `completion_quarter`: Extracted fiscal quarter (`1`, `2`, `3`, `4`).
-* `completion_month`: Extracted numeric month (`1`–`12`).
+### 2. Missing values
+- **Grouping text** (`contractor`, `province`, `region`, `district_engineering_office`): empty values would become `"Unknown"`. None are empty today.
+- **Contract cost:** an empty cost is set to `0.0` so every project has a number.
 
-### 3. Aggregations & Regional Baseline Joins
-Using Pandas `groupby("region")` and left merge, regional financial metrics were computed to benchmark each project against its administrative region:
-$$\text{Cost Z-Score} = \frac{\text{Contract Cost} - \text{Regional Mean Cost}}{\text{Regional Std Dev}}$$
+**Known limitation.** For 27 multi-year projects, the row kept in step 1 is a continuation row with no cost, so these projects get cost 0. They are marked in `contract_cost_note`. Keeping the row that has the cost would change the total from PHP 543.7B to PHP 545.6B and the outlier count from 329 to 326. See [`scripts/README.md`](../scripts/README.md).
 
-### 4. COA Audit Risk Flags Engineered
+### 3. Regional benchmark (`groupby` + `merge`)
+For each region, the script computes the mean and standard deviation of contract cost and joins them back to every project:
 
-| Derived Column | Data Type | Formula / Logic | Audit Rationale |
+$$\text{z-score} = \frac{\text{contract cost} - \text{regional mean}}{\text{regional standard deviation}}$$
+
+### 4. Features added
+
+| Column | Type | Logic | Why |
 | :--- | :--- | :--- | :--- |
-| `cost_diff_from_regional_avg` | `Float64` | `contract_cost_php - regional_avg_cost` | Identifies peso deviation relative to regional average. |
-| `cost_zscore_regional` | `Float64` | $(X - \mu_{\text{region}}) / \sigma_{\text{region}}$ | Standardizes cost outliers across regions with varying budget sizes. |
-| `is_high_cost_outlier` | `Integer` | `1` if `cost_zscore_regional >= 2.0` else `0` | Isolates contracts exceeding 2 standard deviations for prioritized COA audit. |
-| `has_valid_coords` | `Integer` | `1` if `latitude` & `longitude` present else `0` | Flags projects missing GPS coordinates for physical site verification. |
+| `regional_avg_cost` | number | mean cost in the project's region | benchmark |
+| `regional_std_cost` | number | standard deviation of cost in the region (1 if the region has no spread) | benchmark |
+| `cost_diff_from_regional_avg` | number | `contract_cost_php - regional_avg_cost` | peso difference from the regional norm |
+| `cost_zscore_regional` | number | the z-score above | compares projects across regions with different cost levels |
+| `is_high_cost_outlier` | 0/1 | 1 if `cost_zscore_regional >= 2.0` | 329 projects (3.3%) to look at first |
+
+Time features are not added here. Completion year and quarter, and the time-adjusted outlier flag (z-score within region **and** completion year), are computed in Phase 5 by `scripts/analysis/m5_segmentation_kpis.py`, because costs rose over time and the plain regional flag over-flags recent projects.
 
 ---
 
-## 🔄 Re-Run Instructions
-
-To run the pipeline and generate the analysis-ready dataset in Google Colab or terminal:
+## How to run
 
 ```bash
-python scripts/advanced_transform.py
+python scripts/advanced_transform.py   # after scripts/transform.py
+```
+
+Or run the whole pipeline with `python scripts/run_pipeline.py`.

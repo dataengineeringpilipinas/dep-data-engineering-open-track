@@ -1,99 +1,45 @@
-Week 8 — SQL Business Analytics & Audit Queries
+# Week 8 — SQL Business Analytics & Audit Queries
 
-**Project Title:** Public Data Patterns in DPWH Flood Control Projects (2022–2025)  
-**Target Audience:** Commission on Audit (COA) — Infrastructure Audit Division  
-**Document Path:** `docs/week08_sql_analytics.md`  
-
----
-
-##  Executive Summary
-
-Week 8 focuses on executing ANSI SQL queries against the DPWH flood control dataset to extract actionable audit insights. Utilizing an in-memory SQLite relational database populated from the raw/cleaned project data (`dpwh_flood_control_projects`), this milestone answers three core business questions concerning contractor market concentration, provincial budget density, and District Engineering Office (DEO) unit cost variations.
+**Project Title:** Public Data Patterns in DPWH Flood Control Projects (2022–2025)
+**Target Audience:** Commission on Audit (COA) — Infrastructure Audit Division
+**Queries:** [`sql/business_questions.sql`](../sql/business_questions.sql)
+**Runner:** `python scripts/run_sql_queries.py`
 
 ---
 
-##  Business Questions & Audit Objectives
+## Summary
 
-1. **Question 1 (Contractor Concentration):** Which top 10 contractors received the largest total contract value for DPWH flood control projects between 2022 and 2025?
-2. **Question 2 (Geographic Hotspots):** Which provinces received the highest total flood control funding and project volume between 2022 and 2025?
-3. **Question 3 (DEO Financial Variances):** Which District Engineering Offices manage projects with the highest average contract costs (minimum 10 projects managed)?
+Three SQL queries answer audit questions about contractor concentration, provincial funding and District Engineering Office (DEO) cost levels. `scripts/run_sql_queries.py` loads the cleaned file (`data/processed/dpwh_flood_control_projects_cleaned.csv`) into an in-memory SQLite table called `projects_cleaned`, runs each query in the `.sql` file and prints the answers.
+
+The queries run on the cleaned table, not the raw file, because in the raw file the cost column is text (some rows say "MYCA with Project ID ..."), so sums and averages would be wrong.
 
 ---
 
-##  Executable SQL Queries (`sql/week8_queries.sql`)
+## Business questions
 
-```sql
--- ============================================================
--- Phase 3 — Milestone 2: SQL Business Queries
--- Public Data Patterns in DPWH Flood Control Projects (2022–2025)
--- ============================================================
+1. **Contractor concentration:** Which 10 contractors received the largest total contract value?
+2. **Geographic hotspots:** Which 15 provinces received the most flood control funding, and how many projects did each have?
+3. **DEO cost levels:** Which District Engineering Offices (with at least 10 projects) have the highest average contract cost?
 
+## How the queries handle the data
 
--- ------------------------------------------------------------
--- QUESTION 1
--- Which top 10 contractors received the largest total contract
--- value for DPWH flood control projects between 2022 and 2025?
--- ------------------------------------------------------------
+- `COUNT(DISTINCT project_id)` counts each project once. Multi-year contracts appear on more than one row in the cleaned table.
+- Rows without a numeric cost (multi-year continuation rows) are empty in `contract_cost_php`, so `SUM` and `AVG` skip them.
+- Column names are the cleaned names: `contractor`, `province`, `region`, `district_engineering_office`, `contract_cost_php`, `project_id`.
 
-SELECT
-    Contractor AS contractor_name,
-    COUNT(ProjectId) AS total_projects_awarded,
-    ROUND(SUM(ContractCost), 2) AS total_contract_value_php,
-    ROUND(AVG(ContractCost), 2) AS avg_project_cost_php
-FROM dpwh_flood_control_projects
-WHERE Contractor IS NOT NULL
-  AND Contractor != ''
-GROUP BY
-    Contractor
-ORDER BY
-    total_contract_value_php DESC,
-    Contractor
-LIMIT 10;
+## Results (top rows)
 
+| Question | Top result |
+|---|---|
+| 1 | Legacy Construction Corporation: 114 projects, about PHP 8.27B |
+| 2 | Metro Manila: 1,057 projects, about PHP 52.6B; then Bulacan (668, PHP 43.8B) and Cebu (414, PHP 26.7B) |
+| 3 | Butuan City DEO: average about PHP 131.3M across 48 projects |
 
--- ------------------------------------------------------------
--- QUESTION 2
--- Which provinces received the highest total flood control
--- funding and project volume between 2022 and 2025?
--- ------------------------------------------------------------
+These are totals, not adjusted for population or flood exposure. A large total is a place to look, not evidence of a problem.
 
-SELECT
-    Province AS province,
-    Region AS region,
-    COUNT(ProjectId) AS total_projects,
-    ROUND(SUM(ContractCost), 2) AS total_provincial_funding_php,
-    ROUND(AVG(ContractCost), 2) AS avg_project_cost_php
-FROM dpwh_flood_control_projects
-WHERE Province IS NOT NULL
-  AND Province != ''
-GROUP BY
-    Province,
-    Region
-ORDER BY
-    total_provincial_funding_php DESC,
-    Province
-LIMIT 15;
+## How to run
 
-
--- ------------------------------------------------------------
--- QUESTION 3
--- Which District Engineering Offices (DEOs) manage projects with
--- the highest average contract costs (minimum 10 projects managed)?
--- ------------------------------------------------------------
-
-SELECT
-    DistrictEngineeringOffice AS implementing_office,
-    COUNT(ProjectId) AS total_projects_managed,
-    ROUND(SUM(ContractCost), 2) AS total_budget_managed_php,
-    ROUND(AVG(ContractCost), 2) AS avg_contract_cost_php
-FROM dpwh_flood_control_projects
-WHERE DistrictEngineeringOffice IS NOT NULL
-  AND DistrictEngineeringOffice != ''
-GROUP BY
-    DistrictEngineeringOffice
-HAVING
-    COUNT(ProjectId) >= 10
-ORDER BY
-    avg_contract_cost_php DESC,
-    DistrictEngineeringOffice
-LIMIT 10;
+```bash
+python scripts/transform.py        # if the cleaned file does not exist yet
+python scripts/run_sql_queries.py
+```
