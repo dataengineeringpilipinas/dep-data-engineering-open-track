@@ -4,6 +4,14 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.9.1] - 2026-11-08 — Enroll a Catching-Up Builder
+
+### Changed
+
+- `michaelbacus-lab` (Michael Bacus) is now an enrolled participant, approved by the program team. His milestones already run through the normal queue; enrollment adds him to the public builder directory and to reviewer support.
+
+---
+
 ## [0.9.0] - 2026-11-07 — Declare the Phase 5 Path at M4
 
 ### Added
