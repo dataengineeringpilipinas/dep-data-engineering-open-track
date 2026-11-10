@@ -430,10 +430,10 @@
       "projectTopic": "Philippine Fuel Price Pipeline",
       "startDate": "2026-06-22",
       "activeWeek": "W21",
-      "currentMilestone": 5,
+      "currentMilestone": 6,
       "milestonesSubmitted": 5,
-      "milestonesPassed": 5,
-      "phase": "Non-Predictive"
+      "milestonesPassed": 6,
+      "phase": "Packaging & Deployment"
     },
     {
       "name": "Verano, Froncoyz Peteros",

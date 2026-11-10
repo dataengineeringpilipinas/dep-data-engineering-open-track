@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T17:31:28Z",
+  "generated_at": "2026-11-10T01:33:42Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -4370,10 +4370,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "needs-improvement"
+          "name": "M4"
         },
         {
-          "name": "M4"
+          "name": "ready-for-review"
         },
         {
           "name": "late-submission"
@@ -4382,7 +4382,7 @@
       "number": 221,
       "pull_request": false,
       "title": "[M4] Naehum Dela Cruz — MassKara Festival Google Trends Interest & MNL-BCD Travel Price Surge Tracker",
-      "updated_at": "2026-11-04T13:39:42Z",
+      "updated_at": "2026-11-10T00:46:40Z",
       "user": {
         "login": "Naehum-Dela-Cruz"
       }
@@ -4719,7 +4719,7 @@
     },
     {
       "body": "### Builder Name\n\nAaron Creed Celindro\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/credough/dep-data-engineering-open-track-aaron-celindro.git\n\n### Commit Hash\n\n382afbdf476382fc5728175ec461f26e82ded093\n\n### Which path did you take?\n\nPath B — Advanced EDA & Stakeholder Track\n\n### Notes (optional)\n\n_No response_\n\n### Self-Check (both paths)\n\n- [x] `requirements.txt` is up to date with all dependencies.\n- [x] `notebooks/` contains analysis or model notebooks.\n- [x] `data/processed/` contains all output files needed for the next phase.\n- [x] The commit hash above points to my latest submission snapshot.\n\n### Path A Additional Checks (skip if Path B)\n\n- [ ] Model results or predictions are saved to `output/` or `data/processed/`.\n- [ ] Model metrics and assumptions are documented in the notebook or README.\n\n### Path B Additional Checks (skip if Path A)\n\n- [x] Segmentation or advanced EDA outputs are saved.\n- [x] A stakeholder brief or KPI summary is included.",
-      "closed_at": null,
+      "closed_at": "2026-11-10T00:30:37Z",
       "created_at": "2026-11-08T16:56:03Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/248",
       "labels": [
@@ -4727,10 +4727,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M5"
+          "name": "passed"
         },
         {
-          "name": "ready-for-review"
+          "name": "M5"
         },
         {
           "name": "late-submission"
@@ -4739,7 +4739,7 @@
       "number": 248,
       "pull_request": false,
       "title": "[M5] Aaron Creed Celindro — Philippine Fuel Price Pipeline",
-      "updated_at": "2026-11-09T08:04:06Z",
+      "updated_at": "2026-11-10T00:36:09Z",
       "user": {
         "login": "credough"
       }
