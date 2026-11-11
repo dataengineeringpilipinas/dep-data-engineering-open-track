@@ -33,7 +33,7 @@ Both transform scripts check their output before saving it. If any check fails, 
 | Check | Why |
 |---|---|
 | `project_id` is unique | One row per project |
-| Every contract cost is present and non-negative | The z-score needs a number for every project |
+| Every contract cost is present and above zero | The z-score needs a real cost for every project; a 0 would mean a project lost its cost |
 | Grouping columns have no empty values | Region and province groupings must be complete |
 | `is_high_cost_outlier` is only 0 or 1 | The flag must be a clean yes/no |
 
@@ -45,8 +45,8 @@ Both transform scripts check their output before saving it. If any check fails, 
 | :--- | :--- | :--- |
 | Text in money columns (28 costs, 157 budgets) | Set to empty in the cleaned file; original text kept in note columns | Keeps the columns numeric without losing information |
 | Missing municipality (666 rows) | Left empty | Guessing would be wrong; no analysis groups by municipality |
-| Repeated project IDs (28 rows) | Kept in the cleaned file; first row kept in the analysis-ready file | One row per project for counting and benchmarks |
-| Empty cost after deduplication (27 projects) | Set to 0 (known limitation, see Week 10) | Every project needs a cost for the z-score |
+| Repeated project IDs (28 rows) | Kept in the cleaned file; merged into one row per project in the analysis-ready file | One row per project for counting and benchmarks |
+| Multi-year (MYCA) projects with cost on only one row (27 projects) | One row per project, cost = sum of the project's numeric costs | Each project counted once with its real cost; does not depend on row order |
 | Coordinates | Checked once: all within the Philippines (lat 4 to 21, lon 116 to 127) | No flag needed |
 
 ---

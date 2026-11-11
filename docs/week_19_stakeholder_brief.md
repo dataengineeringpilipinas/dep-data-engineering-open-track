@@ -14,7 +14,7 @@ Audit teams, oversight bodies and researchers.
 
 ## Recommended actions in the brief
 
-1. Start document review with the seven provinces where high contractor concentration and above-median time-adjusted outlier rate overlap, plus Oriental Mindoro for its high cost-flag rate.
+1. Start document review with the six provinces where high contractor concentration and above-median time-adjusted outlier rate overlap, plus Oriental Mindoro for its high cost-flag rate.
 2. Check flagged projects against DPWH Project DIME and COA reports before drawing conclusions.
 3. Publish standard contractor names, IDs and project size in the open data.
 

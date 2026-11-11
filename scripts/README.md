@@ -37,15 +37,16 @@ Kept as-is for analysis: 769 rows where the contract cost is above the approved 
 
 ## Cleaned to analysis-ready (`advanced_transform.py`)
 
-**Output:** 9,827 rows (one per project), 29 columns.
+**Output:** 9,827 rows (one per project), 30 columns.
 
-1. Keep the first row for each `project_id` (drops 28 rows).
+1. One row per `project_id` (merges 28 rows). For the 27 multi-year (MYCA) projects, the cost is the sum of the project's numeric costs (only the first funding year's row has one) and the other fields come from that row. A `source_rows` column records how many raw rows each project had.
 2. Fill empty `region`, `province`, `contractor`, `district_engineering_office` with "Unknown" (none are empty today).
-3. Set an empty contract cost to 0.
-4. Add `regional_avg_cost`, `regional_std_cost`, `cost_diff_from_regional_avg` and `cost_zscore_regional`.
-5. Add `is_high_cost_outlier` = 1 when `cost_zscore_regional` is 2.0 or more (329 projects, 3.3%).
+3. Add `regional_avg_cost`, `regional_std_cost`, `cost_diff_from_regional_avg` and `cost_zscore_regional`.
+4. Add `is_high_cost_outlier` = 1 when `cost_zscore_regional` is 2.0 or more (326 projects, 3.3%).
 
-**Known limitation of steps 1 and 3.** For 27 MYCA projects the first row is a continuation row with no cost, so the project ends up with cost 0 and its real cost is dropped. These rows are marked in `contract_cost_note`. Keeping the row that has the cost instead would raise total value from PHP 543.7B to PHP 545.6B and change the outlier count from 329 to 326; the regional ranking (Region IV-B highest) does not change. The published results still use the current rule.
+Validation stops the pipeline if any project has a missing, zero or negative cost.
+
+**Correction (November 2026).** Earlier versions kept the *first* row of each project and filled a missing cost with 0. For the 27 MYCA projects the first row is a continuation row, so they were recorded at PHP 0 (one should be PHP 227.8M). Fixing this changed total value from PHP 543.7B to PHP 545.6B, outliers from 329 to 326, and the review shortlist from seven provinces to six (Samar left it: with real costs its time-adjusted flag rate is 1.8%, below the median). Six deduplication strategies were compared; every correct one gives these same results, and the top region and the other six provinces do not change.
 
 ## Reproducibility
 

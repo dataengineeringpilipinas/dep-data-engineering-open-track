@@ -14,9 +14,9 @@ Path B. The project question asks where unusual patterns may justify further aud
 
 ## Key findings
 
-- The original outlier rate rises with completion year in every island group (Luzon 0.7% in 2022 to 7.2% in 2024). A time-adjusted flag (compared within region and completion year) stays in a narrow band, so most of the rise reflects costs increasing over time.
-- Project type changes the cost level (drainage about PHP 23.5M vs revetment about PHP 66.8M), so cost flags should eventually be benchmarked by type.
-- 85 contractors that won 21+ projects hold 38.8% of contract value; 1,157 single-project contractors hold 9.5%.
+- The original outlier rate rises with completion year in every island group (Luzon 0.8% in 2022 to 7.1% in 2024). A time-adjusted flag (compared within region and completion year) stays in a narrow band, so most of the rise reflects costs increasing over time.
+- Project type changes the cost level (drainage about PHP 23.5M vs revetment about PHP 67.9M), so cost flags should eventually be benchmarked by type.
+- 85 contractors that won 21+ projects hold 38.7% of contract value; 1,157 single-project contractors hold 9.6%.
 
 ## Where the work lives
 

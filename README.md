@@ -54,10 +54,10 @@ Every cleaning decision, with row counts and reasons, is in the cleaning log in 
 
 Main findings:
 
-- **The leads are local.** No contractor holds more than about 1.5% of national value, but in some provinces one contractor holds 39% to 50% (Apayao 50%, Misamis Occidental 43%, Marinduque 41%, Bukidnon, Romblon and Abra about 39%). The typical province (30+ projects) is at 19%.
+- **The leads are local.** No contractor holds more than about 1.5% of national value, but in some provinces one contractor holds 39% to 50% (Apayao 50%, Misamis Occidental 43%, Marinduque 41%, Bukidnon, Romblon and Abra about 39%). The typical province (30+ projects) is at about 19%.
 - **Costs rose over time** (average PHP 33M in mid-2022 to PHP 76M in early 2025), which inflated the original outlier flag. A time-adjusted flag compares projects within the same region and year.
 - **Region IV-B** has the highest outlier rate after adjustment (7.0%), led by Oriental Mindoro.
-- A seven-province **review shortlist** combines high concentration with an above-median time-adjusted outlier rate.
+- A six-province **review shortlist** (Marinduque, Bukidnon, Romblon, Abra, Sorsogon, Northern Samar) combines high concentration with an above-median time-adjusted outlier rate.
 
 The one-page [stakeholder brief](docs/stakeholder_brief.pdf) summarises this for non-technical readers.
 
@@ -103,7 +103,7 @@ sql/               schema and business-question queries
 ## Limitations
 
 - Completed projects only, July 2022 to May 2025; ongoing and cancelled projects are not in the data.
-- 27 multi-year (MYCA) projects have cost 0 in the analysis-ready file because the row kept for them is a continuation row without a cost. Fixing this would move total value from PHP 543.7B to PHP 545.6B and the outlier count from 329 to 326; the main findings do not change. Details in [`scripts/README.md`](scripts/README.md).
+- Multi-year (MYCA) contracts appear once per funding year with the cost on only one row; each is counted once with its real cost. An earlier version recorded 27 of them at PHP 0 (corrected in November 2026: total PHP 543.7B to 545.6B, outliers 329 to 326, Samar left the shortlist). Details in [`scripts/README.md`](scripts/README.md).
 - The outlier flag benchmarks by region (and region and year when time-adjusted) but not by project type or size.
 - Contractor names are as recorded; truncated or variant names undercount some contractors, and joint ventures are not split.
 - Provinces under 30 projects are left out of concentration rankings because the figures are noisy.

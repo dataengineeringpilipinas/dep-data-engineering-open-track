@@ -21,7 +21,7 @@
 | 2 | Trends | 4 quarterly line charts (KPI 1, 2, 3, 5); low-volume quarters ringed | Is the share of unusual projects really rising? | `m5_kpi_quarterly.csv` | Hover for values |
 | 3 | Segments | Island × year outlier-rate table; contractor size tiers | Do geography, timing or contractor size explain the pattern? | `m5_segment_*.csv` | Static |
 | 4 | Hotspots | Region and province filters, concentration map, concentration ranking, outlier scatter, project table, regional summary | Where are the hotspots, and which project IDs should be reviewed? | `m5_province_concentration.csv`, analysis-ready CSV | Filters, click to flag, copy IDs |
-| 5 | Shortlist and insight | Seven-province review shortlist, four key insights | Where should auditors look first? | `m5_review_shortlist.csv` | Static |
+| 5 | Shortlist and insight | Six-province review shortlist, four key insights | Where should auditors look first? | `m5_review_shortlist.csv` | Static |
 | 6 | Method | Limitations and links to the repo | What should the reader be careful about? | — | Static |
 
 ## Sketch

@@ -14,13 +14,13 @@ Total project count and total cost by region are kept as context, not KPIs, beca
 
 ## Headline values
 
-KPI 1: 3.3% · KPI 2: PHP 55.3M · KPI 3: 10.3% · KPI 4: 19.0% (69 provinces) · KPI 5: 7.9%
+KPI 1: 3.3% · KPI 2: PHP 55.5M · KPI 3: 10.3% · KPI 4: 18.6% (69 provinces) · KPI 5: 7.9%
 
 ## Trend over time (by completion quarter)
 
-- KPI 1 rises from 0.5% (2022 Q3) to 9.4% (2025 Q1), but the time-adjusted version stays between about 1.5% and 5%, while KPI 2 rises from PHP 33.0M to PHP 76.1M. Read KPI 1 next to KPI 2 or in its time-adjusted form.
+- KPI 1 rises from 0.6% (2022 Q3) to 9.4% (2025 Q1), but the time-adjusted version stays between about 1.5% and 5%, while KPI 2 rises from PHP 33.4M to PHP 76.1M. Read KPI 1 next to KPI 2 or in its time-adjusted form.
 - KPI 3 holds at 13–18% through 2024; 2025 quarters have few projects (309 and 67) and are not a trend.
-- KPI 5 drifts down from 10.3% to about 6–9%.
+- KPI 5 drifts down from 10.2% to about 6–9%.
 
 ## Where the work lives
 

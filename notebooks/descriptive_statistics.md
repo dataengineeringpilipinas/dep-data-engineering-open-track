@@ -1,5 +1,7 @@
 Descriptive Statistics for Project Understanding
 
+> **Note (November 2026):** the tables below were computed in Week 13, before the multi-year (MYCA) correction, when 27 projects were recorded at cost 0. Current values: total PHP 545.6B, mean PHP 55.52M, median PHP 49.0M, skewness 1.33, 326 high-cost outliers. The up-to-date statistics are in `notebooks/M4_initial_insights.ipynb`, section 1.
+
 ## Section Overview
 
 This document presents the baseline descriptive statistics generated from the processed dataset of 9,827 DPWH flood control project records. The metrics establish central tendencies, dispersion, skewness, and market concentration baselines to inform subsequent visual analysis and risk-based audit sampling.

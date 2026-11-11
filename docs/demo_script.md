@@ -25,7 +25,7 @@ Live dashboard: https://michaelbacus-lab.github.io/dep-data-engineering-open-tra
 1. KPI cards: five headline numbers.
 2. Trends: point at the gap between the original and time-adjusted outlier rate.
 3. Hotspots: choose Region IV-B, click Oriental Mindoro, flag a project from the table, press Copy flagged IDs.
-4. Shortlist: seven provinces where concentration and cost flags overlap.
+4. Shortlist: six provinces where concentration and cost flags overlap.
 
 ## 5. Limitations and next steps (0.5 min)
 

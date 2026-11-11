@@ -1,16 +1,16 @@
 work_group,mainisland,projects,avg_cost_php_m,outlier_rate
 Drainage Structure,Luzon,430,21.29,0.0116
-Drainage Structure,Mindanao,142,35.5985,0.0423
+Drainage Structure,Mindanao,142,35.6471,0.0423
 Drainage Structure,Visayas,106,16.3354,0.0094
-Flood Mitigation Structure,Luzon,4181,56.876,0.0376
-Flood Mitigation Structure,Mindanao,966,63.7587,0.0238
-Flood Mitigation Structure,Visayas,1196,52.9002,0.0318
-Other,Luzon,1087,53.9174,0.0432
+Flood Mitigation Structure,Luzon,4181,56.9265,0.0373
+Flood Mitigation Structure,Mindanao,966,64.0064,0.0238
+Flood Mitigation Structure,Visayas,1196,53.0907,0.0268
+Other,Luzon,1087,54.2109,0.0442
 Other,Mindanao,106,66.7312,0.0283
-Other,Visayas,141,45.8205,0.0071
-Revetment,Luzon,386,68.8,0.044
-Revetment,Mindanao,252,67.2383,0.0238
-Revetment,Visayas,95,57.2624,0.0211
+Other,Visayas,141,46.4941,0.0071
+Revetment,Luzon,386,69.05,0.044
+Revetment,Mindanao,252,69.1496,0.0278
+Revetment,Visayas,95,60.105,0.0421
 Slope Protection Structure,Luzon,607,58.1534,0.028
 Slope Protection Structure,Mindanao,39,45.3845,0.0
 Slope Protection Structure,Visayas,93,74.6347,0.0645

@@ -72,7 +72,7 @@ data/raw/dpwh_flood_control_projects.csv              9,855 rows, raw and unmodi
 data/processed/dpwh_flood_control_projects_cleaned.csv   9,855 rows, 24 columns
         |  scripts/advanced_transform.py   (one row per project, regional z-score, outlier flag)
         v
-data/processed/dpwh_flood_control_analysis_ready.csv     9,827 rows, 29 columns
+data/processed/dpwh_flood_control_analysis_ready.csv     9,827 rows, 30 columns
 ```
 
 ## Schema plan
@@ -89,7 +89,7 @@ Types: money columns are numbers, `actualcompletiondate` and `startdate` are dat
 - Column names lowercased; three renamed (`project_id`, `district_engineering_office`, `contract_cost_php`).
 - Text that is not a number in a money column (28 "MYCA" costs, 157 "Clustered"/"MYCA" budgets) becomes empty, and the original text is kept in a note column.
 - 666 missing municipalities are left empty, not guessed.
-- Repeated project IDs (28, multi-year contracts) are kept in the cleaned file and reduced to one row per project in the analysis-ready file. Known limitation: 27 projects end up with cost 0 (see `scripts/README.md`).
+- Repeated project IDs (28, multi-year contracts) are kept in the cleaned file and merged into one row per project in the analysis-ready file, each with its real cost. (An earlier version recorded 27 of these projects at cost 0; corrected in November 2026, see `scripts/README.md`.)
 
 ## Validation
 
