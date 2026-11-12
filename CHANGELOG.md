@@ -4,6 +4,14 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.9.5] - 2026-11-12 — Automated Review SLA Reminders
+
+### Added
+
+- `sla-nag.yml` runs daily and automates the Review Escalation Policy in the volunteer guide. It posts a day 5 moderator ping and a day 7 System Lead escalation on `ready-for-review` issues, mirrored to Discord, and a day 7 nudge on idle `needs-improvement` issues. Each stage comments once per review cycle, a failure on one issue does not stop the rest, and a `dry_run` dispatch input logs without posting.
+
+---
+
 ## [0.9.1] - 2026-11-08 — Enroll a Catching-Up Builder
 
 ### Changed

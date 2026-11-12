@@ -80,6 +80,23 @@
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
 
+                <!-- 0.9.5 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.9.5</span>
+                        <span class="cl-version-date">2026-11-12</span>
+                        <span class="cl-version-tag">Automated Review SLA Reminders</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li><code>sla-nag.yml</code> runs daily and automates the Review Escalation Policy in the volunteer guide. It posts a day 5 moderator ping and a day 7 System Lead escalation on <code>ready-for-review</code> issues, mirrored to Discord, and a day 7 nudge on idle <code>needs-improvement</code> issues. Each stage comments once per review cycle, a failure on one issue does not stop the rest, and a <code>dry_run</code> dispatch input logs without posting.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
                 <!-- 0.9.1 -->
                 <div class="cl-version">
                     <div class="cl-version-header">
