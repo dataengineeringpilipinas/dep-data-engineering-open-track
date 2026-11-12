@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Changelog for the DEP Engineering Program — notable updates to the curriculum, submission system, and program infrastructure." />
         <title>Changelog — DEP Engineering Program</title>
-        <link rel="stylesheet" href="assets/site.css?v=10" />
+        <link rel="stylesheet" href="assets/site.css?v=12" />
         <style>
             #main { background: #F9FAFB; }
 
@@ -59,6 +59,7 @@
                     <a href="index.html#about">About</a>
                     <a href="index.html#process">Process</a>
                     <a href="index.html#outputs">Outputs</a>
+                    <a href="index.html#projects">Projects</a>
                     <a href="ai-guide.html">AI Guide</a>
                     <a href="index.html#updates">Updates</a>
                     <a href="index.html#builders">Builders</a>
@@ -78,6 +79,400 @@
                     Notable updates to the curriculum, submission system, and program infrastructure.
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
+
+                <!-- 0.9.1 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.9.1</span>
+                        <span class="cl-version-date">2026-11-08</span>
+                        <span class="cl-version-tag">Enroll a Catching-Up Builder</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li><code>michaelbacus-lab</code> (Michael Bacus) is now an enrolled participant, approved by the program team. His milestones already run through the normal queue; enrollment adds him to the public builder directory and to reviewer support.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.9.0 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.9.0</span>
+                        <span class="cl-version-date">2026-11-07</span>
+                        <span class="cl-version-tag">Declare the Phase 5 Path at M4</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>The M4 submission form now asks for the Phase 5 path (Path A, Path B, or Undecided), so reviewers can confirm it at M4 as the review rubric expects. The path is not scored.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.8.3 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.8.3</span>
+                        <span class="cl-version-date">2026-11-07</span>
+                        <span class="cl-version-tag">Manual Dispatch and Named Commits</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Evaluation comments now name the full commit that was checked, so a builder can confirm which snapshot produced a verdict.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Manually dispatching <strong>Milestone Submission Evaluation</strong> no longer fails before any job starts. <code>workflow_dispatch</code> inputs arrive as strings, and passing <code>issue_number</code> straight into a <code>number</code>-typed reusable workflow input rejected the job; the caller now coerces it with <code>fromJSON</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.8.2 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.8.2</span>
+                        <span class="cl-version-date">2026-11-07</span>
+                        <span class="cl-version-tag">Record a Dropped Builder</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li><code>shivaa-bit</code> now shows as <code>Dropped</code> on the public builder directory, set through <code>status_overrides</code> after the program lead confirmed she left the program.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.8.1 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.8.1</span>
+                        <span class="cl-version-date">2026-10-26</span>
+                        <span class="cl-version-tag">Clearer Public Builder Status</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Public builder status now reads <code>Enrolled</code> (no submissions), <code>In progress</code> (at least one submission), <code>Completed</code> (M6 passed), or <code>Dropped</code> (manual), instead of the ambiguous <code>Active</code> label.</li>
+                            <li><code>YeXiu2001</code> and <code>sarmientobengjii</code> are published by username only until their roster name mappings are confirmed.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Builders with no submissions are no longer presented as active on the public homepage.</li>
+                            <li>Bumped the homepage script cache version so returning visitors load the new public status labels.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.8.0 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.8.0</span>
+                        <span class="cl-version-date">2026-10-26</span>
+                        <span class="cl-version-tag">Automated Builder Directory</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Added <code>.github/scripts/builders_snapshot.py</code>, which derives the public builder directory from the hourly milestone issue snapshot and the enrollment allowlist.</li>
+                            <li>Added display names, name opt-outs, cohort start date, and manual status overrides to <code>.github/enrolled-participants.json</code>.</li>
+                            <li>Added tests for implied milestone passes, duplicate and late filtering, M5 path mapping, project-title extraction, active-week calculation, name opt-outs, and manual status overrides.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>The homepage now loads the generated <code>builders.json</code> from the <code>progress-data</code> branch and falls back to the checked-in copy.</li>
+                            <li>The public directory shows Active, Dropped, and Completed builders. At Risk remains an internal support signal documented in <code>docs/VOLUNTEER_GUIDE.md</code>.</li>
+                            <li>Project titles are derived from the latest submission title, and the unmaintained squad field is no longer displayed.</li>
+                            <li>CI now runs when the homepage, builder data, or homepage assets change.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>The homepage now reports 37 builders, 102 milestones passed, the current phases, and Week 19 instead of the stale 32 builders, 0 passed, all-Foundations, Week 2 values.</li>
+                            <li>Builders <code>MCabs28</code>, <code>kathulhur</code>, and <code>ksdizon</code>, who had submissions but were missing from the directory, now appear.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.7.5 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.7.5</span>
+                        <span class="cl-version-date">2026-10-19</span>
+                        <span class="cl-version-tag">Resilient Short-SHA Snapshot Resolution</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Added <code>.github/scripts/clone_snapshot.py</code>, which clones a builder repo, resolves the submitted revision, checks it out, and reports clone status back to the workflow.</li>
+                            <li>Added behavioral tests covering reachable and orphaned commits, missing hashes, invalid input, and unclonable repositories.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Submissions by short hash for commits no longer reachable from a ref (for example after a force-push or rebase) now fail with a distinct error explaining that the full 40-character hash is required, instead of a generic &quot;commit not found&quot; message.</li>
+                            <li>Full 40-character hashes for unadvertised commits are now resolved by fetching the exact object before failing.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.7.4 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.7.4</span>
+                        <span class="cl-version-date">2026-10-19</span>
+                        <span class="cl-version-tag">M5 Output Location Alignment</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>The M5 structural check now accepts a real output file in either <code>data/processed/</code> or <code>output/</code>, matching the hint and the M5 self-check. Previously a builder who saved model results to <code>output/</code> failed despite following the instructions.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.7.3 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.7.3</span>
+                        <span class="cl-version-date">2026-10-19</span>
+                        <span class="cl-version-tag">CI Covers Workflow Changes</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>The CI workflow now triggers on any change under <code>.github/</code>, so edits to <code>_milestone-evaluate.yml</code>, <code>milestone-check.yml</code>, <code>milestone-recheck.yml</code>, <code>milestone-repair.yml</code>, <code>milestone-verdict.yml</code>, and <code>notify-reviewer.yml</code> run the script tests instead of shipping without feedback.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.7.2 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.7.2</span>
+                        <span class="cl-version-date">2026-10-19</span>
+                        <span class="cl-version-tag">Shared Milestone Policy Module</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Added <code>.github/scripts/milestone_logic.js</code> as the single source of truth for milestone field extraction, repo/commit-hash parsing, commenter authorization, deadline classification, milestone sequencing, and state decisions.</li>
+                            <li>Added Node tests for the shared policy helpers and an invariant test asserting the policy-consumer workflows reference the shared module.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>The evaluate, recheck, verdict, and notify workflows now require the shared module instead of re-implementing policy logic inline.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Removed the unused Python policy mirror (<code>milestone_policy.py</code> and its tests), whose tests passed independently of the JavaScript that actually ran. The tested module is now the code the workflows execute.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.7.1 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.7.1</span>
+                        <span class="cl-version-date">2026-10-19</span>
+                        <span class="cl-version-tag">Enrollment Allowlist Corrections</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Added regression tests that require every GitHub username in <code>docs/data/builders.json</code> to appear in <code>enrolled-participants.json</code>, and that prevent workflows from reintroducing a bot-applied <code>passed</code> label.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Added <code>rainer-r</code>, <code>ksdizon</code>, <code>aezhile</code>, <code>credough</code>, and <code>Froncoyz</code> to the enrollment allowlist based on the 50-person roster and their submitted issues.</li>
+                            <li>Replaced the dead <code>Connette</code> entry with <code>Froncoyz</code>, and corrected the roster entries for Aaron Creed Celindro (<code>credough</code>) and Froncoyz Verano (<code>Froncoyz</code>).</li>
+                            <li>Removed resolved names from <code>_missing_github</code> so it reflects only participants whose usernames are still unknown.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Fixed reviewer Discord alerts not firing for five official builders whose usernames were missing or wrong in the enrollment allowlist.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.7.0 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.7.0</span>
+                        <span class="cl-version-date">2026-10-19</span>
+                        <span class="cl-version-tag">Submission Tracker Enhancements</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Added a CSV export button that downloads the currently filtered and sorted submissions, including cohort, milestone, status, late flag, submission and update timestamps, repo URL, and issue URL.</li>
+                            <li>Added shareable dashboard state: the active cohort view, search query, milestone filter, and status filter are written to the URL, so a reviewer can bookmark or share an exact queue.</li>
+                            <li>Added milestone pass-rate bars and a <code>passed / submitted</code> count to the milestone progress cards.</li>
+                            <li>Added a live result count and a <strong>Clear filters</strong> action below the filters, plus tests for escaping, URL state, and CSV generation.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Renamed the table's <strong>Days</strong> column to <strong>Elapsed</strong>, with a tooltip clarifying that it measures days since submission.</li>
+                            <li>Table headers now expose <code>aria-sort</code> so screen readers can announce the active sort.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Escaped builder names, cohorts, and milestones before inserting them into the table, and restricted repo and issue links to <code>http</code>/<code>https</code>. Issue-form values are user-controlled and were previously rendered as raw HTML.</li>
+                            <li>Prefix spreadsheet-formula characters in exported CSV cells to prevent CSV injection from issue-controlled fields.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.6.1 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.6.1</span>
+                        <span class="cl-version-date">2026-10-19</span>
+                        <span class="cl-version-tag">Progress Snapshot Publishing Fix</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Added unit coverage for the progress snapshot pipeline: <code>pytest</code> tests for snapshot generation and comparison in <code>progress_snapshot.py</code>, and Node tests for the dashboard's snapshot URL and staleness helpers. CI now runs both suites.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Moved <code>progress-snapshot.json</code> out of <code>docs/data/</code> and onto an unprotected <code>progress-data</code> branch. The dashboard fetches it from <code>raw.githubusercontent.com</code> and still falls back to the live GitHub API when the snapshot is unavailable, so <code>main</code> branch protection stays intact.</li>
+                            <li>The dashboard now shows the snapshot's <code>generated_at</code> timestamp instead of the browser's current time, and highlights snapshots older than 12 hours as potentially delayed.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Fixed <code>progress-snapshot.yml</code> failing on every hourly run with <code>GH006: Protected branch update failed</code> because branch protection on <code>main</code> requires a pull request. The workflow now publishes to the <code>progress-data</code> branch and creates it on first run if needed.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.6.0 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.6.0</span>
+                        <span class="cl-version-date">2026-09-16</span>
+                        <span class="cl-version-tag">Community Projects and Builder Tooling</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Added a <strong>Community projects</strong> section to the docs site, with a new <code>docs/data/community-projects.json</code> that the homepage renders into cards. Each project is labelled <code>community</code> or <code>individual</code> in the data file, so classifying a project later is a one-word change. The section states plainly that these are independent builder- and volunteer-built projects rather than official program metrics, so a project's own figures never compete with the submission tracker. First entry: the <code>dep-submission-pipeline</code> capstone by <code>kimodri</code>.</li>
+                            <li>Added <code>progress-snapshot.yml</code> &mdash; hourly workflow that commits a trimmed issue snapshot to <code>docs/data/progress-snapshot.json</code>, so the progress dashboard no longer depends on the visitor's unauthenticated GitHub API quota (60 requests/hour/IP). Commits are skipped when the data has not changed.</li>
+                            <li>Added a Milestone Self-Check workflow to the starter kit &mdash; builders see the official structural checks on every push and can run a targeted pass/fail check for one milestone before submitting. The checker script is fetched from this repo at run time, so builder copies never drift from the central validator. Ships the "builder-side prechecks" part of #2.</li>
+                            <li>Added <code>docs/RESOURCES.md</code> &mdash; Philippine open data sources, general dataset catalogs, and DEP community links, linked from the root README, the six phase READMEs, and the week 2 data-discovery resources. (#3)</li>
+                            <li>Added a LinkedIn badge/CTA to the homepage Updates section so LinkedIn-sourced posts are visually distinguished from other updates, and featured the latest DEP builder cohort spotlight from LinkedIn as the top update.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Changed the progress dashboard to render from the committed snapshot first, falling back to the live GitHub API when the snapshot is unavailable.</li>
+                            <li>Removed 18 builders still at milestone 0 from the public builder directory; the snapshot now shows the 32 builders who have progressed beyond onboarding.</li>
+                            <li>Unfeatured the Week 2 check-in update in <code>docs/data/updates.json</code> now that a newer post is featured.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.5.4 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.5.4</span>
+                        <span class="cl-version-date">2026-09-16</span>
+                        <span class="cl-version-tag">Recheck Hash and Guidance Consistency</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li><code>extract_recheck_hash()</code> in <code>milestone_policy.py</code> still required exactly 40 characters; it now accepts the same 7–40 character hashes as the recheck parsers in <code>milestone-recheck.yml</code> and <code>_milestone-evaluate.yml</code>, with a cross-reference comment so the three cannot drift silently again.</li>
+                            <li>Restored the missing <code>0.5.3</code> section on this page — it existed in <code>CHANGELOG.md</code> but the page had skipped it.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>Corrected the <code>/recheck</code> guidance across the seven issue templates, <code>docs/FAQ.md</code>, <code>docs/VOLUNTEER_GUIDE.md</code>, <code>docs/MILESTONE_CHECKLIST.md</code>, <code>docs/MILESTONE_PIPELINE_MENTOR_GUIDE.md</code>, and the starter kit README. They asked builders for a "full 40-character commit hash" even though short hashes have been accepted since <code>0.5.2</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
+                <!-- 0.5.3 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.5.3</span>
+                        <span class="cl-version-date">2026-08-03</span>
+                        <span class="cl-version-tag">Nested Data Directory Support</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>Fixed the M2, M3, and M5 data directory checks ignoring files inside subdirectories of <code>data/raw/</code> and <code>data/processed/</code>. Builders who group raw files by source or year no longer fail the auto-check with real data committed. (#170)</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Added a CI workflow that runs the milestone script tests on pull requests touching <code>.github/scripts/</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
 
                 <!-- 0.5.2 -->
                 <div class="cl-version">
@@ -486,6 +881,6 @@
             </nav>
         </footer>
 
-        <script src="assets/site.js?v=9"></script>
+        <script src="assets/site.js?v=12"></script>
     </body>
 </html>

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "dep-submission-pipeline",
+    "title": "DEP Open Track Submission Pipeline",
+    "type": "individual",
+    "author": "kimodri",
+    "cohort": "2026-A",
+    "summary": "A medallion pipeline and Kimball star-schema model built over the Open Track's own milestone submission issues, turning the same data our tracker reads into a builder-facing view of schedule health and progress.",
+    "highlights": [
+      "On-track vs delayed builder KPIs",
+      "Milestone completion rate over time",
+      "Reviewer workload and intervention queue"
+    ],
+    "tags": [
+      "Python",
+      "Star schema",
+      "GitHub Actions"
+    ],
+    "liveUrl": "https://kimodri.github.io/dep-submission-pipeline/",
+    "repoUrl": "https://github.com/kimodri/dep-submission-pipeline",
+    "featured": true
+  }
+]

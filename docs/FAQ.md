@@ -44,7 +44,7 @@ Yes. The pacing is meant to work for students and working professionals, but you
 
 **Q: What happens if I miss a milestone deadline?**
 
-Your issue remains open and continues through the normal automated checks, prerequisite queue, and human review. The system adds a `late-submission` indicator so the timing stays visible, but it does not reject or close the issue. Do not open a replacement issue; post `/recheck <40-character-hash>` on the original issue if revisions are requested.
+Your issue remains open and continues through the normal automated checks, prerequisite queue, and human review. The system adds a `late-submission` indicator so the timing stays visible, but it does not reject or close the issue. Do not open a replacement issue; post `/recheck <commit-hash>` on the original issue if revisions are requested.
 
 **Q: I don't know what project to build. What do I do?**
 

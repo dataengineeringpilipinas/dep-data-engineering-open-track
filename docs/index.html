@@ -8,7 +8,7 @@
             content="Onboarding site for the DEP Engineering Program (Open Track) 2026 Cohort, a community-powered build sprint by Data Engineering Pilipinas."
         />
         <title>DEP Engineering Program</title>
-        <link rel="stylesheet" href="assets/site.css?v=10" />
+        <link rel="stylesheet" href="assets/site.css?v=12" />
     </head>
     <body>
         <a class="skip-link" href="#main">Skip to content</a>
@@ -38,6 +38,7 @@
                     <a href="#about">About</a>
                     <a href="#process">Process</a>
                     <a href="#outputs">Outputs</a>
+                    <a href="#projects">Projects</a>
                     <a href="ai-guide.html">AI Guide</a>
                     <a href="#updates">Updates</a>
                     <a href="#builders">Builders</a>
@@ -374,6 +375,35 @@
             </section>
 
             <section
+                class="content-band projects-band"
+                id="projects"
+                aria-labelledby="projects-title"
+            >
+                <div class="section-heading">
+                    <p class="section-label">Community projects</p>
+                    <h2 class="section-h2" id="projects-title">
+                        Built by the <em>community.</em>
+                    </h2>
+                    <p class="section-sub">
+                        Projects builders and volunteers shipped on their own
+                        time — some of them pipelines over this program's own
+                        submission data. These are independent projects, not
+                        official program metrics; the
+                        <a href="progress.html">submission tracker</a> stays the
+                        source of truth.
+                    </p>
+                </div>
+
+                <div
+                    class="project-grid"
+                    data-community-projects
+                    aria-live="polite"
+                >
+                    <p class="builder-empty">Loading projects...</p>
+                </div>
+            </section>
+
+            <section
                 class="content-band ai-band"
                 id="ai"
                 aria-labelledby="ai-title"
@@ -447,7 +477,7 @@
                     </h2>
                     <p class="section-sub">
                         DEP tracks the cohort like a data program: builders,
-                        milestones, phases, and support signals are reviewed
+                        milestones, and phases are reviewed
                         regularly. This public view only shows sanitized fields
                         suitable for the website.
                     </p>
@@ -522,7 +552,7 @@
                         <article class="builder-insight-card reveal">
                             <div class="builder-card-heading">
                                 <h3>Status distribution</h3>
-                                <span>Support signal</span>
+                                <span>Public status</span>
                             </div>
                             <div
                                 class="builder-bars"
@@ -575,7 +605,7 @@
                                 id="builder-search"
                                 type="search"
                                 data-builder-search
-                                placeholder="Search builders, GitHub, squad, or topic"
+                                placeholder="Search builders, GitHub, or project"
                             />
                             <label
                                 class="builder-filter-label"
@@ -1193,6 +1223,6 @@
             </nav>
         </footer>
 
-        <script src="assets/site.js?v=9"></script>
+        <script src="assets/site.js?v=12"></script>
     </body>
 </html>

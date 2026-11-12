@@ -38,3 +38,5 @@ By the end of Week 6, you will have:
 - [ ] All 3 ingestion paths (API / scraping / manual) are valid — deliverable format is the same
 
 **Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)
+
+Looking for datasets or community links? See [Resources](../docs/RESOURCES.md).

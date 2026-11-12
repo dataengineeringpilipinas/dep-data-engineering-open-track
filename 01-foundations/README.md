@@ -67,3 +67,5 @@ For examples and prompt patterns, see [Using AI in the DEP Open Track](../docs/A
 - [ ] First pull path documented
 
 **Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)
+
+Looking for datasets or community links? See [Resources](../docs/RESOURCES.md).

@@ -42,3 +42,5 @@ By the end of Week 24, you will have:
 - [ ] Short presentation or demo script prepared
 
 **Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)
+
+Looking for datasets or community links? See [Resources](../docs/RESOURCES.md).

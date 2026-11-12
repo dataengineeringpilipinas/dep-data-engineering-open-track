@@ -182,6 +182,19 @@ pip freeze > requirements.txt
 
 ---
 
+## Self-Check Before You Submit
+
+Your copy of the starter kit ships with a **Milestone Self-Check** workflow (`.github/workflows/self-check.yml`). It runs the exact same structural checks the official auto-checker runs, so you catch failures before opening a milestone issue instead of after.
+
+- **On every push**, it posts a summary table to the run (Actions tab): every milestone, pass/fail, and which checks failed. It never turns your build red; failing M5 while you are working on M2 is expected.
+- **Before submitting a milestone**, run it manually: Actions tab, select **Milestone Self-Check**, click **Run workflow**, pick your milestone. Green means the auto-checker will accept the structure; red tells you exactly what is missing.
+
+Copied the starter kit before this file existed? Add it to your repo at `.github/workflows/self-check.yml`: [raw file](https://raw.githubusercontent.com/dataengineeringpilipinas/dep-data-engineering-open-track/main/cohorts/starter-kit/.github/workflows/self-check.yml).
+
+The self-check covers structure only (files and folders in the right places). Reviewers still evaluate the content.
+
+---
+
 ## Step 6 — Submit at Each Milestone
 
 At the end of each phase, submit a milestone issue on the **curriculum repo**:
@@ -195,10 +208,10 @@ At the end of each phase, submit a milestone issue on the **curriculum repo**:
 ```bash
 git log --oneline -1
 # Example output: a1b2c3d feat: add ingestion script
-# Your commit hash is: a1b2c3d (or the full 40-character version)
+# Your commit hash is: a1b2c3d (short or full — both work)
 ```
 
-Copy the full hash:
+Or grab the full hash:
 
 ```bash
 git log -1 --format="%H"

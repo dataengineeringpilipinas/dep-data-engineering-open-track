@@ -4,15 +4,221 @@ All notable changes to this repository are recorded here.
 
 ---
 
-## [Unreleased]
-
-### Added
-
-- Added `sla-nag.yml` — daily workflow automating the volunteer guide's Review Escalation Policy: day-5 moderator ping and day-7 System Lead escalation on `ready-for-review` issues (with Discord mirror), plus a day-7 builder nudge on idle `needs-improvement` issues. One comment per stage per review cycle; `dry_run` dispatch input for safe testing.
+## [0.9.1] - 2026-11-08 — Enroll a Catching-Up Builder
 
 ### Changed
 
-- Changed the progress dashboard staleness badges from 3/5 days to 5/7 days to match the documented escalation policy.
+- `michaelbacus-lab` (Michael Bacus) is now an enrolled participant, approved by the program team. His milestones already run through the normal queue; enrollment adds him to the public builder directory and to reviewer support.
+
+---
+
+## [0.9.0] - 2026-11-07 — Declare the Phase 5 Path at M4
+
+### Added
+
+- The M4 submission form now asks for the Phase 5 path (Path A, Path B, or Undecided), so reviewers can confirm it at M4 as the review rubric expects. The path is not scored.
+
+---
+
+## [0.8.3] - 2026-11-07 — Manual Dispatch and Named Commits
+
+### Changed
+
+- Evaluation comments now name the full commit that was checked, so a builder can confirm which snapshot produced a verdict.
+
+### Fixed
+
+- Manually dispatching **Milestone Submission Evaluation** no longer fails before any job starts. `workflow_dispatch` inputs arrive as strings, and passing `issue_number` straight into a `number`-typed reusable workflow input rejected the job; the caller now coerces it with `fromJSON`.
+
+---
+
+## [0.8.2] - 2026-11-07 — Record a Dropped Builder
+
+### Changed
+
+- `shivaa-bit` now shows as `Dropped` on the public builder directory, set through `status_overrides` after the program lead confirmed she left the program.
+
+---
+
+## [0.8.1] - 2026-10-26 — Clearer Public Builder Status
+
+### Changed
+
+- Public builder status now reads `Enrolled` (no submissions), `In progress` (at least one submission), `Completed` (M6 passed), or `Dropped` (manual), instead of the ambiguous `Active` label.
+- `YeXiu2001` and `sarmientobengjii` are published by username only until their roster name mappings are confirmed.
+
+### Fixed
+
+- Builders with no submissions are no longer presented as active on the public homepage.
+- Bumped the homepage script cache version so returning visitors load the new public status labels.
+
+---
+
+## [0.8.0] - 2026-10-26 — Automated Builder Directory
+
+### Added
+
+- Added `.github/scripts/builders_snapshot.py`, which derives the public builder directory from the hourly milestone issue snapshot and the enrollment allowlist.
+- Added display names, name opt-outs, cohort start date, and manual status overrides to `.github/enrolled-participants.json`.
+- Added tests for implied milestone passes, duplicate/late filtering, M5 path mapping, project-title extraction, active-week calculation, name opt-outs, and manual status overrides.
+
+### Changed
+
+- The homepage now loads the generated `builders.json` from the `progress-data` branch and falls back to the checked-in copy.
+- The public directory shows Active, Dropped, and Completed builders. At Risk remains an internal support signal documented in `docs/VOLUNTEER_GUIDE.md`.
+- Project titles are derived from the latest submission title, and the unmaintained squad field is no longer displayed.
+- CI now runs when the homepage, builder data, or homepage assets change.
+
+### Fixed
+
+- The homepage now reports 37 builders, 102 milestones passed, the current phases, and Week 19 instead of the stale 32 builders, 0 passed, all-Foundations, Week 2 values.
+- Builders `MCabs28`, `kathulhur`, and `ksdizon`, who had submissions but were missing from the directory, now appear.
+
+---
+
+## [0.7.5] - 2026-10-19 — Resilient Short-SHA Snapshot Resolution
+
+### Added
+
+- Added `.github/scripts/clone_snapshot.py`, which clones a builder repo, resolves the submitted revision, checks it out, and reports clone status back to the workflow.
+- Added behavioral tests covering reachable and orphaned commits, missing hashes, invalid input, and unclonable repositories.
+
+### Fixed
+
+- Submissions by short hash for commits no longer reachable from a ref (for example after a force-push or rebase) now fail with a distinct error explaining that the full 40-character hash is required, instead of a generic "commit not found" message.
+- Full 40-character hashes for unadvertised commits are now resolved by fetching the exact object before failing.
+
+---
+
+## [0.7.4] - 2026-10-19 — M5 Output Location Alignment
+
+### Fixed
+
+- The M5 structural check now accepts a real output file in either `data/processed/` or `output/`, matching the hint and the M5 self-check. Previously a builder who saved model results to `output/` failed despite following the instructions.
+
+---
+
+## [0.7.3] - 2026-10-19 — CI Covers Workflow Changes
+
+### Changed
+
+- The CI workflow now triggers on any change under `.github/`, so edits to `_milestone-evaluate.yml`, `milestone-check.yml`, `milestone-recheck.yml`, `milestone-repair.yml`, `milestone-verdict.yml`, and `notify-reviewer.yml` run the script tests instead of shipping without feedback.
+
+---
+
+## [0.7.2] - 2026-10-19 — Shared Milestone Policy Module
+
+### Added
+
+- Added `.github/scripts/milestone_logic.js` as the single source of truth for milestone field extraction, repo/commit-hash parsing, commenter authorization, deadline classification, milestone sequencing, and state decisions.
+- Added Node tests for the shared policy helpers and an invariant test asserting the policy-consumer workflows reference the shared module.
+
+### Changed
+
+- The evaluate, recheck, verdict, and notify workflows now `require` the shared module instead of re-implementing policy logic inline.
+
+### Fixed
+
+- Removed the unused Python policy mirror (`milestone_policy.py` and its tests), whose tests passed independently of the JavaScript that actually ran. The tested module is now the code the workflows execute.
+
+---
+
+## [0.7.1] - 2026-10-19 — Enrollment Allowlist Corrections
+
+### Added
+
+- Added regression tests that require every GitHub username in `docs/data/builders.json` to appear in `enrolled-participants.json`, and that prevent workflows from reintroducing a bot-applied `passed` label.
+
+### Changed
+
+- Added `rainer-r`, `ksdizon`, `aezhile`, `credough`, and `Froncoyz` to the enrollment allowlist based on the 50-person roster and their submitted issues.
+- Replaced the dead `Connette` entry with `Froncoyz`, and corrected the roster entries for Aaron Creed Celindro (`credough`) and Froncoyz Verano (`Froncoyz`).
+- Removed resolved names from `_missing_github` so it reflects only participants whose usernames are still unknown.
+
+### Fixed
+
+- Fixed reviewer Discord alerts not firing for five official builders whose usernames were missing or wrong in the enrollment allowlist.
+
+---
+
+## [0.7.0] - 2026-10-19 — Submission Tracker Enhancements
+
+### Added
+
+- Added a CSV export button that downloads the currently filtered and sorted submissions, including cohort, milestone, status, late flag, submission and update timestamps, repo URL, and issue URL.
+- Added shareable dashboard state: the active cohort view, search query, milestone filter, and status filter are written to the URL, so a reviewer can bookmark or share an exact queue.
+- Added milestone pass-rate bars and a `passed / submitted` count to the milestone progress cards.
+- Added a live result count and a **Clear filters** action below the filters, plus tests for escaping, URL state, and CSV generation.
+
+### Changed
+
+- Renamed the table's **Days** column to **Elapsed**, with a tooltip clarifying that it measures days since submission.
+- Table headers now expose `aria-sort` so screen readers can announce the active sort.
+
+### Fixed
+
+- Escaped builder names, cohorts, and milestones before inserting them into the table, and restricted repo and issue links to `http`/`https`. Issue-form values are user-controlled and were previously rendered as raw HTML.
+- Prefix spreadsheet-formula characters in exported CSV cells to prevent CSV injection from issue-controlled fields.
+
+---
+
+## [0.6.1] - 2026-10-19 — Progress Snapshot Publishing Fix
+
+### Added
+
+- Added unit coverage for the progress snapshot pipeline: `pytest` tests for snapshot generation and comparison in `progress_snapshot.py`, and Node tests for the dashboard's snapshot URL and staleness helpers. CI now runs both suites.
+
+### Changed
+
+- Moved `progress-snapshot.json` out of `docs/data/` and onto an unprotected `progress-data` branch. The dashboard fetches it from `raw.githubusercontent.com` and still falls back to the live GitHub API when the snapshot is unavailable, so `main` branch protection stays intact.
+- The dashboard now shows the snapshot's `generated_at` timestamp instead of the browser's current time, and highlights snapshots older than 12 hours as potentially delayed.
+
+### Fixed
+
+- Fixed `progress-snapshot.yml` failing on every hourly run with `GH006: Protected branch update failed` because branch protection on `main` requires a pull request. The workflow now publishes to the `progress-data` branch and creates it on first run if needed.
+
+---
+
+## [0.6.0] - 2026-09-16 — Community Projects and Builder Tooling
+
+### Added
+
+- Added a **Community projects** section to the docs site, with a new `docs/data/community-projects.json` that the homepage renders into cards. Each project is labelled `community` or `individual` in the data file, so classifying a project later is a one-word change. The section states plainly that these are independent builder- and volunteer-built projects rather than official program metrics, so a project's own figures never compete with the submission tracker. First entry: the `dep-submission-pipeline` capstone by `kimodri`.
+- Added `progress-snapshot.yml` — hourly workflow that commits a trimmed issue snapshot to `docs/data/progress-snapshot.json`, so the progress dashboard no longer depends on the visitor's unauthenticated GitHub API quota (60 requests/hour/IP). Commits are skipped when the data has not changed.
+- Added a Milestone Self-Check workflow to the starter kit — builders see the official structural checks on every push and can run a targeted pass/fail check for one milestone before submitting. The checker script is fetched from this repo at run time, so builder copies never drift from the central validator. Ships the "builder-side prechecks" part of #2.
+- Added `docs/RESOURCES.md` — Philippine open data sources, general dataset catalogs, and DEP community links, linked from the root README, the six phase READMEs, and the week 2 data-discovery resources. (#3)
+- Added a LinkedIn badge/CTA to the homepage Updates section so LinkedIn-sourced posts are visually distinguished from other updates, and featured the latest DEP builder cohort spotlight from LinkedIn as the top update.
+
+### Changed
+
+- Changed the progress dashboard to render from the committed snapshot first, falling back to the live GitHub API when the snapshot is unavailable.
+- Removed 18 builders still at milestone 0 from the public builder directory; the snapshot now shows the 32 builders who have progressed beyond onboarding.
+- Unfeatured the Week 2 check-in update in `docs/data/updates.json` now that a newer post is featured.
+
+---
+
+## [0.5.4] - 2026-09-16 — Recheck Hash and Guidance Consistency
+
+### Fixed
+
+- Fixed `extract_recheck_hash()` in `milestone_policy.py` still requiring exactly 40 characters. It now accepts the same 7–40 character hashes as the recheck parsers in `milestone-recheck.yml` and `_milestone-evaluate.yml`, with a cross-reference comment so the three cannot drift silently again.
+- Restored the missing `0.5.3` block in `docs/changelog.html`; the section existed in `CHANGELOG.md` but the page had skipped it.
+
+### Changed
+
+- Corrected the `/recheck` guidance across the seven issue templates, `docs/FAQ.md`, `docs/VOLUNTEER_GUIDE.md`, `docs/MILESTONE_CHECKLIST.md`, `docs/MILESTONE_PIPELINE_MENTOR_GUIDE.md`, and the starter kit README. They asked builders for a "full 40-character commit hash" even though short hashes have been accepted since `0.5.2`.
+
+---
+
+## [0.5.3] - 2026-08-03 — Nested Data Directory Support
+
+### Fixed
+
+- Fixed the M2, M3, and M5 data directory checks ignoring files inside subdirectories of `data/raw/` and `data/processed/`. Builders who group raw files by source or year no longer fail the auto-check with real data committed. (#170)
+
+### Added
+
+- Added a CI workflow that runs the milestone script tests on pull requests touching `.github/scripts/`.
 
 ---
 

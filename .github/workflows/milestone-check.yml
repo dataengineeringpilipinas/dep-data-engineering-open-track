@@ -10,7 +10,7 @@ on:
         required: true
         type: number
       commit_hash:
-        description: Optional 40-character commit hash override
+        description: Optional commit hash override (short or full)
         required: false
         type: string
 
@@ -34,7 +34,9 @@ jobs:
     if: github.event_name == 'workflow_dispatch'
     uses: ./.github/workflows/_milestone-evaluate.yml
     with:
-      issue_number: ${{ inputs.issue_number }}
+      # workflow_dispatch inputs reach the workflow as strings, but the reusable
+      # workflow declares issue_number as a number. Coerce before passing.
+      issue_number: ${{ fromJSON(inputs.issue_number) }}
       commit_hash: ${{ inputs.commit_hash }}
       check_duplicate: false
     secrets: inherit
