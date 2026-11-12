@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T11:15:54Z",
+  "generated_at": "2026-11-12T18:59:00Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -2843,7 +2843,7 @@
       "number": 143,
       "pull_request": false,
       "title": "[M1] Miko John Torres — Philippine Tech Skills Demand Tracker",
-      "updated_at": "2026-07-28T11:42:41Z",
+      "updated_at": "2026-11-12T12:55:14Z",
       "user": {
         "login": "miksss1412"
       }
@@ -3758,7 +3758,7 @@
       "number": 196,
       "pull_request": false,
       "title": "[M3] supjkay — Beating the Rush: The Metro Manila Rail Dashboard",
-      "updated_at": "2026-11-07T05:19:21Z",
+      "updated_at": "2026-11-12T12:55:08Z",
       "user": {
         "login": "supjkay"
       }
@@ -3885,7 +3885,7 @@
     },
     {
       "body": "### Builder Name\n\nJan Ric Hogat\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Jan-Ric/dep-data-engineering-jan-ric\n\n### Commit Hash\n\nad1d0bc8da77903fbd371b3a23d1ef24a0d4d5cf\n\n### Self-Check\n\n- [x] `scripts/transform.py` exists and runs without crashing.\n- [ ] `data/processed/` contains at least one output file from the transformation.\n- [x] `requirements.txt` is up to date.\n- [x] My README documents the schema and how to run the transformation script.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-12T12:54:56Z",
       "created_at": "2026-09-12T15:26:19Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/202",
       "labels": [
@@ -3893,7 +3893,7 @@
           "name": "milestone-submission"
         },
         {
-          "name": "needs-improvement"
+          "name": "passed"
         },
         {
           "name": "M3"
@@ -3902,7 +3902,7 @@
       "number": 202,
       "pull_request": false,
       "title": "[M3] Jan Ric Hogat — Solar Power Plant Inverter Analysis: A 12-month AC output quantification of inverters with a negative performance ratio gap",
-      "updated_at": "2026-10-11T08:09:35Z",
+      "updated_at": "2026-11-12T12:54:58Z",
       "user": {
         "login": "Jan-Ric"
       }
@@ -4001,7 +4001,7 @@
       "number": 206,
       "pull_request": false,
       "title": "[M3] <John Kenneth Priol> — <NCR Air Quality and EV Fleet Growth: Measuring EVIDA's Impact (2014-Present)>",
-      "updated_at": "2026-11-07T05:19:18Z",
+      "updated_at": "2026-11-12T12:54:37Z",
       "user": {
         "login": "johnkennethpriol"
       }
@@ -4214,10 +4214,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M2"
+          "name": "needs-improvement"
         },
         {
-          "name": "ready-for-review"
+          "name": "M2"
         },
         {
           "name": "late-submission"
@@ -4226,7 +4226,7 @@
       "number": 215,
       "pull_request": false,
       "title": "[M2] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-11-12T10:24:32Z",
+      "updated_at": "2026-11-12T11:50:12Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4409,7 +4409,7 @@
       "number": 222,
       "pull_request": false,
       "title": "[M3] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-11-02T13:30:34Z",
+      "updated_at": "2026-11-12T13:14:23Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4565,7 +4565,7 @@
       "number": 237,
       "pull_request": false,
       "title": "[M4] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-11-06T11:27:45Z",
+      "updated_at": "2026-11-12T13:14:30Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4589,7 +4589,7 @@
       "number": 238,
       "pull_request": false,
       "title": "[M5] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-11-05T05:36:38Z",
+      "updated_at": "2026-11-12T13:14:36Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4703,16 +4703,16 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M5"
+          "name": "needs-improvement"
         },
         {
-          "name": "ready-for-review"
+          "name": "M5"
         }
       ],
       "number": 247,
       "pull_request": false,
       "title": "[M5] Lord Gideon Marin — Temporal Dynamics of Connection-Seeking in PH r4r Subreddits",
-      "updated_at": "2026-11-09T06:53:16Z",
+      "updated_at": "2026-11-12T12:54:34Z",
       "user": {
         "login": "lordgpm"
       }
