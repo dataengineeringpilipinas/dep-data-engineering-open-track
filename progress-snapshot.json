@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-11T22:00:59Z",
+  "generated_at": "2026-11-12T03:01:37Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -4746,7 +4746,7 @@
     },
     {
       "body": "### Builder Name\n\nRobert Tulagan\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/robaaaru/dep-data-engineering-open-track-roberttulagan\n\n### Commit Hash\n\nc6ad2cce27714f8b99375d09195402b7fbff8e68\n\n### Which path did you take?\n\nPath B — Advanced EDA & Stakeholder Track\n\n### Notes (optional)\n\nSegmentation Analysis and KPI Metrics and Definitions are in the same notebook used in M4, I updated it to have comprehensive sections. I also edited the README.md to become laymanized and less verbose since both the notebook and methodology talks about the project in more technical depth.\n\n### Self-Check (both paths)\n\n- [x] `requirements.txt` is up to date with all dependencies.\n- [x] `notebooks/` contains analysis or model notebooks.\n- [x] `data/processed/` contains all output files needed for the next phase.\n- [x] The commit hash above points to my latest submission snapshot.\n\n### Path A Additional Checks (skip if Path B)\n\n- [ ] Model results or predictions are saved to `output/` or `data/processed/`.\n- [ ] Model metrics and assumptions are documented in the notebook or README.\n\n### Path B Additional Checks (skip if Path A)\n\n- [x] Segmentation or advanced EDA outputs are saved.\n- [x] A stakeholder brief or KPI summary is included.",
-      "closed_at": null,
+      "closed_at": "2026-11-12T01:28:55Z",
       "created_at": "2026-11-09T13:42:24Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/249",
       "labels": [
@@ -4754,10 +4754,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M5"
+          "name": "passed"
         },
         {
-          "name": "ready-for-review"
+          "name": "M5"
         },
         {
           "name": "late-submission"
@@ -4766,7 +4766,7 @@
       "number": 249,
       "pull_request": false,
       "title": "[M5] Robert Tulagan — Rice Price Spikes and Typhoon Warnings: A Province-Level Overlap Analysis",
-      "updated_at": "2026-11-11T20:02:10Z",
+      "updated_at": "2026-11-12T01:28:56Z",
       "user": {
         "login": "robaaaru"
       }
