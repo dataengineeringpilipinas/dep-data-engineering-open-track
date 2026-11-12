@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T03:01:37Z",
+  "generated_at": "2026-11-12T11:15:54Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -4176,7 +4176,7 @@
     },
     {
       "body": "### Builder Name\n\nMichael Bacus\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/michaelbacus-lab/dep-data-engineering-open-track\n\n### Commit Hash\n\n7614c7d\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-12T10:24:16Z",
       "created_at": "2026-09-26T09:00:21Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/214",
       "labels": [
@@ -4184,10 +4184,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M1"
+          "name": "passed"
         },
         {
-          "name": "ready-for-review"
+          "name": "M1"
         },
         {
           "name": "late-submission"
@@ -4199,7 +4199,7 @@
       "number": 214,
       "pull_request": false,
       "title": "[M1] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-11-07T05:12:55Z",
+      "updated_at": "2026-11-12T10:24:17Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4217,7 +4217,7 @@
           "name": "M2"
         },
         {
-          "name": "waiting-on-prerequisite"
+          "name": "ready-for-review"
         },
         {
           "name": "late-submission"
@@ -4226,7 +4226,7 @@
       "number": 215,
       "pull_request": false,
       "title": "[M2] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-11-02T13:30:13Z",
+      "updated_at": "2026-11-12T10:24:32Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4487,7 +4487,7 @@
       "number": 225,
       "pull_request": false,
       "title": "[M4] Vhon Raven Dingal — Davao Commute Router",
-      "updated_at": "2026-10-27T10:36:46Z",
+      "updated_at": "2026-11-12T04:09:25Z",
       "user": {
         "login": "vn0raven"
       }
@@ -4664,7 +4664,7 @@
       "number": 242,
       "pull_request": false,
       "title": "[M5] Kier Guiang — National Underemployment Forecast: Is Philippine Economic Growth Creating Real Jobs?",
-      "updated_at": "2026-11-06T18:56:27Z",
+      "updated_at": "2026-11-12T04:09:24Z",
       "user": {
         "login": "Kaigosama"
       }
