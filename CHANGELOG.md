@@ -4,6 +4,15 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.9.4] - 2026-11-12 — Issue Intake Templates
+
+### Added
+
+- Bug reports now have their own issue form (labeled `bug`, kept out of the milestone pipeline), and people building along without a slot can file a waitlist application (labeled `waitlist`). Blank issues are disabled, and questions route to Discord and the FAQ through contact links.
+- `VOLUNTEER_GUIDE.md` documents the slot backfill process for moderators, and the FAQ has a waitlist entry.
+
+---
+
 ## [0.9.1] - 2026-11-08 — Enroll a Catching-Up Builder
 
 ### Changed
