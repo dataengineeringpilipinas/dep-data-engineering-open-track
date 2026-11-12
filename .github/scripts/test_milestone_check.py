@@ -76,6 +76,21 @@ def test_dir_has_real_files_returns_false_when_dir_missing(tmp_path):
     assert not dir_has_real_files(tmp_path, "data", "raw")
 
 
+def test_dir_has_real_files_finds_nested_file(tmp_path):
+    # Regression test for #170: builders group raw files into subdirectories.
+    d = tmp_path / "data" / "raw" / "psa" / "2026"
+    d.mkdir(parents=True)
+    (d / "data.csv").write_text("col1,col2\n1,2")
+    assert dir_has_real_files(tmp_path, "data", "raw")
+
+
+def test_dir_has_real_files_ignores_nested_gitkeep(tmp_path):
+    d = tmp_path / "data" / "raw" / "source_a"
+    d.mkdir(parents=True)
+    (d / ".gitkeep").write_text("")
+    assert not dir_has_real_files(tmp_path, "data", "raw")
+
+
 # ---------------------------------------------------------------------------
 # M1
 # ---------------------------------------------------------------------------
@@ -184,6 +199,41 @@ def test_m5_fails_when_requirements_empty(tmp_path):
     (processed / "output.csv").write_text("a\n1")
     results = checks_m5(tmp_path)
     assert any("requirements.txt" in n for n in failed_names(results))
+
+
+def test_m5_passes_with_processed_output(tmp_path):
+    (tmp_path / "requirements.txt").write_text("pandas")
+    notebooks = tmp_path / "notebooks"
+    notebooks.mkdir()
+    (notebooks / "model.ipynb").write_text("{}")
+    processed = tmp_path / "data" / "processed"
+    processed.mkdir(parents=True)
+    (processed / "predictions.csv").write_text("a\n1")
+    assert all_passed(checks_m5(tmp_path))
+
+
+def test_m5_passes_with_output_directory_only(tmp_path):
+    # The M5 hint and issue form allow saving outputs to `output/` as well.
+    (tmp_path / "requirements.txt").write_text("pandas")
+    notebooks = tmp_path / "notebooks"
+    notebooks.mkdir()
+    (notebooks / "model.ipynb").write_text("{}")
+    output = tmp_path / "output"
+    output.mkdir()
+    (output / "predictions.csv").write_text("a\n1")
+    assert all_passed(checks_m5(tmp_path))
+
+
+def test_m5_fails_when_no_outputs(tmp_path):
+    (tmp_path / "requirements.txt").write_text("pandas")
+    notebooks = tmp_path / "notebooks"
+    notebooks.mkdir()
+    (notebooks / "model.ipynb").write_text("{}")
+    output = tmp_path / "output"
+    output.mkdir()
+    (output / ".gitkeep").write_text("")
+    results = checks_m5(tmp_path)
+    assert any("output" in n for n in failed_names(results))
 
 
 # ---------------------------------------------------------------------------

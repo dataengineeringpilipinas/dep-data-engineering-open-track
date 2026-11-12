@@ -4,6 +4,7 @@ __pycache__/
 .env
 
 reference-docs/
+.scratch/
 AGENTS.md
 CLAUDE.md
 DESIGN.md

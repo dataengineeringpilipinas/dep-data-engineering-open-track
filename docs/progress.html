@@ -8,8 +8,8 @@
             content="DEP milestone submission tracker for reviewers and organizers."
         />
         <title>Submission Tracker — DEP Engineering Program</title>
-        <link rel="stylesheet" href="assets/site.css?v=10" />
-        <link rel="stylesheet" href="assets/progress.css?v=3" />
+        <link rel="stylesheet" href="assets/site.css?v=12" />
+        <link rel="stylesheet" href="assets/progress.css?v=5" />
     </head>
     <body>
         <a class="skip-link" href="#main">Skip to content</a>
@@ -39,6 +39,7 @@
                     <a href="index.html#about">About</a>
                     <a href="index.html#process">Process</a>
                     <a href="index.html#outputs">Outputs</a>
+                    <a href="index.html#projects">Projects</a>
                     <a href="ai-guide.html">AI Guide</a>
                     <a href="index.html#updates">Updates</a>
                     <a href="index.html#builders">Builders</a>
@@ -91,6 +92,13 @@
                         id="last-updated"
                         aria-live="polite"
                     ></span>
+                    <button
+                        class="progress-export-btn"
+                        type="button"
+                        onclick="exportCsv()"
+                    >
+                        Export CSV
+                    </button>
                     <button
                         class="progress-refresh-btn"
                         type="button"
@@ -160,6 +168,19 @@
                 </select>
             </div>
 
+            <div class="progress-filter-meta">
+                <span id="filter-summary" aria-live="polite"></span>
+                <button
+                    class="progress-clear-btn"
+                    id="clear-filters"
+                    type="button"
+                    onclick="clearFilters()"
+                    hidden
+                >
+                    Clear filters
+                </button>
+            </div>
+
             <section class="progress-section" aria-labelledby="waiting-queue-title">
                 <h2 id="waiting-queue-title">Submissions waiting on a prerequisite</h2>
                 <div id="queue-waiting">
@@ -215,7 +236,8 @@
             </nav>
         </footer>
 
-        <script src="assets/site.js?v=9"></script>
-        <script src="assets/progress.js?v=3"></script>
+        <script src="assets/site.js?v=12"></script>
+        <script src="assets/progress-snapshot.js?v=2"></script>
+        <script src="assets/progress.js?v=5"></script>
     </body>
 </html>

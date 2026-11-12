@@ -1,5 +1,6 @@
 {
   "cohort": "2026-A",
+  "start_date": "2026-06-22",
   "participants": [
     "anonggentlegentle",
     "sarmientobengjii",
@@ -32,13 +33,61 @@
     "penOnFire",
     "robaaaru",
     "Kaigosama",
-    "Connette",
-    "DioVale2002"
+    "DioVale2002",
+    "rainer-r",
+    "ksdizon",
+    "aezhile",
+    "credough",
+    "Froncoyz",
+    "michaelbacus-lab"
   ],
+  "display_names": {
+    "anonggentlegentle": "Balberan, Jaren Kim, C.",
+    "miksss1412": "Torres, Miko John T.",
+    "AdrianeJone": "Abunda, Adriane Jone A.",
+    "johnkennethpriol": "Priol, John Kenneth R.",
+    "navikram03": "Contemprato, Mark Ivan V.",
+    "MCabs28": "Cabael, Mark",
+    "jffabrero": "Fabrero, Jerome F.",
+    "kathulhur": "Crisostomo, Joseph",
+    "jimwellbryllsantos-dot": "Santos, Jimwell Bryll, N",
+    "Naehum-Dela-Cruz": "Dela Cruz, Naehum, D.",
+    "xeind": "Virgines, Xein Deniel M.",
+    "ssuish": "Quidor, Adrean Jan G.",
+    "shivaa-bit": "Jeanne Marie B. Quiñanola",
+    "andreapongco": "Pongco, Andrea Kristine S.",
+    "abgacs": "Gacusan, Prince Abraham, D.",
+    "ambs78": "Asa, Rolando P.",
+    "reinerjohnsantiago": "Santiago, Reiner John, Tigno",
+    "neyu007": "Taclino, Neil Yurri, N",
+    "emojares": "Mojares, Eric T",
+    "lordgpm": "Marin, Lord Gideon P.",
+    "supjkay": "Oania, Leandra E",
+    "Jan-Ric": "Hogat, Jan Ric M.",
+    "yugiakame": "German, Gailyn D.",
+    "Monferium": "Monfero, John Benedict A.",
+    "vn0raven": "Dingal, Vhon Raven",
+    "jatjatlopez": "Lopez, John Benedict B.",
+    "penOnFire": "Fernandez, Sean M.",
+    "robaaaru": "Tulagan, Robert Angelo H.",
+    "Kaigosama": "Guiang, Tristan Kier, D.",
+    "DioVale2002": "Vale, Dionard Ernest D.",
+    "rainer-r": "Alano, Rainer R.",
+    "ksdizon": "Dizon, Ken Shamrock L.",
+    "aezhile": "Camonias, Elizhea C.",
+    "credough": "Celindro, Aaron Creed P.",
+    "Froncoyz": "Verano, Froncoyz Peteros",
+    "michaelbacus-lab": "Bacus, Michael"
+  },
+  "name_opt_outs": [
+    "sarmientobengjii",
+    "YeXiu2001"
+  ],
+  "status_overrides": {
+    "shivaa-bit": "Dropped"
+  },
   "_missing_github": [
-    "Alano, Rainer R.",
     "Caliao, Stefany Mae O.",
-    "Dizon, Ken Shamrock L.",
     "Lopez, John Ghio",
     "Ong, Earl Francis Y.",
     "Limpin, James Matthew P.",
@@ -50,8 +99,6 @@
     "Enriquez, Jose Clarito Antonio P.",
     "Nase, Louiese Gabrielle B.",
     "Cruz, Ian Dave N.",
-    "Camonias, Elizhea C.",
-    "Allen M. Tan",
-    "Celindro, Aaron Creed P."
+    "Allen M. Tan"
   ]
 }

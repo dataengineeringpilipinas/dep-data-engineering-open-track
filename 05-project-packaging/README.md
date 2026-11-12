@@ -51,3 +51,5 @@ If your project question does not naturally call for a model, take **Path B**. D
 - [ ] `requirements.txt` present and up to date
 
 **Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)
+
+Looking for datasets or community links? See [Resources](../docs/RESOURCES.md).

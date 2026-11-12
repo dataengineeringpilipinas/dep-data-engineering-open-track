@@ -121,16 +121,17 @@ if (builderDashboard) {
     "Data Collection",
     "Data Processing",
     "Analysis & Insights",
+    "Predictive / Alt Track",
     "Predictive",
     "Non-Predictive",
     "Packaging & Deployment",
   ];
-  const statusOrder = ["Active", "At Risk", "Dropped", "Completed"];
+  const statusOrder = ["Enrolled", "In progress", "Completed", "Dropped"];
   const statusLabels = {
-    Active: "Active",
-    "At Risk": "At risk",
-    Dropped: "Dropped",
+    Enrolled: "Enrolled",
+    "In progress": "In progress",
     Completed: "Completed",
+    Dropped: "Dropped",
   };
 
   const metaEl = builderDashboard.querySelector("[data-builder-meta]");
@@ -382,7 +383,6 @@ if (builderDashboard) {
       const haystack = [
         builder.name,
         builder.github,
-        builder.squad,
         builder.projectTopic,
         builder.status,
         builder.phase,
@@ -399,16 +399,16 @@ if (builderDashboard) {
   };
 
   const renderStats = () => {
-    const active = builders.filter((builder) => builder.status === "Active").length;
-    const atRisk = builders.filter((builder) => builder.status === "At Risk").length;
+    const enrolled = builders.filter((builder) => builder.status === "Enrolled").length;
+    const inProgress = builders.filter((builder) => builder.status === "In progress").length;
     const completed = builders.filter((builder) => builder.status === "Completed").length;
     const submitted = sumBy(builders, "milestonesSubmitted");
     const passed = sumBy(builders, "milestonesPassed");
 
     statsEl.innerHTML = [
-      ["Total builders", builders.length],
-      ["Active", active],
-      ["At risk", metricValue(atRisk)],
+      ["Builders listed", builders.length],
+      ["Enrolled", metricValue(enrolled)],
+      ["In progress", metricValue(inProgress)],
       ["Completed", metricValue(completed)],
       ["Milestones submitted", metricValue(submitted)],
       ["Milestones passed", metricValue(passed)],
@@ -530,7 +530,6 @@ if (builderDashboard) {
         const github = getSafeUrl(builder.github);
         const name = escapeHtml(builder.name || builder.id || "Builder");
         const topic = escapeHtml(builder.projectTopic || "Project topic to be announced");
-        const squad = escapeHtml(builder.squad || "Squad pending");
         const activeWeek = escapeHtml(builder.activeWeek || "Week pending");
         const phase = escapeHtml(builder.phase || "Phase pending");
         const status = escapeHtml(statusLabels[builder.status] || builder.status || "Status pending");
@@ -548,13 +547,12 @@ if (builderDashboard) {
             <span>${phase}</span>
             <span>${milestone}</span>
             <span>${activeWeek}</span>
-            <span>${squad}</span>
           </div>
           <div class="builder-card-footer">
             <span>${escapeHtml(builder.milestonesPassed || 0)} passed / ${escapeHtml(builder.milestonesSubmitted || 0)} submitted</span>
             ${
               github
-                ? `<a href="${escapeHtml(github)}" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository for ${name} (opens in new tab)">GitHub</a>`
+                ? `<a href="${escapeHtml(github)}" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile for ${name} (opens in new tab)">GitHub</a>`
                 : "<span>GitHub pending</span>"
             }
           </div>
@@ -602,11 +600,28 @@ if (builderDashboard) {
     }
   };
 
-  fetch("data/builders.json")
-    .then((response) => {
-      if (!response.ok) throw new Error("Builder data unavailable");
-      return response.json();
-    })
+  // The hourly snapshot workflow publishes both the issue snapshot and the
+  // derived builder directory to `progress-data`, keeping the public dashboard
+  // out of the protected `main` branch. The checked-in file is a fallback for
+  // local previews and for the brief window before the first workflow run.
+  const builderDataUrls = [
+    "https://raw.githubusercontent.com/dataengineeringpilipinas/dep-data-engineering-open-track/progress-data/builders.json",
+    "data/builders.json",
+  ];
+
+  const fetchBuilderSnapshot = async () => {
+    for (const url of builderDataUrls) {
+      try {
+        const response = await fetch(url, { cache: "no-cache" });
+        if (response.ok) return await response.json();
+      } catch (_) {
+        // Try the next source.
+      }
+    }
+    throw new Error("Builder data unavailable");
+  };
+
+  fetchBuilderSnapshot()
     .then((snapshot) => {
       bindBuilderFilters();
       renderBuilders(snapshot);
@@ -664,6 +679,12 @@ if (builderDashboard) {
     }
   };
 
+  const isLinkedInPost = (post) =>
+    post.source === "linkedin" || /linkedin\.com/i.test(String(post.link || ""));
+
+  const linkedInBadge = () =>
+    `<span class="update-badge update-badge-linkedin"><svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>LinkedIn</span>`;
+
   const renderMainCard = (post) => {
     const title = escapeHtml(post.title || "Update");
     const date = formatDate(post.date);
@@ -671,18 +692,23 @@ if (builderDashboard) {
     const body = post.content ? `<div class="update-body">${renderParagraphs(post.content)}</div>` : "";
     const callout = post.callout ? `<p class="update-callout">${escapeHtml(post.callout)}</p>` : "";
     const social = escapeHtml(post.socialBlurb || "");
-    const badge = post.featured ? `<span class="update-badge">Featured story</span>` : "";
+    const onLinkedIn = isLinkedInPost(post);
+    const badges = [
+      post.featured ? `<span class="update-badge">Featured story</span>` : "",
+      onLinkedIn ? linkedInBadge() : "",
+    ].join("");
     const scrollTarget = post.scrollTarget ? `index.html#${post.scrollTarget}` : null;
     const linkHref = scrollTarget || post.link;
     const isScrollLink = Boolean(post.scrollTarget);
+    const linkLabel = onLinkedIn ? "View post on LinkedIn ↗" : "Read full update";
     const linkHtml = linkHref
-      ? `<p class="update-link"><a href="${escapeHtml(linkHref)}" ${isScrollLink ? 'data-scroll="true"' : 'target="_blank" rel="noopener"'}>Read full update</a></p>`
+      ? `<p class="update-link"><a href="${escapeHtml(linkHref)}" ${isScrollLink ? 'data-scroll="true"' : 'target="_blank" rel="noopener"'}>${linkLabel}</a></p>`
       : "";
 
     return `
-      <article class="update-card update-card-featured">
+      <article class="update-card update-card-featured${onLinkedIn ? " update-card-linkedin" : ""}">
         <div>
-          ${badge}
+          ${badges}
           <strong class="update-title">${title}</strong>
           <time class="update-date">${escapeHtml(date)}</time>
           <p class="update-summary">${teaser}</p>
@@ -697,8 +723,10 @@ if (builderDashboard) {
 
   const renderSnippetItem = (post, active = false) => {
     const teaser = escapeHtml(post.summaryShort || post.summary || "");
+    const onLinkedIn = isLinkedInPost(post);
     return `
       <div class="update-snippet-item${active ? " active" : ""}" data-update-id="${escapeHtml(post.id)}">
+        ${onLinkedIn ? linkedInBadge() : ""}
         <strong class="update-title">${escapeHtml(post.title || "Update")}</strong>
         <time class="update-date">${escapeHtml(formatDate(post.date))}</time>
         <p class="update-summary">${teaser}</p>
@@ -789,5 +817,105 @@ if (builderDashboard) {
     })
     .catch(() => {
       container.innerHTML = `<p class="builder-empty">Updates unavailable.</p>`;
+    });
+})();
+
+// Render the community projects list from data/community-projects.json. These
+// are builder- and volunteer-built projects, not official program metrics.
+(function renderCommunityProjects() {
+  const container = document.querySelector("[data-community-projects]");
+  if (!container) return;
+
+  const escapeHtml = (value) =>
+    String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  const TYPE_LABELS = {
+    community: "Community project",
+    individual: "Individual project",
+  };
+
+  const renderCard = (project) => {
+    const type = TYPE_LABELS[project.type] ? project.type : "individual";
+    const author = escapeHtml(project.author || "");
+    const authorLine = author
+      ? `<p class="project-author">By ${author}${
+          project.cohort ? ` · ${escapeHtml(project.cohort)}` : ""
+        }</p>`
+      : "";
+
+    const highlights = Array.isArray(project.highlights)
+      ? project.highlights.filter(Boolean)
+      : [];
+    const highlightsHtml = highlights.length
+      ? `<ul class="project-highlights">${highlights
+          .map((item) => `<li>${escapeHtml(item)}</li>`)
+          .join("")}</ul>`
+      : "";
+
+    const tags = Array.isArray(project.tags) ? project.tags.filter(Boolean) : [];
+    const tagsHtml = tags.length
+      ? `<ul class="project-tags">${tags
+          .map((tag) => `<li>${escapeHtml(tag)}</li>`)
+          .join("")}</ul>`
+      : "";
+
+    const links = [
+      project.liveUrl
+        ? `<a class="project-link" href="${escapeHtml(project.liveUrl)}" target="_blank" rel="noopener noreferrer">Live project<span class="sr-only"> (opens in new tab)</span></a>`
+        : "",
+      project.repoUrl
+        ? `<a class="project-link" href="${escapeHtml(project.repoUrl)}" target="_blank" rel="noopener noreferrer">Source repo<span class="sr-only"> (opens in new tab)</span></a>`
+        : "",
+    ]
+      .filter(Boolean)
+      .join("");
+
+    return `
+      <article class="project-card project-${type} reveal">
+        <div class="project-badges">
+          <span class="project-badge">${escapeHtml(TYPE_LABELS[type])}</span>
+          ${project.featured ? '<span class="project-badge-featured">Featured</span>' : ""}
+        </div>
+        <h3 class="project-title">${escapeHtml(project.title || "Project")}</h3>
+        ${authorLine}
+        <p class="project-summary">${escapeHtml(project.summary || "")}</p>
+        ${highlightsHtml}
+        ${tagsHtml}
+        ${links ? `<div class="project-links">${links}</div>` : ""}
+      </article>
+    `;
+  };
+
+  fetch("data/community-projects.json")
+    .then((response) => {
+      if (!response.ok) throw new Error("Community projects unavailable");
+      return response.json();
+    })
+    .then((projects) => {
+      if (!Array.isArray(projects) || projects.length === 0) {
+        container.innerHTML = `<p class="builder-empty">No community projects listed yet.</p>`;
+        return;
+      }
+
+      const sorted = [...projects].sort((a, b) => {
+        if (Boolean(b.featured) !== Boolean(a.featured)) {
+          return Number(Boolean(b.featured)) - Number(Boolean(a.featured));
+        }
+        return String(a.title || "").localeCompare(String(b.title || ""));
+      });
+
+      container.innerHTML = sorted.map(renderCard).join("");
+
+      // Cards are injected after the scroll-reveal observer is registered, so
+      // hand them to the shared helper to keep the reveal animation consistent.
+      observeRevealItems(container.querySelectorAll(".reveal"));
+    })
+    .catch(() => {
+      container.innerHTML = `<p class="builder-empty">Community projects unavailable.</p>`;
     });
 })();

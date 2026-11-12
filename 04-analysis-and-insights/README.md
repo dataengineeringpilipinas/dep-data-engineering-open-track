@@ -42,3 +42,5 @@ By the end of Week 16, you will have:
 - [ ] Notebook is organized and annotated
 
 **Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)
+
+Looking for datasets or community links? See [Resources](../docs/RESOURCES.md).
