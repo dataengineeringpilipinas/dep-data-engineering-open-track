@@ -135,28 +135,32 @@ jobs:
                 per_page: 100,
               });
               for (const issue of issues.filter(i => !i.pull_request)) {
-                if (seen.has(`${issue.number}:${stage.label}`)) continue;
-                const since = await labeledDate(issue, stage.label);
-                const days = Math.floor((Date.now() - new Date(since).getTime()) / DAY);
-                if (days < stage.minDays) continue;
-                seen.add(`${issue.number}:${stage.label}`);
+                try {
+                  if (seen.has(`${issue.number}:${stage.label}`)) continue;
+                  const since = await labeledDate(issue, stage.label);
+                  const days = Math.floor((Date.now() - new Date(since).getTime()) / DAY);
+                  if (days < stage.minDays) continue;
+                  seen.add(`${issue.number}:${stage.label}`);
 
-                const marker = `<!-- dep-sla:${stage.key}:${since} -->`;
-                if (await alreadyNagged(issue, marker)) {
-                  core.info(`#${issue.number} already nagged for ${stage.key}`);
-                  continue;
+                  const marker = `<!-- dep-sla:${stage.key}:${since} -->`;
+                  if (await alreadyNagged(issue, marker)) {
+                    core.info(`#${issue.number} already nagged for ${stage.key}`);
+                    continue;
+                  }
+                  if (DRY) {
+                    core.notice(`DRY RUN: would post ${stage.key} on #${issue.number} (${days}d)`);
+                    continue;
+                  }
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issue.number,
+                    body: `${marker}\n${stage.message(issue, days)}`,
+                  });
+                  if (stage.discord) await sendDiscord(issue, stage, days);
+                  core.info(`Posted ${stage.key} on #${issue.number} (${days}d)`);
+                } catch (e) {
+                  core.error(`#${issue.number} ${stage.key} failed: ${e.message}`);
                 }
-                if (DRY) {
-                  core.notice(`DRY RUN: would post ${stage.key} on #${issue.number} (${days}d)`);
-                  continue;
-                }
-                await github.rest.issues.createComment({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: issue.number,
-                  body: `${marker}\n${stage.message(issue, days)}`,
-                });
-                if (stage.discord) await sendDiscord(issue, stage, days);
-                core.info(`Posted ${stage.key} on #${issue.number} (${days}d)`);
               }
             }
