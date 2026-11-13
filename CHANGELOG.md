@@ -4,6 +4,14 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.9.3] - 2026-11-12 — Create a Project Repo, Don't Fork
+
+### Changed
+
+- The homepage, the Starter Kit README and all seven milestone submission forms now tell builders to create their own project repo from the Starter Kit rather than fork this repo. Builders working in forks were being offered GitHub's "open pull request" prompt into the curriculum repo (#252 was opened by accident). The Starter Kit README also says milestones never need a pull request.
+
+---
+
 ## [0.9.2] - 2026-11-11 — Record Two Dropped Builders
 
 ### Changed
