@@ -12,6 +12,14 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.9.2] - 2026-11-11 — Record Two Dropped Builders
+
+### Changed
+
+- `sarmientobengjii` and `YeXiu2001` now show as `Dropped` on the public builder directory, after the program lead confirmed they left the program. Neither ever submitted a milestone. Both stay listed by username only.
+
+---
+
 ## [0.9.1] - 2026-11-08 — Enroll a Catching-Up Builder
 
 ### Changed
