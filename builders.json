@@ -322,10 +322,10 @@
       "projectTopic": "Davao Commute Router",
       "startDate": "2026-06-22",
       "activeWeek": "W22",
-      "currentMilestone": 4,
+      "currentMilestone": 5,
       "milestonesSubmitted": 5,
-      "milestonesPassed": 4,
-      "phase": "Analysis & Insights"
+      "milestonesPassed": 5,
+      "phase": "Predictive / Alt Track"
     },
     {
       "name": "Lopez, John Benedict B.",

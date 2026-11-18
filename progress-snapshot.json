@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-17T22:53:37Z",
+  "generated_at": "2026-11-18T14:01:29Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -4092,7 +4092,7 @@
     },
     {
       "body": "### Builder Name\n\nNathaniel Cornelis Jerardo Bakx\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/ncjbakx04/dep-data-engineering-ncjbakx.git\n\n### Commit Hash\n\nd48faae197e37b31c594b159b9279a44f49000da\n\n### Self-Check\n\n- [x] My repo has the required folder structure — `data/raw/`, `data/processed/`, `scripts/`, `notebooks/`.\n- [x] My `requirements.txt` exists at the repo root.\n- [x] My README describes the problem, data source, and project goal.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-18T13:35:18Z",
       "created_at": "2026-09-16T09:04:00Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/211",
       "labels": [
@@ -4100,10 +4100,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M1"
+          "name": "passed"
         },
         {
-          "name": "ready-for-review"
+          "name": "M1"
         },
         {
           "name": "late-submission"
@@ -4115,7 +4115,7 @@
       "number": 211,
       "pull_request": false,
       "title": "[M1] ncjbakx — Philippine Rice Import Supplier Concentration Tracker",
-      "updated_at": "2026-11-08T14:30:28Z",
+      "updated_at": "2026-11-18T13:35:20Z",
       "user": {
         "login": "ncjbakx04"
       }
@@ -4467,7 +4467,7 @@
     },
     {
       "body": "### Builder Name\n\nVhon Raven Dingal\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/vn0raven/dep-data-engineering-vn0raven\n\n### Commit Hash\n\n610427d\n\n### Self-Check\n\n- [x] `notebooks/` contains at least one `.ipynb` analysis notebook.\n- [x] The notebook runs end-to-end without errors on `data/processed/` inputs.\n- [x] `requirements.txt` is up to date.\n- [x] My README documents the key findings and links to the notebook.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-18T13:29:44Z",
       "created_at": "2026-10-19T07:05:17Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/225",
       "labels": [
@@ -4475,10 +4475,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M4"
+          "name": "passed"
         },
         {
-          "name": "ready-for-review"
+          "name": "M4"
         },
         {
           "name": "late-submission"
@@ -4487,7 +4487,7 @@
       "number": 225,
       "pull_request": false,
       "title": "[M4] Vhon Raven Dingal — Davao Commute Router",
-      "updated_at": "2026-11-17T15:51:18Z",
+      "updated_at": "2026-11-18T13:29:46Z",
       "user": {
         "login": "vn0raven"
       }
