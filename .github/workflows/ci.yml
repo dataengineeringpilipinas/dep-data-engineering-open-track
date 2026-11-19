@@ -47,3 +47,6 @@ jobs:
 
       - name: Run milestone logic tests
         run: node --test .github/scripts/test_milestone_logic.js
+
+      - name: Run fork PR guard tests
+        run: node --test .github/scripts/test_fork_pr_guard.js

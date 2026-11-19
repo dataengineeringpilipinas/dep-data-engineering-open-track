@@ -80,6 +80,30 @@
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
 
+                <!-- 0.12.0 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.12.0</span>
+                        <span class="cl-version-date">2026-11-20</span>
+                        <span class="cl-version-tag">Guard Main Against Fork Pull Requests</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li><code>.github/CODEOWNERS</code> makes the Systems Lead and program lead code owners for <code>.github/</code>, the curriculum phase folders, <code>cohorts/</code>, and <code>docs/</code>.</li>
+                            <li>A <code>Fork PR Guard</code> workflow watches <code>pull_request_target</code>, reads only PR metadata, and flags fork PRs that delete protected content or more than 20 files with <code>needs-maintainer</code> and a friendly "this looks accidental" comment.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li><code>main</code> now requires a code-owner review for protected paths and no longer allows admins to bypass branch protection.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
                 <!-- 0.11.0 -->
                 <div class="cl-version">
                     <div class="cl-version-header">

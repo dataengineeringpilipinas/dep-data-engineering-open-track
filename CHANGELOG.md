@@ -4,6 +4,19 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.12.0] - 2026-11-20 — Guard Main Against Fork Pull Requests
+
+### Added
+
+- `.github/CODEOWNERS` makes the Systems Lead and program lead code owners for `.github/`, the curriculum phase folders, `cohorts/`, and `docs/`.
+- A `Fork PR Guard` workflow watches `pull_request_target`, reads only PR metadata, and flags fork PRs that delete protected content or more than 20 files with `needs-maintainer` and a friendly "this looks accidental" comment.
+
+### Changed
+
+- `main` now requires a code-owner review for protected paths and no longer allows admins to bypass branch protection.
+
+---
+
 ## [0.11.0] - 2026-11-20 — Builder Secret Prevention and Audit
 
 ### Added

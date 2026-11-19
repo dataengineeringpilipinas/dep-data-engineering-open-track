@@ -1,0 +1,11 @@
+# Protect automation, curriculum, and the public site.
+# The Systems Lead and the program lead must approve changes to these paths.
+/.github/ @cancinoray @gkate78
+/01-foundations/ @cancinoray @gkate78
+/02-data-collection/ @cancinoray @gkate78
+/03-data-processing/ @cancinoray @gkate78
+/04-analysis-and-insights/ @cancinoray @gkate78
+/05-project-packaging/ @cancinoray @gkate78
+/06-deployment/ @cancinoray @gkate78
+/cohorts/ @cancinoray @gkate78
+/docs/ @cancinoray @gkate78
