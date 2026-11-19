@@ -49,6 +49,8 @@ You need:
 
 You need to create your own GitHub repo with the starter kit files inside. Follow the steps below based on what you're comfortable with.
 
+> **Don't fork the curriculum repo.** Your project lives in its own new repo. Milestones are submitted through issue forms and never need a pull request, so if GitHub offers to open one into the curriculum repo, ignore it.
+
 ---
 
 ### Option A — Download and Upload (No Git knowledge required)
