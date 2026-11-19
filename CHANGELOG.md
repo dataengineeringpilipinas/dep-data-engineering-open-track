@@ -4,6 +4,16 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.11.0] - 2026-11-20 — Builder Secret Prevention and Audit
+
+### Added
+
+- The Starter Kit now includes a `.gitignore` covering credential files, env files, keys, cloud credential stores, and local Python noise.
+- The M2 submission form, Starter Kit README, and milestone checklist now tell builders to enable secret scanning and push protection and never commit `kaggle.json`, `.env`, API keys, or tokens.
+- A manual `Secret Audit (gitleaks)` workflow scans a public repo on demand. It pins gitleaks 8.30.1, verifies the release checksum, redacts values, and publishes paths and rule IDs only. It is advisory and does not change milestone status.
+
+---
+
 ## [0.10.0] - 2026-11-19 — Block Passes on Committed Credentials
 
 ### Added
