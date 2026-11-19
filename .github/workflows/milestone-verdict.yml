@@ -77,11 +77,38 @@ jobs:
       - name: Check out curriculum repo
         uses: actions/checkout@v4
 
-      - name: Close completed issue and find next waiting milestone
-        id: finalize
+      - name: Resolve builder repository URL
+        id: repo
         uses: actions/github-script@v7
         with:
           script: |
+            const policy = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/milestone_logic.js`);
+            const body = context.payload.issue.body || '';
+            core.setOutput('repo_url', policy.extractRepoUrl(policy.extractField(body, 'GitHub Repo URL')));
+
+      - name: Scan current default branch for committed credentials
+        id: secrets
+        if: steps.repo.outputs.repo_url != ''
+        continue-on-error: true
+        timeout-minutes: 5
+        env:
+          REPO_URL: ${{ steps.repo.outputs.repo_url }}
+        run: |
+          git clone --depth 1 "$REPO_URL" builder-head
+          python .github/scripts/secret_scan.py \
+            --repo-path builder-head \
+            --output-file secret_result.json \
+            --github-output "$GITHUB_OUTPUT"
+
+      - name: Close completed issue and find next waiting milestone
+        id: finalize
+        uses: actions/github-script@v7
+        env:
+          SECRETS_OK: ${{ steps.secrets.outputs.secrets_ok }}
+          SECRET_SCAN_ERROR: ${{ steps.secrets.outputs.secret_scan_error }}
+        with:
+          script: |
+            const fs = require('fs');
             const policy = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/milestone_logic.js`);
             const removeLabels = async (issueNumber, toRemove) => {
               for (const label of toRemove) {
@@ -97,6 +124,58 @@ jobs:
             const issue = context.payload.issue;
             const labels = issue.labels.map(label => label.name);
             const milestone = labels.find(label => /^M[0-6]$/.test(label));
+
+            // A credential in the repo's current default branch blocks the pass even
+            // though a reviewer approved it. Only paths are shown, never values.
+            // Fail open when the scan could not run (deleted/private repo, clone
+            // failure); a transient error must not override a human verdict.
+            if (process.env.SECRETS_OK === 'false') {
+              let findings = [];
+              let matches = [];
+              try {
+                const report = JSON.parse(fs.readFileSync('secret_result.json', 'utf8'));
+                findings = report.findings || [];
+                matches = report.matches || [];
+              } catch (_) {}
+              const detail = matches.length
+                ? matches.map(match => `\`${String(match.path).replace(/`/g, "'")}\` (${match.rule})`).join(', ')
+                : findings.map(path => `\`${String(path).replace(/`/g, "'")}\``).join(', ');
+              await removeLabels(issue.number, ['passed']);
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: ['needs-improvement']
+              });
+              const marker = `<!-- dep-verdict:${milestone}:credentials -->`;
+              const comments = await github.paginate(github.rest.issues.listComments, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                per_page: 100
+              });
+              if (!comments.some(comment => (comment.body || '').includes(marker))) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  body: `${marker}\n## Pass blocked — committed credential detected\n\nCredential material was found in the current default branch of your repo${detail ? `: ${detail}` : ''}.\n\n**Do this now:** revoke the credential at the provider (for example, regenerate your Kaggle API token), remove the exposed value (or delete the file), and keep credentials out of the repo. Do not commit the value again. Then push a commit and comment \`/recheck <commit-hash>\` on this issue.\n\nThis milestone stays open and the next milestone will not be released.\n\n---\n_DEP submission bot_`
+                });
+              }
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'open'
+              });
+              core.warning(`Blocked passed verdict for #${issue.number}: ${findings.join(', ') || 'credential file detected'}`);
+              core.setOutput('waiting_issue_number', '');
+              return;
+            }
+            if (process.env.SECRET_SCAN_ERROR) {
+              core.warning(`Credential scan reported an error: ${process.env.SECRET_SCAN_ERROR}`);
+            }
+
             // Reviewer verdict is final — always honour `passed` regardless of pipeline state.
             await removeLabels(issue.number,
               ['auto-check-pending', 'waiting-on-prerequisite', 'ready-for-review', 'needs-improvement']

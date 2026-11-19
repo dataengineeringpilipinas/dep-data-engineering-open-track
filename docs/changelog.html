@@ -80,6 +80,30 @@
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
 
+                <!-- 0.10.0 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.10.0</span>
+                        <span class="cl-version-date">2026-11-19</span>
+                        <span class="cl-version-tag">Block Passes on Committed Credentials</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>Every milestone evaluation now scans the submitted snapshot for committed credential files and high-confidence credential patterns, and scans the repo's current default branch for known credential files. Filename rules cover Kaggle, env files, private keys, cloud service accounts, SSH keys, package-manager tokens, AWS and Docker credential stores; content rules cover private-key blocks and AWS, Google, GitHub, Slack, Stripe, OpenAI, Anthropic, Hugging Face, npm, PyPI, SendGrid, Databricks, and Azure Storage tokens. A hit marks the submission <code>needs-improvement</code> and names the path and rule only, never the value.</li>
+                            <li>The pass guard (<code>finalize-pass</code>) re-checks the current default branch before closing a <code>passed</code> issue. On a hit it removes <code>passed</code>, sets <code>needs-improvement</code>, posts revocation guidance, and does not release the next milestone.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>The <code>needs-improvement</code> guidance now tells builders to revoke an exposed credential at the provider first, then remove the exposed value (or delete the file) and keep credentials out of the repo before resubmitting.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
                 <!-- 0.9.3 -->
                 <div class="cl-version">
                     <div class="cl-version-header">
