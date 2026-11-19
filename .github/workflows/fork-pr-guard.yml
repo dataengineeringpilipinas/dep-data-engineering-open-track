@@ -1,0 +1,88 @@
+name: Fork PR Guard
+
+# pull_request_target runs with a write token. Never check out or execute the
+# fork's code here. This job reads PR metadata through the API and checks out
+# only the base repo's guard script.
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, edited]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: fork-pr-guard-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  guard:
+    if: github.event.pull_request.head.repo.full_name != github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out guard logic from the base repo
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          sparse-checkout: .github/scripts
+          persist-credentials: false
+
+      - name: Inspect fork PR metadata
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const guard = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/fork_pr_guard.js`);
+            const pr = context.payload.pull_request;
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+              per_page: 100
+            });
+            const result = guard.assessPullRequest({
+              headRepoFullName: pr.head.repo ? pr.head.repo.full_name : '',
+              baseRepoFullName: `${context.repo.owner}/${context.repo.repo}`,
+              files: files.map(file => ({ filename: file.filename, status: file.status }))
+            });
+
+            core.info(`Fork: ${result.isFork}; suspicious: ${result.suspicious}; ${result.reason}`);
+            core.summary
+              .addHeading('Fork PR guard')
+              .addRaw(`${result.isFork ? 'Fork' : 'Same-repo'} PR: ${result.reason}`)
+              .write();
+
+            if (!result.suspicious) return;
+
+            try {
+              await github.rest.issues.getLabel({
+                owner: context.repo.owner, repo: context.repo.repo,
+                name: 'needs-maintainer'
+              });
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              await github.rest.issues.createLabel({
+                owner: context.repo.owner, repo: context.repo.repo,
+                name: 'needs-maintainer', color: 'B60205',
+                description: 'Fork PR that deletes protected repository content'
+              });
+            }
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: pr.number, labels: ['needs-maintainer']
+            });
+
+            const marker = '<!-- dep-fork-pr-guard -->';
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: pr.number, per_page: 100
+            });
+            if (!comments.some(comment => (comment.body || '').includes(marker))) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: pr.number,
+                body: `${marker}\n## This looks like an accidental fork pull request\n\nMilestones are submitted through issue forms and never need a pull request, so you can close this PR.\n\nIf it was intentional, a maintainer will review it. Your project lives in your own repo, not the curriculum repo.\n\n---\n_DEP fork PR guard_`
+              });
+            }
