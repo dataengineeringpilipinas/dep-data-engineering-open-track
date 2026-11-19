@@ -235,6 +235,19 @@ jobs:
             --dest builder-repo \
             --github-output "$GITHUB_OUTPUT"
 
+      - name: Scan for committed credential files
+        id: secrets
+        if: steps.submission.outputs.stop == 'false' && steps.clone.outputs.clone_ok == 'true'
+        continue-on-error: true
+        timeout-minutes: 5
+        run: |
+          python .github/scripts/secret_scan.py \
+            --repo-path builder-repo \
+            --git-repo builder-repo \
+            --git-ref origin/HEAD \
+            --output-file secret_result.json \
+            --github-output "$GITHUB_OUTPUT"
+
       - name: Run milestone structural checks
         id: checks
         if: steps.submission.outputs.stop == 'false' && steps.clone.outputs.clone_ok == 'true'
@@ -285,6 +298,8 @@ jobs:
           CLONE_OK: ${{ steps.clone.outputs.clone_ok }}
           CLONE_ERROR: ${{ steps.clone.outputs.clone_error }}
           RESOLVED_SHA: ${{ steps.clone.outputs.commit_sha }}
+          SECRETS_OK: ${{ steps.secrets.outputs.secrets_ok }}
+          SECRET_SCAN_ERROR: ${{ steps.secrets.outputs.secret_scan_error }}
           GATE_OK: ${{ steps.gate.outputs.gate_ok }}
           PREVIOUS_MILESTONE: ${{ steps.gate.outputs.previous }}
         with:
@@ -307,7 +322,20 @@ jobs:
             if (process.env.CLONE_OK === 'true' && fs.existsSync('check_result.json')) {
               results = JSON.parse(fs.readFileSync('check_result.json', 'utf8'));
             }
-            const snapshotOk = process.env.CLONE_OK === 'true' && results?.all_passed === true;
+            let secretResult = null;
+            if (fs.existsSync('secret_result.json')) {
+              try {
+                secretResult = JSON.parse(fs.readFileSync('secret_result.json', 'utf8'));
+              } catch (_) {
+                secretResult = { clean: true, findings: [], errors: ['credential scan output was unreadable'] };
+              }
+            }
+            const secretFindings = Array.isArray(secretResult?.findings) ? secretResult.findings : [];
+            const secretMatches = Array.isArray(secretResult?.matches) ? secretResult.matches : [];
+            const secretHit = secretFindings.length > 0;
+            // Fail open when the scan did not run; only findings block a submission.
+            const secretsOk = process.env.SECRETS_OK !== 'false';
+            const snapshotOk = process.env.CLONE_OK === 'true' && results?.all_passed === true && secretsOk;
             const prerequisiteOk = process.env.GATE_OK === 'true';
             const target = policy.decideState({ snapshotOk, prerequisiteOk });
             const stateLabels = policy.STATE_LABELS.filter(label => label !== 'passed');
@@ -355,9 +383,24 @@ jobs:
             } else {
               details = `❌ ${process.env.CLONE_ERROR || 'The submitted snapshot could not be checked.'}`;
             }
+            if (secretHit) {
+              const detail = secretMatches.length
+                ? secretMatches.map(match => `\`${String(match.path).replace(/`/g, "'")}\` (${match.rule})`).join(', ')
+                : secretFindings.map(path => `\`${String(path).replace(/`/g, "'")}\``).join(', ');
+              details += `\n❌ No committed credentials\n   _Remove the exposed value (or delete the file) and revoke the credential at the provider: ${detail}. Keep credentials out of the repo._`;
+            } else if (secretResult?.errors?.length) {
+              details += `\n⚠️ Credential scan warning: ${secretResult.errors.join('; ')}`;
+            } else if (process.env.CLONE_OK === 'true' && !secretResult) {
+              details += '\n⚠️ Credential scan did not run for this snapshot.';
+            }
+            if (secretResult?.errors?.length) {
+              core.warning(`Credential scan warning: ${secretResult.errors.join('; ')}`);
+            }
             let guidance;
             if (target === 'needs-improvement') {
-              guidance = '**Action required:** Fix the problems above, push a commit, then comment `/recheck <commit-hash>` on this issue (7- or 40-character hash both work; use the full 40-character hash if the commit was force-pushed or rebased). Your original submission date remains preserved.';
+              guidance = secretHit
+                ? '**Action required:** Revoke the exposed credential at the provider first, then remove the value (or delete the file) from your repo and keep credentials out of it. Fix any other problems above, push a commit, then comment `/recheck <commit-hash>` on this issue (7- or 40-character hash both work; use the full 40-character hash if the commit was force-pushed or rebased). Your original submission date remains preserved.'
+                : '**Action required:** Fix the problems above, push a commit, then comment `/recheck <commit-hash>` on this issue (7- or 40-character hash both work; use the full 40-character hash if the commit was force-pushed or rebased). Your original submission date remains preserved.';
             } else if (target === 'waiting-on-prerequisite') {
               guidance = `**Submission recorded.** This issue will remain open until ${process.env.PREVIOUS_MILESTONE} is marked \`passed\`. It will then be checked again and released automatically. Do not open another issue.`;
             } else {
@@ -365,7 +408,7 @@ jobs:
                 ? '**Ready for human review.** The automated structural checks passed; a reviewer must assess the problem statement, audience, and data source before applying `passed`.'
                 : '**Ready for human review.** The automated checks and prerequisite gate passed.';
             }
-            const marker = `<!-- dep-eval:${process.env.MILESTONE}:${process.env.COMMIT_HASH}:${target} -->`;
+            const marker = `<!-- dep-eval:${process.env.MILESTONE}:${process.env.COMMIT_HASH}:${target}${secretHit ? ':secrets' : ''} -->`;
             const commitNote = process.env.RESOLVED_SHA
               ? `**Commit evaluated:** \`${process.env.RESOLVED_SHA}\`\n\n`
               : '';

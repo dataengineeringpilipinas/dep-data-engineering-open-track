@@ -4,6 +4,19 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.10.0] - 2026-11-19 — Block Passes on Committed Credentials
+
+### Added
+
+- Every milestone evaluation now scans the submitted snapshot for committed credential files and high-confidence credential patterns, and scans the repo's current default branch for known credential files. Filename rules cover `kaggle.json`, `.env` and `.env.*` (except `.env.example`/`.env.sample`/`.env.template`), `*.pem`, `*.key`, `*.p12`, `*.pfx`, `*.jks`, `*.ppk`, `credentials.json`, `service-account*.json`, `firebase-adminsdk*.json`, `client_secret*.json`, `application_default_credentials.json`, SSH private keys, `.netrc`, `.pgpass`, `.pypirc`, `.npmrc`, `.aws/credentials`, and `.docker/config.json`. Content rules cover private-key blocks and AWS, Google, GitHub, Slack, Stripe, OpenAI, Anthropic, Hugging Face, npm, PyPI, SendGrid, Databricks, and Azure Storage tokens. A hit marks the submission `needs-improvement` and names the path and rule only, never the value.
+- The pass guard (`finalize-pass`) re-checks the current default branch before closing a `passed` issue. On a hit it removes `passed`, sets `needs-improvement`, posts revocation guidance, and does not release the next milestone.
+
+### Changed
+
+- The `needs-improvement` guidance now tells builders to revoke an exposed credential at the provider first, then remove the exposed value (or delete the file) and keep credentials out of the repo before resubmitting.
+
+---
+
 ## [0.9.3] - 2026-11-12 — Create a Project Repo, Don't Fork
 
 ### Changed
