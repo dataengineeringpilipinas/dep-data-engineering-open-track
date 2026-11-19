@@ -68,6 +68,7 @@ def test_secret_audit_pins_and_redacts_gitleaks():
     assert "GITLEAKS_SHA256" in audit
     assert "sha256sum --check" in audit
     assert "--redact" in audit
+    assert "gitleaks_summary.py" in audit
 
 
 def test_workflows_use_shared_milestone_logic_module():
