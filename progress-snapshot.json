@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T14:01:29Z",
+  "generated_at": "2026-11-19T13:12:12Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -4206,7 +4206,7 @@
     },
     {
       "body": "### Builder Name\n\nMichael Bacus\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/michaelbacus-lab/dep-data-engineering-open-track\n\n### Commit Hash\n\ne273d2e\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-19T10:11:10Z",
       "created_at": "2026-09-28T05:51:19Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/215",
       "labels": [
@@ -4214,7 +4214,7 @@
           "name": "milestone-submission"
         },
         {
-          "name": "needs-improvement"
+          "name": "passed"
         },
         {
           "name": "M2"
@@ -4226,7 +4226,7 @@
       "number": 215,
       "pull_request": false,
       "title": "[M2] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-11-17T14:53:03Z",
+      "updated_at": "2026-11-19T10:24:07Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4389,7 +4389,7 @@
     },
     {
       "body": "### Builder Name\n\nMichael Bacus\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/michaelbacus-lab/dep-data-engineering-open-track/tree/main\n\n### Commit Hash\n\na671033\n\n### Self-Check\n\n- [x] `scripts/transform.py` exists and runs without crashing.\n- [x] `data/processed/` contains at least one output file from the transformation.\n- [x] `requirements.txt` is up to date.\n- [x] My README documents the schema and how to run the transformation script.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-19T10:11:54Z",
       "created_at": "2026-10-16T14:51:44Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/222",
       "labels": [
@@ -4397,10 +4397,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M3"
+          "name": "passed"
         },
         {
-          "name": "waiting-on-prerequisite"
+          "name": "M3"
         },
         {
           "name": "late-submission"
@@ -4409,7 +4409,7 @@
       "number": 222,
       "pull_request": false,
       "title": "[M3] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-11-12T13:14:23Z",
+      "updated_at": "2026-11-19T10:11:55Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4545,7 +4545,7 @@
     },
     {
       "body": "### Builder Name\n\nMichael Bacus\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/michaelbacus-lab/dep-data-engineering-open-track\n\n### Commit Hash\n\n7bd3e77454f3b83d121f5d8f4e52377e0a02239c\n\n### Self-Check\n\n- [x] `notebooks/` contains at least one `.ipynb` analysis notebook.\n- [x] The notebook runs end-to-end without errors on `data/processed/` inputs.\n- [x] `requirements.txt` is up to date.\n- [x] My README documents the key findings and links to the notebook.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-19T10:12:31Z",
       "created_at": "2026-11-03T21:25:32Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/237",
       "labels": [
@@ -4553,10 +4553,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M4"
+          "name": "passed"
         },
         {
-          "name": "waiting-on-prerequisite"
+          "name": "M4"
         },
         {
           "name": "late-submission"
@@ -4565,14 +4565,14 @@
       "number": 237,
       "pull_request": false,
       "title": "[M4] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-11-12T13:14:30Z",
+      "updated_at": "2026-11-19T10:12:32Z",
       "user": {
         "login": "michaelbacus-lab"
       }
     },
     {
       "body": "### Builder Name\n\nMichael Bacus\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/michaelbacus-lab/dep-data-engineering-open-track\n\n### Commit Hash\n\nb58db10382be44c7f239382b728d3e4ede9de249\n\n### Which path did you take?\n\nPath B — Non-Predictive Alt Track\n\n### Notes (optional)\n\n_No response_\n\n### Self-Check (both paths)\n\n- [x] `requirements.txt` is up to date with all dependencies.\n- [x] `notebooks/` contains analysis or model notebooks.\n- [x] `data/processed/` contains all output files needed for the next phase.\n- [x] The commit hash above points to my latest submission snapshot.\n\n### Path A Additional Checks (skip if Path B)\n\n- [ ] Model results or predictions are saved to `output/` or `data/processed/`.\n- [ ] Model metrics and assumptions are documented in the notebook or README.\n\n### Path B Additional Checks (skip if Path A)\n\n- [x] Segmentation or advanced EDA outputs are saved.\n- [x] A stakeholder brief or KPI summary is included.",
-      "closed_at": null,
+      "closed_at": "2026-11-19T10:13:08Z",
       "created_at": "2026-11-04T08:34:45Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/238",
       "labels": [
@@ -4580,16 +4580,16 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M5"
+          "name": "passed"
         },
         {
-          "name": "waiting-on-prerequisite"
+          "name": "M5"
         }
       ],
       "number": 238,
       "pull_request": false,
       "title": "[M5] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-11-13T18:15:13Z",
+      "updated_at": "2026-11-19T10:13:10Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4634,13 +4634,13 @@
           "name": "M6"
         },
         {
-          "name": "waiting-on-prerequisite"
+          "name": "ready-for-review"
         }
       ],
       "number": 241,
       "pull_request": false,
       "title": "[M6] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-11-09T08:04:17Z",
+      "updated_at": "2026-11-19T11:32:20Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4823,6 +4823,33 @@
       "updated_at": "2026-11-17T14:47:11Z",
       "user": {
         "login": "jimwellbryllsantos-dot"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nVhon Raven Dingal\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/vn0raven/dep-data-engineering-vn0raven\n\n### Commit Hash\n\n9385c77841a0fe1376d79f29cb0185a8a9a007cf\n\n### Which path did you take?\n\nPath B — Advanced EDA & Stakeholder Track\n\n### Notes (optional)\n\nPath B — Advanced EDA & Stakeholder Track\n\nM5 establishes the data foundation for the **Davao Transport Data Observatory** through route segmentation, five OSM completeness KPIs across two actual snapshots, and a separate cleaned LTFRB baseline of 285 records.\n\nThe submission includes an executed notebook, stakeholder brief, reproducible pipeline and **35 passing GitHub tests**. Restricted records and geometries remain excluded. Incomplete files, invalid geometries and unresolved direction associations are disclosed; no LTFRB historical trends or navigation readiness are claimed.\n\n- [[Executed notebook](https://github.com/vn0raven/dep-data-engineering-vn0raven/blob/9385c77841a0fe1376d79f29cb0185a8a9a007cf/notebooks/m5_segmentation_kpis.ipynb)](https://github.com/vn0raven/dep-data-engineering-vn0raven/blob/9385c77841a0fe1376d79f29cb0185a8a9a007cf/notebooks/m5_segmentation_kpis.ipynb)\n- [[Stakeholder brief](https://github.com/vn0raven/dep-data-engineering-vn0raven/blob/9385c77841a0fe1376d79f29cb0185a8a9a007cf/reports/m5/M5_STAKEHOLDER_BRIEF.md)](https://github.com/vn0raven/dep-data-engineering-vn0raven/blob/9385c77841a0fe1376d79f29cb0185a8a9a007cf/reports/m5/M5_STAKEHOLDER_BRIEF.md)\n- [[Live report](https://vn0raven.github.io/dep-data-engineering-vn0raven/m5.html)](https://vn0raven.github.io/dep-data-engineering-vn0raven/m5.html)\n\nM4 passed at `26a7f7e` on issue #225 and remains preserved.\n\n### Self-Check (both paths)\n\n- [x] `requirements.txt` is up to date with all dependencies.\n- [x] `notebooks/` contains analysis or model notebooks.\n- [x] `data/processed/` contains all output files needed for the next phase.\n- [x] The commit hash above points to my latest submission snapshot.\n\n### Path A Additional Checks (skip if Path B)\n\n- [ ] Model results or predictions are saved to `output/` or `data/processed/`.\n- [ ] Model metrics and assumptions are documented in the notebook or README.\n\n### Path B Additional Checks (skip if Path A)\n\n- [x] Segmentation or advanced EDA outputs are saved.\n- [x] A stakeholder brief or KPI summary is included.",
+      "closed_at": null,
+      "created_at": "2026-11-19T06:17:17Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/256",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "needs-improvement"
+        },
+        {
+          "name": "M5"
+        },
+        {
+          "name": "late-submission"
+        }
+      ],
+      "number": 256,
+      "pull_request": false,
+      "title": "[M5] Vhon Raven Dingal — Davao Transport Data Observatory (Path B)",
+      "updated_at": "2026-11-19T10:24:05Z",
+      "user": {
+        "login": "vn0raven"
       }
     }
   ]
