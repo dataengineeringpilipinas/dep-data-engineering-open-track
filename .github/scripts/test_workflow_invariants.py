@@ -60,6 +60,17 @@ def test_finalize_pass_guard_blocks_and_does_not_release():
     assert "core.setOutput('waiting_issue_number', '')" in verdict
 
 
+def test_secret_audit_pins_and_redacts_gitleaks():
+    audit = (WORKFLOWS / "secret-audit.yml").read_text(encoding="utf-8")
+
+    assert 'GITLEAKS_VERSION: "8.30.1"' in audit
+    assert "linux_x64.tar.gz" in audit
+    assert "GITLEAKS_SHA256" in audit
+    assert "sha256sum --check" in audit
+    assert "--redact" in audit
+    assert "gitleaks_summary.py" in audit
+
+
 def test_workflows_use_shared_milestone_logic_module():
     """Policy parsing must come from the tested module, not inline copies."""
     for name in LOGIC_CONSUMERS:

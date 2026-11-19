@@ -11,6 +11,7 @@ body:
         If M1 is still awaiting review, the M2 issue stays open in the prerequisite queue and releases automatically after M1 passes.
         Submissions after the target deadline are flagged late but follow the same evaluation path.
         Submit once. For revisions, comment `/recheck <commit-hash>` on this same issue.
+        Never commit `kaggle.json`, `.env`, or API keys. Enable secret scanning and push protection in your repo settings (free for public repos), and do not upload credential files through the GitHub website.
 
   - type: input
     id: builder_name
@@ -65,4 +66,6 @@ body:
         - label: My README documents the data source and how to run the ingestion script.
           required: true
         - label: The commit hash above points to my latest submission snapshot.
+          required: true
+        - label: My repo has no `kaggle.json`, `.env`, API keys, or other credentials committed, and secret scanning/push protection is enabled.
           required: true
