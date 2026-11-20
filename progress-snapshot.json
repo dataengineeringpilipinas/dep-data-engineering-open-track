@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-20T03:18:52Z",
+  "generated_at": "2026-11-20T12:56:10Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -113,7 +113,7 @@
       "number": 14,
       "pull_request": false,
       "title": "[M0] Gerald John Alviar — AirLytics PH",
-      "updated_at": "2026-09-07T13:31:24Z",
+      "updated_at": "2026-11-20T11:01:00Z",
       "user": {
         "login": "GeraldAlviar"
       }
@@ -557,7 +557,7 @@
       "number": 33,
       "pull_request": false,
       "title": "[M0] Shaina Soya — Economic Performance of Philippine Provinces",
-      "updated_at": "2026-09-07T13:31:26Z",
+      "updated_at": "2026-11-20T11:01:03Z",
       "user": {
         "login": "avsguy"
       }
@@ -698,7 +698,7 @@
       "number": 39,
       "pull_request": false,
       "title": "[M0] <Marciano Salazar > — <Data Quality Assessment System for Philippine Education Open Datasets>",
-      "updated_at": "2026-11-02T13:23:15Z",
+      "updated_at": "2026-11-20T11:01:05Z",
       "user": {
         "login": "Sheyxii"
       }
@@ -860,7 +860,7 @@
       "number": 46,
       "pull_request": false,
       "title": "[M0] Ken Shamrock Dizon — How has bird species diversity in Luzon changed from 2020–2025",
-      "updated_at": "2026-07-08T17:28:10Z",
+      "updated_at": "2026-11-20T11:01:07Z",
       "user": {
         "login": "ksdizon"
       }
@@ -2462,7 +2462,7 @@
       "number": 122,
       "pull_request": false,
       "title": "[M1] <Elizhea Camonias> — <NCR Minimum-Wage Grocery Basket Optimizer>",
-      "updated_at": "2026-08-31T08:30:21Z",
+      "updated_at": "2026-11-20T11:01:10Z",
       "user": {
         "login": "aezhile"
       }
@@ -2906,9 +2906,6 @@
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/147",
       "labels": [
         {
-          "name": "duplicate"
-        },
-        {
           "name": "milestone-submission"
         },
         {
@@ -2921,7 +2918,7 @@
       "number": 147,
       "pull_request": false,
       "title": "[M1] Joseph — I'm Kinda Likin' the Vibe: Tracking Sentiment Shifts in a Filipino AI App-Building Community",
-      "updated_at": "2026-08-09T07:56:08Z",
+      "updated_at": "2026-11-20T10:38:50Z",
       "user": {
         "login": "kathulhur"
       }
@@ -3611,6 +3608,33 @@
       "updated_at": "2026-09-15T19:06:53Z",
       "user": {
         "login": "ambs78"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nAaron Celindro\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/credough/dep-data-engineering-open-track-aaron-celindro.git\n\n### Commit Hash\n\n9f6e2adf7fe3a07ad953993a95cbb093de37935f\n\n### Self-Check\n\n- [x] `scripts/ingest.py` exists and runs without crashing.\n- [x] `data/raw/` contains at least one real data file (not just `.gitkeep`).\n- [x] `requirements.txt` lists all dependencies used in ingestion.\n- [x] My README documents the data source and how to run the ingestion script.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": "2026-08-20T05:59:58Z",
+      "created_at": "2026-08-14T20:37:39Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/186",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
+        },
+        {
+          "name": "M2"
+        },
+        {
+          "name": "late-submission"
+        }
+      ],
+      "number": 186,
+      "pull_request": false,
+      "title": "[M2] Aaron Creed Celindro — Philippine Fuel Price Data Pipeline",
+      "updated_at": "2026-11-20T10:38:47Z",
+      "user": {
+        "login": "credough"
       }
     },
     {

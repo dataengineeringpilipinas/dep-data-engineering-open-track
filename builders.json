@@ -1,6 +1,6 @@
 {
   "cohort": "2026-A",
-  "updatedAt": "2026-11-19",
+  "updatedAt": "2026-11-20",
   "source": "GitHub milestone-submission issues + enrolled-participants.json",
   "builders": [
     {
@@ -431,7 +431,7 @@
       "startDate": "2026-06-22",
       "activeWeek": "W22",
       "currentMilestone": 6,
-      "milestonesSubmitted": 5,
+      "milestonesSubmitted": 6,
       "milestonesPassed": 6,
       "phase": "Packaging & Deployment"
     },
