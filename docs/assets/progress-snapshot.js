@@ -22,6 +22,14 @@
     "needs-improvement",
     "passed",
     "checking",
+    "closed",
+  ];
+  const PROCESS_LABELS = [
+    "auto-check-pending",
+    "waiting-on-prerequisite",
+    "ready-for-review",
+    "needs-improvement",
+    "passed",
   ];
   const HTML_ESCAPES = {
     "&": "&amp;",
@@ -30,6 +38,38 @@
     '"': "&quot;",
     "'": "&#39;",
   };
+
+  function labelNames(issue) {
+    return ((issue && issue.labels) || []).map((label) =>
+      typeof label === "string" ? label : label.name,
+    );
+  }
+
+  // A passed issue always counts as passed. A closed issue without `passed`
+  // (a resubmission, duplicate, or a builder who left) is finished, so it is
+  // "closed", never pending or overdue, whatever review labels it still has.
+  function issueStatus(issue) {
+    const names = labelNames(issue);
+    if (names.includes("passed")) return "passed";
+    if (String((issue && issue.state) || "").toLowerCase() === "closed") return "closed";
+    if (names.includes("needs-improvement")) return "needs-improvement";
+    if (names.includes("waiting-on-prerequisite")) return "waiting-on-prerequisite";
+    if (names.includes("ready-for-review")) return "ready-for-review";
+    if (names.includes("auto-check-pending")) return "checking";
+    return "pending-review";
+  }
+
+  // Leave out pull requests, duplicates, and legacy late-only issues. This
+  // matches is_countable() in .github/scripts/builders_snapshot.py.
+  function isCountable(issue) {
+    if (!issue || issue.pull_request) return false;
+    const names = labelNames(issue);
+    if (names.includes("duplicate")) return false;
+    const isLegacyLateOnly =
+      names.includes("late-submission") &&
+      !PROCESS_LABELS.some((label) => names.includes(label));
+    return !isLegacyLateOnly;
+  }
 
   function snapshotUrl(
     owner = DEFAULT_OWNER,
@@ -140,6 +180,8 @@
   }
 
   return {
+    issueStatus,
+    isCountable,
     snapshotUrl,
     parseGeneratedAt,
     formatSnapshotStatus,
@@ -153,5 +195,6 @@
     STALE_HOURS,
     VIEWS,
     STATUSES,
+    PROCESS_LABELS,
   };
 });
