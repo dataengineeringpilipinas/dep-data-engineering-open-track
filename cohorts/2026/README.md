@@ -1,6 +1,6 @@
 # 2026 Cohort
 
-**Duration:** June – November 2026  
+**Duration:** June – December 2026  
 **Format:** Self-paced, open track  
 **Size:** 50 Builders
 
@@ -12,8 +12,10 @@
 |-------|------|
 | Program Launch | June 2026 |
 | Milestone 0 Deadline | End of Week 1 |
-| Milestone 6 Deadline | End of Week 24 |
-| Demo Day / Showcase | November 2026 |
+| Milestone 6 Deadline | Thursday, December 11, 2026, 11:59 PM PHT (official end of the cohort) |
+| Demo Day / Showcase | Friday, December 12, 2026, from 7 PM PHT, online on Discord |
+
+After December 11, builders can keep using their milestone issues and `/recheck`. Volunteers may still review submissions, but reviews are no longer guaranteed. Demo Day is open to finished projects and work in progress.
 
 ---
 
