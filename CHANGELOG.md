@@ -9,7 +9,7 @@ All notable changes to this repository are recorded here.
 ### Changed
 
 - The M6 deadline moves from December 6 to **December 11, 2026, 11:59 PM PHT**, the official end of Cohort 1, in both `.github/milestone-deadlines.json` (bot late notices) and `docs/data/milestone-deadlines.json` (homepage timeline).
-- `cohorts/2026/README.md` now lists the December 11 end, Demo Day on Friday, December 12 from 7 PM PHT online on Discord, and what happens after December 11.
+- `cohorts/2026/README.md` now lists the December 11 end, Demo Day on Saturday, December 12 from 7 PM PHT online on Discord, and what happens after December 11.
 
 ---
 
