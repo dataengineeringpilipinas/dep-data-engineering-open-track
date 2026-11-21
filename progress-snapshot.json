@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-21T11:06:11Z",
+  "generated_at": "2026-11-21T23:19:20Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -4664,7 +4664,7 @@
       "number": 241,
       "pull_request": false,
       "title": "[M6] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-11-19T16:24:14Z",
+      "updated_at": "2026-11-21T21:27:11Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4851,7 +4851,7 @@
     },
     {
       "body": "### Builder Name\n\nVhon Raven Dingal\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/vn0raven/dep-data-engineering-vn0raven\n\n### Commit Hash\n\n9385c77841a0fe1376d79f29cb0185a8a9a007cf\n\n### Which path did you take?\n\nPath B — Advanced EDA & Stakeholder Track\n\n### Notes (optional)\n\nPath B — Advanced EDA & Stakeholder Track\n\nM5 establishes the data foundation for the **Davao Transport Data Observatory** through route segmentation, five OSM completeness KPIs across two actual snapshots, and a separate cleaned LTFRB baseline of 285 records.\n\nThe submission includes an executed notebook, stakeholder brief, reproducible pipeline and **35 passing GitHub tests**. Restricted records and geometries remain excluded. Incomplete files, invalid geometries and unresolved direction associations are disclosed; no LTFRB historical trends or navigation readiness are claimed.\n\n- [[Executed notebook](https://github.com/vn0raven/dep-data-engineering-vn0raven/blob/9385c77841a0fe1376d79f29cb0185a8a9a007cf/notebooks/m5_segmentation_kpis.ipynb)](https://github.com/vn0raven/dep-data-engineering-vn0raven/blob/9385c77841a0fe1376d79f29cb0185a8a9a007cf/notebooks/m5_segmentation_kpis.ipynb)\n- [[Stakeholder brief](https://github.com/vn0raven/dep-data-engineering-vn0raven/blob/9385c77841a0fe1376d79f29cb0185a8a9a007cf/reports/m5/M5_STAKEHOLDER_BRIEF.md)](https://github.com/vn0raven/dep-data-engineering-vn0raven/blob/9385c77841a0fe1376d79f29cb0185a8a9a007cf/reports/m5/M5_STAKEHOLDER_BRIEF.md)\n- [[Live report](https://vn0raven.github.io/dep-data-engineering-vn0raven/m5.html)](https://vn0raven.github.io/dep-data-engineering-vn0raven/m5.html)\n\nM4 passed at `26a7f7e` on issue #225 and remains preserved.\n\n### Self-Check (both paths)\n\n- [x] `requirements.txt` is up to date with all dependencies.\n- [x] `notebooks/` contains analysis or model notebooks.\n- [x] `data/processed/` contains all output files needed for the next phase.\n- [x] The commit hash above points to my latest submission snapshot.\n\n### Path A Additional Checks (skip if Path B)\n\n- [ ] Model results or predictions are saved to `output/` or `data/processed/`.\n- [ ] Model metrics and assumptions are documented in the notebook or README.\n\n### Path B Additional Checks (skip if Path A)\n\n- [x] Segmentation or advanced EDA outputs are saved.\n- [x] A stakeholder brief or KPI summary is included.",
-      "closed_at": null,
+      "closed_at": "2026-11-21T21:07:39Z",
       "created_at": "2026-11-19T06:17:17Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/256",
       "labels": [
@@ -4859,10 +4859,10 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M5"
+          "name": "passed"
         },
         {
-          "name": "ready-for-review"
+          "name": "M5"
         },
         {
           "name": "late-submission"
@@ -4871,7 +4871,7 @@
       "number": 256,
       "pull_request": false,
       "title": "[M5] Vhon Raven Dingal — Davao Transport Data Observatory (Path B)",
-      "updated_at": "2026-11-21T08:58:19Z",
+      "updated_at": "2026-11-21T21:07:40Z",
       "user": {
         "login": "vn0raven"
       }
