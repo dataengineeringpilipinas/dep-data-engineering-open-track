@@ -2,7 +2,7 @@
 
 > A 6-month, self-paced, project-driven learning journey. Participants build a real, deployable data project using free and open-source tools.
 
-**Cohort:** June – November 2026 &nbsp;|&nbsp; **Time:** ~5 hrs/week &nbsp;|&nbsp; **Cost:** Free
+**Cohort:** June – December 2026 &nbsp;|&nbsp; **Time:** ~5 hrs/week &nbsp;|&nbsp; **Cost:** Free
 
 ---
 
@@ -121,7 +121,7 @@ Dataset sources and community links: [docs/RESOURCES.md](docs/RESOURCES.md)
 
 ## Cohorts
 
-- [2026 Cohort](cohorts/2026/) — June–November 2026 *(current)*
+- [2026 Cohort](cohorts/2026/) — June–December 2026 *(current)*
 
 ---
 
