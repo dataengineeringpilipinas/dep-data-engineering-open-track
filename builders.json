@@ -319,11 +319,11 @@
       "name": "Dingal, Vhon Raven",
       "github": "https://github.com/vn0raven",
       "status": "In progress",
-      "projectTopic": "Davao Transport Data Observatory (Path B)",
+      "projectTopic": "Davao Transport Data Observatory",
       "startDate": "2026-06-22",
       "activeWeek": "W23",
       "currentMilestone": 6,
-      "milestonesSubmitted": 6,
+      "milestonesSubmitted": 7,
       "milestonesPassed": 6,
       "phase": "Packaging & Deployment"
     },

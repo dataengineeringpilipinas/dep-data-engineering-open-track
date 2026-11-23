@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T06:52:11Z",
+  "generated_at": "2026-11-23T12:48:32Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -4664,7 +4664,7 @@
       "number": 241,
       "pull_request": false,
       "title": "[M6] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-11-21T21:27:11Z",
+      "updated_at": "2026-11-23T12:41:06Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4688,7 +4688,7 @@
       "number": 242,
       "pull_request": false,
       "title": "[M5] Kier Guiang — National Underemployment Forecast: Is Philippine Economic Growth Creating Real Jobs?",
-      "updated_at": "2026-11-15T12:46:15Z",
+      "updated_at": "2026-11-23T06:49:56Z",
       "user": {
         "login": "Kaigosama"
       }
@@ -4736,7 +4736,7 @@
       "number": 247,
       "pull_request": false,
       "title": "[M5] Lord Gideon Marin — Temporal Dynamics of Connection-Seeking in PH r4r Subreddits",
-      "updated_at": "2026-11-17T14:48:19Z",
+      "updated_at": "2026-11-23T06:49:57Z",
       "user": {
         "login": "lordgpm"
       }
@@ -4763,7 +4763,7 @@
       "number": 248,
       "pull_request": false,
       "title": "[M5] Aaron Creed Celindro — Philippine Fuel Price Pipeline",
-      "updated_at": "2026-11-10T00:36:09Z",
+      "updated_at": "2026-11-23T06:49:59Z",
       "user": {
         "login": "credough"
       }
@@ -4790,7 +4790,7 @@
       "number": 249,
       "pull_request": false,
       "title": "[M5] Robert Tulagan — Rice Price Spikes and Typhoon Warnings: A Province-Level Overlap Analysis",
-      "updated_at": "2026-11-12T01:28:56Z",
+      "updated_at": "2026-11-23T06:50:00Z",
       "user": {
         "login": "robaaaru"
       }
@@ -4872,6 +4872,30 @@
       "pull_request": false,
       "title": "[M5] Vhon Raven Dingal — Davao Transport Data Observatory (Path B)",
       "updated_at": "2026-11-21T21:07:40Z",
+      "user": {
+        "login": "vn0raven"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nVhon Raven Dingal\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/vn0raven/dep-data-engineering-vn0raven\n\n### Commit Hash\n\n2b104d8\n\n### Live Project URL\n\nhttps://vn0raven.github.io/dep-data-engineering-vn0raven/observatory/\n\n### Self-Check\n\n- [x] `dashboard/index.html` exists in my repo.\n- [x] The live URL above loads correctly in a browser.\n- [x] `requirements.txt` is complete and up to date.\n- [x] My README includes the live URL and a project summary.\n- [x] I have a short demo script or presentation ready.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-11-23T11:02:15Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/264",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M6"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 264,
+      "pull_request": false,
+      "title": "[M6] Vhon Raven Dingal — Davao Transport Data Observatory",
+      "updated_at": "2026-11-23T11:02:39Z",
       "user": {
         "login": "vn0raven"
       }
