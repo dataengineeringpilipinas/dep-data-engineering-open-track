@@ -80,6 +80,21 @@
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
 
+                <!-- 0.12.3 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.12.3</span>
+                        <span class="cl-version-date">2026-11-24</span>
+                        <span class="cl-version-tag">Tracker Reads Closed Dates from the Snapshot</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>The 0.12.2 fix checked each issue's <code>state</code>, but the published progress snapshot keeps <code>closed_at</code> and not <code>state</code>, so the live tracker still showed closed issues as pending. An issue now counts as closed when it has a <code>closed_at</code> date as well as when its <code>state</code> is closed. The live review queue drops from 42 pending issues to the 5 that are really waiting.</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <!-- 0.12.2 -->
                 <div class="cl-version">
                     <div class="cl-version-header">
