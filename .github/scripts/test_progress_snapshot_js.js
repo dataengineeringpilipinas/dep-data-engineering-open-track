@@ -7,6 +7,8 @@ const {
   csvCell,
   escapeHtml,
   formatSnapshotStatus,
+  isCountable,
+  issueStatus,
   parseGeneratedAt,
   readDashboardState,
   safeExternalUrl,
@@ -166,4 +168,51 @@ test("buildDashboardQuery omits defaults and round-trips filters", () => {
     milestone: "M3",
     status: "ready-for-review",
   });
+});
+
+const issue = (state, ...labels) => ({
+  state,
+  labels: ["milestone-submission", "M1", ...labels].map((name) => ({ name })),
+});
+
+test("issueStatus reads review labels on open issues", () => {
+  assert.equal(issueStatus(issue("open")), "pending-review");
+  assert.equal(issueStatus(issue("open", "auto-check-pending")), "checking");
+  assert.equal(issueStatus(issue("open", "ready-for-review")), "ready-for-review");
+  assert.equal(issueStatus(issue("open", "waiting-on-prerequisite")), "waiting-on-prerequisite");
+  assert.equal(issueStatus(issue("open", "needs-improvement")), "needs-improvement");
+});
+
+test("issueStatus marks closed issues without a pass as closed, not pending", () => {
+  assert.equal(issueStatus(issue("closed")), "closed");
+  assert.equal(issueStatus(issue("CLOSED")), "closed");
+  assert.equal(issueStatus(issue("closed", "needs-improvement")), "closed");
+  assert.equal(issueStatus(issue("closed", "auto-check-pending")), "closed");
+  assert.equal(issueStatus(issue("closed", "ready-for-review")), "closed");
+});
+
+test("issueStatus keeps passed whether the issue is open or closed", () => {
+  assert.equal(issueStatus(issue("closed", "passed")), "passed");
+  assert.equal(issueStatus(issue("open", "passed")), "passed");
+  assert.equal(issueStatus(issue("closed", "needs-improvement", "passed")), "passed");
+});
+
+test("issueStatus accepts plain label strings", () => {
+  assert.equal(issueStatus({ state: "closed", labels: ["M0", "passed"] }), "passed");
+  assert.equal(issueStatus({ state: "open", labels: ["M0"] }), "pending-review");
+  assert.equal(issueStatus({}), "pending-review");
+});
+
+test("isCountable leaves out pull requests, duplicates and late-only legacy issues", () => {
+  assert.equal(isCountable(issue("open")), true);
+  assert.equal(isCountable(issue("closed")), true);
+  assert.equal(isCountable({ ...issue("open"), pull_request: {} }), false);
+  assert.equal(isCountable(issue("closed", "duplicate")), false);
+  assert.equal(isCountable(issue("closed", "late-submission")), false);
+  assert.equal(isCountable(issue("open", "late-submission", "needs-improvement")), true);
+  assert.equal(isCountable(null), false);
+});
+
+test("closed is an accepted dashboard status filter", () => {
+  assert.equal(readDashboardState("?status=closed").status, "closed");
 });

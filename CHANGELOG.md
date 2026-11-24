@@ -4,6 +4,19 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.12.2] - 2026-11-20 — Submission Tracker Shows Closed Issues as Closed
+
+### Fixed
+
+- The submission tracker now reads each issue's open or closed state. A closed issue without `passed` (a resubmission, duplicate, or a builder who left) shows as **Closed** instead of Pending Review, Checking, or Needs Improvement, and is never marked overdue. This removes 43 closed issues from the review queues.
+- Per-milestone pass rates no longer count closed, unpassed issues in the denominator.
+
+### Changed
+
+- The status and filtering rules moved into `docs/assets/progress-snapshot.js` (`issueStatus`, `isCountable`) so they are unit-tested, and the status filter gains a "Closed (not passed)" option.
+
+---
+
 ## [0.12.0] - 2026-11-20 — Guard Main Against Fork Pull Requests
 
 ### Added
