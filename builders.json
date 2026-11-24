@@ -1,6 +1,6 @@
 {
   "cohort": "2026-A",
-  "updatedAt": "2026-11-23",
+  "updatedAt": "2026-11-24",
   "source": "GitHub milestone-submission issues + enrolled-participants.json",
   "builders": [
     {
@@ -450,13 +450,13 @@
     {
       "name": "Bacus, Michael",
       "github": "https://github.com/michaelbacus-lab",
-      "status": "In progress",
+      "status": "Completed",
       "projectTopic": "Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
       "startDate": "2026-06-22",
       "activeWeek": "W23",
       "currentMilestone": 6,
       "milestonesSubmitted": 7,
-      "milestonesPassed": 6,
+      "milestonesPassed": 7,
       "phase": "Packaging & Deployment"
     }
   ]

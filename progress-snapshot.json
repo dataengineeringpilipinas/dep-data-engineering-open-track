@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-23T12:48:32Z",
+  "generated_at": "2026-11-24T00:53:23Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -4647,7 +4647,7 @@
     },
     {
       "body": "### Builder Name\n\nMichael Bacus\n\n### Cohort\n\nOpen Track\n\n### GitHub Repo URL\n\nhttps://github.com/michaelbacus-lab/dep-data-engineering-open-track\n\n### Commit Hash\n\n8c6269225080e7c0a02534ad4c27214a7b5fcced\n\n### Live Project URL\n\nhttps://github.com/michaelbacus-lab/dep-data-engineering-open-track/tree/main\n\n### Self-Check\n\n- [x] `dashboard/index.html` exists in my repo.\n- [x] The live URL above loads correctly in a browser.\n- [x] `requirements.txt` is complete and up to date.\n- [x] My README includes the live URL and a project summary.\n- [x] I have a short demo script or presentation ready.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-23T12:50:55Z",
       "created_at": "2026-11-05T05:54:59Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/241",
       "labels": [
@@ -4655,16 +4655,16 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M6"
+          "name": "passed"
         },
         {
-          "name": "ready-for-review"
+          "name": "M6"
         }
       ],
       "number": 241,
       "pull_request": false,
       "title": "[M6] Michael Bacus — Can Publicly Available Data Reveal Unusual Patterns in DPWH Flood Control Projects? (2022–2025)",
-      "updated_at": "2026-11-23T12:41:06Z",
+      "updated_at": "2026-11-23T12:51:05Z",
       "user": {
         "login": "michaelbacus-lab"
       }
@@ -4895,7 +4895,7 @@
       "number": 264,
       "pull_request": false,
       "title": "[M6] Vhon Raven Dingal — Davao Transport Data Observatory",
-      "updated_at": "2026-11-23T11:02:39Z",
+      "updated_at": "2026-11-23T21:51:39Z",
       "user": {
         "login": "vn0raven"
       }
