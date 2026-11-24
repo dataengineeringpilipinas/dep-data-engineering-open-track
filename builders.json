@@ -1,6 +1,6 @@
 {
   "cohort": "2026-A",
-  "updatedAt": "2026-11-24",
+  "updatedAt": "2026-11-25",
   "source": "GitHub milestone-submission issues + enrolled-participants.json",
   "builders": [
     {
@@ -82,10 +82,10 @@
       "projectTopic": "BahaPredict: Building an Automated Regional Weather Data Pipeline in the Philippines",
       "startDate": "2026-06-22",
       "activeWeek": "W23",
-      "currentMilestone": 5,
+      "currentMilestone": 6,
       "milestonesSubmitted": 6,
-      "milestonesPassed": 5,
-      "phase": "Non-Predictive"
+      "milestonesPassed": 6,
+      "phase": "Packaging & Deployment"
     },
     {
       "name": "Fabrero, Jerome F.",
