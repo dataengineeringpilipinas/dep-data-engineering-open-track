@@ -80,6 +80,30 @@
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
 
+                <!-- 0.13.0 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.13.0</span>
+                        <span class="cl-version-date">2026-11-26</span>
+                        <span class="cl-version-tag">Keep the Board and Tracker in Sync</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li>A <code>project-board-sync.yml</code> workflow sets the submission board's Status from issue labels on open, label, close, and reopen events, plus a weekly and manually triggered reconcile. It needs a <code>PROJECT_SYNC_TOKEN</code> repository secret (fine-grained token with <code>project</code> read/write and <code>issues</code> read) and is a no-op until that secret is added.</li>
+                            <li>The Volunteer Guide now spells out the reviewer rules for verdict labels, closing resubmissions and duplicates, <code>duplicate</code> on passed issues, and submissions opened by hand, along with the board setup steps for the Systems Lead.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>A real <code>passed</code> label now wins over a stray <code>duplicate</code> in both the submission tracker and the hourly builder snapshot, so a mislabeled pass is still counted.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
                 <!-- 0.12.5 -->
                 <div class="cl-version">
                     <div class="cl-version-header">

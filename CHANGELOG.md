@@ -4,6 +4,19 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.13.0] - 2026-11-26 — Keep the Board and Tracker in Sync
+
+### Added
+
+- A `project-board-sync.yml` workflow sets the submission board's Status from issue labels on open, label, close, and reopen events, plus a weekly and manually triggered reconcile. It needs a `PROJECT_SYNC_TOKEN` repository secret (fine-grained token with `project` read/write and `issues` read) and is a no-op until that secret is added.
+- The Volunteer Guide now spells out the reviewer rules for verdict labels, closing resubmissions and duplicates, `duplicate` on passed issues, and submissions opened by hand, along with the board setup steps for the Systems Lead.
+
+### Fixed
+
+- A real `passed` label now wins over a stray `duplicate` in both the submission tracker and the hourly builder snapshot, so a mislabeled pass is still counted.
+
+---
+
 ## [0.12.5] - 2026-11-25 — Automated Review SLA Reminders
 
 ### Added

@@ -216,11 +216,12 @@ test("issueStatus accepts plain label strings", () => {
   assert.equal(issueStatus({}), "pending-review");
 });
 
-test("isCountable leaves out pull requests, duplicates and late-only legacy issues", () => {
+test("isCountable leaves out pull requests, unpassed duplicates and late-only legacy issues", () => {
   assert.equal(isCountable(issue("open")), true);
   assert.equal(isCountable(issue("closed")), true);
   assert.equal(isCountable({ ...issue("open"), pull_request: {} }), false);
   assert.equal(isCountable(issue("closed", "duplicate")), false);
+  assert.equal(isCountable(issue("closed", "duplicate", "passed")), true);
   assert.equal(isCountable(issue("closed", "late-submission")), false);
   assert.equal(isCountable(issue("open", "late-submission", "needs-improvement")), true);
   assert.equal(isCountable(null), false);

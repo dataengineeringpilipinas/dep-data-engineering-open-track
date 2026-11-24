@@ -66,12 +66,13 @@
     return "pending-review";
   }
 
-  // Leave out pull requests, duplicates, and legacy late-only issues. This
-  // matches is_countable() in .github/scripts/builders_snapshot.py.
+  // Leave out pull requests, duplicates without a pass, and legacy late-only
+  // issues. A real pass wins over a stray `duplicate` label. This matches
+  // is_countable() in .github/scripts/builders_snapshot.py.
   function isCountable(issue) {
     if (!issue || issue.pull_request) return false;
     const names = labelNames(issue);
-    if (names.includes("duplicate")) return false;
+    if (names.includes("duplicate") && !names.includes("passed")) return false;
     const isLegacyLateOnly =
       names.includes("late-submission") &&
       !PROCESS_LABELS.some((label) => names.includes(label));

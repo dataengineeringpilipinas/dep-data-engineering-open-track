@@ -115,10 +115,11 @@ def test_distinct_milestone_submissions_are_counted_once():
     assert ada["milestonesPassed"] == 2
 
 
-def test_duplicate_late_only_and_pull_requests_are_excluded():
+def test_unpassed_duplicates_late_only_and_pull_requests_are_excluded():
     snapshot = build_builders_snapshot(
         [
             issue(1, "Grace", "M2", labels=["milestone-submission", "M2", "passed"]),
+            # A real pass wins over a stray `duplicate` label.
             issue(2, "Grace", "M3", labels=["milestone-submission", "M3", "duplicate", "passed"]),
             issue(3, "Grace", "M4", labels=["milestone-submission", "M4", "late-submission"]),
             issue(
@@ -128,15 +129,16 @@ def test_duplicate_late_only_and_pull_requests_are_excluded():
                 labels=["milestone-submission", "M5", "passed"],
                 pull_request=True,
             ),
+            issue(5, "Grace", "M6", labels=["milestone-submission", "M6", "duplicate"]),
         ],
         allowlist(),
         NOW,
     )
 
     grace = builder_for(snapshot, "Grace")
-    assert grace["milestonesSubmitted"] == 1
-    assert grace["milestonesPassed"] == 3
-    assert grace["currentMilestone"] == 3
+    assert grace["milestonesSubmitted"] == 2
+    assert grace["milestonesPassed"] == 4
+    assert grace["currentMilestone"] == 4
 
 
 def test_m5_path_selects_phase_and_pending_path_is_explicit():
