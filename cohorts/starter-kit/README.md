@@ -49,6 +49,10 @@ You need:
 
 You need to create your own GitHub repo with the starter kit files inside. Follow the steps below based on what you're comfortable with.
 
+> **Don't fork the curriculum repo.** Your project lives in its own new repo. Milestones are submitted through issue forms and never need a pull request, so if GitHub offers to open one into the curriculum repo, ignore it.
+
+> **Protect your credentials.** Enable **secret scanning** and **push protection** in your repo's **Settings → Code security** (free for public repos). Never upload `kaggle.json`, `.env`, API keys, or tokens through the GitHub website. The starter `.gitignore` covers the common credential files, but it cannot stop a file uploaded through the web UI.
+
 ---
 
 ### Option A — Download and Upload (No Git knowledge required)

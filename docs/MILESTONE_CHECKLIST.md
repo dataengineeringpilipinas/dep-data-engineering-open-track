@@ -4,6 +4,8 @@ Use this to track your progress. Milestone reviewers also use this when evaluati
 
 Aim to submit one issue per milestone by its target deadline. A late issue remains open, receives a `late-submission` indicator, and continues through normal evaluation. If the previous milestone is still awaiting review, the new issue remains open as `waiting-on-prerequisite`; its submission time is preserved and it releases automatically after the prerequisite passes. If revisions are requested, push a new commit and comment `/recheck <commit-hash>` on the same issue. Do not open a replacement issue.
 
+> **Never commit credentials.** Enable secret scanning and push protection on your repo (free for public repos). Keep `kaggle.json`, `.env`, API keys, and tokens out of the repository.
+
 ---
 
 ## M0 — Problem Statement *(End of Week 1)*

@@ -24,7 +24,7 @@ Review Builder submissions using the checklist in [MILESTONE_CHECKLIST.md](MILES
 - Use the checklist — don't improvise criteria
 - Leave one specific, actionable comment when marking Improve
 - Review issues labeled `ready-for-review`; issues labeled `waiting-on-prerequisite` are recorded but not yet ready for a verdict
-- Apply `passed` only after the full human checklist is satisfied, including M0; applying it closes the issue and releases the builder's next queued milestone
+- Apply `passed` only after the full human checklist is satisfied, including M0; applying it closes the issue and releases the builder's next queued milestone. The bot re-checks the repo first and blocks the pass if credential material such as `kaggle.json`, `.env`, or a hardcoded API key is committed.
 - Apply `needs-improvement` when revisions are required. Do not remove a terminal `passed` label directly; escalate an accidental verdict to the Systems Lead for an audited correction
 
 ### Community Moderators

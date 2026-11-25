@@ -4,12 +4,76 @@ All notable changes to this repository are recorded here.
 
 ---
 
-## [0.9.4] - 2026-11-12 — Issue Intake Templates
+## [0.12.4] - 2026-11-25 — Issue Intake Templates
 
 ### Added
 
 - Bug reports now have their own issue form (labeled `bug`, kept out of the milestone pipeline), and people building along without a slot can file a waitlist application (labeled `waitlist`). Blank issues are disabled, and questions route to Discord and the FAQ through contact links.
-- `VOLUNTEER_GUIDE.md` documents the slot backfill process for moderators, and the FAQ has a waitlist entry.
+
+---
+
+## [0.12.2] - 2026-11-20 — Submission Tracker Shows Closed Issues as Closed
+
+### Fixed
+
+- The submission tracker now reads each issue's open or closed state. A closed issue without `passed` (a resubmission, duplicate, or a builder who left) shows as **Closed** instead of Pending Review, Checking, or Needs Improvement, and is never marked overdue. This removes 43 closed issues from the review queues.
+- Per-milestone pass rates no longer count closed, unpassed issues in the denominator.
+
+### Changed
+
+- The status and filtering rules moved into `docs/assets/progress-snapshot.js` (`issueStatus`, `isCountable`) so they are unit-tested, and the status filter gains a "Closed (not passed)" option.
+
+---
+
+## [0.12.0] - 2026-11-20 — Guard Main Against Fork Pull Requests
+
+### Added
+
+- `.github/CODEOWNERS` makes the Systems Lead and program lead code owners for `.github/`, the curriculum phase folders, `cohorts/`, and `docs/`.
+- A `Fork PR Guard` workflow watches `pull_request_target`, reads only PR metadata, and flags fork PRs that delete protected content or more than 20 files with `needs-maintainer` and a friendly "this looks accidental" comment.
+
+### Changed
+
+- `main` now requires a code-owner review for protected paths and no longer allows admins to bypass branch protection.
+
+---
+
+## [0.11.0] - 2026-11-20 — Builder Secret Prevention and Audit
+
+### Added
+
+- The Starter Kit now includes a `.gitignore` covering credential files, env files, keys, cloud credential stores, and local Python noise.
+- The M2 submission form, Starter Kit README, and milestone checklist now tell builders to enable secret scanning and push protection and never commit `kaggle.json`, `.env`, API keys, or tokens.
+- A manual `Secret Audit (gitleaks)` workflow scans a public repo on demand. It pins gitleaks 8.30.1, verifies the release checksum, redacts values, and publishes paths and rule IDs only. It is advisory and does not change milestone status.
+
+---
+
+## [0.10.0] - 2026-11-19 — Block Passes on Committed Credentials
+
+### Added
+
+- Every milestone evaluation now scans the submitted snapshot for committed credential files and high-confidence credential patterns, and scans the repo's current default branch for known credential files. Filename rules cover `kaggle.json`, `.env` and `.env.*` (except `.env.example`/`.env.sample`/`.env.template`), `*.pem`, `*.key`, `*.p12`, `*.pfx`, `*.jks`, `*.ppk`, `credentials.json`, `service-account*.json`, `firebase-adminsdk*.json`, `client_secret*.json`, `application_default_credentials.json`, SSH private keys, `.netrc`, `.pgpass`, `.pypirc`, `.npmrc`, `.aws/credentials`, and `.docker/config.json`. Content rules cover private-key blocks and AWS, Google, GitHub, Slack, Stripe, OpenAI, Anthropic, Hugging Face, npm, PyPI, SendGrid, Databricks, and Azure Storage tokens. A hit marks the submission `needs-improvement` and names the path and rule only, never the value.
+- The pass guard (`finalize-pass`) re-checks the current default branch before closing a `passed` issue. On a hit it removes `passed`, sets `needs-improvement`, posts revocation guidance, and does not release the next milestone.
+
+### Changed
+
+- The `needs-improvement` guidance now tells builders to revoke an exposed credential at the provider first, then remove the exposed value (or delete the file) and keep credentials out of the repo before resubmitting.
+
+---
+
+## [0.9.3] - 2026-11-12 — Create a Project Repo, Don't Fork
+
+### Changed
+
+- The homepage, the Starter Kit README and all seven milestone submission forms now tell builders to create their own project repo from the Starter Kit rather than fork this repo. Builders working in forks were being offered GitHub's "open pull request" prompt into the curriculum repo (#252 was opened by accident). The Starter Kit README also says milestones never need a pull request.
+
+---
+
+## [0.9.2] - 2026-11-11 — Record Two Dropped Builders
+
+### Changed
+
+- `sarmientobengjii` and `YeXiu2001` now show as `Dropped` on the public builder directory, after the program lead confirmed they left the program. Neither ever submitted a milestone. Both stay listed by username only.
 
 ---
 

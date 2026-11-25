@@ -1,14 +1,6 @@
 const OWNER = "dataengineeringpilipinas";
 const REPO = "dep-data-engineering-open-track";
 const MILESTONES = ["M0", "M1", "M2", "M3", "M4", "M5", "M6"];
-const PROCESS_LABELS = [
-  "auto-check-pending",
-  "waiting-on-prerequisite",
-  "ready-for-review",
-  "needs-improvement",
-  "passed",
-];
-
 let allIssues = [];
 let enrolledSet = null;
 let viewMode = "enrolled";
@@ -25,16 +17,6 @@ function extract(body, heading) {
   return match ? match[1].trim() : "—";
 }
 
-function getStatus(labels) {
-  const names = labels.map((label) => label.name);
-  if (names.includes("passed")) return "passed";
-  if (names.includes("needs-improvement")) return "needs-improvement";
-  if (names.includes("waiting-on-prerequisite")) return "waiting-on-prerequisite";
-  if (names.includes("ready-for-review")) return "ready-for-review";
-  if (names.includes("auto-check-pending")) return "checking";
-  return "pending-review";
-}
-
 function getMilestone(labels) {
   const names = labels.map((label) => label.name);
   return names.find((name) => /^M\d$/.test(name)) || "?";
@@ -47,7 +29,7 @@ function enrich(issue) {
     _cohort: extract(issue.body, "Cohort"),
     _repoUrl: extract(issue.body, "GitHub Repo URL"),
     _milestone: getMilestone(issue.labels),
-    _status: getStatus(issue.labels),
+    _status: ProgressSnapshot.issueStatus(issue),
     _isLate: issue.labels.some((label) => label.name === "late-submission"),
     _days: Math.floor((Date.now() - new Date(issue.created_at).getTime()) / 86400000),
   };
@@ -61,6 +43,7 @@ function statusBadge(status) {
     "ready-for-review": ["ready-for-review", "Ready for review"],
     "pending-review": ["pending-review", "Pending Review"],
     checking: ["checking", "Checking"],
+    closed: ["closed", "Closed"],
   };
   const [className, label] = map[status] || ["checking", status];
   return `<span class="progress-badge ${className}">${label}</span>`;
@@ -75,7 +58,9 @@ function statusBadges(issue) {
 
 function daysBadge(days, status) {
   const title = ' title="Days since the issue was submitted"';
-  if (status === "passed") return `<span class="progress-days ok"${title}>${days}d</span>`;
+  if (status === "passed" || status === "closed") {
+    return `<span class="progress-days ok"${title}>${days}d</span>`;
+  }
   if (status === "waiting-on-prerequisite") {
     return `<span class="progress-days warn"${title}>${days}d queued</span>`;
   }
@@ -315,7 +300,11 @@ function renderAll() {
   ).length;
 
   document.getElementById("milestone-grid").innerHTML = MILESTONES.map((milestone) => {
-    const milestoneIssues = visible.filter((issue) => issue._milestone === milestone);
+    // Closed issues without a pass are finished resubmissions or duplicates,
+    // so they stay out of the pass-rate denominator.
+    const milestoneIssues = visible.filter(
+      (issue) => issue._milestone === milestone && issue._status !== "closed",
+    );
     const passedCount = milestoneIssues.filter((issue) => issue._status === "passed").length;
     const percent = milestoneIssues.length
       ? Math.round((passedCount / milestoneIssues.length) * 100)
@@ -350,14 +339,7 @@ async function fetchEnrolled() {
 }
 
 function filterIssues(batch) {
-  return batch.filter((issue) => {
-    const labelNames = issue.labels.map((label) => label.name);
-    const isDuplicate = labelNames.includes("duplicate");
-    const isLegacyLateOnly =
-      labelNames.includes("late-submission") &&
-      !PROCESS_LABELS.some((label) => labelNames.includes(label));
-    return !issue.pull_request && !isDuplicate && !isLegacyLateOnly;
-  });
+  return batch.filter((issue) => ProgressSnapshot.isCountable(issue));
 }
 
 // Hourly server-side snapshot published by progress-snapshot.yml to the

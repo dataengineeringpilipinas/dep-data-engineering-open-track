@@ -94,7 +94,7 @@ No. An issue marked `waiting-on-prerequisite` is checked again automatically aft
 
 ### “Automated checks passed. Am I done?”
 
-Not yet. `ready-for-review` means the submission is waiting for a human reviewer to apply `passed` or `needs-improvement`.
+Not yet. `ready-for-review` means the submission is waiting for a human reviewer to apply `passed` or `needs-improvement`. If the repo commits credential material such as `kaggle.json`, `.env`, or a hardcoded API key, the bot blocks the pass even after a reviewer applies it and asks the Builder to revoke and remove it.
 
 ### “Why does M0 still need a reviewer?”
 
@@ -154,6 +154,7 @@ Do not ask the Builder to open another issue. Send the issue to a maintainer for
 - Tell the Builder that pushing a commit automatically triggers a recheck.
 - Tell the Builder that `late-submission` requires an exception or blocks review.
 - Apply `passed` before the issue reaches `ready-for-review`.
+- Tell a Builder a milestone passed while their repo commits credential material; the bot blocks the pass and returns the issue to `needs-improvement`.
 - Remove a valid late indicator or manually change a terminal verdict.
 
 ## When to Escalate

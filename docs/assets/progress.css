@@ -311,6 +311,12 @@
   color: var(--sub);
 }
 
+.progress-badge.closed {
+  background: transparent;
+  border: 1px solid #4b5563;
+  color: var(--sub);
+}
+
 .progress-badge.late-submission {
   background: #421f24;
   border: 1px solid #b91c1c;

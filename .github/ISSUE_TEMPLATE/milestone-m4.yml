@@ -34,7 +34,7 @@ body:
     id: repo_url
     attributes:
       label: GitHub Repo URL
-      description: Public URL of your forked Starter Kit repo.
+      description: Public URL of your own project repo, created from the Starter Kit (not a fork of this repo).
       placeholder: "https://github.com/<your-username>/dep-starter-kit"
     validations:
       required: true
