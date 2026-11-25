@@ -1,0 +1,33 @@
+name: "Bug Report"
+description: Report a problem with the milestone pipeline, the docs site, or the curriculum.
+title: "[Bug] <short description>"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Bug Report**
+        For milestone submissions, use the Milestone templates instead. This template is for problems with the program itself: the auto-checker, the workflows, the docs site, or curriculum content.
+
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: What happened
+      description: What did you see? Paste the exact error message or bot comment if there is one.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+
+  - type: input
+    id: reference_link
+    attributes:
+      label: Link to the affected issue, workflow run, or page
+      placeholder: "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/..."
+    validations:
+      required: false

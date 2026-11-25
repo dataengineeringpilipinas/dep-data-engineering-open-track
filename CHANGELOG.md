@@ -4,6 +4,14 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.12.4] - 2026-11-25 — Issue Intake Templates
+
+### Added
+
+- Bug reports now have their own issue form (labeled `bug`, kept out of the milestone pipeline), and people building along without a slot can file a waitlist application (labeled `waitlist`). Blank issues are disabled, and questions route to Discord and the FAQ through contact links.
+
+---
+
 ## [0.12.2] - 2026-11-20 — Submission Tracker Shows Closed Issues as Closed
 
 ### Fixed
