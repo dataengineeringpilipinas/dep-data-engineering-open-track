@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-25T04:14:37Z",
+  "generated_at": "2026-11-25T14:31:06Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -4352,7 +4352,7 @@
       "number": 219,
       "pull_request": false,
       "title": "[M4] Xein Virgines — 1960 vs 2025: Who Had It Better?",
-      "updated_at": "2026-11-04T13:39:36Z",
+      "updated_at": "2026-11-25T04:42:25Z",
       "user": {
         "login": "xeind"
       }
@@ -4406,7 +4406,7 @@
       "number": 221,
       "pull_request": false,
       "title": "[M4] Naehum Dela Cruz — MassKara Festival Google Trends Interest & MNL-BCD Travel Price Surge Tracker",
-      "updated_at": "2026-11-11T12:33:16Z",
+      "updated_at": "2026-11-25T04:43:01Z",
       "user": {
         "login": "Naehum-Dela-Cruz"
       }
@@ -4712,7 +4712,7 @@
       "number": 245,
       "pull_request": false,
       "title": "[M5] Mark Cabael — BahaPredict: Building an Automated Regional Weather Data Pipeline in the Philippines",
-      "updated_at": "2026-11-25T03:40:07Z",
+      "updated_at": "2026-11-25T04:42:02Z",
       "user": {
         "login": "MCabs28"
       }
@@ -4844,7 +4844,7 @@
       "number": 255,
       "pull_request": false,
       "title": "[M4] Jimwell Bryll Santos — Bata, Bata, Saan Ka Nagmula? From Birthplace to Opportunity: Building Provincial Opportunity Index for the Philippines",
-      "updated_at": "2026-11-17T14:47:11Z",
+      "updated_at": "2026-11-25T04:42:46Z",
       "user": {
         "login": "jimwellbryllsantos-dot"
       }
@@ -4895,9 +4895,33 @@
       "number": 264,
       "pull_request": false,
       "title": "[M6] Vhon Raven Dingal — Davao Transport Data Observatory",
-      "updated_at": "2026-11-24T20:43:43Z",
+      "updated_at": "2026-11-25T05:58:56Z",
       "user": {
         "login": "vn0raven"
+      }
+    },
+    {
+      "body": "### Builder Name\n\nRobert Tulagan\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/robaaaru/dep-data-engineering-open-track-roberttulagan\n\n### Commit Hash\n\nc34715cf8e1f14d3c50eeb0a9928cd765e803e99\n\n### Live Project URL\n\nhttps://robaaaru.github.io/dep-data-engineering-open-track-roberttulagan/\n\n### Self-Check\n\n- [x] `dashboard/index.html` exists in my repo.\n- [x] The live URL above loads correctly in a browser.\n- [x] `requirements.txt` is complete and up to date.\n- [x] My README includes the live URL and a project summary.\n- [x] I have a short demo script or presentation ready.\n- [x] The commit hash above points to my latest submission snapshot.",
+      "closed_at": null,
+      "created_at": "2026-11-25T10:40:10Z",
+      "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/266",
+      "labels": [
+        {
+          "name": "milestone-submission"
+        },
+        {
+          "name": "M6"
+        },
+        {
+          "name": "ready-for-review"
+        }
+      ],
+      "number": 266,
+      "pull_request": false,
+      "title": "[M6] Robert Tulagan  — Rice Price Spikes and Typhoon Warnings: A Province-Level Overlap Analysis",
+      "updated_at": "2026-11-25T10:40:34Z",
+      "user": {
+        "login": "robaaaru"
       }
     }
   ]
