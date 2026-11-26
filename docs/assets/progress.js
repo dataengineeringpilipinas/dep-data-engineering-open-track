@@ -64,8 +64,10 @@ function daysBadge(days, status) {
   if (status === "waiting-on-prerequisite") {
     return `<span class="progress-days warn"${title}>${days}d queued</span>`;
   }
-  if (days >= 5) return `<span class="progress-days breach"${title}>${days}d overdue</span>`;
-  if (days >= 3) return `<span class="progress-days warn"${title}>${days}d waiting</span>`;
+  // Thresholds match the Review Escalation Policy in docs/VOLUNTEER_GUIDE.md
+  // (day 5 moderator ping, day 7 System Lead) and sla-nag.yml.
+  if (days >= 7) return `<span class="progress-days breach"${title}>${days}d overdue</span>`;
+  if (days >= 5) return `<span class="progress-days warn"${title}>${days}d waiting</span>`;
   return `<span class="progress-days ok"${title}>${days}d</span>`;
 }
 
