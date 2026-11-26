@@ -48,10 +48,17 @@
   // A passed issue always counts as passed. A closed issue without `passed`
   // (a resubmission, duplicate, or a builder who left) is finished, so it is
   // "closed", never pending or overdue, whatever review labels it still has.
+  // The published snapshot keeps `closed_at` but not `state`, so either one
+  // marks an issue closed. Reopening an issue clears `closed_at`.
+  function isClosed(issue) {
+    if (!issue) return false;
+    return String(issue.state || "").toLowerCase() === "closed" || Boolean(issue.closed_at);
+  }
+
   function issueStatus(issue) {
     const names = labelNames(issue);
     if (names.includes("passed")) return "passed";
-    if (String((issue && issue.state) || "").toLowerCase() === "closed") return "closed";
+    if (isClosed(issue)) return "closed";
     if (names.includes("needs-improvement")) return "needs-improvement";
     if (names.includes("waiting-on-prerequisite")) return "waiting-on-prerequisite";
     if (names.includes("ready-for-review")) return "ready-for-review";

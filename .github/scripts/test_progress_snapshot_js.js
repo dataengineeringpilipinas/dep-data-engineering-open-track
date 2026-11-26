@@ -191,6 +191,19 @@ test("issueStatus marks closed issues without a pass as closed, not pending", ()
   assert.equal(issueStatus(issue("closed", "ready-for-review")), "closed");
 });
 
+test("issueStatus treats closed_at as closed when the snapshot has no state", () => {
+  // progress-snapshot.yml keeps closed_at but drops state.
+  const snapshotIssue = (closedAt, ...labels) => ({
+    closed_at: closedAt,
+    labels: ["milestone-submission", "M1", ...labels].map((name) => ({ name })),
+  });
+  assert.equal(issueStatus(snapshotIssue("2026-07-08T10:00:00Z")), "closed");
+  assert.equal(issueStatus(snapshotIssue("2026-07-08T10:00:00Z", "needs-improvement")), "closed");
+  assert.equal(issueStatus(snapshotIssue("2026-07-08T10:00:00Z", "passed")), "passed");
+  assert.equal(issueStatus(snapshotIssue(null)), "pending-review");
+  assert.equal(issueStatus(snapshotIssue(null, "ready-for-review")), "ready-for-review");
+});
+
 test("issueStatus keeps passed whether the issue is open or closed", () => {
   assert.equal(issueStatus(issue("closed", "passed")), "passed");
   assert.equal(issueStatus(issue("open", "passed")), "passed");

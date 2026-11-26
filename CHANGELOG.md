@@ -4,6 +4,14 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.12.3] - 2026-11-24 — Tracker Reads Closed Dates from the Snapshot
+
+### Fixed
+
+- The 0.12.2 fix checked each issue's `state`, but the published progress snapshot keeps `closed_at` and not `state`, so the live tracker still showed closed issues as pending. An issue now counts as closed when it has a `closed_at` date as well as when its `state` is closed. The live review queue drops from 42 pending issues to the 5 that are really waiting.
+
+---
+
 ## [0.12.2] - 2026-11-20 — Submission Tracker Shows Closed Issues as Closed
 
 ### Fixed
