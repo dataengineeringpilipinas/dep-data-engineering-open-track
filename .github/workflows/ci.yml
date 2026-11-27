@@ -50,3 +50,6 @@ jobs:
 
       - name: Run fork PR guard tests
         run: node --test .github/scripts/test_fork_pr_guard.js
+
+      - name: Run board sync tests
+        run: node --test .github/scripts/test_board_sync.js

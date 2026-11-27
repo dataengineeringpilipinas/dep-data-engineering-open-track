@@ -4,6 +4,49 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.13.3] - 2026-11-27 — Board Sync Logic Has Regression Tests
+
+### Added
+
+- `.github/scripts/test_board_sync.js` runs the board sync's embedded script against a stubbed GitHub client, and CI now runs it. It covers Status mapping, idempotence, option aliases, event filtering, the `workflow_dispatch` input, and the project/field/option IDs sent to the mutation. The stub omits `id` and `optionId` unless the queries select them, so regressions like the missing project ID fail the suite.
+
+---
+
+## [0.13.2] - 2026-11-27 — Board Sync Selects the Project ID
+
+### Fixed
+
+- The project lookup now selects `id`, so `project.id` is defined when the item query and the update mutation run. Without it the first run failed with `Variable $projectId of type ID! was provided invalid value`.
+
+---
+
+## [0.13.1] - 2026-11-27 — Board Sync Runs Against the Live Project
+
+### Fixed
+
+- `project-board-sync.yml` sent GraphQL documents GitHub rejects: the project lookup selected fields directly on the `ProjectV2FieldConfiguration` union, and the item lookup used a non-existent `ProjectV2SingleSelectFieldValue` type with an `option` field. Both now use `ProjectV2FieldCommon` and `ProjectV2ItemFieldSingleSelectValue`/`optionId`, so the sync can read and compare Status values.
+- Status aliases now include `Unchecked/Unassigned` and `Closed/Not passed`, the labels on project #7. Cards waiting on a first review and closed submissions were previously skipped with a warning.
+- Event-triggered runs now ignore issues without `milestone-submission`, matching the reconcile filter.
+
+### Changed
+
+- The board item query reads `fieldValues(first: 50)` so the Status value is not truncated on a board with many populated fields.
+
+---
+
+## [0.13.0] - 2026-11-26 — Keep the Board and Tracker in Sync
+
+### Added
+
+- A `project-board-sync.yml` workflow sets the submission board's Status from issue labels on open, label, close, and reopen events, plus a weekly and manually triggered reconcile. It needs a `PROJECT_SYNC_TOKEN` repository secret (fine-grained token with `project` read/write and `issues` read) and is a no-op until that secret is added.
+- The Volunteer Guide now spells out the reviewer rules for verdict labels, closing resubmissions and duplicates, `duplicate` on passed issues, and submissions opened by hand, along with the board setup steps for the Systems Lead.
+
+### Fixed
+
+- A real `passed` label now wins over a stray `duplicate` in both the submission tracker and the hourly builder snapshot, so a mislabeled pass is still counted.
+
+---
+
 ## [0.12.5] - 2026-11-25 — Automated Review SLA Reminders
 
 ### Added

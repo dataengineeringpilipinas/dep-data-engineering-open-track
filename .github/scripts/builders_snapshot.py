@@ -85,11 +85,14 @@ def issue_status(issue: dict[str, Any]) -> str:
 
 
 def is_countable(issue: dict[str, Any]) -> bool:
-    """Match the tracker's filters: no PRs, duplicates, or late-only legacy issues."""
+    """Match the tracker: no PRs, unpassed duplicates, or late-only legacy issues.
+
+    A real pass wins over a stray `duplicate` label.
+    """
     if issue.get("pull_request"):
         return False
     names = set(label_names(issue))
-    if "duplicate" in names:
+    if "duplicate" in names and "passed" not in names:
         return False
     if "late-submission" in names and not (names & PROCESS_LABELS):
         return False

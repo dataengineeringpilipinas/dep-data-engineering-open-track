@@ -26,6 +26,10 @@ Review Builder submissions using the checklist in [MILESTONE_CHECKLIST.md](MILES
 - Review issues labeled `ready-for-review`; issues labeled `waiting-on-prerequisite` are recorded but not yet ready for a verdict
 - Apply `passed` only after the full human checklist is satisfied, including M0; applying it closes the issue and releases the builder's next queued milestone. The bot re-checks the repo first and blocks the pass if credential material such as `kaggle.json`, `.env`, or a hardcoded API key is committed.
 - Apply `needs-improvement` when revisions are required. Do not remove a terminal `passed` label directly; escalate an accidental verdict to the Systems Lead for an audited correction
+- Always apply the verdict label when you finish a review. A review comment on its own leaves the submission looking unreviewed to the tracker, the board, and the next reviewer.
+- Close a resubmission or duplicate as **Close as not planned** (or with the `duplicate` label), never as completed without `passed`. A completed issue with no verdict is neither a pass nor pending review.
+- Never add `duplicate` to an issue that has `passed`. Put it on the other issue instead. A stray `duplicate` no longer hides a real pass, but the labels should still be corrected.
+- Submissions come through the milestone issue form, which adds `milestone-submission`. If one is opened by hand, add that label before reviewing so the issue appears on the tracker and the board.
 
 ### Community Moderators
 Keep the Discord healthy. Answer questions async. Encourage progress.
@@ -62,7 +66,18 @@ The v1 tracker uses the issue's `updated_at` as the `/recheck` proxy. A reviewer
 
 ## Public Builder Directory
 
-The homepage directory is generated hourly from the milestone issue snapshot and published to the `progress-data` branch. The checked-in `docs/data/builders.json` is only a fallback. Display names live in `display_names` in [`.github/enrolled-participants.json`](../.github/enrolled-participants.json). Add a GitHub username to `name_opt_outs` to publish the username instead. Public statuses are `Enrolled` (no submissions), `In progress` (at least one submission), `Completed` (M6 passed), and `Dropped` (manual). Use `status_overrides` only for manual `Dropped` statuses; At Risk is derived internally and never published.
+The homepage directory is generated hourly from the milestone issue snapshot and published to the `progress-data` branch. The checked-in `docs/data/builders.json` is only a fallback. Display names live in `display_names` in [`.github/enrolled-participants.json`](../.github/enrolled-participants.json). Add a GitHub username to `name_opt_outs` to publish the username instead. Public statuses are `Enrolled` (no submissions), `In progress` (at least one submission), `Completed` (M6 passed), and `Dropped` (manual). Use `status_overrides` only for manual `Dropped` statuses; At Risk is derived internally and never published. A `passed` label always wins over a stray `duplicate` when submissions are counted.
+
+---
+
+## Submission Board Setup *(Systems Lead)*
+
+The board's Status column is derived from issue labels by `.github/workflows/project-board-sync.yml` — reviewers should move cards only when fixing a backlog from before the workflow was enabled. The workflow needs a repository secret named `PROJECT_SYNC_TOKEN`, a fine-grained token with `project` (read/write) and `issues` (read) scopes for this repo. It is a no-op until that secret exists.
+
+Two project settings still have to be made in the GitHub UI (the API cannot change them):
+
+1. In **Project settings → Auto-add to project**, set the filter to `is:issue label:milestone-submission` so ops and test issues stay off the board.
+2. Check that the Status field has the options `Unchecked/Unassigned`, `In review`, `Needs Improvement`, `Passed`, and `Closed/Not passed` (the sync matches names case-insensitively and also accepts `Unchecked` and `Closed`).
 
 ---
 

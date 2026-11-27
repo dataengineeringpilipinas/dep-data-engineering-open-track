@@ -1,0 +1,230 @@
+name: Sync submission board status from issue labels
+
+on:
+  issues:
+    types: [opened, labeled, unlabeled, closed, reopened]
+  schedule:
+    # Weekly reconcile, Mondays at 03:00 UTC.
+    - cron: "0 3 * * 1"
+  workflow_dispatch:
+    inputs:
+      reconcile:
+        description: "Reconcile every submission issue against the board"
+        type: boolean
+        default: true
+
+concurrency:
+  group: project-board-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_SYNC_TOKEN: ${{ secrets.PROJECT_SYNC_TOKEN }}
+      PROJECT_NUMBER: "7"
+    steps:
+      - name: Explain a missing project token
+        if: env.PROJECT_SYNC_TOKEN == ''
+        run: |
+          echo "::warning::PROJECT_SYNC_TOKEN is not set; skipping board sync."
+          echo "Add a fine-grained token with project (read/write) and issues (read) access to this repo."
+          echo "See docs/VOLUNTEER_GUIDE.md → Submission Board Setup."
+
+      - name: Set board Status from issue labels
+        if: env.PROJECT_SYNC_TOKEN != ''
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ env.PROJECT_SYNC_TOKEN }}
+          script: |
+            const projectNumber = Number(process.env.PROJECT_NUMBER);
+            const { owner, repo } = context.repo;
+
+            // Board Status options. Aliases cover the common names used on the
+            // existing board; matching is case-insensitive.
+            const OPTION_NAMES = {
+              Passed: ["Passed"],
+              Closed: [
+                "Closed",
+                "Not passed",
+                "Closed (not passed)",
+                "Closed / Not passed",
+                "Closed/Not passed",
+              ],
+              "Needs Improvement": ["Needs Improvement"],
+              "In review": ["In review"],
+              Unchecked: ["Unchecked", "Unchecked/Unassigned"],
+            };
+
+            const PROJECT_QUERY = `
+              query($owner: String!, $repo: String!) {
+                repository(owner: $owner, name: $repo) {
+                  projectsV2(first: 100) {
+                    nodes {
+                      id
+                      number
+                      fields(first: 50) {
+                        nodes {
+                          __typename
+                          # ProjectV2FieldConfiguration is a union, so select the
+                          # shared interface instead of the union directly.
+                          ... on ProjectV2FieldCommon { id name }
+                          ... on ProjectV2SingleSelectField {
+                            options { id name }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }`;
+
+            const ITEMS_QUERY = `
+              query($projectId: ID!, $after: String) {
+                node(id: $projectId) {
+                  ... on ProjectV2 {
+                    items(first: 100, after: $after) {
+                      pageInfo { hasNextPage endCursor }
+                      nodes {
+                        id
+                        content { ... on Issue { number } }
+                        fieldValues(first: 50) {
+                          nodes {
+                            ... on ProjectV2ItemFieldSingleSelectValue {
+                              field { ... on ProjectV2FieldCommon { id } }
+                              optionId
+                              name
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }`;
+
+            const UPDATE_MUTATION = `
+              mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: ID!) {
+                updateProjectV2ItemFieldValue(input: {
+                  projectId: $projectId
+                  itemId: $itemId
+                  fieldId: $fieldId
+                  value: { singleSelectOptionId: $optionId }
+                }) { projectV2Item { id } }
+              }`;
+
+            const labelNames = (issue) =>
+              ((issue && issue.labels) || []).map((label) =>
+                typeof label === "string" ? label : label.name,
+              );
+
+            // Mirror the tracker: a pass always wins; a closed issue without a
+            // pass is finished; review labels decide the remaining states.
+            const statusFor = (issue) => {
+              const names = labelNames(issue);
+              if (names.includes("passed")) return "Passed";
+              if (String((issue && issue.state) || "").toLowerCase() === "closed") return "Closed";
+              if (names.includes("needs-improvement")) return "Needs Improvement";
+              if (names.includes("ready-for-review")) return "In review";
+              return "Unchecked";
+            };
+
+            const optionFor = (field, status) => {
+              const candidates = (OPTION_NAMES[status] || []).map((name) => name.toLowerCase());
+              return field.options.find((option) =>
+                candidates.includes(String(option.name || "").toLowerCase().trim()),
+              );
+            };
+
+            const currentOptionId = (item, fieldId) => {
+              const values = (item.fieldValues || {}).nodes || [];
+              const value = values.find(
+                (entry) => entry.field && entry.field.id === fieldId && entry.optionId,
+              );
+              return value ? value.optionId : null;
+            };
+
+            const projectData = await github.graphql(PROJECT_QUERY, { owner, repo });
+            const project = (projectData.repository.projectsV2.nodes || []).find(
+              (candidate) => candidate.number === projectNumber,
+            );
+            if (!project) throw new Error(`Project #${projectNumber} not found in ${owner}/${repo}`);
+
+            const statusField = (project.fields.nodes || []).find(
+              (field) => field.name === "Status" && Array.isArray(field.options),
+            );
+            if (!statusField) throw new Error(`No single-select Status field on project #${projectNumber}`);
+
+            // Load board items once (paged) and index them by issue number.
+            const itemsByIssue = new Map();
+            let after = null;
+            do {
+              const data = await github.graphql(ITEMS_QUERY, { projectId: project.id, after });
+              const items = (((data.node || {}).items || {}).nodes) || [];
+              for (const item of items) {
+                const number = (item.content || {}).number;
+                if (number) itemsByIssue.set(number, item);
+              }
+              const page = (data.node || {}).items || {};
+              after = page.pageInfo && page.pageInfo.hasNextPage ? page.pageInfo.endCursor : null;
+            } while (after);
+
+            const reconcile =
+              context.eventName === "schedule" ||
+              (context.eventName === "workflow_dispatch" &&
+                String((context.payload.inputs || {}).reconcile) === "true");
+
+            let issues;
+            if (reconcile) {
+              issues = await github.paginate(github.rest.issues.listForRepo, {
+                owner,
+                repo,
+                state: "all",
+                per_page: 100,
+              });
+              issues = issues.filter(
+                (issue) => !issue.pull_request && labelNames(issue).includes("milestone-submission"),
+              );
+            } else {
+              const eventIssue = context.payload.issue;
+              issues =
+                eventIssue && labelNames(eventIssue).includes("milestone-submission")
+                  ? [eventIssue]
+                  : [];
+            }
+
+            let updated = 0;
+            let missing = 0;
+            for (const issue of issues) {
+              const item = itemsByIssue.get(issue.number);
+              if (!item) {
+                // Auto-add puts milestone-submission issues on the board; a
+                // missing card is a project-setting problem, not a status one.
+                missing += 1;
+                core.info(`#${issue.number} is not on the board; skipping.`);
+                continue;
+              }
+
+              const status = statusFor(issue);
+              const option = optionFor(statusField, status);
+              if (!option) {
+                core.warning(`Board has no "${status}" Status option; skipping #${issue.number}.`);
+                continue;
+              }
+              if (currentOptionId(item, statusField.id) === option.id) continue;
+
+              await github.graphql(UPDATE_MUTATION, {
+                projectId: project.id,
+                itemId: item.id,
+                fieldId: statusField.id,
+                optionId: option.id,
+              });
+              updated += 1;
+              core.info(`#${issue.number}: Status → ${option.name}`);
+            }
+
+            core.info(`Board sync done: ${updated} updated, ${missing} not on the board.`);
