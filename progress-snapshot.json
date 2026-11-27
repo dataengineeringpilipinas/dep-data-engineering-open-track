@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-25T14:31:06Z",
+  "generated_at": "2026-11-27T10:54:16Z",
   "issues": [
     {
       "body": "### Builder Name\n\nFroncoyz Verano\n\n### Cohort\n\n2026-A\n\n### GitHub Repo URL\n\nhttps://github.com/Connette/dep-starter-kit\n\n### Commit Hash\n\n1f5ca9de0899a3f75af3ac02b1ad601832e7b130\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
@@ -107,13 +107,16 @@
           "name": "milestone-submission"
         },
         {
+          "name": "needs-improvement"
+        },
+        {
           "name": "M0"
         }
       ],
       "number": 14,
       "pull_request": false,
       "title": "[M0] Gerald John Alviar — AirLytics PH",
-      "updated_at": "2026-11-20T11:01:00Z",
+      "updated_at": "2026-11-27T07:48:02Z",
       "user": {
         "login": "GeraldAlviar"
       }
@@ -543,12 +546,15 @@
     },
     {
       "body": "### Builder Name\n\nShaina Soya\n\n### Cohort\n\nOpen Learner\n\n### GitHub Repo URL\n\nhttps://github.com/avsguy/dep-data-engineering-open-track-avsguy\n\n### Commit Hash\n\n2f06440a022f10160df023feeeca4c3df419d887\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-27T07:47:57Z",
       "created_at": "2026-06-26T17:14:21Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/33",
       "labels": [
         {
           "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
         },
         {
           "name": "M0"
@@ -557,7 +563,7 @@
       "number": 33,
       "pull_request": false,
       "title": "[M0] Shaina Soya — Economic Performance of Philippine Provinces",
-      "updated_at": "2026-11-20T11:01:03Z",
+      "updated_at": "2026-11-27T07:47:59Z",
       "user": {
         "login": "avsguy"
       }
@@ -681,12 +687,15 @@
     },
     {
       "body": "### Builder Name\n\nMarciano Salazar\n\n### Cohort\n\n2026\n\n### GitHub Repo URL\n\nhttps://github.com/MarcianoSalazar/dep-data-engineering-salazar\n\n### Commit Hash\n\n3c6099c35569e8241219643df286085c9bca0def\n\n### Self-Check\n\n- [x] My repo is public and accessible via the URL above.\n- [x] My README exists and describes the project problem and data source.\n- [x] The commit hash above points to my latest submission snapshot.",
-      "closed_at": null,
+      "closed_at": "2026-11-27T07:48:02Z",
       "created_at": "2026-06-27T11:25:26Z",
       "html_url": "https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/39",
       "labels": [
         {
           "name": "milestone-submission"
+        },
+        {
+          "name": "passed"
         },
         {
           "name": "M0"
@@ -698,7 +707,7 @@
       "number": 39,
       "pull_request": false,
       "title": "[M0] <Marciano Salazar > — <Data Quality Assessment System for Philippine Education Open Datasets>",
-      "updated_at": "2026-11-20T11:01:05Z",
+      "updated_at": "2026-11-27T07:48:04Z",
       "user": {
         "login": "Sheyxii"
       }
@@ -854,13 +863,16 @@
           "name": "milestone-submission"
         },
         {
+          "name": "needs-improvement"
+        },
+        {
           "name": "M0"
         }
       ],
       "number": 46,
       "pull_request": false,
       "title": "[M0] Ken Shamrock Dizon — How has bird species diversity in Luzon changed from 2020–2025",
-      "updated_at": "2026-11-20T11:01:07Z",
+      "updated_at": "2026-11-27T07:48:09Z",
       "user": {
         "login": "ksdizon"
       }
@@ -2558,7 +2570,7 @@
       "number": 128,
       "pull_request": false,
       "title": "[M2] <Froncoyz Verano> — <Philippine Regional Poverty Divergence Tracker>",
-      "updated_at": "2026-11-25T03:40:03Z",
+      "updated_at": "2026-11-27T10:19:44Z",
       "user": {
         "login": "Froncoyz"
       }
@@ -2843,7 +2855,7 @@
       "number": 143,
       "pull_request": false,
       "title": "[M1] Miko John Torres — Philippine Tech Skills Demand Tracker",
-      "updated_at": "2026-11-25T03:40:00Z",
+      "updated_at": "2026-11-27T10:19:42Z",
       "user": {
         "login": "miksss1412"
       }
@@ -3782,7 +3794,7 @@
       "number": 196,
       "pull_request": false,
       "title": "[M3] supjkay — Beating the Rush: The Metro Manila Rail Dashboard",
-      "updated_at": "2026-11-25T03:39:56Z",
+      "updated_at": "2026-11-27T10:19:41Z",
       "user": {
         "login": "supjkay"
       }
@@ -4025,7 +4037,7 @@
       "number": 206,
       "pull_request": false,
       "title": "[M3] <John Kenneth Priol> — <NCR Air Quality and EV Fleet Growth: Measuring EVIDA's Impact (2014-Present)>",
-      "updated_at": "2026-11-25T03:39:52Z",
+      "updated_at": "2026-11-27T10:19:40Z",
       "user": {
         "login": "johnkennethpriol"
       }
@@ -4817,7 +4829,7 @@
       "number": 250,
       "pull_request": false,
       "title": "[M4] <Rolando Asa> — <NBA GOAT Comprehensive Data Analysis>",
-      "updated_at": "2026-11-25T03:39:49Z",
+      "updated_at": "2026-11-27T10:19:39Z",
       "user": {
         "login": "ambs78"
       }
@@ -4886,16 +4898,16 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M6"
+          "name": "needs-improvement"
         },
         {
-          "name": "ready-for-review"
+          "name": "M6"
         }
       ],
       "number": 264,
       "pull_request": false,
       "title": "[M6] Vhon Raven Dingal — Davao Transport Data Observatory",
-      "updated_at": "2026-11-25T05:58:56Z",
+      "updated_at": "2026-11-27T07:32:11Z",
       "user": {
         "login": "vn0raven"
       }
@@ -4910,16 +4922,16 @@
           "name": "milestone-submission"
         },
         {
-          "name": "M6"
+          "name": "needs-improvement"
         },
         {
-          "name": "ready-for-review"
+          "name": "M6"
         }
       ],
       "number": 266,
       "pull_request": false,
       "title": "[M6] Robert Tulagan  — Rice Price Spikes and Typhoon Warnings: A Province-Level Overlap Analysis",
-      "updated_at": "2026-11-25T10:40:34Z",
+      "updated_at": "2026-11-27T07:29:36Z",
       "user": {
         "login": "robaaaru"
       }
