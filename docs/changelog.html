@@ -80,6 +80,31 @@
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
 
+                <!-- 0.13.1 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.13.1</span>
+                        <span class="cl-version-date">2026-11-27</span>
+                        <span class="cl-version-tag">Board Sync Runs Against the Live Project</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li><code>project-board-sync.yml</code> sent GraphQL documents GitHub rejects: the project lookup selected fields directly on the <code>ProjectV2FieldConfiguration</code> union, and the item lookup used a non-existent <code>ProjectV2SingleSelectFieldValue</code> type with an <code>option</code> field. Both now use <code>ProjectV2FieldCommon</code> and <code>ProjectV2ItemFieldSingleSelectValue</code>/<code>optionId</code>, so the sync can read and compare Status values.</li>
+                            <li>Status aliases now include <code>Unchecked/Unassigned</code> and <code>Closed/Not passed</code>, the labels on project #7. Cards waiting on a first review and closed submissions were previously skipped with a warning.</li>
+                            <li>Event-triggered runs now ignore issues without <code>milestone-submission</code>, matching the reconcile filter.</li>
+                        </ul>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label changed">Changed</p>
+                        <ul class="cl-items">
+                            <li>The board item query reads <code>fieldValues(first: 50)</code> so the Status value is not truncated on a board with many populated fields.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
                 <!-- 0.13.0 -->
                 <div class="cl-version">
                     <div class="cl-version-header">

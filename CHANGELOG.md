@@ -4,6 +4,20 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.13.1] - 2026-11-27 — Board Sync Runs Against the Live Project
+
+### Fixed
+
+- `project-board-sync.yml` sent GraphQL documents GitHub rejects: the project lookup selected fields directly on the `ProjectV2FieldConfiguration` union, and the item lookup used a non-existent `ProjectV2SingleSelectFieldValue` type with an `option` field. Both now use `ProjectV2FieldCommon` and `ProjectV2ItemFieldSingleSelectValue`/`optionId`, so the sync can read and compare Status values.
+- Status aliases now include `Unchecked/Unassigned` and `Closed/Not passed`, the labels on project #7. Cards waiting on a first review and closed submissions were previously skipped with a warning.
+- Event-triggered runs now ignore issues without `milestone-submission`, matching the reconcile filter.
+
+### Changed
+
+- The board item query reads `fieldValues(first: 50)` so the Status value is not truncated on a board with many populated fields.
+
+---
+
 ## [0.13.0] - 2026-11-26 — Keep the Board and Tracker in Sync
 
 ### Added

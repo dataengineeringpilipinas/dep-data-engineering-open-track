@@ -48,10 +48,16 @@ jobs:
             // existing board; matching is case-insensitive.
             const OPTION_NAMES = {
               Passed: ["Passed"],
-              Closed: ["Closed", "Not passed", "Closed (not passed)", "Closed / Not passed"],
+              Closed: [
+                "Closed",
+                "Not passed",
+                "Closed (not passed)",
+                "Closed / Not passed",
+                "Closed/Not passed",
+              ],
               "Needs Improvement": ["Needs Improvement"],
               "In review": ["In review"],
-              Unchecked: ["Unchecked"],
+              Unchecked: ["Unchecked", "Unchecked/Unassigned"],
             };
 
             const PROJECT_QUERY = `
@@ -63,7 +69,9 @@ jobs:
                       fields(first: 50) {
                         nodes {
                           __typename
-                          ... on ProjectV2FieldConfiguration { id name }
+                          # ProjectV2FieldConfiguration is a union, so select the
+                          # shared interface instead of the union directly.
+                          ... on ProjectV2FieldCommon { id name }
                           ... on ProjectV2SingleSelectField {
                             options { id name }
                           }
@@ -83,11 +91,12 @@ jobs:
                       nodes {
                         id
                         content { ... on Issue { number } }
-                        fieldValues(first: 20) {
+                        fieldValues(first: 50) {
                           nodes {
-                            ... on ProjectV2SingleSelectFieldValue {
-                              field { ... on ProjectV2SingleSelectField { id } }
-                              option { id name }
+                            ... on ProjectV2ItemFieldSingleSelectValue {
+                              field { ... on ProjectV2FieldCommon { id } }
+                              optionId
+                              name
                             }
                           }
                         }
@@ -133,9 +142,9 @@ jobs:
             const currentOptionId = (item, fieldId) => {
               const values = (item.fieldValues || {}).nodes || [];
               const value = values.find(
-                (entry) => entry.field && entry.field.id === fieldId && entry.option,
+                (entry) => entry.field && entry.field.id === fieldId && entry.optionId,
               );
-              return value ? value.option.id : null;
+              return value ? value.optionId : null;
             };
 
             const projectData = await github.graphql(PROJECT_QUERY, { owner, repo });
@@ -180,7 +189,11 @@ jobs:
                 (issue) => !issue.pull_request && labelNames(issue).includes("milestone-submission"),
               );
             } else {
-              issues = context.payload.issue ? [context.payload.issue] : [];
+              const eventIssue = context.payload.issue;
+              issues =
+                eventIssue && labelNames(eventIssue).includes("milestone-submission")
+                  ? [eventIssue]
+                  : [];
             }
 
             let updated = 0;

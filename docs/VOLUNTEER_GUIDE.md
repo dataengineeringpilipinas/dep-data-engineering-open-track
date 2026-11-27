@@ -77,7 +77,7 @@ The board's Status column is derived from issue labels by `.github/workflows/pro
 Two project settings still have to be made in the GitHub UI (the API cannot change them):
 
 1. In **Project settings → Auto-add to project**, set the filter to `is:issue label:milestone-submission` so ops and test issues stay off the board.
-2. Check that the Status field has the options `Unchecked`, `In review`, `Needs Improvement`, `Passed`, and `Closed` (the sync matches names case-insensitively and also accepts `Not passed` for `Closed`).
+2. Check that the Status field has the options `Unchecked/Unassigned`, `In review`, `Needs Improvement`, `Passed`, and `Closed/Not passed` (the sync matches names case-insensitively and also accepts `Unchecked` and `Closed`).
 
 ---
 
