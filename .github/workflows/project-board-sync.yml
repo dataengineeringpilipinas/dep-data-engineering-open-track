@@ -65,6 +65,7 @@ jobs:
                 repository(owner: $owner, name: $repo) {
                   projectsV2(first: 100) {
                     nodes {
+                      id
                       number
                       fields(first: 50) {
                         nodes {

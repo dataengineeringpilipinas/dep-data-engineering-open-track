@@ -80,6 +80,23 @@
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
 
+                <!-- 0.13.2 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.13.2</span>
+                        <span class="cl-version-date">2026-11-27</span>
+                        <span class="cl-version-tag">Board Sync Selects the Project ID</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label fixed">Fixed</p>
+                        <ul class="cl-items">
+                            <li>The project lookup now selects <code>id</code>, so <code>project.id</code> is defined when the item query and the update mutation run. Without it the first run failed with <code>Variable $projectId of type ID! was provided invalid value</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
                 <!-- 0.13.1 -->
                 <div class="cl-version">
                     <div class="cl-version-header">

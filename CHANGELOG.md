@@ -4,6 +4,14 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.13.2] - 2026-11-27 — Board Sync Selects the Project ID
+
+### Fixed
+
+- The project lookup now selects `id`, so `project.id` is defined when the item query and the update mutation run. Without it the first run failed with `Variable $projectId of type ID! was provided invalid value`.
+
+---
+
 ## [0.13.1] - 2026-11-27 — Board Sync Runs Against the Live Project
 
 ### Fixed
