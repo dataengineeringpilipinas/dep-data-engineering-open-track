@@ -4,6 +4,14 @@ All notable changes to this repository are recorded here.
 
 ---
 
+## [0.13.3] - 2026-11-27 — Board Sync Logic Has Regression Tests
+
+### Added
+
+- `.github/scripts/test_board_sync.js` runs the board sync's embedded script against a stubbed GitHub client, and CI now runs it. It covers Status mapping, idempotence, option aliases, event filtering, the `workflow_dispatch` input, and the project/field/option IDs sent to the mutation. The stub omits `id` and `optionId` unless the queries select them, so regressions like the missing project ID fail the suite.
+
+---
+
 ## [0.13.2] - 2026-11-27 — Board Sync Selects the Project ID
 
 ### Fixed

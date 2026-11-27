@@ -80,6 +80,23 @@
                     <a href="https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">View raw on GitHub ↗</a>
                 </p>
 
+                <!-- 0.13.3 -->
+                <div class="cl-version">
+                    <div class="cl-version-header">
+                        <span class="cl-version-number">0.13.3</span>
+                        <span class="cl-version-date">2026-11-27</span>
+                        <span class="cl-version-tag">Board Sync Logic Has Regression Tests</span>
+                    </div>
+                    <div class="cl-group">
+                        <p class="cl-group-label added">Added</p>
+                        <ul class="cl-items">
+                            <li><code>.github/scripts/test_board_sync.js</code> runs the board sync's embedded script against a stubbed GitHub client, and CI now runs it. It covers Status mapping, idempotence, option aliases, event filtering, the <code>workflow_dispatch</code> input, and the project/field/option IDs sent to the mutation. The stub omits <code>id</code> and <code>optionId</code> unless the queries select them, so regressions like the missing project ID fail the suite.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="cl-divider" />
+
                 <!-- 0.13.2 -->
                 <div class="cl-version">
                     <div class="cl-version-header">
