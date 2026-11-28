@@ -1,6 +1,6 @@
 {
   "cohort": "2026-A",
-  "updatedAt": "2026-11-25",
+  "updatedAt": "2026-11-28",
   "source": "GitHub milestone-submission issues + enrolled-participants.json",
   "builders": [
     {
@@ -142,10 +142,10 @@
       "projectTopic": "MassKara Festival Google Trends Interest & MNL-BCD Travel Price Surge Tracker",
       "startDate": "2026-06-22",
       "activeWeek": "W23",
-      "currentMilestone": 5,
-      "milestonesSubmitted": 5,
-      "milestonesPassed": 5,
-      "phase": "Predictive / Alt Track"
+      "currentMilestone": 6,
+      "milestonesSubmitted": 6,
+      "milestonesPassed": 6,
+      "phase": "Packaging & Deployment"
     },
     {
       "name": "Virgines, Xein Deniel M.",
